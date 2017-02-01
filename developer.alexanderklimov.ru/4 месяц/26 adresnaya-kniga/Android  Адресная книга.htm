@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Адресная книга</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory/">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Адресная книга</h1>
+<p>Четвёртый месяц обучения (закрытая зона)</p>
+
+<p>Метки: <span class="label">ListActivity</span>, <span class="label label-success">AdapterView</span>, <span class="label label-warning">SimpleCursorAdapter</span>, <span class="label label-important">SQLite</span>, <span class="label label-info">AsyncTask</span>, <span class="label">Cursor</span></p>
+
+
+
+<p>
+<a href="#mainactivity">Разметка для основной активности</a><br>
+<a href="#viewcontact">Разметка для класса ViewContact</a><br>
+<a href="#addeditcontact">Разметка для класса AddEditContact</a><br>
+<a href="#addmenu">Добавляем меню</a><br>
+<a href="#maincode">Код для главной активности</a><br>
+<a href="#viewcontactcode">Код для ViewContact</a><br>
+<a href="#addeditcontactcode">Код для AddEditContact</a><br>
+<a href="#databaseconnector">Класс DatabaseConnector</a><br>
+
+</p>
+
+<p>Напишем приложение <b>Адресная книга</b>. Наша цель - обеспечить 
+удобный доступ к сохраненной информации контакта. На главном экране 
+можно выполнить прокрутку отсортированного в алфавитном порядке списка. 
+Чтобы просмотреть подробные сведения о контакте, коснитеть пункта с его 
+именем. Во время просмотра сведений можно запустить меню, содержащее 
+параметры <b>Изменить контакт</b> или <b>Удалить контакт</b>. Если 
+выбрать вариант изменения контакта, приложение запустит новую 
+активность. Если пользователь выберет параметр удаления контакта, 
+появится диалоговое окно, в котором отображается запрос подтверждения 
+операции удаления. Если во время просмотра списка контактов нажать 
+кнопку меню, появится пункт <b>Добавить контакт</b>. После выбора этого параметра запускается новая активность для добавления нового контакта. После касания кнопки <b>Сохранить контакт</b> добавляется в список новый контакт, а пользователь возвращается к главному экрану контакта.</p>
+
+<p>
+<img src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/addressbook1.png" alt="Адресная книга" height="400" width="240"> <img src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/addressbook2.png" alt="Адресная книга" height="400" width="240"> <img src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/addressbook3.png" alt="Адресная книга" height="400" width="240"> </p>
+<p>
+<img src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/addressbook4.png" alt="Адресная книга" height="400" width="240"> <img src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/addressbook5.png" alt="Адресная книга" height="400" width="240"> <img src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/addressbook6.png" alt="Адресная книга" height="400" width="240"> </p>
+
+
+
+
+
+<p>Создадим новый проект <b>AddressBook</b>.</p>
+
+<h2 class="text-warning" id="mainactivity">Разметка для основной активности</h2>
+
+<p>Основная активность будет наследоваться от ListActivity, так как для основного экрана нам нужен только список контактов.</p>
+
+<p>Подготовим разметку для отдельных элементов списка.</p>
+
+<h3 class="text-success">res/layout/contact_list_item.xml</h3>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contactTextView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:padding="8dp"
+    android:textColor="@android:color/white"
+    android:textSize="20sp" &gt;
+
+&lt;/TextView&gt;
+</code></pre>
+
+<p>Каждый элемент списка включает одно имя контакта, поэтому в разметке 
+мы задаём единственный компонент TextView, с помощью которого будет 
+выводиться имя контакта. По умолчанию в качестве фонового цвета 
+компонента ListView используется черный цвет, поэтому мы задаем белый 
+цвет (android:textColor). С помощью атрибута <b>android:id</b> выполняется связывание данных с компонентом TextView. В атрибуте <b>minHeight</b> переменной <b>listPreferredItemHeight</b> присваивается значение минимальной высоты элемента списка (встроенная константа атрибута Android). В атрибуте <b>android:gravity</b> выбирается выравнивание 
+элемента списка <b>center_vertical</b>.</p>
+
+<h2 class="text-warning" id="viewcontact">Разметка для класса ViewContact</h2>
+
+<p>Если пользователь выбирает контакт из списка, приложение запускает вторую активность <b>ViewContact</b>. Создадим разметку этого класса Activity:</p>
+
+<h3 class="text-success">res/layout/view_contact.xml</h3>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1" &gt;
+
+    &lt;TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:stretchColumns="1" &gt;
+
+        &lt;TableRow
+            android:id="@+id/nameTableRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" &gt;
+
+            &lt;TextView
+                android:id="@+id/nameLabelTextView"
+                style="@style/ContactLabelTextView"
+                android:text="@string/label_name" &gt;
+            &lt;/TextView&gt;
+
+            &lt;TextView
+                android:id="@+id/nameTextView"
+                style="@style/ContactTextView" &gt;
+            &lt;/TextView&gt;
+        &lt;/TableRow&gt;
+
+        &lt;TableRow
+            android:id="@+id/phoneTableRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" &gt;
+
+            &lt;TextView
+                android:id="@+id/phoneLabelTextView"
+                style="@style/ContactLabelTextView"
+                android:text="@string/label_phone" &gt;
+            &lt;/TextView&gt;
+
+            &lt;TextView
+                android:id="@+id/phoneTextView"
+                style="@style/ContactTextView" &gt;
+            &lt;/TextView&gt;
+        &lt;/TableRow&gt;
+
+        &lt;TableRow
+            android:id="@+id/emailTableRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" &gt;
+
+            &lt;TextView
+                android:id="@+id/emailLabelTextView"
+                style="@style/ContactLabelTextView"
+                android:text="@string/label_email" &gt;
+            &lt;/TextView&gt;
+
+            &lt;TextView
+                android:id="@+id/emailTextView"
+                style="@style/ContactTextView" &gt;
+            &lt;/TextView&gt;
+        &lt;/TableRow&gt;
+
+        &lt;TableRow
+            android:id="@+id/streetTableRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" &gt;
+
+            &lt;TextView
+                android:id="@+id/streetLabelTextView"
+                style="@style/ContactLabelTextView"
+                android:text="@string/label_street" &gt;
+            &lt;/TextView&gt;
+
+            &lt;TextView
+                android:id="@+id/streetTextView"
+                style="@style/ContactTextView" &gt;
+            &lt;/TextView&gt;
+        &lt;/TableRow&gt;
+
+        &lt;TableRow
+            android:id="@+id/cityTableRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" &gt;
+
+            &lt;TextView
+                android:id="@+id/cityLabelTextView"
+                style="@style/ContactLabelTextView"
+                android:text="@string/label_city" &gt;
+            &lt;/TextView&gt;
+
+            &lt;TextView
+                android:id="@+id/cityTextView"
+                style="@style/ContactTextView" &gt;
+            &lt;/TextView&gt;
+        &lt;/TableRow&gt;
+    &lt;/TableLayout&gt;
+
+&lt;/ScrollView&gt;
+</code></pre>
+
+<p>В разметке используется компонент ScrollView, включающий компонент 
+TableLayout, в котором каждый компонент TableRow содержит два компонента
+ TextView. Ко всем компонентам TextView применены стили, определенные в 
+файле <b>styles.xml</b>.</p>
+
+<h2 class="text-warning" id="addeditcontact">Разметка для класса AddEditContact</h2>
+
+<p>Если пользователь выбирает элемент меню <b>Добавить контакт</b> из главной активности либо элемент меню <b>Изменить контакт</b> из объекта <b>ViewContact</b>, приложение запускает активность <b>AddEditContact</b>. Подготовим разметку для данной активности. В разметке используется компонент <b>ScrollView</b>, включающий вертикальный макет <b>LinearLayout</b>.</p>
+
+<p>Если данная активность будет запущена из основной активности, 
+компоненты EditText будут «обнулены», и отобразятся подсказки 
+(android:hint). В противном случае компоненты EditText отобразят данные 
+контакта, которые будут переданы из класса <b>ViewContact</b>. Каждый компонент EditText определяет атрибуты <b>android:inputType</b> и <b>android:imeOptions</b>. Для устройств, которые отображают программную клавиатуру, атрибут <b>android:inputType</b>
+ определяет клавиатуру, которая отображается после касания пользователем
+ соответствующего компонента EditText. С помощью этого атрибута можно 
+настроить клавиатуру в соответствии с типом данных, которые пользователь
+ должен ввести в соответствующий EditText. С помощью атрибута <b>android:imeOptions</b> отображается кнопка 
+Next (Далее) на программных клавиатурах для компонентов <b>nameEditText</b>, <b>emailEditText</b>, <b>phoneEditText</b> и <b>streetEditText</b>.
+ Если один из этих компонентов получает фокус, касание соответствующей 
+кнопки Button приведет к передаче фокуса следующему компоненту EditText.
+ Если компонент <b>cityEditText</b> получает фокус, можно скрыть программную клавиатуру, коснувшись кнопки Done (Готово) клавиатуры.</p>
+
+<h3 class="text-success">res/layout/add_contact.xml</h3>
+
+<pre><code class="java">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1" &gt;
+
+    &lt;LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp" &gt;
+
+        &lt;EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_name"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName|textCapWords" &gt;
+        &lt;/EditText&gt;
+
+        &lt;EditText
+            android:id="@+id/phoneEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_phone"
+            android:imeOptions="actionNext"
+            android:inputType="phone" &gt;
+        &lt;/EditText&gt;
+
+        &lt;EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_email"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress" &gt;
+        &lt;/EditText&gt;
+
+        &lt;TextView
+            android:id="@+id/addressTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
+            android:paddingTop="10dp"
+            android:text="@string/address"
+            android:textSize="18sp"
+            android:color="@android:color/black" &gt;
+        &lt;/TextView&gt;
+
+        &lt;EditText
+            android:id="@+id/streetEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_street"
+            android:imeOptions="actionNext"
+            android:inputType="textPostalAddress|textCapWords" &gt;
+        &lt;/EditText&gt;
+
+        &lt;EditText
+            android:id="@+id/cityEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_city"
+            android:imeOptions="actionDone"
+            android:inputType="textPostalAddress|textCapWords" &gt;
+        &lt;/EditText&gt;
+
+        &lt;Button
+            android:id="@+id/saveContactButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:text="@string/button_save_contact" &gt;
+        &lt;/Button&gt;
+    &lt;/LinearLayout&gt;
+
+&lt;/ScrollView&gt;
+</code></pre>
+
+<h2 class="text-warning" id="addmenu">Добавляем меню</h2>
+
+<p>В приложении используются два меню. Нам понадобятся ресурсы меню для активности AddressBook и ViewContact (папка res/menu).</p>
+
+<h3 class="text-success">res/menu/addressbook_menu.xml</h3>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;menu xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+
+    &lt;item
+        android:id="@+id/addContactItem"
+        android:alphabeticShortcut="e"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/menuitem_add_contact"
+        android:titleCondensed="@string/menuitem_add_contact"&gt;
+    &lt;/item&gt;
+
+&lt;/menu&gt;
+</code></pre>
+
+<h3 class="text-success">res/menu/view_contact_menu.xml</h3>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;menu xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+   &lt;item android:id="@+id/editItem"
+      android:title="@string/menuitem_edit_contact" 
+      android:orderInCategory="1" android:alphabeticShortcut="e"
+      android:titleCondensed="@string/menuitem_edit_contact"
+      android:icon="@android:drawable/ic_menu_edit"&gt;&lt;/item&gt;
+   &lt;item android:id="@+id/deleteItem" 
+      android:title="@string/menuitem_delete_contact"
+      android:orderInCategory="2" android:alphabeticShortcut="d"
+      android:titleCondensed="@string/menuitem_delete_contact"
+      android:icon="@android:drawable/ic_delete"&gt;&lt;/item&gt;
+&lt;/menu&gt;
+</code></pre>
+
+<h2 class="text-warning" id="maincode">Код для главной активности</h2>
+
+<p>Теперь, когда мы подготовили разметку и меню для всех активностей, 
+можно приступать к написанию кода. Начнём с главной активности <b>AddressBook</b>.</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.addressbook;
+
+import android.app.ListActivity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CursorAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+
+public class AddressBook extends ListActivity {
+	public static final String ROW_ID = "row_id"; // ключ для передачи в другую активность
+	private ListView contactListView; // встроенный в ListActivity элемент ListView
+	private CursorAdapter contactAdapter; // адаптер для ListView
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		contactListView = getListView(); // доступ к встроенному ListView
+		contactListView.setOnItemClickListener(viewContactListener);
+
+		// отображение имени каждого контакта на TextView в разметке ListView
+		String[] from = new String[] { "name" };
+		int[] to = new int[] { R.id.contactTextView };
+		contactAdapter = new SimpleCursorAdapter(AddressBook.this,
+				R.layout.contact_list_item, null, from, to);
+		setListAdapter(contactAdapter);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		// создает новый объект GetContactsTask и вызывает его
+		new GetContactsTask().execute((Object[]) null);
+	}
+
+	@Override
+	protected void onStop() {
+		Cursor cursor = contactAdapter.getCursor(); // доступ к текущему Cursor
+
+		if (cursor != null)
+			cursor.deactivate(); // деактивирование
+
+		contactAdapter.changeCursor(null); // у адаптера нет Cursor
+		super.onStop();
+	}
+
+	// выполнение запроса к базе данных за пределами потока GUI
+	private class GetContactsTask extends AsyncTask&lt;Object, Object, Cursor&gt; {
+		DatabaseConnector databaseConnector = new DatabaseConnector(
+				AddressBook.this);
+
+		// выполнение доступа к базе данных
+		@Override
+		protected Cursor doInBackground(Object... params) {
+			databaseConnector.open();
+
+			// доступ к курсору, включая вызов всех контактов
+			return databaseConnector.getAllContacts();
+		}
+
+		// использование Cursor, возвращенного методом doInBackground
+		@Override
+		protected void onPostExecute(Cursor result) {
+			contactAdapter.changeCursor(result); // установка Cursor адаптера
+			databaseConnector.close();
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.addressbook_menu, menu);
+		return true;
+	}
+
+	// обработка варианта, выбранного из меню параметров
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// создание нового объекта Intent для запуска метода
+		// AddEditContact класса Activity
+		Intent addNewContact = new Intent(AddressBook.this,
+				AddEditContact.class);
+		startActivity(addNewContact); // запускаем AddEditContact
+		return super.onOptionsItemSelected(item);
+	}
+
+	// слушатель события, которое отвечает на выбор имени контакта в ListView
+	OnItemClickListener viewContactListener = new OnItemClickListener() {
+		@Override
+		public void onItemClick(AdapterView&lt;?&gt; arg0, View arg1, int arg2,
+				long arg3) {
+			// создание Intent для запуска ViewContact Activity
+			Intent viewContact = new Intent(AddressBook.this, ViewContact.class);
+
+			// передача ID строки выбранного контакта в качестве
+            // расширения объекта Intent
+			viewContact.putExtra(ROW_ID, arg3);
+			startActivity(viewContact); // start the ViewContact Activity
+		}
+	};
+}
+</code></pre>
+
+<p>Константа <b>ROW_ID</b> применяется в качестве ключа в паре «ключ–значение», который передается между активностями.</p>
+
+<p>Переменная экземпляра класса <b>contactListView</b> ссылается на 
+встроенный в класс AddressBook (ListActivity) компонент ListView для 
+программного взаимодействия с этим компонентом. Переменная экземпляра 
+класса <b>contactAdapter</b> ссылается на объект <b>CursorAdapter</b>, который заполняет компонент ListView класса AddressBook.</p>
+
+<p>В методе <b>onCreate()</b> мы получаем доступ к ListView и настраиваем адаптер. Класс <b>ListActivity</b> уже включает компонент ListView, который занимает все пространство экрана. В связи с этим не нужно вызывать метод <b>setContentView()</b>, как это делалось при разработке обычных приложений. Мы используем унаследованный метод <b>getListView()</b> класса ListActivity для получения ссылки на встроенный компонент ListView. Затем <b>OnItemClickListener</b> из компонента ListView присваивается значение <b>viewContactListener</b> в ответ на выбор пользователем одного из элементов ListView.</p>
+
+<p>Чтобы отобразить результаты из класса Cursor с помощью компонента ListView, создается новый объект <b>CursorAdapter</b>. Этот объект отображает данные из 
+Cursor в форме, которая используется в элементе управления ListView.</p>
+
+<h3 class="text-warning">Переопределение методов onResume() и onStop()</h3>
+
+<p>Метод <b>onResume()</b> вызывается при каждом возвращении Activity на
+ «передний план», включая время первого создания класса Activity. В 
+данном приложении метод onResume() создает и вызывает метод <b>execute()</b>
+ класса GetContactsTask (от класса AsyncTask), который получает полный 
+список контактов из базы данных и настраивает класс Cursor из 
+contactAdapter таким образом, чтобы вводить данные в компонент ListView 
+класса AddressBook. Метод инициирует выполнение задачи в отдельном 
+потоке. В этом случае применение аргумента в методе execute() говорит о 
+том, что при выполнении задачи не принимаются какие-либо аргументы. Этот
+ метод может принимать различное число аргументов, которые, в свою 
+очередь, передаются как аргументы методу задания <b>doInBackground()</b>.
+ При каждом выполнении оператора создается новый объект GetContactsTask.
+ Создание этого объекта обязательно, поскольку каждый метод AsyncTask 
+может быть вызван один раз.</p>
+
+<p>Метод <b>onStop()</b> вызывается, если класс Activity уже не видим 
+пользователю, — обычно это происходит в том случае, если запущен или 
+возвращается на передний план другой класс Activity. В рассматриваемом 
+случае класс Cursor, с помощью которого вводятся данные в ListView, не 
+нужен. Поэтому вызывается метод <b>getCursor()</b> класса CursorAdapter, с помощью которого вызывается текущий класс Cursor из contactAdapter. Затем вызывается метод <b>deactivate()</b> класса Cursor, с помощью которого освобождаются ресурсы, используемые классом Cursor. Затем вызывается метод <b>changeCursor()</b> класса CursorAdapter 
+с аргументом null для удаления Cursor из класса CursorAdapter.</p>
+
+<h3 class="text-warning">Подкласс GetContactsTask класса AsyncTask</h3>
+
+<p>Вложенный класс GetContactsTask расширяет класс AsyncTask. Класс 
+определяет порядок взаимодействия с базой данных для получения имён 
+контактов 
+и возвращения результатов в поток GUI класса Activity для их отображения
+ с помощью ListView. Класс AsyncTask имеет обобщенный тип, который 
+требует три параметра:</p>
+
+<ul>
+<li>Первый параметр представляет собой тип списка переменной длины 
+метода doInBackground класса AsyncTask. Если вызывается метод execute() 
+класса AsyncTask, метод doInBackground() задания выполняет задание в 
+отдельном потоке выполнения. В рассматриваемом случае метод 
+doInBackground не требует 
+дополнительных данных для выполнения задачи, поэтому мы определили 
+Object в качестве параметра типа и передали null в качестве аргумента 
+методу execute() 
+класса AsyncTask, а затем вызвали метод doInBackground().</li>
+<li>Второй параметр представляет собой тип списка переменной длины для 
+метода onProgressUpdate() класса AsyncTask. Этот метод вызывается в 
+потоке GUI и используется для получения промежуточных обновлений 
+определенного типа из длительно выполняющейся задачи. В рассматриваемом 
+примере мы не используем это свойство, поэтому указываем тип Object и 
+игнорируем этот параметр типа.</li>
+<li>Третий параметр представляет тип возвращаемого результата 
+выполняемой задачи, который передается методу onPostExecute() класса 
+AsyncTask. Этот метод выполняется в потоке GUI и позволяет классу 
+Activity использовать результаты класса AsyncTask.</li>
+</ul>
+
+<p>В примере создаётся новый объект класса утилиты DatabaseConnector, в 
+качестве аргумента конструктору класса передается объект Context 
+(AddressBook.this). 
+Метод doInBackground использует класс databaseConnector для открытия 
+подключения к базе данных и получения всех контактов из базы данных. 
+Класс 
+Cursor, возвращаемый getAllContacts(), передается методу 
+onPostExecute(). Этот метод получает класс Cursor, содержащий 
+результаты, и передает его методу 
+changeCursor() класса CursorAdapter. В результате компонент ListView 
+класса Activity может получать данные самостоятельно.</p>
+
+<h3 class="text-warning">Управление курсорами</h3>
+
+<p>В текущем классе Activity можно управлять курсорами с помощью 
+различных методов Cursor и CursorAdapter. Класс Activity может также 
+управлять пользовательскими курсорами. Метод startManagingCursor класса 
+Activity определяет для класса Activity управление жизненным циклом 
+Cursor на основе жизненного цикла класса Activity. Если класс Activity 
+остановлен, он может вызвать метод deactivate() для любых управляемых в 
+настоящее время курсоров. Если восстанавливается класс Activity, 
+направляется повторный запрос курсоров. Если класс Activity разрушен, он
+ автоматически вызовет метод close, с помощью которого освобождаются все
+ ресурсы, выделенные для всех управляемых курсоров. Деактивированный 
+класс Cursor потребляет меньше ресурсов, чем активный, поэтому следует 
+сравнять жизненный цикл класса Cursor с родительским Activity, если 
+Cursor не используется вместе с другими обьектами Activity. Позволяя 
+классу Activity управлять жизненным циклом Cursor, вы гарантируете, что 
+Cursor будет закрыт, когда он больше не нужен.</p>
+
+<h3 class="text-warning">Переопределение методов onCreateOptionsMenu и onOptionsItemSelected</h3>
+
+<p>Если пользователь открывает меню Activity, метод onCreateOptionsMenu с
+ помощью MenuInflater создает меню на основе файла addressbook_menu.xml,
+ который включает Add Contact MenuItem. Доступ к MenuInflater можно 
+получить путем вызова метода getMenuInflater класса Activity. После 
+выбора пользователем компонента MenuItem метод onOptionsItemSelected 
+запускает метод AddEditContact класса Activity. Далее создается новый 
+явно заданный класс Intent, предназначенный для запуска этого класса 
+Activity. Используемый здесь конструктор класса Intent получает объект 
+Context, из которого может быть запущен класс Activity, и класс, который
+ представляет запускаемый класс Activity (AddEditContact.class). Затем 
+объект Intent передает унаследованный метод startActivity класса 
+Activity, применяемый для запуска этого класса Activity.</p>
+
+<h3 class="text-warning">Анонимный внутренний класс, реализующий интерфейс OnItemClickListener для обработки событий ListView</h3>
+
+<p>Интерфейс viewContactListener класса OnItemClickListener запускает 
+метод ViewContact класса Activity для отображения выбранного 
+пользователем контакта. 
+Метод onItemClick получает следующие параметры:</p>
+
+<ul>
+<li>ссылка на объект AdapterView, с которым взаимодействует пользователь (то есть на компонент ListView);</li>
+<li>ссылка на корневой компонент View для выбранного пользователем элемента меню;</li>
+<li>индекс выбранного элемента списка для ListView;</li>
+<li>уникальный идентификатор ID типа long для выбранного элемента — в рассматриваемом случае подразумевается ID в классе Cursor.</li>
+</ul>
+
+<p>В строках кода создается определенный явно класс Intent, применяемый 
+для запуска ViewContact класса Activity. Для отображения 
+соответствующего контакта класс ViewContact класса Activity должен 
+«знать», какую запись нужно выбрать в данный момент времени. Чтобы 
+передавать данные между деятельностями путем добавления расширений 
+(extra) в Intent используется метод putExtra класса Intent. Этот метод 
+добавляет данные в виде пар ключ–значение в объект Bundle, связанный с 
+классом Intent. В данном случае пара ключ–значение представляет 
+уникальный идентификатор строки контакта, выбранного пользователем.</p>
+
+<h2 class="text-warning" id="viewcontactcode">Код для ViewContact</h2>
+
+<p>С помощью активности ViewContact отображаются сведения об одном 
+контакте, а также поддерживается меню, с помощью которого пользователь 
+может изменить или удалить контакт.</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.addressbook;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.TextView;
+
+public class ViewContact extends Activity {
+	private long rowID; // имя выбранного контакта
+	private TextView nameTextView; // отображает имя контакта
+	private TextView phoneTextView; // номер телефона контакта
+	private TextView emailTextView; // email контакта
+	private TextView streetTextView; // номер улицы контакта
+	private TextView cityTextView; // город/штат/индекс контакта
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.view_contact);
+
+		nameTextView = (TextView) findViewById(R.id.nameTextView);
+		phoneTextView = (TextView) findViewById(R.id.phoneTextView);
+		emailTextView = (TextView) findViewById(R.id.emailTextView);
+		streetTextView = (TextView) findViewById(R.id.streetTextView);
+		cityTextView = (TextView) findViewById(R.id.cityTextView);
+
+		// получение ID строки выбранного контакта
+		Bundle extras = getIntent().getExtras();
+		rowID = extras.getLong(AddressBook.ROW_ID);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		// создание нового класса LoadContactTask и вызов его
+		new LoadContactTask().execute(rowID);
+	}
+
+	// выполняет запрос к базе данных за пределами потока GUI
+	private class LoadContactTask extends AsyncTask&lt;Long, Object, Cursor&gt; {
+		DatabaseConnector databaseConnector = new DatabaseConnector(
+				ViewContact.this);
+
+		// выполнение доступа к базе данных
+		@Override
+		protected Cursor doInBackground(Long... params) {
+			databaseConnector.open();
+
+			// получение курсора, содержащего все данные выбранной записи
+			return databaseConnector.getOneContact(params[0]);
+		}
+
+		// использование объекта типа Cursor, возвращаемого методом
+		// doInBackground
+		@Override
+		protected void onPostExecute(Cursor result) {
+			super.onPostExecute(result);
+
+			result.moveToFirst(); // перемещение к первому элементу
+
+			// получение индекса столбца для каждого элемента данных
+			int nameIndex = result.getColumnIndex("name");
+			int phoneIndex = result.getColumnIndex("phone");
+			int emailIndex = result.getColumnIndex("email");
+			int streetIndex = result.getColumnIndex("street");
+			int cityIndex = result.getColumnIndex("city");
+
+			// заполнение компонентов TextViews выбранными данными
+			nameTextView.setText(result.getString(nameIndex));
+			phoneTextView.setText(result.getString(phoneIndex));
+			emailTextView.setText(result.getString(emailIndex));
+			streetTextView.setText(result.getString(streetIndex));
+			cityTextView.setText(result.getString(cityIndex));
+
+			result.close(); // закрытие курсора результата
+			databaseConnector.close(); // закрытие подключения к базе данных
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.view_contact_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.editItem:
+			// создание Intent для запуска AddEditContact
+			Intent addEditContact = new Intent(this, AddEditContact.class);
+
+			// передача данных выбранного контакта
+			addEditContact.putExtra(AddressBook.ROW_ID, rowID);
+			addEditContact.putExtra("name", nameTextView.getText());
+			addEditContact.putExtra("phone", phoneTextView.getText());
+			addEditContact.putExtra("email", emailTextView.getText());
+			addEditContact.putExtra("street", streetTextView.getText());
+			addEditContact.putExtra("city", cityTextView.getText());
+			startActivity(addEditContact);
+			return true;
+		case R.id.deleteItem:
+			deleteContact(); // удаление отображенного контакта
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	// удаление контакта
+	private void deleteContact() {
+		// создание нового AlertDialog Builder
+		AlertDialog.Builder builder = new AlertDialog.Builder(ViewContact.this);
+
+		builder.setTitle(R.string.confirmTitle);
+		builder.setMessage(R.string.confirmMessage);
+
+		builder.setPositiveButton(R.string.button_delete,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int button) {
+						final DatabaseConnector databaseConnector = new DatabaseConnector(
+								ViewContact.this);
+
+						// создание класса AsyncTask, удаляющего контакт
+						// из другого потока, после удаления вызывается ﬁnish
+						AsyncTask&lt;Long, Object, Object&gt; deleteTask = new AsyncTask&lt;Long, Object, Object&gt;() {
+							@Override
+							protected Object doInBackground(Long... params) {
+								databaseConnector.deleteContact(params[0]);
+								return null;
+							}
+
+							@Override
+							protected void onPostExecute(Object result) {
+								finish(); // возврат в AddressBook
+							}
+						};
+
+						// вызов класса AsyncTask для удаления контакта с rowID
+						deleteTask.execute(new Long[] { rowID });
+					}
+				});
+
+		builder.setNegativeButton(R.string.button_cancel, null);
+		builder.show();
+	}
+}
+</code></pre>
+
+<p>Переменная экземпляра rowID представляет идентификатор уникальной строки контакта в базе данных.</p>
+
+<p>Метод <b>getIntent()</b> возвращает объект Intent, который запустил Activity. С помощью этого объекта вызывается метод <b>getExtras()</b>
+ класса Intent, который возвращает объект Bundle, включающий 
+произвольные пары ключ–значение, которые были добавлены в класс Intent в
+ виде расширений. Этот метод возвращает значение null, если не были 
+добавлены дополнения. Затем воспользуемся методом <b>getLong()</b> класса Bundle для получения целого числа типа long, представляющего ID строки для выбранного контакта.</p>
+
+<p>Метод <b>onResume()</b> просто создает новый объект AsyncTask типа 
+LoadContactTask, а затем вызывает его для получения и отображения 
+информации о контакте.</p>
+
+<h3 class="text-warning">Подкласс GetContactsTask класса AsyncTask</h3>
+
+<p>Вложенный класс GetContactsTask расширяет класс AsyncTask и 
+определяет порядок взаимодействия с базой данных и получения информации 
+об одном контакте, которая будет отображаться на экране. В этом случае 
+используются три параметра, имеющие обобщенный тип:</p>
+
+<ul>
+<li>Тип Long применяется для списка параметров переменной длины, 
+передаваемых методу doInBackground() класса AsyncTask. Этот список будет
+ включать ID строки, 
+нужный для выборки одного контакта.</li>
+<li>Тип Object применяется для списка параметров переменной длины, 
+передаваемых методу onProgressUpdate класса AsyncTask. Этот тип 
+параметров не применяется в рассматриваемом примере.</li>
+<li>Тип Cursor применяется в качестве типа результатов выполняемой задачи, которые передаются методу onPostExecute класса AsyncTask.</li>
+</ul>
+
+<p>В коде создается новый объект класса DatabaseConnector. Метод 
+doInBackground() открывает подключение к базе данных и вызывает метод 
+getOneContact() класса DatabaseConnector, который создает запрос к базе 
+данных на выборку контакта с указанным rowID, переданного в качестве 
+единственного аргумента методу execute() класса AsyncTask. Метод 
+doInBackground() хранит rowID в массиве params[0].</p>
+
+<p>Результирующий объект Cursor передается методу onPostExecute(). 
+Объект Cursor позиционируется перед первой строкой набора результатов. В
+ рассматриваемом случае набор результатов будет включать единственную 
+запись. Для перемещения объекта Cursor в первую строку набора 
+результатов может использоваться 
+метод moveToFirst.</p>
+
+<p>Рекомендуется удостовериться в том, что метод moveToFirst класса 
+Cursor возвращает значение true прежде, чем выбираются данные из класса 
+Cursor. В данном 
+приложении в качестве данных выбирается строка из класса Cursor.</p>
+
+<p>Метод getColumnIndex() класса Cursor применяется для получения 
+индикаторов столбцов для столбцов в таблице контактов базы данных. 
+(Имена столбцов были жестко закодированы в приложении, но они могут быть
+ реализованы в виде констант String подобно тому, как мы использовали 
+константы ROW_ID в классе AddressBook.) Этот метод возвращает значение 
+-1, если столбец отсутствует в результате запроса. Класс Cursor также 
+поддерживает метод getColumnIndexOrThrow, с помощью которого можно 
+получить исключение в случае, если указанное имя столбца не существует. В
+ коде используется метод getString() класса Cursor для выборки значений 
+String из столбцов класса Cursor с последующим отображением этих 
+значений в соответствующий компонент TextView. Далее закрывается класс 
+Cursor и подключение к базе данных класса Activity, поскольку они больше
+ не требуются. Рекомендуется освобождать ресурсы, такие как подключения к
+ базе данных, если они больше не нужны и могут применяться другими 
+деятельностями.</p>
+
+<h3 class="text-warning">Переопределение методов onCreateOptionsMenu() и onOptionsItemSelected()</h3>
+
+<p>Меню ViewContact поддерживает параметры, обеспечивающие изменение и 
+удаление контакта. Метод onCreateOptionsMenu использует метод 
+MenuInflater() для создания меню на основе файла ресурсов 
+view_contact.xml, который включает элементы MenuItems: Edit Contact и 
+Delete Contact. Метод onOptionsItemSelected() использует ID ресурса 
+элемента MenuItem для определения выделенного элемента меню. Если выбран
+ пункт меню Edit Contact, то создается новый явно определенный класс 
+Intent для компонента AddEditContact, добавляются дополнения в класс 
+Intent, представляющие информацию о контакте, отображаемую в EditTexts 
+компонента AddEditContact, а также запускается Activity. Если выбирается
+ элемент меню Delete Contact, то вызывается метод утилиты deleteContact.</p>
+
+<h3 class="text-warning">Метод deleteContact()</h3>
+
+<p>Метод deleteContact() отображает диалоговое окно AlertDialog, которое
+ предлагает пользователю подтвердить удаление текущего выделенного 
+контакта. В этом 
+случае класс AsyncTask удаляет контакт из базы данных SQLite. Если 
+пользователь шелкнет на кнопке Delete Button в диалоговом окне, то 
+создается новый 
+класс DatabaseConnector. Далее создается класс AsyncTask, после вызова 
+которого передается значение типа Long, которое представляет ID строки 
+контакта, методу doInBackground(). Этот метод удаляет контакт. 
+Вызывается метод deleteContact() класса DatabaseConnector, который 
+выполняет фактическое удаление.</p>
+
+<p>Как только метод doInBackground() завершает выполнение, вызывается 
+метод finish() для возвращения в класс Activity и осуществляется возврат
+ 
+в класс AddressBook.</p>
+
+<h2 class="text-warning" id="addeditcontactcode">Код для AddEditContact</h2>
+
+<p>Класс AddEditContact позволяет добавлять новый контакт либо изменить информацию существующего контакта.</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.addressbook;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+
+// Класс Activity, применяемый для добавления новой записи 
+// либо изменения существующей записи в адресной книге.
+public class AddEditContact extends Activity 
+{
+   private long rowID; // id изменяемого контакта
+   
+   private EditText nameEditText;
+   private EditText phoneEditText;
+   private EditText emailEditText;
+   private EditText streetEditText;
+   private EditText cityEditText;
+   
+   @Override
+   public void onCreate(Bundle savedInstanceState) 
+   {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.add_contact);
+
+      nameEditText = (EditText) findViewById(R.id.nameEditText);
+      emailEditText = (EditText) findViewById(R.id.emailEditText);
+      phoneEditText = (EditText) findViewById(R.id.phoneEditText);
+      streetEditText = (EditText) findViewById(R.id.streetEditText);
+      cityEditText = (EditText) findViewById(R.id.cityEditText);
+      
+      Bundle extras = getIntent().getExtras(); // получение дополнений
+
+      // при наличии дополнений заполнение данными EditTexts
+      if (extras != null)
+      {
+         rowID = extras.getLong("row_id");
+         nameEditText.setText(extras.getString("name"));  
+         emailEditText.setText(extras.getString("email"));  
+         phoneEditText.setText(extras.getString("phone"));  
+         streetEditText.setText(extras.getString("street"));  
+         cityEditText.setText(extras.getString("city"));  
+      }
+      
+      // настройка слушателя событий для кнопки Save Contact
+      Button saveContactButton = 
+         (Button) findViewById(R.id.saveContactButton);
+      saveContactButton.setOnClickListener(saveContactButtonClicked);
+   }
+
+   // отвечает на события, сгенерированные после щелчка пользователя на кнопке Done
+   OnClickListener saveContactButtonClicked = new OnClickListener() 
+   {
+      @Override
+      public void onClick(View v) 
+      {
+         if (nameEditText.getText().length() != 0)
+         {
+            AsyncTask&lt;Object, Object, Object&gt; saveContactTask = 
+               new AsyncTask&lt;Object, Object, Object&gt;() 
+               {
+                  @Override
+                  protected Object doInBackground(Object... params) 
+                  {
+                     saveContact(); // сохранение контакта в базе данных
+                     return null;
+                  }
+      
+                  @Override
+                  protected void onPostExecute(Object result) 
+                  {
+                     finish(); // возврат к предыдущему Activity
+                  }
+               };
+               
+            // сохранение контакта в базе данных с помощью отдельного потока
+            saveContactTask.execute((Object[]) null); 
+         }
+         else
+         {
+            // создание нового AlertDialog Builder
+            AlertDialog.Builder builder = 
+               new AlertDialog.Builder(AddEditContact.this);
+      
+            builder.setTitle(R.string.errorTitle); 
+            builder.setMessage(R.string.errorMessage);
+            builder.setPositiveButton(R.string.errorButton, null); 
+            builder.show();
+         }
+      }
+   };
+
+   // сохраняет информацию о контакте в базе данных
+   private void saveContact() 
+   {
+      // получение класса DatabaseConnector для взаимодействия
+      // с базой данных SQLite
+      DatabaseConnector databaseConnector = new DatabaseConnector(this);
+
+      if (getIntent().getExtras() == null)
+      {
+         // включение в базу данных сведений о контакте
+         databaseConnector.insertContact(
+            nameEditText.getText().toString(),
+            emailEditText.getText().toString(), 
+            phoneEditText.getText().toString(), 
+            streetEditText.getText().toString(),
+            cityEditText.getText().toString());
+      }
+      else
+      {
+         databaseConnector.updateContact(rowID,
+            nameEditText.getText().toString(),
+            emailEditText.getText().toString(), 
+            phoneEditText.getText().toString(), 
+            streetEditText.getText().toString(),
+            cityEditText.getText().toString());
+      }
+   }
+}
+</code></pre>
+
+<p>Переменные экземпляра класса databaseConnector обеспечивают 
+возможность взаимодействия между классом и базой данных. Переменная 
+экземпляра класса rowID представляет текущий контакт, который будет 
+обрабатываться в случае, если этот класс был запущен, чтобы позволить 
+пользователю изменять существующий контакт.</p>
+
+<p>С помощью метода getIntent() обеспечивается доступ к объекту Intent, 
+который запустил Activity, и вызывается метод getExtras() класса Intent.
+ Этот метод обеспечивает доступ к классу Bundle, включающему дополнения 
+класса Intent. Если метод возвращает Bundle, это означает, что класс 
+Activity был запущен из 
+класса ViewContact, а пользователь выбрал изменение существующего 
+контакта. Далее считываются дополнения из Bundle путем вызова методов 
+getLong() 
+и getString(), а предназначенные для изменения данные String 
+отображаются в компонентах EditText. Потом регистрируется слушатель для 
+кнопки Save 
+Contact.</p>
+
+<p>Как только пользователь касается кнопки Save Contact Button, 
+вызывается метод saveContactButtonClicked() класса OnClickListener. 
+Чтобы сохранить контакт, пользователь должен указать, как минимум, 
+название контакта. Метод onClick проверяет, чтобы длина имени контакта 
+превышала 0 символов, и если это так, создается и вызывается класс 
+AsyncTask для выполнения операции сохранения. Метод doInBackground 
+вызывает метод saveContact(), выполняющий сохранение контакта в базе 
+данных. Метод onPostExecute() вызывает метод finish, который прекращает 
+выполнение Activity и осуществляет возврат в запускающий класс 
+(AddressBook либо ViewContact). Если значение nameEditText пусто, то 
+отображается диалоговое окно AlertDialog, в котором отображается 
+сообщение пользователю о необходимости указания имени контакта для его 
+сохранения.</p>
+
+<p>Метод saveContact() сохраняет информацию в компонентах EditText, 
+относящихся к данному классу. Сначала создается объект 
+DatabaseConnectort, затем проверяется, имеет ли какие-либо расширения 
+объект Intent, который запустил данный класс Activity. Если расширения 
+отсутствуют, значит, мы имеем дело с новым контактом, поэтому получаем 
+данные типа String из компонентов EditText класса Activity, которые 
+затем передаются методу insertContact() объекта DatabaseConnector для 
+создания новых контактов. Если существуют дополнения для объекта Intent,
+ который был запущен из текущего класса Activity, обновляется 
+существующий контакт. В этом случае получаем данные типа String из 
+компонентов EditText класса Activity, которые передаются методу 
+updateContact() класса DatabaseConnector. При этом с помощью 
+идентификатора rowID указывается обновляемая запись. Методы 
+insertContact() и updateContact() класса DatabaseConnector выполняют 
+операции по открытию и закрытию базы данных.</p>
+
+<h2 class="text-warning" id="databaseconnector">Класс DatabaseConnector</h2>
+
+<p>С помощью класса <b>DatabaseConnector</b> выполняется управление 
+взаимодействием приложения с базой данных SQLite. При этом создается 
+база данных UserContacts с единственной таблицей именованных контактов, 
+записи которой могут обрабатываться.</p>
+
+<p>Строковая константа <b>DATABASE_NAME</b> определяет имя базы данных, 
+которая будет создана либо открыта. Имена баз данных должны быть 
+уникальными внутри одного приложения. Если же базы данных используются 
+для различных приложений, уникальность не обязательна. Объект 
+SQLiteDatabase поддерживает доступ в режиме чтения/записи к базе данных 
+SQLite. Класс DatabaseOpenHelper является частным вложенным классом, 
+расширяющим абстрактный класс SQLiteOpenHelper. Последний класс 
+применяется для управления, создания, открытия и обновления баз данных 
+(возможно с одновременным изменением структуры базы данных).</p>
+
+<p>Конструктор класса <b>DatabaseConnection</b> создает новый объект класса <b>DatabaseOpenHelper</b>,
+ который будет использоваться для открытия или создания базы данных. 
+Метод open() пытается установить подключение к базе данных и генерирует 
+исключение SQLException, если попытка подключения завершилась неудачей. 
+Метод <b>getWritableDatabase()</b>, унаследованный от SQLiteOpenHelper, 
+возвращает объект SQLiteDatabase. Если база данных не была создана, этот
+ метод создаст базу данных. Если же база данных уже создана, метод 
+открывает ее.</p>
+
+<p>Как только база данных успешно открыта, она кэшируется операционной 
+системой для увеличения производительности будущих взаимодействий с 
+базой данных. Метод close() закрывает подключение к базе данных путем 
+вызова метода close() класса SQLiteOpenHelper.</p>
+
+<p>Метод insertContact() вставляет новый контакт с относящейся к нему 
+информацией в базу данных. Сначала часть информации контакта сохраняется
+ в новом объекте ContentValues, который поддерживает отображение ключа 
+(пар «ключ–значение»). В качестве ключей используются имена столбцов 
+базы данных. Открывается база данных, вставляется новый контакт, а затем
+ база данных закрывается. Метод insert класса SQLiteDatabase включает 
+значения из данных переменных ContentValues в таблицу, определенную в 
+качестве первого аргумента, — в данном случае используется таблица 
+«контактов». Второй параметр этого метода, который не используется в 
+настоящем приложении, — это именованный столбец <b>nullColumnHack</b>. 
+Этот параметр требуется, поскольку SQLite не поддерживает вставку 
+абсолютно пустой строки в таблицу — эквивалент передачи пустого объекта 
+ContentValues методу insert(). Вместо того чтобы выполнять недопустимую 
+операцию передачи пустого объекта ContentValues методу, параметр 
+nullColumnHack применяется для идентификации столбца, который принимает 
+значения NULL.</p>
+
+<p>Метод updateContact() подобен методу insertContact() за исключением 
+того, что он вызывает метод update() класса SQLiteDatabase для 
+обновления существующего контакта. Третий аргумент метода update() 
+представляет конструкцию SQL WHERE (без ключевого слова WHERE), которая 
+определяет обновляемую запись. В данном случае применяется идентификатор
+ ID строки обновляемой записи, с помощью которого обновляется выбранный 
+контакт.</p>
+
+<p>Метод getAllContacts() использует метод query() класса SqLiteDatabase
+ для выборки объекта Cursor, обеспечивающего доступ к идентификаторам 
+ID и именам всех контактов в базе данных. Ниже перечислены аргументы 
+этого метода:</p>
+
+<ul>
+<li>Имя таблицы, по отношению к которой создается запрос.</li>
+<li>Массив типа String для имен возвращаемых столбцов (здесь находятся 
+_id и названия столбцов). Если в качестве этого параметра выбирается 
+null, возвращаются все столбцы таблицы. Не следует использовать этот 
+параметр, поскольку при этом расходуется много памяти, вычислительной 
+мощности процессора и ускоренно разряжается батарея. Выбирайте только те
+ данные, которые требуются.</li>
+<li>Конструкция SQL WHERE (без ключевого слова WHERE) либо значение null, возвращающее все строки.</li>
+<li>Массив аргументов типа String, которые подставляются в конструкцию 
+WHERE. При этом символ ? используется в качестве символа подстановки для
+ значения аргумента. На отсутствие аргументов в конструкции WHERE 
+указывает значение null.</li>
+<li>Конструкция SQL GROUP BY (без ключевых слов GROUP BY) либо null, если не нужно группировать результаты.</li>
+<li>Конструкция SQL HAVING (без ключевого слова HAVING), с помощью 
+которой определяются группы из конструкции GROUP BY, которые включаются в
+ результаты выборки. Если вместо конструкции GROUP BY отображается null,
+ следует указать null.</li>
+<li>Конструкция SQL ORDER BY (без ключевых слов ORDER BY) применяется 
+для определения порядка следования результатов. Если использовано 
+значение null, порядок следования результатов не указывается.</li>
+</ul>
+
+<p>Объект Cursor, возвращаемый методом query, содержит все строки 
+таблицы, которые соответствуют аргументам метода,— так называется набор 
+результатов. Объект Cursor находится перед первой строкой набора 
+результатов, причем различные методы move() из Cursor могут применяться 
+для перемещения Cursor среди набора результатов для выполнения 
+обработки.</p>
+
+<p>Метод  getOneContact() также использует метод  query() класса 
+SqLiteDatabase для выполнения запроса к базе данных. В данном случае 
+выбираются 
+все столбцы из базы данных для контакта с указанным идентификатором ID.</p>
+
+<p>Метод deleteContact() использует метод delete класса SqLiteDatabase 
+для удаления контакта из базы данных. В данном случае выбираются все 
+столбцы базы данных, соответствующие контакту с указанным 
+идентификатором ID.</p>
+
+<p>Три аргумента метода — это таблица базы данных, из которой удаляется 
+запись, конструкция WHERE (без ключевого слова WHERE) и, в случае если 
+конструкция WHERE включает аргументы, массив String значений, 
+подставляемых в конструкцию WHERE (в нашем случае используется значение 
+null).</p>
+
+<p>Частный вложенный класс DatabaseOpenHelper расширяет абстрактный 
+класс SQLiteOpenHelper, который облегчает приложениям создание баз 
+данных и управление изменениями версий. Конструктор просто вызывает 
+конструктор суперкласса, который требует следующих четырех аргументов:</p>
+
+<ul>
+<li>аргумент Context, определяющий среду, в которой создается или открывается база данных;</li>
+<li>имя базы данных — здесь можно указать null, если используется база данных, находящаяся в оперативной памяти;</li>
+<li>используемый объект CursorFactory — если указан null, это означает, 
+что используется заданный по умолчанию объект SQLite CursorFactory (для 
+большинства приложений);</li>
+<li>номер версии базы данных (начиная с 1).</li>
+</ul>
+
+<p>Нужно переопределить абстрактные методы onCreate() и onUpgrade(). 
+Если база данных на данный момент времени не существует, вызывается 
+метод onCreate() класса DatabaseOpenHelper, с помощью которого создается
+ база данных. Если вы хотите использовать номер версии более новый, чем 
+номер версии существующей базы данных, хранящейся на устройстве, 
+вызывается метод onUpgrade() класса DatabaseOpenHelper. Этот метод 
+обновляет базу данных до новой версии (при этом могут добавляться 
+таблицы или столбцы в существующую таблицу).</p>
+
+<p>Метод onCreate() определяет таблицу, создаваемую с помощью команды 
+SQL CREATE TABLE, которая определена как String. В нашем случае таблица 
+контактов содержит поле целочисленного первичного ключа (_id), значение 
+которого автоматически увеличивается на единицу, и текстовые поля для 
+всех остальных столбцов. Вызывается метод execSQL() класса 
+SQLiteDatabase, с помощью которого выполняется команда CREATE TABLE. 
+Поскольку нам не нужно обновлять базу данных, мы просто переопределяем 
+метод onUpgrade() пустой «заглушкой».</p>
+
+<p>Класс SQLiteOpenHelper также поддерживает метод onDowngrade(), 
+который используется для отката базы данных в случае, если текущий 
+сохраненный номер 
+версии больше, чем номер версии, указанный при вызове конструктора 
+SQLiteOpenHelper. С помощью отката можно вернуть базу данных к 
+предыдущей версии, когда в таблицах содержалось меньше столбцов, а 
+количество самих таблиц было меньше. Это может потребоваться для 
+устранения ошибок в приложении.</p>
+
+<p>Для всех методов класса SQLiteDatabase, используемых в классе 
+DatabaseConnector, существуют соответствующие методы, выполняющие те же 
+самые операции, но при этом генерирующие исключения в случае ошибок. Это
+ лучше, чем возврат значения -1 в случае ошибки (например, может 
+использоваться метод insertOrThrow вместо метода insert). Эти методы 
+взаимозаменяемы, и пользователь может сам выбрать методы обработки 
+ошибок, возникающих при чтении и записи в базу данных.</p>
+
+<pre><code class="java">
+// поддерживает простое подключение и создание базы данных UserContacts
+package ru.alexanderklimov.addressbook;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteDatabase.CursorFactory;
+
+public class DatabaseConnector {
+	// имя базы данных
+	private static final String DATABASE_NAME = "UserContacts";
+	private SQLiteDatabase database;
+	private DatabaseOpenHelper databaseOpenHelper;
+
+	// конструктор
+	public DatabaseConnector(Context context) {
+		// создание нового объекта DatabaseOpenHelper
+		databaseOpenHelper = new DatabaseOpenHelper(context, DATABASE_NAME,
+				null, 1);
+	}
+
+	// открытие подключения к базе данных
+	public void open() throws SQLException {
+		// создание или открытие базы данных для чтения/записи
+		database = databaseOpenHelper.getWritableDatabase();
+	}
+
+	// закрытие подключения к базе данных
+	public void close() {
+		if (database != null)
+			database.close(); // закрытие подключения к базе данных
+	}
+
+	// вставка нового контакта в базу данных
+	public void insertContact(String name, String email, String phone,
+			String state, String city) {
+		ContentValues newContact = new ContentValues();
+		newContact.put("name", name);
+		newContact.put("email", email);
+		newContact.put("phone", phone);
+		newContact.put("street", state);
+		newContact.put("city", city);
+
+		open(); // открыть базу данных
+		database.insert("contacts", null, newContact);
+		close(); // закрыть базу данных
+	}
+
+	// вставка нового контакта в базу данных
+	public void updateContact(long id, String name, String email, String phone,
+			String state, String city) {
+		ContentValues editContact = new ContentValues();
+		editContact.put("name", name);
+		editContact.put("email", email);
+		editContact.put("phone", phone);
+		editContact.put("street", state);
+		editContact.put("city", city);
+
+		open(); // открыть базу данных
+		database.update("contacts", editContact, "_id=" + id, null);
+		close(); // закрыть базу данных
+	}
+
+	// возвращение в базу данных объекта Cursor вместе со всей
+	// информацией о контакте
+	public Cursor getAllContacts() {
+		return database.query("contacts", new String[] { "_id", "name" }, null,
+				null, null, null, "name");
+	}
+
+	// получение объекта Cursor, включающего всю информаию о контакте
+	// с указанным идентификатором
+	public Cursor getOneContact(long id) {
+		return database.query("contacts", null, "_id=" + id, null, null, null,
+				null);
+	}
+
+	// удаление контакта, указанного именем в формате String
+	public void deleteContact(long id) {
+		open(); // открыть базу данных
+		database.delete("contacts", "_id=" + id, null);
+		close(); // закрыть базу данных
+	}
+
+	private class DatabaseOpenHelper extends SQLiteOpenHelper {
+		// конструктор
+		public DatabaseOpenHelper(Context context, String name,
+				CursorFactory factory, int version) {
+			super(context, name, factory, version);
+		}
+
+		// создание таблицы контактов в созданной базе данных
+		@Override
+		public void onCreate(SQLiteDatabase db) {
+			// запрос на создание новой таблицы именованных контактов
+			String createQuery = "CREATE TABLE contacts"
+					+ "(_id integer primary key autoincrement,"
+					+ "name TEXT, email TEXT, phone TEXT,"
+					+ "street TEXT, city TEXT);";
+
+			db.execSQL(createQuery); // выполнение запроса
+		}
+
+		@Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		}
+	}
+}
+</code></pre>
+
+<h2 class="text-warning">Заключение</h2>
+
+<p>Мы создали приложение Address Book, с помощью которого пользователи 
+могут добавлять, просматривать, изменять либо удалять информацию о 
+контактах, которая хранится в базе данных SQLite.</p>
+
+<p>Вы научились использовать расширенный класс ListActivity, с помощью 
+которого создается класс Activity, отображающий компонент ListView в 
+заданном по умолчанию макете. Этот класс использовался для отображения 
+контактов, хранящихся в базе данных приложения. Вы узнали о том, что 
+компонент ListView является подклассом класса AdapterView, 
+обеспечивающего связывание компонента с источником данных. Также класс 
+CursorAdapter использовался для отображения результатов запроса к базе 
+данных в основном компоненте ListView класса Activity.</p>
+
+<p>Мы использовали подкласс класса SQLiteOpenHelper в целях упрощения 
+создания базы данных и получения объекта SQLiteDatabase, с помощью 
+которого выполняется манипулирование содержимым базы данных. Класс 
+Cursor использовался для обработки результатов запроса. Подклассы класса
+ AsyncTask применялись для выполнения задач базы данных за пределами 
+потока GUI и возвращения результатов в поток GUI, благодаря чему можно 
+использовать преимущества возможностей потоков Android без 
+непосредственного создания и манипулирования потоками.</p>
+
+<p>Данная статья основана на примере из книги <a href="http://www.ozon.ru/context/detail/id/18420598/?partner=visual">Android для программистов. Создаем приложения</a>. Следует учесть, что пример в книге писался под Android 2 и некоторые конструкции слегка устарели.</p>
+
+<p><a href="http://developer.alexanderklimov.ru/android/apk/AddressBook.zip">Скачать исходный код</a></p>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/fastbutton.htm" name="I0_1379249101066" id="I0_1379249101066" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/postmessageRelay.htm" id="oauth2relay236386574" name="oauth2relay236386574"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/jquery.js"></script>
+    <script src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%90%D0%B4%D1%80%D0%B5%D1%81%D0%BD%D0%B0%D1%8F%20%D0%BA%D0%BD%D0%B8%D0%B3%D0%B0_files/bootstrap-typeahead.js"></script>
+
+</body></html>

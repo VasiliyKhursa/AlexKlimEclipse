@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Продвинутый WebView</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="http://developer.alexanderklimov.ru/android/secret/enter.php" id="drop3" role="button">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>			
+<p><a href="http://developer.alexanderklimov.ru/android/secret/secret.php?do=logout">Выйти из закрытой зоны</a></p>
+<h1 class="text-warning">Продвинутый WebView</h1>
+
+<p>
+<a href="#fromgallery">Загружаем из Галереи</a><br>
+<a href="#fromweb">Загружаем из интернета</a><br>
+<a href="#fromlocale">Загружаем из ресурсов</a><br>
+<a href="#font">Подгружаем свои шрифты</a><br>
+<a href="#addsettings">Дополнительная настройка WebView</a><br>
+<a href="#feedapi">Google Feed API</a><br>
+<a href="#indicator">Индикация загрузки страницы в WebView</a><br>
+</p>
+
+<p>Ровно месяц назад мы знакомились с элементом WebView, когда <a href="http://developer.alexanderklimov.ru/android/mybrowser.php">создавали свой браузер</a>. Настало время освежить свои знания, а также научиться новым приёмам.</p>
+
+<p>Мы научимся выводить изображения в WebView из сети, из приложения Галерея, а также из ресурсов.</p>
+
+
+<p>Создадим новый проект и сразу пропишем разрешение на работу с интернетом.</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+</code></pre>
+
+<p>Создадим простую разметку из LinearLayout и WebView. К ним ещё добавим несколько кнопок для загрузки изображения из разных мест:</p>
+
+<pre><code class="xml">
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;WebView
+        android:id="@+id/picview"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" /&gt;
+
+    &lt;LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="3dp" &gt;
+
+        &lt;Button
+            android:id="@+id/gallery_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+			android:onClick="onClick"
+            android:text="@string/pick" /&gt;
+
+        &lt;Button
+            android:id="@+id/web_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+			android:onClick="onClick"
+            android:text="@string/load" /&gt;
+
+        &lt;Button
+            android:id="@+id/local_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+			android:onClick="onClick"
+            android:text="@string/local" /&gt;
+    &lt;/LinearLayout&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Определим несколько строковых ресурсов:</p>
+
+<pre><code class="xml">
+&lt;string name="pick"&gt;Галерея&lt;/string&gt;
+&lt;string name="load"&gt;Веб&lt;/string&gt;
+&lt;string name="local"&gt;Ресурсы&lt;/string&gt;
+</code></pre>
+
+<p>Подготовительные работы закончены. Можно приступать к написанию кода.</p>
+
+<p>Объявим экземпляр класса WebView и установим цвет фона:</p>
+
+<pre><code class="java">
+private WebView picView;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_main);
+	
+	picView = (WebView)findViewById(R.id.picview);
+	picView.setBackgroundColor(0);
+}
+</code></pre>
+
+<p>Создадим обработчик щелчков всех кнопок:</p>
+
+<pre><code class="java">
+public void onClick(View v) {
+	
+}
+</code></pre>
+
+<h2 class="text-warning" id="fromgallery">Загружаем из Галереи</h2>
+
+<p>Начнём с Галереи. Добавим новую переменную в классе:</p>
+
+<pre><code class="java">
+private final int IMG_PICK = 1;
+</code></pre>
+
+<p>Напишем обработчик нажатия первой кнопки для выбора рисунка из Галереи:</p>
+
+<pre><code class="java">
+case R.id.gallery_button:
+	Intent pickIntent = new Intent();
+	pickIntent.setType("image/*");
+	pickIntent.setAction(Intent.ACTION_GET_CONTENT);
+	// мы будем обрабатывать возвращенное значение в onActivityResult
+	startActivityForResult(
+			Intent.createChooser(pickIntent, "Выберите картинку"),
+			IMG_PICK);
+	break;
+</code></pre>
+
+<p>Данный код запускает намерение, которое ищет активность, работающую с
+ изображениями. По умолчанию, на всех стандартных устройствах есть 
+системное приложение Галерея, позволяющее рассматривать картинки, а 
+также могут быть установлены другие приложения самим пользователем с 
+схожим функционалом. Если таких программ на устройстве несколько, то 
+появится диалоговое окно для выбора программы, если имеется только одна 
+программа, то она запустится сразу (на эмуляторе обычно это Галерея).</p>
+
+<p>Когда пользователь выбрал какую-то картинку (обычно это фотография 
+котика), то нужно как-то узнать его выбор. Создадим метод 
+onActivityResult(), который позволит нам выяснить выбор пользователя.</p>
+
+<p>Если пользователь действительно что-то выбрал, то возвращается значение <i>RESULT_OK</i>. Далее проверяем наличие значения <i>IMG_PICK</i>,
+ которое мы использовали при запуске Галереи. Если это значение 
+вернулось, значит оно пришло от нужного приложения и мы можем продолжить
+ обработку данных через метод <b>getData()</b>. Через объект Cursor извлекаем данные и получаем путь к выбранному файлу, который сразу же загружаем в WebView через метод <b>loadUrl()</b>.</p>
+
+<pre><code class="java">
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	if (resultCode == RESULT_OK) {
+		if (requestCode == IMG_PICK) {
+			Uri pickedUri = data.getData();
+
+			String imagePath = "";
+			String[] imgData = { MediaStore.Images.Media.DATA };
+			// Устаревший способ
+			// Cursor imgCursor = managedQuery(pickedUri, imgData, null,
+			// null, null);
+			// Новый способ
+			Cursor imgCursor = getApplicationContext().getContentResolver()
+					.query(pickedUri, imgData, null, null, null);
+			if (imgCursor != null) {
+				int index = imgCursor
+						.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+				imgCursor.moveToFirst();
+				imagePath = imgCursor.getString(index);
+			} else
+				imagePath = pickedUri.getPath();
+			picView.loadUrl("file:///" + imagePath);
+		}
+	}
+}
+</code></pre>
+
+<p>Запустите проект и проверьте работоспособность кода.</p>
+
+<h2 class="text-warning" id="fromweb">Загружаем из интернета</h2>
+
+<p>Загрузить картинку из интернета очень просто, достаточно указать его адрес:</p>
+
+<pre><code class="java">
+case R.id.web_button:
+	picView.loadUrl("http://developer.alexanderklimov.ru/android/images/updowncat.jpg");
+	break;
+</code></pre>
+
+<p>Этот способ нам знаком, останавливаться на нём не будем. 
+Единственное, о чём нужно помнить - проверить наличие интернета и 
+помнить, что при больших изображениях картинка будет грузиться 
+достаточно долго и нужно предусмотреть индикатор прогресса.</p>
+
+<h2 class="text-warning" id="fromlocale">Загружаем из ресурсов</h2>
+
+<p>Третий возможный способ загрузки - из внутренних ресурсов приложения.
+ Это могут быть графические файлы из папки res/drawable или из папки 
+res/assets. Рассмотрим вариант с последним случаем.</p>
+
+<pre><code class="java">
+case R.id.local_button:
+	picView.loadUrl("file:///android_asset/cat.jpg");
+	break;
+</code></pre>
+
+<p>Если в папке res/assets хранится html-файл с картинками, то для тега <i>img</i> в этом файле прописывать путь к изображению нужно таким же образом:</p>
+
+<pre><code class="java">
+&lt;html&gt;
+&lt;head&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;img src="file:///android_asset/cat.jpg"/&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>После чего можно загрузить файл:</p>
+
+<pre><code class="java">
+picView.loadUrl("file:///android_asset/page_with_image.htm");
+</code></pre>
+
+<h2 class="text-warning" id="font">Подгружаем свои шрифты</h2>
+
+<p>Также из ресурсов можно загрузить свой шрифт. Этот способ знаком веб-мастерам. Размещаем нужный шрифт в папке <b>assets</b> и прописываем ссылку на него в стилях:</p>
+
+<pre><code class="java">
+&lt;html&gt;
+&lt;head&gt;
+&lt;style type="text/css"&gt;
+@font-face {
+font-family: MyCustomFont;
+src: url("file:///android_asset/fonts/Roboto.ttf")
+}
+
+body {
+font-family: MyCustomFont;
+font-size: 16pt;
+color: black;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;Здесь ваш текст.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Как загрузить страницу, мы уже знаем.</p>
+
+<h2 class="text-warning" id="addsettings">Дополнительная настройка WebView</h2>
+
+<p>Напомню, что у WebView есть различные настройки, которые могут быть 
+полезны для просмотра картинки, в частности зум и прокрутка. Добавьте 
+дополнительные строчки кода в методе onCreate():</p>
+
+<pre><code class="java">
+picView.getSettings().setBuiltInZoomControls(true);
+picView.getSettings().setUseWideViewPort(true);
+</code></pre>
+
+<p><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/webviewadvanced.png" alt="Продвинутый WebView"></p>
+
+<h2 class="text-warning" id="feedapi">Google Feed API</h2>
+
+<p>Возможность использования локальных страниц вполне удобна, если в ней использовать API, основанные на Javascript. Например, <a href="https://developers.google.com/feed/">Google Feed API</a>
+ позволяет загружать данные Atom, RSS или Media RSS, используя только 
+JavaScript. Вам остаётся подготовить локальную страницу с нужным 
+сценарием и вывести результат в WebView.</p>
+
+<p>Создадим в папке <b>assets</b> файл <b>mypage.hmtl</b>:</p>
+
+<pre><code class="java">
+&lt;html&gt;
+&lt;meta charset=utf-8&gt;
+&lt;head&gt;
+&lt;script type="text/javascript" src="https://www.google.com/jsapi"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+
+google.load("feeds", "1");
+
+function initialize() {
+var feed = new google.feeds.Feed("http://feeds.feedburner.com/alexanderklimov/VJcl");
+feed.setNumEntries(10);
+feed.load(function(result) {
+  if (!result.error) {
+    var container = document.getElementById("feed");
+    for (var i = 0; i &lt; result.feed.entries.length; i++) {
+      var entry = result.feed.entries[i];
+      var div = document.createElement("div");
+
+      var A = document.createElement("A");
+      A.setAttribute("href",entry.link);
+      A.appendChild(document.createTextNode(entry.title));
+      div.appendChild(A);
+
+      container.appendChild(div);
+    }
+  }
+});
+}
+
+google.setOnLoadCallback(initialize);
+
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="feed"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+
+<p>Подключим страницу в коде активности:</p>
+
+<pre><code class="java">
+@Override
+public void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_test);
+	
+	WebView myWebView = (WebView)findViewById(R.id.web);
+      
+	myWebView.getSettings().setJavaScriptEnabled(true);
+	myWebView.loadUrl("file:///android_asset/mypage.html");
+
+}
+</code></pre>
+
+<p>В данном примере выводится десять последних записей из моей 
+RSS-ленты. В эмуляторе пример вёл себя немного странно, выводя белый 
+экран. Однако при щелчке на экране ссылки появлялись. Имейте виду. На 
+реальном устройстве работало нормально.</p>
+
+<p><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/webviewadvanced2.png" alt="Feed API" height="400" width="240"></p>
+
+<p>Также вы можете подключить другие сценарии типа jQuery Mobile и сделать вывод результатов ещё лучше.
+
+</p><p><a href="http://android-er.blogspot.ru/2012/04/using-google-feed-api-in-embedded-local.html">Источник</a> и <a href="http://android-er.blogspot.ru/2012/04/display-google-feed-in-mobile-style.html">еще</a> (у меня не заработало, не стал разбираться)</p>
+
+<h2 class="text-warning" id="indicator">Индикация загрузки страницы в WebView</h2>
+
+<p>Нашёл <a href="http://prodroid.com.ua/?p=367">здесь</a>. Может пригодится.</p>
+
+<p>При использовании WebView может появится необходимость отображать 
+какое-нибудь диалоговое окно «Please wait», пока грузится страница. 
+Хорошо, при старте загрузки страницы мы можем показать его, а вот когда 
+его скрывать? Для этого необходимо установить  свой WebViewClient и 
+реализовать метод <b>onPageFinished()</b>. Да, это хорошо, но есть одно 
+небольшое но. Данный метод вызовится как раз после того, как страница 
+была полностью загружена, но если страница «тяжелая» – она может быть 
+еще не отрендерина и, то есть, не показана пользователю. А рендеринг 
+может занимать довольно длительное время, порой до нескольких секунд! В 
+итоге если сделать примерно так:</p>
+
+<pre><code class="java">
+public class WebViewClientTest extends Activity {
+
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        final WebView webview = (WebView) findViewById(R.id.webview);
+     
+        webview.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(webview, url);
+                // прячем диалог please wait здесь
+            }
+        });
+     
+        // здесь выводим окно please wait
+        webview.loadUrl("http://some URL");
+    }
+}
+</code></pre>
+
+<p>Если <b>some URL</b> будет довольно «тяжелый», то получим следующее: 
+началась загрузка страницы, показывается диалог, потом диалог скрывается
+ и мы видим пустую страницу и ожидаем, пока отрендерится и покажется 
+что-то.</p>
+
+<p>Как вариант, мы можем настроить для WebView слушатель <b>PictureListener</b> и прятать диалог в методе <b>onNewPicture()</b>:</p>
+
+<pre><code class="java">
+webView.setPictureListener(new PictureListener() {
+    public void onNewPicture(WebView view, Picture picture) {
+        // прячем диалог please wait здесь
+    }
+});
+</code></pre>
+
+<p>В итоге получим, что диалог исчезнет не после того, как страница загрузится, а после того, как она отобразится на экране.</p>
+
+<p>Стоит отметить, что в Android 4 этот способ считается устаревшим. Пока не знаю, что является альтернативой.</p>
+
+
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/fastbutton.htm" name="I0_1378022386104" id="I0_1378022386104" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/postmessageRelay.htm" id="oauth2relay689911679" name="oauth2relay689911679"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/jquery.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D1%8B%D0%B9%20WebView_files/bootstrap-typeahead.js"></script>
+
+</body></html>

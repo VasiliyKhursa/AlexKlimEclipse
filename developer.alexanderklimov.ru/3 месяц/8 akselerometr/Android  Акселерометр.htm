@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Акселерометр</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Акселерометр</h1>
+<p>Третий месяц обучения (закрытая зона)</p>
+
+<p>
+<a href="#faceup">Экраном вниз или вверх</a><br>
+<a href="#overloadacc">Перегрузка</a><br>
+</p>
+
+<p>Практически любой современный телефон имеет акселерометер, 
+позволяющий определить положение телефона относительно земли, а также 
+ускорение в пространстве по осям X, Y, Z.</p>
+
+<p>Акселерометр используется для измерения ускорения. Его иногда называют датчиком силы притяжения.</p>
+
+<p>Акселерометры часто выступают в качестве датчиков силы притяжения, 
+так как они не могут определить, чем вызвано ускорение — движением или 
+гравитацией. В результате этого в состоянии покоя акселерометр будет 
+указывать на ускорение по оси Z (вверх/вниз), равное 9,8м/с<sup>2</sup> (это значение доступно в виде константы <b>SensorManager.STANDARD_GRAVITY</b>).</p>
+
+<p>Ускорение — это производная скорости по времени, поэтому акселерометр
+ определяет, насколько быстро изменяется скорость устройства в заданном 
+направлении. Используя этот датчик, вы можете обнаруживать движение и, 
+что более полезно, изменение его скорости. Акселерометр не измеряет 
+скорость как таковую, поэтому вы не можете получить скорость движения, 
+основываясь на единичном замере. Вместо этого необходимо учитывать 
+изменения ускорения на протяжении какого-то отрезка времени.</p>
+
+<p>На практике, скорее всего, вас будет интересовать ускорение 
+относительно состояния покоя или быстрого движения (сопровождаемого 
+резкими изменениями в ускорении); такое ускорение может возникать при 
+использовании жестов для ввода данных. В первом случае вам потребуется 
+откалибровать устройство, вычислив начальные показатели ориентации и 
+ускорения, чтобы учитывать их влияние при вычислении будущих 
+результатов.</p>
+
+
+<h3 class="text-warning">Обнаружение изменений ускорения</h3>
+
+<p>Ускорение может быть измерено в трех направлениях: по оси ординат, по
+ оси абсцисс, а также по вертикальной оси. SensorManager сообщает об 
+изменениях в показаниях акселерометра по всем трем направлениям.</p>
+
+<p>Значения, переданные через свойство <b>values</b> объекта SensorEvent, отражают боковое, продольное и вертикальное ускорение (именно в таком порядке).</p>
+
+<p>Рисунок иллюстрирует нанесение трех направляющих осей на устройство, 
+находящееся в состоянии покоя, которое в интерпретации SensorManager 
+наступает тогда, когда устройство лежит на плоской поверхности экраном 
+вверх и находится при этом в портретном режиме.</p>
+
+<p><img src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/accelerometer1.png" alt="Акселерометр" class="img-polaroid"></p>
+
+<p><b>Ось X</b> (ординаты). Боковое (влево или вправо) ускорение, 
+положительные значения которого свидетельствуют о движении в направлении
+ правой части устройства, а отрицательные — в направлении левой его 
+части. Например, положительное ускорение по оси X будет, если 
+устройство, лежа экраном вверх, повернется вправо (не отрывая крышку от 
+поверхности).</p>
+
+<p><b>Ось Y</b> (абсциссы). Ускорение вперед или назад. В первом случае 
+показатели будут больше нуля. Разместив устройство таким образом, как в 
+предыдущем пункте, и подвинув в сторону его верхнюю часть, вы создадите 
+положительное продольное ускорение.</p>
+
+<p><b>Ось Z</b> (аппликаты). Ускорение вверх или вниз. В первом случае 
+при подъеме устройства значения будут положительными. В состоянии покоя 
+вертикальное ускорение равно 9,8 м/с<sup>2</sup> (вследствие силы тяжести).</p>
+
+<p>Изменения ускорения отслеживаются посредством  <b>SensorEventListener</b>.
+ Зарегистрируйте реализацию этого интерфейса с помощью SensorManager, 
+используя объект Sensor с типом Sensor.TYPE_ACCELEROMETER, чтобы 
+запрашивать обновления для акселерометра. В следующем листинге 
+регистрируется акселерометр по умолчанию, используя стандартную частоту 
+обновлений.</p>
+
+<pre><code class="java">
+SensorManager sm = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+int sensorType = Sensor.TYPE_ACCELEROMETER;
+sm.registerListener(mySensorEventListener,
+        sm.getDefaultSensor(sensorType),
+        SensorManager.SENSOR_DELAY_NORMAL);
+</code></pre>
+
+<p>Интерфейс SensorEventListener должен содержать реализацию обработчика <b>onSensorChanged()</b>, который будет срабатывать при измерении ускорения в произвольном направлении.</p>
+
+<p>Метод onSensorChanged() получает объект SensorEvent, содержащий 
+массив значений типа float, представляющий собой показатели ускорения по
+ всем трём осям. Основываясь на состоянии покоя, когда устройство лежит 
+на задней крышке в портретном режиме, первый элемент означает боковое 
+ускорение, второй — продольное, третий — вертикальное. Процесс 
+извлечения этих показателей показан ниже:</p>
+
+<pre><code class="java">
+final SensorEventListener mySensorEventListener = new SensorEventListener() {
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            float xAxis_lateralA = sensorEvent.values[0];
+            float yAxis_longitudinalA = sensorEvent.values[1];
+            float zAxis_verticalA = sensorEvent.values[2];
+            // TODO Использовать полученное ускорение в своей программе.
+        }
+    }
+};
+</code></pre>
+
+<h2 class="text-warning" id="faceup">Экраном вниз или вверх</h2>
+
+<p><img src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/updowncat.jpg" alt="На лапы" class="img-polaroid"></p>
+
+<p>Известно, что при падении кошка всегда падает на лапы независимо от 
+первоначальной позиции во время падения. Британские учёные 
+заинтересовались данным удивительным фактом. В результате околонаучных 
+исследований выяснилось, что за долгие годы эволюции коты выработали в 
+себе эффект бутерброда, который всегда падает маслом вниз. Данное 
+открытие стало основой для изобретения сенсора - акселерометра. Напишем 
+пример, позволяющий определить позицию экрана телефона - лежит ли он 
+лицом к столу (царапается песчинками) или лицом вверх (царапается 
+котом).</p>
+
+<p>Для экспериментов нам вполне хватит текстовой метки, в которую будем 
+выводить информацию о позиции экрана. Сам код не слишком большой.</p><p>
+
+</p><pre><code class="java">
+package ru.alexanderklimov.faceupdown;
+
+import java.util.List;
+
+import android.app.Activity;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class FaceUpDownActivity extends Activity {
+
+	SensorManager sensorManager;
+	Sensor accelerometerSensor;
+	boolean accelerometerPresent;
+
+	TextView face;
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		face = (TextView) findViewById(R.id.face);
+
+		// получаем доступ к сенсорам
+		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+		// получаем список доступных сенсоров
+		List&lt;Sensor&gt; sensorList = sensorManager
+				.getSensorList(Sensor.TYPE_ACCELEROMETER);
+		if (sensorList.size() &gt; 0) {
+		    // убеждаемся в наличии акселерометра
+			accelerometerPresent = true;
+			accelerometerSensor = sensorList.get(0);
+		} else {
+			accelerometerPresent = false;
+			face.setText("У вас нет акселерометра!");
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if (accelerometerPresent) {
+		    // получаем данные с сенсора
+			sensorManager.registerListener(accelerometerListener,
+					accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+		}
+	}
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		if (accelerometerPresent) {
+		    // прекращаем получать данные с сенсора
+			sensorManager.unregisterListener(accelerometerListener);
+		}
+	}
+
+	private SensorEventListener accelerometerListener = new SensorEventListener() {
+		@Override
+		public void onAccuracyChanged(Sensor arg0, int arg1) {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void onSensorChanged(SensorEvent arg0) {
+			// TODO Auto-generated method stub
+			float z_value = arg0.values[2];
+			// нас интересует только ось Z (вертикальная)
+			if (z_value &gt;= 0) {
+				face.setText("Экраном вверх");
+			} else {
+				face.setText("Экраном вниз");
+			}
+		}
+	};
+}
+</code></pre>
+
+<p>Запустите проект на реальном устройстве и начинайте вращать телефон. В
+ зависимости от положения телефона у вас будет выводиться надпись <i>Экраном вверх</i> или <i>Экраном вниз</i>.
+ Телефон также можно держать вертикально. В этом случае выводимая 
+надпись будет зависеть от наклона телефона в ту или иную сторону.</p>
+
+<p>Кстати, во многих лабораториях эффект бутерброда и падающих кошек используется для выработки дешёвой энергии.</p>
+
+<iframe src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/Z8yW5cyXXRc.htm" allowfullscreen="" frameborder="0" height="315" width="560"></iframe>
+
+<h2 class="text-warning" id="overloadacc">Перегрузка</h2>
+
+<p>Вы можете создать простой инструмент для измерения перегрузки, 
+суммируя ускорение по всем трем направлениям и сравнивая полученный 
+результат с ускорением свободного падения. В следующем примере вы 
+разработаете простой прибор для измерения перегрузки, используя 
+акселерометр для определения ускорения, которое испытывает данное 
+устройство.</p>
+
+<p>Благодаря силе земного притяжения ускорение устройства в состоянии покоя равняется 9,8 м/с<sup>2</sup> и направлено к центру Земли. Мы определим влияние силы притяжения с помощью константы <b>SensorManager.STANDARD_GRAVITY</b>.</p>
+
+<p>Добавим на форму две текстовые метки, в которых будем выводить результаты:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:id="@+id/acceleration"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="CENTER"
+        android:textSize="32sp"
+        android:textStyle="bold" /&gt;
+
+    &lt;TextView
+        android:id="@+id/maxAcceleration"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="CENTER"
+        android:textSize="40sp"
+        android:textStyle="bold" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>В классе активности напишем следующий код:/p&gt;
+
+</p><pre><code class="java">
+package ru.alexanderklimov.forceometer;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Context;
+import android.view.Menu;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+
+	SensorManager sensorManager;
+	TextView accelerationTextView;
+	TextView maxAccelerationTextView;
+	float currentAcceleration = 0;
+	float maxAcceleration = 0;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		accelerationTextView = (TextView) findViewById(R.id.acceleration);
+		maxAccelerationTextView = (TextView) findViewById(R.id.maxAcceleration);
+		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+		Sensor accelerometer = sensorManager
+				.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+		sensorManager.registerListener(sensorEventListener, accelerometer,
+				SensorManager.SENSOR_DELAY_FASTEST);
+
+		Timer updateTimer = new Timer("gForceUpdate");
+		updateTimer.scheduleAtFixedRate(new TimerTask() {
+			public void run() {
+				updateGUI();
+			}
+		}, 0, 100);
+	}
+
+	private final SensorEventListener sensorEventListener = new SensorEventListener() {
+		double calibration = SensorManager.STANDARD_GRAVITY;
+
+		public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		}
+
+		public void onSensorChanged(SensorEvent event) {
+			double x = event.values[0];
+			double y = event.values[1];
+			double z = event.values[2];
+			double a = Math.round(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)
+					+ Math.pow(z, 2)));
+			currentAcceleration = Math.abs((float) (a - calibration));
+			if (currentAcceleration &gt; maxAcceleration)
+				maxAcceleration = currentAcceleration;
+		}
+	};
+
+	private void updateGUI() {
+		runOnUiThread(new Runnable() {
+			public void run() {
+				String currentG = currentAcceleration
+						/ SensorManager.STANDARD_GRAVITY + "Gs";
+				accelerationTextView.setText(currentG);
+				accelerationTextView.invalidate();
+				String maxG = maxAcceleration / SensorManager.STANDARD_GRAVITY
+						+ "Gs";
+				maxAccelerationTextView.setText(maxG);
+				maxAccelerationTextView.invalidate();
+			}
+		});
+	};
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.activity_main, menu);
+		return true;
+	}
+}
+</code></pre>
+
+<p>Акселерометр может иметь высокую чувствительность, поэтому обновление
+ элементов интерфейса при каждом изменении ускорения способно оказаться 
+очень затратным. Чтобы этого избежать, был создан метод updateGUI(), 
+который синхронизируется с графическим потоком в зависимости от 
+срабатывания таймера, прежде чем обновлять элементы TextView. А в методе
+ onCreate() запускается таймер для обновления пользовательского 
+интерфейса каждые 100 мс.</p>
+
+<p>Лучше всего данное приложение было бы тестировать на борту 
+истребителя, выполняющего фигуры высшего пилотажа. За неимением боевого 
+самолета можете поэкспериментировать с бегом или ездой на велосипеде.</p>
+
+<p>Добавьте функции виброзвонка или плеера (чтобы телефон вибрировал или
+ издавал звуковые сигналы, пропорциональные текущему ускорению) или 
+просто записывайте все изменения, чтобы просмотреть их позже.</p>
+
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/fastbutton.htm" name="I0_1378284330257" id="I0_1378284330257" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/jquery.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/postmessageRelay.htm" id="oauth2relay224739225" name="oauth2relay224739225"></iframe>
+    <script src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%90%D0%BA%D1%81%D0%B5%D0%BB%D0%B5%D1%80%D0%BE%D0%BC%D0%B5%D1%82%D1%80_files/bootstrap-typeahead.js"></script>
+
+</body></html>

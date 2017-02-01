@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Создаём интернет-магазин. Часть первая. PHP+MySQL</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory/">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Создаём интернет-магазин. Часть первая. PHP+MySQL</h1>
+
+<p>Метки: <span class="label">PHP</span>, <span class="label label-success">MySQL</span>, <span class="label label-warning">JSON</span></p>
+
+
+
+<p>
+<a href="#createdb">Создаём базу данных и таблицу</a><br>
+<a href="#newrecord">Создаём новую запись в базе данных</a><br>
+<a href="#readrecord">Считываем запись из таблицы базы данных</a><br>
+<a href="#getallrecords">Получаем все записи из таблицы</a><br>
+<a href="#updaterecord">Обновляем информацию о товаре</a><br>
+<a href="#deleterecord">Удаляем запись о товаре из базы данных</a><br>
+</p>
+
+<p>Предположим, вы пишете мобильное приложение для интернет-магазина. 
+Как правило, интернет-магазин работает на связке PHP+MySQL и вся 
+информация о товаре находится в базе данных. Нам нужно уметь соединиться
+ с базой данных, извлечь информацию и вывести её на экран.</p>
+
+<p>Прежде чем написать Android-приложение, необходимо подготовить API 
+для работы с сервером MySQL. На сегодняшний день фаворитом является 
+формат JSON. Мы будем обращаться по необходимому адресу на сайте 
+интернет-магазина и получать информацию в JSON-формате, которую затем 
+можно обработать и вывести на экран устройства.</p>
+
+
+
+
+<div class="alert alert-info">
+Статья предполагает, что вы знакомы с PHP и MySQL. Поэтому подробности опускаю.
+</div>
+
+<p>В первой части мы создадим PHP-проект с базой данных. Для опытов мы 
+будем использовать локальный сервер (у меня используется XAMPP) и 
+эмулятор, но можно экспериментировать и на реальном сервере в интернете,
+ если у вас такой есть.</p>
+
+<p>Во второй части мы напишем Android-приложение, которое будет 
+соединяться с сервером и работать через запросы с базой данных магазина.</p>
+
+<p>Создадим простенький файл <b>test.php</b> следующего содержания:</p>
+
+<pre><code class="java">
+&lt;?php
+    echo "Привет, вы используете PHP.";
+?&gt;
+</code></pre>
+
+<p>Запускаем браузер в эмуляторе и переходим по адресу <b>http://10.0.2.2/ishop/test.php</b>.
+ У вас может быть другой путь к файлу, главное - адрес локального 
+сервера 10.0.2.2. Если всё нормально, то продолжим. Если возникли 
+проблемы, то сначала разберитесь с ними.</p>
+
+<p><img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/connect2mysql1.png" alt="Localhost" height="124" width="300"></p>
+
+<h2 class="text-warning" id="createdb">Создаём базу данных и таблицу</h2>
+
+<p>Создадим базу данных и одну таблицу, например, средствами phpMyAdmin.</p>
+
+<p>База с именем <b>phoneshop</b>:</p>
+<pre>CREATE DATABASE phoneshop;
+</pre>
+
+<p>Таблица <b>products</b>:</p>
+
+<pre>CREATE TABLE products(
+pid int(4) primary key auto_increment,
+name varchar(100) not null,
+price decimal(10,2) not null,
+description text
+);
+</pre>
+
+<p>Создадим файлы PHP для соединения с базой данных. Нам нужно открыть 
+соединение с базой и закрыть его, если больше не нуждаемся в извлечении 
+данных. Для удобства разобъём задачи на два файла:</p>
+
+<ul>
+<li>db_config.php – настройки базы данных</li>
+<li>db_connect.php – соединение с базой данных</li>
+</ul>
+
+<p>Код для <b>db_config.php</b>:</p>
+
+<pre>&lt;?php
+    // Переменные для соединения с базой данных
+    define('DB_USER', "root"); // пользователь базы данных
+    define('DB_PASSWORD', ""); // пароль к базе данных
+    define('DB_DATABASE', "phoneshop"); // имя базы данных
+    define('DB_SERVER', "localhost"); // имя сервера
+?&gt;
+</pre>
+
+<p>Код для <b>db_connect.php</b>:</p>
+
+<pre>&lt;?php
+//класс для соединения с базой данных
+class DB_CONNECT {
+
+    private $con = '';
+
+    // конструктор
+    function __construct() {
+        // соединяемся с базой
+        $this-&gt;connect();
+    }
+	
+    // дескруктор
+    function __destruct() {
+        // закрываем соединение с базой
+        $this-&gt;close();
+    }
+ 
+    // Функция для соединения с базой данных
+    function connect() {
+        // импортируем переменные для соединения с базой данных
+        require_once __DIR__ . '/db_config.php';
+ 
+        // Соединяемся с сервером mysql
+        $this-&gt;con = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATABASE) or die(mysqli_error());
+        
+         // возвращаем результат соединения
+        return $this-&gt;con;
+    }
+ 
+    //Функция для закрытия соединения с базой данных
+    function close() {
+         mysqli_close($this-&gt;con);
+    }
+	
+	function query($query){
+        return mysqli_query($this-&gt;con, $query);
+    }
+}
+?&gt;
+</pre>
+
+<p>Если мы хотим соединиться с базой данных и совершить различные операции, то используйте класс из файла db_connect.php:</p>
+
+<pre>$db = new DB_CONNECT(); // создаем объект класса (открывает соединение с базой данных)
+</pre>
+
+<h2 class="text-warning" id="newrecord">Создаём новую запись в базе данных</h2>
+
+<p>Фирма закупила партию новых телефонов. Необходимо внести данные о телефоне в базу.</p>
+
+<p>Создадим новый файл <b>create_product.php</b>:</p>
+
+<pre><code>
+&lt;?php
+// Создаем новую запись
+// Вся информация о товаре считывается через запрос HTTP Post
+ 
+// array for JSON response
+$response = array();
+ 
+// check for required fields
+if (isset($_POST['name']) &amp;&amp; isset($_POST['price']) &amp;&amp; isset($_POST['description'])) {
+ 
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $description = $_POST['description'];
+ 
+    // подключаем файл с классом
+    require_once __DIR__ . '/db_connect.php';
+ 
+    // соединяемся с базой данных
+    $db = new DB_CONNECT();
+ 
+    // вставляем новую запись через INSERT
+	$result = $db-&gt;query("INSERT INTO products(name, price, description) VALUES('$name', '$price', '$description')");
+ 
+    // проверяем, вставлена ли новая запись
+    if ($result) {
+        // запись успешно вставлена
+        $response["success"] = 1;
+        $response["message"] = "Product successfully created.";
+ 
+        // echoing JSON response
+        echo json_encode($response);
+    } else {
+        // ошибка при вставке
+        $response["success"] = 0;
+        $response["message"] = "Oops! An error occurred.";
+ 
+        // echoing JSON response
+        echo json_encode($response);
+    }
+} else {
+    // необходимые параметры отсутствуют
+    $response["success"] = 0;
+    $response["message"] = "Required field(s) is missing";
+ 
+    // echoing JSON response
+    echo json_encode($response);
+}
+?&gt;
+</code></pre>
+
+<p>Код в файле вставляет новую запись в таблицу через команду <b>INSERT INTO</b> и возвращает результат в JSON-формате в следующем виде:</p>
+
+<p>Если параметры POST отсутствуют:</p>
+
+<pre>{
+    "success": 0,
+    "message": "Required field(s) is missing"
+}
+</pre>
+
+<p>Если запись в базе успешно создана:</p>
+
+<pre>{
+    "success": 1,
+    "message": "Product successfully created."
+}
+</pre>
+
+<p>Если возникла ошибка при вставке данных:</p>
+
+<pre>{
+    "success": 0,
+    "message": "Oops! An error occurred."
+}
+</pre>
+
+<h2 class="text-warning" id="readrecord">Считываем запись из таблицы базы данных</h2>
+
+<p>Создадим новый файл <b>get_product_details.php</b>, в котором будет происходить чтение информации о товаре через параметр <b>pid</b> в качестве POST-параметра:</p>
+
+<pre>&lt;?php
+// Информация об отдельном товаре
+
+// array for JSON response
+$response = array();
+ 
+// подключаем файл с классом
+require_once __DIR__ . '/db_connect.php';
+ 
+// соединяемся с базой данных
+$db = new DB_CONNECT();
+ 
+// проверяем данные GET
+if (isset($_GET["pid"])) {
+    $pid = $_GET['pid'];
+ 
+    // получаем данные о товаре из таблицы products
+    $result = $db-&gt;query("SELECT * FROM products WHERE pid = $pid");
+ 
+    if (!empty($result)) {
+        // если данные есть
+        if (mysqli_num_rows($result) &gt; 0) {
+ 
+            $result = mysqli_fetch_array($result);
+ 
+            $product = array();
+            $product["pid"] = $result["pid"];
+            $product["name"] = $result["name"];
+            $product["price"] = $result["price"];
+            $product["description"] = $result["description"];
+            // success
+            $response["success"] = 1;
+ 
+            $response["products"] = array();
+ 
+            array_push($response["products"], $product);
+ 
+            // echoing JSON response
+            echo json_encode($response);
+        } else {
+            // не нашли данных
+            $response["success"] = 0;
+            $response["message"] = "No product found";
+ 
+            echo json_encode($response);
+        }
+    } else {
+        // не нашли данных
+        $response["success"] = 0;
+        $response["message"] = "No product found";
+ 
+        echo json_encode($response);
+    }
+} else {
+    // отсутствуют необходимые параметры
+    $response["success"] = 0;
+    $response["message"] = "Required field(s) is missing";
+ 
+    echo json_encode($response);
+}
+?&gt;
+</pre>
+
+<p>Ответ также возвращается в JSON-формате:</p>
+
+<p>В успешном случае ответ будет таким:</p>
+
+<pre>{
+    "success": 1,
+    "product": [
+        {
+            "pid": "1",
+            "name": "iPhone 4S",
+            "price": "300.00",
+            "description": "iPhone 4S white",
+        }
+    ]
+}
+</pre>
+
+<p>Если продукт по указанному идентификатору не будет найден, то получим ответ:</p>
+
+<pre>{
+    "success": 0,
+    "message": "No product found"
+}
+</pre>
+
+<h2 class="text-warning" id="getallrecords">Получаем все записи из таблицы</h2>
+
+<p>Создадим новый файл <b>get_all_products.php</b> для получения списка всех товаров:</p>
+
+<pre>&lt;?php
+// Получаем список всех продуктов
+ 
+// массив JSON-ответов
+$response = array();
+ 
+// подключаем класс соединения с базой
+require_once __DIR__ . '/db_connect.php';
+ 
+// подключаемся к базе данных
+$db = new DB_CONNECT();
+ 
+// получаем список всех товаров из таблицы products
+$result = $db-&gt;query('SELECT * FROM products') or die('Ошибка при получении списка товаров');
+
+// если данные есть
+if (mysqli_num_rows($result) &gt; 0) {
+    // проходим в цикле через все результаты
+    $response["products"] = array();
+ 
+    while ($row = mysqli_fetch_array($result)) {
+        $product = array();
+        $product["pid"] = $row["pid"];
+        $product["name"] = $row["name"];
+        $product["price"] = $row["price"];
+        $product["description"] = $row["description"];
+ 
+        // помещаем информацияю о товаре  в массив
+        array_push($response["products"], $product);
+    }
+    // success
+    $response["success"] = 1;
+ 
+    echo json_encode($response);
+} else {
+    // если товаров нет
+    $response["success"] = 0;
+    $response["message"] = "No products found";
+ 
+    echo json_encode($response);
+}
+?&gt;
+</pre>
+
+<p>Ответы в JSON-формате:</p>
+
+<p>Список всех продуктов:</p>
+
+<pre>{
+    "products": [
+        {
+            "pid": "1",
+            "name": "iPhone 4S",
+            "price": "300.00",
+        },
+        {
+            "pid": "2",
+            "name": "Macbook Pro",
+            "price": "600.00",
+        },
+        {
+            "pid": "3",
+            "name": "Macbook Air",
+            "price": "800.00",
+        },
+        {
+            "pid": "4",
+            "name": "OS X Lion",
+            "price": "100.00",
+        }
+    ],
+    "success": 1
+}
+</pre>
+
+<p>Если продукции в базе нет</p>
+
+<pre>{
+    "success": 0,
+    "message": "No products found"
+}
+</pre>
+
+<h2 class="text-warning" id="updaterecord">Обновляем информацию о товаре</h2>
+
+<p>Создадим файл <b>update_product.php</b> для обновления информации о товаре через pid:</p>
+
+<pre>&lt;?php
+// Обновляем информацию о товаре через product id (pid)
+ 
+// array for JSON response
+$response = array();
+ 
+// check for required fields
+if (isset($_POST['pid']) &amp;&amp; isset($_POST['name']) &amp;&amp; isset($_POST['price']) &amp;&amp; isset($_POST['description'])) {
+ 
+    $pid = $_POST['pid'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $description = $_POST['description'];
+ 
+    // подключаем файл с классом
+    require_once __DIR__ . '/db_connect.php';
+ 
+    // соединяемся с базой данных
+    $db = new DB_CONNECT();
+ 
+    // обновляем ряд в таблице по pid
+    $result = $db-&gt;query("UPDATE products SET name = '$name', price = '$price', description = '$description' WHERE pid = $pid");
+ 
+    // проверяем успешность вставки
+    if ($result) {
+        // successfully updated
+        $response["success"] = 1;
+        $response["message"] = "Product successfully updated.";
+ 
+        echo json_encode($response);
+    } else {
+ 
+    }
+} else {
+    // отсутствуют нужные параметры
+    $response["success"] = 0;
+    $response["message"] = "Required field(s) is missing";
+ 
+    echo json_encode($response);
+}
+?&gt;
+</pre>
+
+<h2 class="text-warning" id="deleterecord">Удаляем запись о товаре из базы данных</h2>
+
+<p>Создадим файл <b>delete_product.php</b>, в котором будет происходить удаление записи из базы данных:</p>
+
+<pre>&lt;?php
+// Удаляем товар из базы данных по product id (pid)
+ 
+// array for JSON response
+$response = array();
+ 
+// check for required fields
+if (isset($_POST['pid'])) {
+    $pid = $_POST['pid'];
+ 
+    // подключаем файл с классом
+    require_once __DIR__ . '/db_connect.php';
+ 
+    // соединяемся с базой
+    $db = new DB_CONNECT();
+ 
+    // удаляем запись по pid
+	$result = $db-&gt;query("DELETE FROM products WHERE pid = $pid");
+ 
+    // check if row deleted or not
+    if (mysqli_affected_rows() &gt; 0) {
+        // successfully updated
+        $response["success"] = 1;
+        $response["message"] = "Product successfully deleted";
+ 
+        echo json_encode($response);
+    } else {
+        // no product found
+        $response["success"] = 0;
+        $response["message"] = "No product found";
+ 
+        echo json_encode($response);
+    }
+} else {
+    // required field is missing
+    $response["success"] = 0;
+    $response["message"] = "Required field(s) is missing";
+ 
+    echo json_encode($response);
+}
+?&gt;
+</pre>
+
+<p>При успешном удалении возвращается:</p>
+<pre>{
+    "success": 1,
+    "message": "Product successfully deleted"
+}
+</pre>
+
+<p>Если удаляемый продукт не найден:</p>
+
+<pre>{
+    "success": 0,
+    "message": "No product found"
+}
+</pre>
+
+<p>На этом создание интернет-магазина со своим API закончена. Переходим к <a href="http://developer.alexanderklimov.ru/android/connect2mysql-2.php">созданию Android-проекта</a>.</p>
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/fastbutton.htm" name="I0_1379797671624" id="I0_1379797671624" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/jquery.js"></script><iframe style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/postmessageRelay.htm" id="oauth2relay638078157" name="oauth2relay638078157"></iframe>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%91%D0%BC%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%20%D0%BF%D0%B5%D1%80%D0%B2%D0%B0%D1%8F.%20PHP+MySQL_files/bootstrap-typeahead.js"></script>
+
+</body></html>

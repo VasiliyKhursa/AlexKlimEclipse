@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Работаем с Camera API</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="http://developer.alexanderklimov.ru/android/secret/enter.php" id="drop3" role="button">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Работаем с Camera API</h1>
+
+<p><a href="http://developer.alexanderklimov.ru/android/secret/secret.php?do=logout">Выйти из закрытой зоны</a></p>
+<p><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/camera2.jpg" alt="Котик и фотик" class="img-polaroid"></p>
+
+<p>
+<a href="#usecamera">Класс android.hardware.Camera</a><br>
+<a href="#autofocus">Автофокус</a><br>
+<a href="#previewcamera">Предварительный просмотр для камеры</a><br>
+<a href="#takepicture">Создание фотографий</a><br>
+<a href="#supportsize">Список поддерживаемых размеров изображений</a><br>
+<a href="#mirror">Свет мой, зеркальце, скажи - Используем фронтальную камеру</a><br>
+</p>
+
+<p>Мы уже рассматривали примеры использования <a href="http://developer.alexanderklimov.ru/android/photocamera.php">системного приложения Камера</a>. Рассмотрим примеры работы с камерой напрямую.</p>
+
+
+<p>В начале стоит упомянуть, что можно сделать проверку наличия камеры через метод <b>hasSystemFeature(PackageManager.FEATURE_CAMERA)</b>. Если камера не доступна, то вы должны отключить ваш функционал работы с камерой.</p>
+
+<h2 class="text-warning" id="usecamera">Класс android.hardware.Camera</h2>
+
+<p>Для работы с камерой в собственном приложении вам нужно использовать класс <b>android.hardware.Camera</b>,
+ позволяющий взаимодействовать с видеокамерой в целях фотосъемки, записи
+ изображений с экрана предварительного просмотра или для изменения 
+параметров настройки.</p>
+
+<div class="alert">
+Если вы будете импортировать классы вручную, то проследите, чтобы в проекте был прописан класс <b>android.hardware.Camera</b>, а не <b>android.graphics.Camera</b>.
+</div>
+
+<p>Если вы работаете с методами камеры напрямую через классы, то 
+требуется разрешение в манифесте (не забывайте его прописывать в 
+примерах):</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.CAMERA"/&gt;
+</code></pre>
+
+<p>Рекомендуется добавить в AndroidManifest следующую строку:</p>
+
+<pre><code class="xml">
+&lt;uses-feature android:name="android.hardware.camera"&gt;&lt;/uses-feature&gt;
+</code></pre>
+
+<p>Таким образом, люди с устройствами без встроенной камеры (например, 
+электронные книги) не будут видеть ваше приложение на маркете.</p>
+
+<p>Чтобы получить доступ к Сервису камеры, применяйте статический метод <b>open()</b> из класса <b>Camera</b>. Когда приложение закончило работу с этим Сервисом, не забудьте освободить его ресурсы с помощью метода <b>release()</b> (можно это делать в методе onPause())):</p>
+
+<pre><code class="java">
+Camera camera = Camera.open();
+// ваши действия с камерой
+camera.release();
+</code></pre>
+
+<p>Настройки камеры хранятся в объекте <b>Camera.Parameters</b>, доступ к которому можно получить с помощью метода <b>getParameters()</b>, вызванного из 
+экземпляра класса Camera.</p>
+
+<p>Чтобы изменить эти настройки, используйте методы <b>set*</b> из объекта Parameters, после чего вызовите метод <b>setParameters()</b>, передав ему модифицированный объект.</p>
+
+<pre><code class="java">
+Camera.Parameters parameters = camera.getParameters();
+[ . . . внесение изменений . . . ]
+camera.setParameters(parameters);
+</code></pre>
+
+<p>В версии Android 2.0 (API level 5) представлены параметры камеры, у каждого из которых свой геттер и сеттер.</p>
+
+<ul>
+<li><b>getSceneMode/setSceneMode</b> - Принимает или возвращает 
+статическую строковую константу SCENE_MODE_* из класса Parameters. 
+Каждый режим описывает определенный тип обстановки («вечеринка», «пляж»,
+ «закат» и т. д.)</li>
+<li><b>getFlashMode/setFlashMode</b> - Принимает или возвращает 
+статическую строковую константу FLASH_MODE_*. Позволяет указать режим 
+освещения (включен, выключен или уменьшение эффекта красных глаз) или 
+режим вспышки</li>
+<li><b>getWhiteBalance/setWhiteBalance</b> - Принимает или возвращает 
+статическую строковую константу WHITE_BALANCE_*, с помощью которой 
+описывается баланс белого цвета для фотографируемой сцены</li>
+<li><b>getColorEffect/setColorEffect</b> - Принимает или возвращает 
+статическую строковую константу EFFECT_*, чтобы изменить способ 
+представления  изображения. Вам доступны цветовые эффекты, включая тон 
+сепии или оттенки серого</li>
+<li><b>getFocusMode/setFocusMode</b> - Принимает или возвращает статическую строковую константу FOCUS_MODE_*, которая задает режим автоматической фокусировки камеры</li>
+</ul>
+
+<h3 class="text-warning">Дополнительные методы</h3>
+
+<ul>
+<li><b>setJpegQuality()</b> - устанавливает качество картинки. Используйте целочисленные значения от 0 до 100, где 100 — самое высокое качество</li>
+<li><b>setJpegThumbnailQuality()</b> - устанавливает качество миниатюры. Используйте целочисленные значения от 0 до 100, где 100 — самое высокое качество</li>
+<li><b>setPictureSize()</b> - устанавливает размер изображения</li>
+<li><b>setPreviewSize()</b> - устанавливает размер картинки для предварительного просмотра</li>
+<li><b>setJpegThumbnailSize()</b> - устанавливает размер миниатюры</li>
+<li><b>setPictureFormat()</b> - устанавливает растровый формат для изображения, задействуя статическую константу из класса PixelFormat</li>
+<li><b>setPreviewFormat()</b> - устанавливает растровый формат для 
+картинки при предварительном просмотре, задействуя статическую константу
+ из класса PixelFormat</li>
+<li><b>setPreviewFrameRate()</b> - устанавливает частоту кадров при предварительном просмотре в FPS (количество кадров в секунду)</li>
+</ul>
+
+<p>Каждое устройство потенциально содержит поддержку собственного 
+подмножества этих значений. Класс Camera.Parameters также содержит 
+методы <b>getSupported*</b>, с помощью которых можно найти доступные 
+параметры, чтобы потом показать их пользователю. Перед присвоением 
+значения нужно удостовериться, что данный параметр поддерживается.</p>
+
+<p>Проверка параметров на допустимость имеет большое значение при выборе
+ доступного режима для предварительного просмотра или размера 
+изображения, так как камеры в различных устройствах могут обладать 
+разными характеристиками.</p>
+
+<p>Пример на проверку поддержки камерой эффекта Сепия</p>
+
+<pre><code class="java">
+Camera.Parameters parameters = camera.getParameters();
+List&lt;String&gt; colorEffects = parameters.getSupportedColorEffects();
+if (colorEffects.contains(Camera.Parameters.EFFECT_SEPIA))
+    parameters.setColorEffect(Camera.Parameters.EFFECT_SEPIA);
+camera.setParameters(parameters);
+</code></pre>
+
+<h2 class="text-warning" id="autofocus">Автофокус</h2>
+
+<p>Если камера в устройстве поддерживает автоматическую фокусировку 
+(автофокус), вы можете проследить, прошла ли данная операция успешно, 
+используя функцию обратного вызова <b>AutoFocusCallback()</b> внутри объекта Camera.</p>
+
+<p>При изменении состояния автофокуса обработчик события <b>onAutoFocus()</b> получает в качестве параметров объект Camera и булево значение <b>success</b>, которое сигнализирует об успешности автоматической фокусировки.</p>
+
+<pre><code class="java">
+camera.autoFocus(new AutoFocusCallback() {
+    public void onAutoFocus(boolean success, Camera camera) {
+        // TODO Использовать значение success
+    }
+});
+</code></pre>
+
+<h2 class="text-warning" id="previewcamera">Предварительный просмотр для камеры</h2>
+
+<p>Доступ к видеопотоку камеры позволяет добавлять в приложения 
+возможность предварительного просмотра. Некоторые приложения используют 
+эту функциональность как основу для реализации дополненной реальности - 
+наложения динамических контекстных данных, например информации о 
+достопримечательностях или различных заведениях поверх живого 
+видеопотока с камеры.</p>
+
+<p>Предварительный просмотр возможен с помощью объекта <b>SurfaceHolder</b>.
+ Чтобы отобразить живой видеопоток с камеры в своем приложении, нужно 
+добавить к пользовательскому интерфейсу элемент SurfaceView. Прежде чем 
+передавать SurfaceHolder в метод <b>setPreviewDisplay()</b> из объекта Camera, реализуйте 
+абстрактный интерфейс <b>SurfaceHolder.Callback</b>, чтобы следить за созданием рабочей поверхности.</p>
+
+<p>Вызов метода <b>startPreview()</b> инициирует отображения потока, а <b>stopPreview()</b> его остановит.</p>
+
+<pre><code class="java">
+public class ManiActivity extends Activity implements SurfaceHolder.Callback {
+    private Camera camera;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        SurfaceView surface = (SurfaceView)findViewById(R.id.surface);
+        SurfaceHolder holder = surface.getHolder();
+        holder.addCallback(this);
+        holder.setFixedSize(400, 300);
+    }
+	
+    public void surfaceCreated(SurfaceHolder holder) {
+        if (mediaRecorder == null) {
+            try {
+                camera = camera.open();
+                camera.setPreviewDisplay(holder);
+                camera.startPreview();
+                [ . . . Вывод изображения на поверхности . . . ]
+            } catch (IOException e) {
+            Log.d("CAMERA", e.getMessage());
+            }
+        }
+    }
+    
+	public void surfaceDestroyed(SurfaceHolder holder) {
+        camera.stopPreview();
+        camera.release();
+    }
+}
+</code></pre>
+
+<p>Вы также можете назначить PreviewCallback для срабатывания на каждом 
+новом кадре — это позволит манипулировать с картинкой или отображать 
+каждый кадр отдельно.</p>
+
+<p>Вызовите метод <b>setPreviewCallback()</b> из объекта Camera, передав ему в качестве параметра новую реализацию PreviewCallback и переопределив обработчик <b>onPreviewFrame()</b>:</p>
+
+<pre><code class="java">
+camera.setPreviewCallback(new PreviewCallback() {
+    public void onPreviewFrame(byte[] _data, Camera _camera) {
+        // Какие-то действия с изображением из предварительного просмотра
+    }
+});
+</code></pre>
+
+<p>Обработчик onPreviewFrame() получит каждый кадр в виде массива байтов.</p>
+
+<h2 class="text-warning" id="takepicture">Создание фотографий</h2>
+
+<p>Чтобы сделать снимок, нужно вызвать метод <b>takePicture()</b> из объекта Camera, передав ему в качестве параметров <b>ShutterCallback</b> и две реализации <b>PictureCallback</b>
+ (одну для необработанных изображений, другую для сжатых в формат JPEG).
+ Каждая из этих двух функций обратного вызова получит массив байтов — 
+изображение в соответствующем формате, тогда как ShutterCallback 
+сработает сразу после закрытия затвора камеры.</p>
+
+<p>Ниже показан каркас, в котором создаётся и сохраняется снимок в формате JPEG на SD-карту.</p>
+
+<pre><code class="java">
+private void takePicture() {
+    camera.takePicture(shutterCallback, rawCallback, jpegCallback);
+}
+
+ShutterCallback shutterCallback = new ShutterCallback() {
+    public void onShutter() {
+        // TODO Действия при закрытии затвора камеры.
+    }
+};
+
+PictureCallback rawCallback = new PictureCallback() {
+    public void onPictureTaken(byte[] data, Camera camera) {
+        // TODO Действия с необработанным изображением.
+    }
+};
+
+PictureCallback jpegCallback = new PictureCallback() {
+    public void onPictureTaken(byte[] data, Camera camera) {
+        // Сохраните изображение в формате JPEG на карту SD
+        FileOutputStream outStream = null;
+        try {
+            outStream = new FileOutputStream("/sdcard/test.jpg");
+            outStream.write(data);
+            outStream.close();
+        } catch (FileNotFoundException e) {
+            Log.d("CAMERA", e.getMessage());
+        } catch (IOException e) {
+            Log.d("CAMERA", e.getMessage());
+        }
+    }
+};
+</code></pre>
+
+<h2 class="text-warning">Пример</h2>
+
+<p>Подведём итоги и напишем полноценный пример на основании теории, которую мы сейчас изучили.</p>
+
+<p>Разместим на экране элемент SurfaceView для предвательного просмотра.</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;SurfaceView
+        android:id="@+id/surfaceView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Для экономии места мы поместим кнопку, которая будет делать снимки, 
+поверх SurfaceView. Создадим в папке res/layout файл control.xml и 
+напишем следующее:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="bottom"
+    android:orientation="vertical" &gt;
+
+    &lt;Button
+        android:id="@+id/takepicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_margin="10dp"
+        android:onClick="onClick"
+        android:text="Сделать снимок" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>На всякий случай скажу, что на эмуляторе кнопка действительно 
+находилась поверх SurfaceView, а на реальном устройстве почему-то под 
+этим элементом. Поэтому в моём случае можно было не извращаться и 
+добавить кнопку по нормальному в main.xml.</p>
+
+<p>Теперь переходим к коду и напишем все необходимые методы, о которых 
+узнали выше. При запуске программы мы будем видеть предварительный 
+просмотр, а при нажатии на кнопку будет делаться снимок, который 
+сохранится на SD-карте под именем supercat.jpg.</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.camerademo;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.graphics.PixelFormat;
+import android.hardware.Camera;
+import android.hardware.Camera.PictureCallback;
+import android.hardware.Camera.ShutterCallback;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+
+public class CameraDemoActivity extends Activity implements
+		SurfaceHolder.Callback {
+
+	Camera camera;
+	SurfaceView surfaceView;
+	SurfaceHolder surfaceHolder;
+	boolean previewing = false;
+	LayoutInflater controlInflater = null;
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+		getWindow().setFormat(PixelFormat.UNKNOWN);
+		surfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
+		surfaceHolder = surfaceView.getHolder();
+		surfaceHolder.addCallback(this);
+		// surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+		surfaceHolder.setFixedSize(400, 300);
+
+		// добавляем кнопку поверх SurfaceView
+		controlInflater = LayoutInflater.from(getBaseContext());
+		View viewControl = controlInflater.inflate(R.layout.control, null);
+		LayoutParams layoutParamsControl = new LayoutParams(
+				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		this.addContentView(viewControl, layoutParamsControl);
+
+		// Spinner spinnerSupportedPictureSizes = (Spinner)
+		// findViewById(R.id.support);
+		//
+		// Camera camera = Camera.open();
+		// Camera.Parameters cameraParameters = camera.getParameters();
+		// List<camera.size> listSupportedPictureSizes = cameraParameters
+		// .getSupportedPictureSizes();
+		//
+		// List<string> listStrSupportedPictureSizes = new ArrayList<string>();
+		//
+		// for (int i = 0; i &lt; listSupportedPictureSizes.size(); i++) {
+		//
+		// String strSize = String.valueOf(i) + " : "
+		// + String.valueOf(listSupportedPictureSizes.get(i).height)
+		// + " x "
+		// + String.valueOf(listSupportedPictureSizes.get(i).width);
+		// listStrSupportedPictureSizes.add(strSize);
+		// }
+		//
+		// ArrayAdapter<string> adapter = new ArrayAdapter<string>(this,
+		// android.R.layout.simple_spinner_item,
+		// listStrSupportedPictureSizes);
+		// adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// spinnerSupportedPictureSizes.setAdapter(adapter);
+		//
+		// camera.release();
+	}
+
+	@Override
+	public void surfaceChanged(SurfaceHolder holder, int format, int width,
+			int height) {
+		// TODO Auto-generated method stub
+		if (previewing) {
+			camera.stopPreview();
+			previewing = false;
+		}
+
+		if (camera != null) {
+			try {
+				camera.setPreviewDisplay(surfaceHolder);
+				camera.startPreview();
+				previewing = true;
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public void surfaceCreated(SurfaceHolder holder) {
+		// TODO Auto-generated method stub
+		camera = Camera.open();
+	}
+
+	@Override
+	public void surfaceDestroyed(SurfaceHolder holder) {
+		// TODO Auto-generated method stub
+		camera.stopPreview();
+		camera.release();
+		camera = null;
+		previewing = false;
+	}
+
+	public void onClick(View v) {
+		camera.takePicture(shutterCallback, rawCallback, jpegCallback);
+	}
+
+	ShutterCallback shutterCallback = new ShutterCallback() {
+		public void onShutter() {
+			// TODO Действия при закрытии затвора камеры.
+		}
+	};
+
+	PictureCallback rawCallback = new PictureCallback() {
+		public void onPictureTaken(byte[] data, Camera camera) {
+			// TODO Действия с необработанным изображением.
+		}
+	};
+
+	PictureCallback jpegCallback = new PictureCallback() {
+		public void onPictureTaken(byte[] data, Camera camera) {
+			// Сохраните изображение в формате JPEG на карту SD
+			FileOutputStream outStream = null;
+			try {
+				// получаем путь к SD-карте
+				String extStorageDirectory = Environment
+						.getExternalStorageDirectory().toString();
+				outStream = new FileOutputStream(extStorageDirectory + "/supercat.jpg");
+				outStream.write(data);
+				outStream.close();
+			} catch (FileNotFoundException e) {
+				Log.d("CAMERA", e.getMessage());
+			} catch (IOException e) {
+				Log.d("CAMERA", e.getMessage());
+			}
+		}
+	};
+}
+</string></string></string></string></camera.size></code></pre>
+
+<p>Осталось прописать в манифесте разрешение на использование камеры и 
+запись на внешнюю карточку памями. Запускаем проект и делаем снимок.</p>
+
+<h2 class="text-warning" id="supportsize">Список поддерживаемых размеров изображений</h2>
+
+<p>У камеры очень много настроек, достаточно взглянуть на документацию по классу <b>android.hardware.Camera.Parameters</b>. Всё просто нереально здесь рассказать. Рассмотрим только один пример, а остальные вы сможете изучить сами по аналогии.</p>
+
+<p>У настроек камеры есть метод <b>getSupportedPictureSizes()</b>, позволяющий получить список поддерживаемых размеров изображений.</p>
+
+<p>Для начала добавим в манифест необходимые разрешения:</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.CAMERA" /&gt;
+&lt;uses-feature android:name="android.hardware.camera" /&gt;
+&lt;uses-feature android:name="android.hardware.camera.autofocus" /&gt;
+</code></pre>
+
+<p>Теперь добавим на форму элемент Spinner, в который будет загружать полученный список поддерживаемых размеров через адаптер:</p>
+
+<pre><code class="java">
+...
+setContentView(R.layout.main);
+
+Spinner spinnerSupportedPictureSizes = (Spinner) findViewById(R.id.support);
+
+Camera camera = Camera.open();
+Camera.Parameters cameraParameters = camera.getParameters();
+List&lt;Camera.Size&gt; listSupportedPictureSizes = cameraParameters
+		.getSupportedPictureSizes();
+
+List&lt;String&gt; listStrSupportedPictureSizes = new ArrayList&lt;String&gt;();
+
+for (int i = 0; i &lt; listSupportedPictureSizes.size(); i++) {
+
+	String strSize = String.valueOf(i) + " : "
+			+ String.valueOf(listSupportedPictureSizes.get(i).height)
+			+ " x "
+			+ String.valueOf(listSupportedPictureSizes.get(i).width);
+	listStrSupportedPictureSizes.add(strSize);
+}
+
+ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(this,
+		android.R.layout.simple_spinner_item,
+		listStrSupportedPictureSizes);
+adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+spinnerSupportedPictureSizes.setAdapter(adapter);
+
+camera.release();
+</code></pre>
+
+<p><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/camera1.png" alt="Список поддерживаемых размеров изображений"></p>
+
+<h2 class="text-warning" id="mirror">Свет мой, зеркальце, скажи - Используем фронтальную камеру</h2>
+
+<p><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/mirrorcat.jpg" alt="Кот и зеркало" height="289" width="250"></p>
+
+<p>Первоначально телефоны имели одну камеру на задней стороне, затем 
+стали появляться фронтальные камеры для видеозвонков. Очень удобно - 
+собеседник видит ваше лицо и наглую рыжую морду кота, который тоже лезет
+ в камеру, мешая деловому разговору.</p>
+
+<p>Имея доступ к фронтальной камере, можно вывести собственное 
+изображение на экран и при желании сохранить снимок на карте. Пример 
+такого использования продемонстрирован в статье <a href="http://mobile.tutsplus.com/tutorials/android/android-essentials-create-a-mirror/">Create a Mirror</a>. Там же приводится ссылка на исходники проекта.</p>
+
+<p>В версиях API 9 и 10 работа с фронтальной камерой вызывает определённые проблемы. Используйте следующий код, используя метод <b>getFrontFacingCamera()</b> вместо <b>camera.open()</b>:</p>
+
+<pre><code class="java">
+Camera getFrontFacingCamera() throws NoSuchElementException {
+    Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+    for (int cameraIndex = 0; cameraIndex &lt; Camera.getNumberOfCameras(); cameraIndex++) {
+        Camera.getCameraInfo(cameraIndex, cameraInfo);
+        if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+            try {
+                return Camera.open(cameraIndex);
+            } 
+            catch (RuntimeException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    throw new NoSuchElementException("Can't find front camera.");
+}
+</code></pre>
+
+<h2 class="text-warning">Проблемы с камерой</h2>
+
+<p>На старых устройствах (API 7, 8, 9, 10) не корректно работал 
+предварительный показ камеры, связанный с ориентацией экрана. Есть два 
+варианта. Первый - установите нужную ориентацию в манифесте <b>android:screenOrientation="landscape"</b> в теге <b>&lt;activity&gt;</b>. Если вы предпочитаете портретный режим, то добавьте запись <b>android:screenOrientation="portrait"</b> и программно вызовите метод  <b>setDisplayOrientation(90)</b> класса <b>android.hardware.Camera</b>:</p>
+
+<pre><code class="java">
+Camera mCamera = Camera.open();
+// ...
+mCamera.setDisplayOrientation(90);
+</code></pre>
+
+
+<h2 class="text-warning">Дополнительное чтение</h2>
+
+<p><a href="http://developer.alexanderklimov.ru/android/torch.php">Карманный фонарик
+
+</a></p></div><!--/span--><a href="http://developer.alexanderklimov.ru/android/torch.php">
+        </a></div><!--/row--><a href="http://developer.alexanderklimov.ru/android/torch.php">	
+		  
+        </a></div><!--/span--><a href="http://developer.alexanderklimov.ru/android/torch.php">
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </a></div><!--/row--><a href="http://developer.alexanderklimov.ru/android/torch.php">
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+</a><footer><a href="http://developer.alexanderklimov.ru/android/torch.php">
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 </span></noindex></a><a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/fastbutton.htm" name="I0_1378022393205" id="I0_1378022393205" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/postmessageRelay.htm" id="oauth2relay257198181" name="oauth2relay257198181"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/jquery.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Camera%20API_files/bootstrap-typeahead.js"></script>
+
+</body></html>

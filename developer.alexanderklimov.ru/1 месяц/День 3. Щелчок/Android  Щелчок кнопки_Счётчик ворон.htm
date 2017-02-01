@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Щелчок кнопки/Счётчик ворон</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">   
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+          <ul class="nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->	
+<div class="clearfix"></div>
+	
+<noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+            
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Читайте на здоровье!</h3>
+            </div>
+            <div class="modal-body">
+            
+              <p>Статья проплачена кошками - всемирно известными производителями котят.</p>
+
+            <p>Если статья вам понравилась, то можете <a href="http://developer.alexanderklimov.ru/donate.php">поддержать проект</a>.</p>
+			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Щелчок кнопки/Счётчик ворон</h1>
+
+<p><img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/crow1.jpg" alt="Не тяни кота за хвост"></p>
+
+<p>На прошлом занятии мы немного поработали с кнопкой. Сегодня рассмотрим работу с обработкой щелчков подробнее.</p>
+
+<p>Освежим свои знания. Можете использовать старый проект или создать новый проект с стандартными настройками.</p>
+
+<p>В прошлый раз мы использовали ImageButton. Сегодня будем работать с обычной кнопкой. Подведите курсор к элементу <b>Button</b>
+ и перетащите его на форму. В результате ваших действий на форме 
+появится стандартная кнопка с настройками по умолчанию. В правой части 
+экрана у вас имеется окно <b>Properties</b>, в котором вы можете настроить необходимые свойства для кнопки. Например, найдите свойство <b>Text</b> и присвойте ему свой текст <b>Поздороваться</b>. По своей старой привычке я присвоил свойству <b>id</b> новое значение <b>@+id/butHello</b> вместо стандартного <b>@+id/button1</b>.</p> 
+
+<p>Если вы открыли предыдущий проект, то там уже был элемент <b>TextView</b> с текстом <b>Hello, World</b>
+ (если вы создали новый проект). Элемент TextView является текстовой 
+меткой для вывода текста, который нельзя редактировать. В метке будем 
+выводить приветствие после щелчка кнопки. В окне свойств удаляем текст 
+из свойства <b>Text</b>, чтобы в текстовой метке ничего не было. 
+Проследите, чтобы у него был идентификатор. Если в окне свойств ничего 
+нет, то добавьте свой идентификатор, например, <b>@+id/textView1</b>.</p>
+
+<p>Если вам не нравится взаимное расположение элементов, то можете на форме перетаскивать элементы, меняя их местами.</p>
+
+<p>Будем считать, что интерфейс программы готов - у нас есть кнопка для нажатия и текстовая метка для вывода сообщений.</p>
+
+<p>Теперь нужно научиться писать код для щелчка кнопки. Переключитесь с вкладки <b>Graphical Layout</b> на вкладку <b>activity_main.xml</b> и найдите тег <b>&lt;Button&gt;</b>. Добавьте к нему еще одну строчку:</p>
+
+<pre><code class="xml">
+&lt;Button
+    android:id="@+id/butHello"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    <b class="text-success">android:onClick="butHello_Click"</b>
+    android:text="Поздороваться" /&gt;
+</code></pre>
+
+<p>На самом деле это можно было сделать и через графическую модель. 
+Переключитесь обратно в Graphical Layout и найдите в свойствах кнопки 
+пункт <b>On click</b>. Там будет прописано имя метода, которое мы задали через XML. Пользуйтесь любым удобным вам способом.</p>
+
+<p>Таким образом мы определили событие <b>butHello_Click</b> для кнопки (щелчок) и теперь осталось написать обработчик события. Открываем файл <b>HelloWorld.java</b> (у вас может быть другое имя) и пишем сразу после метода onCreate():</p>
+
+<pre><code>
+public void butHello_Click(View v){
+    TextView tvHello = (TextView)findViewById(R.id.textView1);
+    tvHello.setText("Hello Kitty!");
+}
+</code></pre>
+
+<p>Впрочем, это код нам уже знаком по предыдущему занятию.</p>
+
+<p>Обратите внимание, что имя метода <b>butHello_Click()</b> должно совпадать со строкой, которую мы задали в атрибуте <b>android:onClick</b> для кнопки, а также добавляем скобки с текстом <b>View v</b>.
+ В фигурных скобках пишем код, который должен выполниться при щелчке 
+кнопки. Так как нам надо вывести текст в текстовой метке, то сначала 
+сообщаем системе, что собираемся использовать данный элемент, а затем 
+присваиваем ему нужный текст через метод <b>setText()</b>.</p>
+
+<p>Запускаем проект и нажимаем на кнопку, чтобы увидеть результат. Можете изменить текст по своему желанию, например, на <i>Ты кто такой? Давай, до свидания!</i>, но это сообщение будет выглядеть мягко говоря, странным.</p>
+
+<p>Полный текст кода для <b>HelloWorld.java</b> будет выглядеть следующим образом.</p>
+
+<pre><code class="java">
+// Если этот код работает, его написал Александр Климов,
+// а если нет, то не знаю, кто его писал.
+package ru.alexanderklimov.helloworld;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.support.v4.app.NavUtils;
+
+public class MainActivity extends Activity {
+    
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+    	super.onCreate(savedInstanceState);
+    	setContentView(R.layout.activity_main);
+    }
+    
+    public void butHello_Click(View v){
+        TextView tvHello = (TextView)findViewById(R.id.textView1);
+        // выводим текст в TextView
+        tvHello.setText("Ты кто такой? Давай, до свидания!");
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	getMenuInflater().inflate(R.menu.activity_main, menu);
+    	return true;
+    }
+}
+</code></pre>
+
+<p>Здесь стоит обратить внимание на строчку <b>TextView tvHello = (TextView)findViewById(R.id.textView1);</b>. Метод <b>findViewById()</b>
+ используется для получения ссылки на элемент, у которого мы определили 
+ID. В дальнейшем вы постоянно будете использовать данный код в своих 
+программах.</p>
+
+<p>В коде стандартного шаблона <b>BlankActivity</b> вы также можете видеть сгенерированный код для метода <b>onCreateOptionsMenu()</b>. Пока не обращайте на него внимания, это код для вызова меню. Если вам интересно, то можете нажать на кнопку <b>Menu</b> в эмуляторе, чтобы вызвать меню на экран (появится пункт Settings).</p>
+
+<p><img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/android3.png" alt="Код для щелчка мыши"></p>
+
+<p>Новички на первых порах часто делают элементарную ошибку - помещают строчку инициализации объекта до метода <b>setContentView()</b>.
+ Запомните, сначала нужно вывести шаблон (R.layout.activity_main), а 
+только потом кнопки, текстовые поля, переключатели и т.д. В нашем случае
+ используется отдельный метод для кнопки, который формируется после 
+метода <b>setContentView()</b>. Позже, в других проектах вы увидите стандартные приёмы инициализации объектов.</p>
+
+<h2 class="text-warning">Другой способ обработки щелчка кнопки</h2>
+
+<p>На самом деле, способ обработки щелчка кнопки, который я вам показал,
+ является относительно новым для разработчиков. Google рекомендует 
+использовать данный способ как удобный, требующий меньше кода и понятный
+ для чтения. Но тем не менее вам придётся сталкиваться со старым 
+способом, который берет свои корни от Java. Поэтому необходимо изучить и
+ второй способ, чтобы понимать другие примеры.</p>
+
+<p>Добавьте в проект новую кнопку. Если первую кнопку мы добавляли перетаскиванием элемента <b>Button</b> с панели инструментов, то на этот раз мы попробуем создать кнопку вручную. Откройте файл <b>activity_main.xml</b>
+ в режиме редактора кода и скопируйте код для первой кнопки. Потом с 
+новой строки вставьте скопированный текст и подправьте несколько 
+атрибутов, например, так.</p>
+
+<pre><code class="xml">
+&lt;Button
+    android:id="@+id/butCrowsCounter"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_below="@+id/butHello"
+    android:text="Считаем ворон" /&gt;
+</code></pre>
+
+<p>Я поменял для кнопки текст и идентификатор, а также некоторые 
+параметры, отвечающие за положение кнопки на экране. Переключитесь в 
+графический режим и посмотрите, как выглядит кнопка. Обратите внимание, 
+что строку <b>android:onClick="butCrowsCounter_Click"</b> мы уже не используем.</p>
+
+<p>Снова открываем файл <b>HelloWorld.java</b> и пишем следующий код сразу после объявления класса и до метода <b>onCreate()</b>:</p>
+
+<pre><code class="java">
+Button butCrowsCounter;
+</code></pre>
+
+<p>Когда вы напишете код, то слева появится предупреждающий значок. Если
+ подвести курсор к значку, то появится всплывающая подсказка: <i>Button cannot be resolved to a type</i>. Теперь подведите курсор к слову <b>Button</b>.
+ Снова появится всплывающее окно, в котором среда разработки предложит 
+вам несколько вариантов исправления ошибки. В нашем случае необходимо 
+выбрать первый вариант: <b>Import 'Button' (android.widget)</b>. Тогда у вас в секции Imports в верхней части кода появится строчка <b>import android.widget.Button;</b> и предупреждающий значок исчезнет.</p>
+
+<p>После строчки <b>setContentView(R.layout.activity_main);</b> пишем:</p>
+
+<pre><code class="java">
+butCrowsCounter = (Button)findViewById(R.id.butCrowsCounter);
+</code></pre>
+
+<p>Ещё раз напоминаю, не копируйте текст со страницы, а вводите текст 
+вручную. Так вы быстрее освоите программирование, кроме того научитесь 
+пользоваться системой подсказок Eclipse. Например, попробуйте после 
+ввода первых трех символов <i>fin</i> нажать комбинацию клавиш Ctrl+Space. Вы увидите, как среда разработки сама вставит нужное слово <b>findViewById()</b>,
+ а курсор будет находиться уже между скобками. Продолжайте набирать 
+символ R, а затем символ точки, и увидите новую подсказку. Если 
+подсказка совпадает с вашими намерениями, то нажмите клавишу Enter. 
+Освоившись с системой подсказок, вы повысите скорость набора кода, а 
+также уменьшите количество опечаток.</p>
+
+<p>Ну а мы переходим к самому важному - обработчику щелчка кнопки. Нам понадобится дополнительная переменная-счетчик <b>count</b>, которая будет содержать число подсчитанных ворон (её необходимо разместить выше метода onCreate).</p>
+
+<pre><code class="java">
+int count = 0;
+</code></pre>
+
+<p>Теперь пишем обработчик, активно используя всплывающие подсказки для 
+быстрого набора. Код добавляется в методе onCreate() после других строк,
+ написанных ранее в этом методе.</p>
+
+<pre><code class="java">
+butCrowsCounter.setOnClickListener(new OnClickListener() {
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		tvHello.setText("Я насчитал " + ++count + " ворон");
+	}
+});
+</code></pre>
+
+<p>При этом не забудьте импортировать интерфейс <b>import android.view.View.OnClickListener;</b></p>
+
+<p>Слово <b>tvHello</b> будет подчёркнуто, так как мы ранее объявили этот элемент внутри метода <b>butHello_Click()</b>,
+ из которого элемент недоступен  в других методах. Поэтому поступим 
+также, как с кнопкой - объявим метку на уровне класса и инициализируем 
+её в методе onCreate().</p>
+
+<p>Запускаем приложение и начинаем щёлкать по кнопке. При каждом щелчке счётчик <b>count</b> будет увеличиваться на единицу и эта информация будет отображаться на экране.</p>
+
+<p>Мы познакомились с новым способом обработки щелчка кнопки. Какой способ вы предпочтёте - зависит от ваших привычек и вкуса.</p>
+
+<p><img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/android3-1.png" alt="Счетчик ворон"></p>
+
+<p>Теперь у вас есть чрезвычайно полезное приложение <b>Счётчик ворон</b>.
+ Если преподаватель вас неожиданно спросит на занятии, почему вы 
+смотрите в окно с рассеяным видом, вы можете смело достать свой телефон и
+ сказать, что заняты очень важным делом - считаете ворон.</p>
+
+<p><img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/crow2.jpg" alt="Считаем ворон"></p><p>
+
+</p><p>Впрочем, программа получилась у нас универсальной, можно считать не только ворон за окном.</p>
+
+<p><img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/crow3.jpg" alt="Считаем котов"></p>
+
+<h2 class="text-warning">Домашнее задание</h2>
+
+<p>Добавьте в проект ещё одну кнопку, чтобы считать отдельно котов и ворон. Далее запускаете видео и считаете.</p>
+
+<iframe src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/cbBlYfTbA44.htm" allowfullscreen="" frameborder="0" height="360" width="640"></iframe>
+
+<h2 class="text-warning">Картины</h2>
+
+<p><a href="http://fotki.yandex.ru/users/netsources/view/552485/"><img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/0_86e25_90458d27_L.jpg" title="" alt="" border="0" height="500" width="500"></a></p>
+
+<p><a href="http://fotki.yandex.ru/users/netsources/view/552486/"><img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/0_86e26_abe910f4_L.jpg" title="" alt="" border="0" height="500" width="500"></a></p>
+
+<p><a href="http://fotki.yandex.ru/users/netsources/view/552487/"><img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/0_86e27_c4295bb_L.jpg" title="" alt="" border="0" height="356" width="500"></a></p>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4224968932772057";
+/* Полноразмерный баннер 728х90 */
+google_ad_slot = "4077523505";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/show_ads.js">
+</script>
+				
+				
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/fastbutton.htm" name="I0_1378010858516" id="I0_1378010858516" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/jquery.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/postmessageRelay.htm" id="oauth2relay764241707" name="oauth2relay764241707"></iframe>
+    <script src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%A9%D0%B5%D0%BB%D1%87%D0%BE%D0%BA%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%B8_%D0%A1%D1%87%D1%91%D1%82%D1%87%D0%B8%D0%BA%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD_files/bootstrap-typeahead.js"></script>
+
+</body></html>

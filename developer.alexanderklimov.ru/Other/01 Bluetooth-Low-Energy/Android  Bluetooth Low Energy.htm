@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html class="mdl-js"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Bluetooth Low Energy</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="Android%20%20Bluetooth%20Low%20Energy_files/bootstrap.css">
+<link rel="stylesheet" href="Android%20%20Bluetooth%20Low%20Energy_files/font-awesome.css">
+<link rel="stylesheet" href="Android%20%20Bluetooth%20Low%20Energy_files/custom.css">
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<style type="text/css">
+body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+}
+
+</style>
+
+<link rel="stylesheet" href="Android%20%20Bluetooth%20Low%20Energy_files/material.css"> 
+<script src="Android%20%20Bluetooth%20Low%20Energy_files/cbgapi.loaded_1" async=""></script><script src="Android%20%20Bluetooth%20Low%20Energy_files/cbgapi.loaded_0" async=""></script><script type="text/javascript" async="" src="Android%20%20Bluetooth%20Low%20Energy_files/plusone.js" gapi_processed="true"></script><script src="Android%20%20Bluetooth%20Low%20Energy_files/ca-pub-4224968932772057.js"></script><script src="Android%20%20Bluetooth%20Low%20Energy_files/material.js"></script>
+<link rel="stylesheet" href="Android%20%20Bluetooth%20Low%20Energy_files/icon.css">
+</head>
+
+<body><a href="#" class="back-to-top" style="display: none;">Back to Top</a>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        
+        <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+        <li class="active"><a href="http://developer.alexanderklimov.ru/android">Android <span class="sr-only">(current)</span></a></li>
+        <li class=""><a href="http://developer.alexanderklimov.ru/dotnet/">C#/Visual Basic</a></li>
+        <li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+        <li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+        <li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+        <li class=""><a href="http://android-klimov.blogspot.ru/">Блог</a></li>
+        </ul>
+
+
+            <p class="navbar-text navbar-right">
+			    <a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+                
+            </p>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20Bluetooth%20Low%20Energy_files/header.png" alt="Сайт разработчика Александра Климова" class="img-responsive" border="0"></a>
+		</p>
+    </div><!--/span-->
+    
+	<div class="col-md-5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="col-md-2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20Bluetooth%20Low%20Energy_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+</div>    
+<div class="clearfix"></div>
+    
+<noindex><!--Rating@Mail.ru COUNTER--><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20Bluetooth%20Low%20Energy_files/counter.gif" alt="top.mail.ru" width="1" border="0" height="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex>
+<div class="container-fluid">
+    
+    <div class="row">
+        <!--левое меню -->
+		<div class="col-md-2 well-lg">
+            <div class="sidebar panel panel-default">
+            <ul class="nav nav-pills nav-stacked">
+<li class=""><a href="http://developer.alexanderklimov.ru/android/index.php" class="leftmenu">Главная</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/theory/" class="leftmenu">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views/" class="leftmenu">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/listview/" class="leftmenu">ListView</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/" class="leftmenu">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation/" class="leftmenu">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/" class="leftmenu">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/" class="leftmenu">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library/" class="leftmenu">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games/" class="leftmenu">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/wear/" class="leftmenu">Wear</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator/" class="leftmenu">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/studio/" class="leftmenu">Android Studio</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php" class="leftmenu">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php" class="leftmenu">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php" class="leftmenu">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php" class="leftmenu">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/" class="leftmenu">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/debug/" class="leftmenu">Отладка</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php" class="leftmenu">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php" class="leftmenu">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="col-md-8">
+
+		<div class="row">
+            <div class="col-md-12">
+			
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+            <h3 class="modal-title" id="myModalLabel">Читайте на здоровье!</h3>
+        </div>
+        <div class="modal-body">
+            <p>Статья проплачена кошками - всемирно известными производителями котят.</p>
+            <p>Если статья вам понравилась, то можете <a href="http://developer.alexanderklimov.ru/donate.php">поддержать проект</a>.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+        </div>
+        </div>
+    </div>
+</div>
+<h1 class="text-warning">Bluetooth Low Energy</h1>
+
+<p>
+<a href="#bluetoothmanager">BluetoothManager</a><br>
+
+</p>
+
+<p>Перевод статьи <a href="https://developer.android.com/guide/topics/connectivity/bluetooth-le.html">Bluetooth Low Energy | Android Developers</a> подготовил <b>Антон Акимов</b>.</p>
+
+<p>ОС Android 4.3 (API уровня 18) представляет встроенную поддержку 
+Bluetooth Low Energy и API, при помощи которого приложения могут 
+использовать поиск устройств, запрос услуг и чтение/запись 
+характеристик. В отличие от классического Bluetooth, BLE призван 
+обеспечить существенно меньшее энергопотребление. Это позволяет 
+приложениям для Android общаться с BLE-устройствами, которые имеют 
+низкие требования к питанию, таких как датчики, мониторы сердечного 
+ритма, фитнес-устройства и так далее.</p>
+
+<h2 class="text-warning">Ключевые термины и понятия</h2>
+
+<p>Generic Attribute Profile (GATT) – профиль GATT является общей 
+спецификацией для отправки и получения коротких фрагментов данных, 
+известных как "атрибуты" через BLE-соединение. Все текущие LE-профили 
+приложений основаны на GATT.
+Создатели BLE определили множество профилей для низкоэнергетических 
+устройств. Профиль представляет собой определение того, как устройство 
+работает в конкретном приложении. Обратите внимание, что устройство 
+может реализовывать более одного профиля. Например, устройство может 
+содержать профили пульсометра и датчика уровня заряда батареи.</p>
+
+<p>Attribute Protocol (ATT) – GATT строится на основе протокола 
+атрибутов АТТ. Это также относится к GATT/ATT. АТТ оптимизирован для 
+работы на BLE устройствах. Для этого он использует настолько мало 
+байтов, насколько возможно. Каждый атрибут идентифицируется уникальным 
+универсальным идентификатором (UUID), который представляет собой 
+стандартизированный 128-битный строковый идентификатор используемый для 
+однозначной идентификации информации. Атрибуты переносятся с помощью АТТ
+ в виде характеристик и услуг.</p>
+
+<p>Характеристика (Characteristic) – содержит одно значение, и от 0 до N
+ дескрипторов, описывающих значение характеристики. Характеристика может
+ рассматриваться как тип, аналог класса.
+Дескриптор (Descriptor) может содержать удобочитаемое описание, 
+приемлемый диапазон значений или единицу измерения, конкретные значения 
+характеристики.</p>
+
+<p>Услуга (Service) – это набор характеристик. Например, вы можете иметь
+ услугу под названием "пульсометр", что включает в себя такую 
+характеристику, как "Измерение пульса". Вы можете найти список 
+существующих на основе GATT профилей и услуг на bluetooth.org.</p>
+
+<h2 class="text-warning">Роли и обязанности при взаимодействии Android с BLE-устройством</h2>
+
+<p>- Центральная/периферическая роль. Это относится к самому 
+BLE-соединению. Устройство в центральной роли сканирует, ищет 
+объявления, а устройства в периферийной роли создаёт объявления.</p>
+
+<p>- GATT-сервер/GATT-клиент. Это определяет, каким образом два устройства общаются друг с другом, когда они установили связь.</p>
+
+<p>Чтобы понять разницу, представьте, что у вас Android-телефон и 
+фитнес-трекер, который представляет собой BLE-устройство. Телефон 
+поддерживает центральную роль; трекер активности поддерживает 
+периферийную роль. Чтобы установить BLE-соединение, вам нужно по одному 
+устройству, поддерживающему каждую из ролей; два периферийных устройства
+ не смогут общаться друг с другом, также как и два центральных.</p>
+
+<p>Как только телефон и трекер активности наладили связь, они начинают 
+передачу метаданных GATT друг другу. В зависимости от того, какие данные
+ они передают, тот или другой может выступать в качестве сервера. 
+Например, если трекер хочет сообщить данные датчика телефону, трекеру 
+имеет смысл работать в качестве сервера. Если трекер активности хочет 
+получать обновления с телефона, то в качестве сервера имеет смысл 
+использовать телефон.</p>
+
+<p>В качестве примера в данном документе представлено 
+Android-приложение, являющееся GATT-клиентом. Приложение получает данные
+ от GATT-сервера на BLE-пульсометре. Но вы можете также спроектировать 
+ваше приложение так, чтобы оно играло роль сервера. [ ссылка на описание
+ BluetoothGattServer ]</p>
+
+<p>Для работы с BLE в Android-приложении необходимо указать в манифесте следующее разрешение</p>
+
+<pre><code class="xml">
+&lt;uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/&gt;
+</code></pre>
+
+<p>где true значит, что приложение сможет работать только с 
+BLE-устройствами, а false значит, что приложение будет работать с любыми
+ устройствами Bluetooth.</p>
+
+<p>Если используется значение false, нужно программно проверить, поддерживается ли BLE на устройстве:</p>
+
+<pre><code class="java">
+if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
+    Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
+    finish();
+}
+</code></pre>
+
+<h2 class="text-warning">Настройка BLE</h2>
+
+<p>Если BLE не поддерживается, то необходимо корректно отключить любые 
+BLE-функции. Если BLE поддерживается, но Bluetooth отключён, то вы 
+можете попросить пользователя включить Bluetooth, не покидая приложения.
+ Эта установка осуществляется в два шага, используя BluetoothAdapter.</p>
+
+<p>1. Получить BluetoothAdapter.<br>
+BluetoothAdapter является обязательным для любых действий с Bluetooth. 
+BluetoothAdapter представляет собственный Bluetooth-адаптер устройства 
+(Bluetooth-приёмник). Есть один Bluetooth-адаптер для всей системы, и 
+ваше приложение может взаимодействовать с ним, используя этот объект. 
+Фрагмент кода ниже показывает, как получить адаптер. Обратите внимание, 
+что описанный подход использует getSystemService(), чтобы получить 
+экземпляр BluetoothManager, который затем используется для получения 
+адаптера. ОС Android 4.3 (API уровня 18) предоставляет BluetoothManager:</p>
+
+<pre><code class="java">
+final BluetoothManager bluetoothManager =
+        (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+BluetoothAdapter mBluetoothAdapter = bluetoothManager.getAdapter();
+</code></pre>
+
+<p>2. Включить Bluetooth.<br>
+Далее необходимо убедиться, что Bluetooth включен. Вызовите isEnabled(),
+ чтобы проверить включена ли функция Bluetooth. Если этот метод 
+возвращает false, то функция Bluetooth выключена. Следующий фрагмент 
+кода проверяет, является ли функция Bluetooth включённой. Если это не 
+так, выводится диалоговое окно с запросом разрешения пользователя на 
+включение Bluetooth.</p>
+
+<pre><code class="java">
+private BluetoothAdapter mBluetoothAdapter;
+...
+if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+}
+</code></pre>
+
+<h2 class="text-warning">Поиск BLE-устройств</h2>
+
+<p>Чтобы найти BLE-устройства, используйте метод startLeScan(). Этот 
+метод принимает BluetoothAdapter.LeScanCallback в качестве параметра. 
+Необходимо реализовать эту функцию, чтобы по завершении сканирования был
+ возвращён результат. Т.к. сканирование энергозатратно, вам следует 
+соблюдать следующие рекомендации:</p>
+
+<ul>
+<li>Как только вы найдете нужное устройство остановите сканирование.</li>
+<li>Никогда не сканируйте в цикле и установите лимит времени на 
+сканирование. Устройство, которое ранее было доступно возможно вышло из 
+диапазона, а продолжение сканирования разряжает батарею.</li>
+</ul>
+
+<p>В следующем фрагменте показаны запуск и остановка сканирования:</p>
+
+<pre><code class="java">
+public class DeviceScanActivity extends ListActivity {
+
+    private BluetoothAdapter mBluetoothAdapter;
+    private boolean mScanning;
+    private Handler mHandler;
+
+    // Остановить сканирование через 10 секунд
+    private static final long SCAN_PERIOD = 10000;
+    ...
+    private void scanLeDevice(final boolean enable) {
+        if (enable) {
+            // Stops scanning after a pre-defined scan period.
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mScanning = false;
+                    mBluetoothAdapter.stopLeScan(mLeScanCallback);
+                }
+            }, SCAN_PERIOD);
+
+            mScanning = true;
+            mBluetoothAdapter.startLeScan(mLeScanCallback);
+        } else {
+            mScanning = false;
+            mBluetoothAdapter.stopLeScan(mLeScanCallback);
+} ... } ... }
+</code></pre>
+
+<p>Если вы хотите сканировать только определенные типы периферийных 
+устройств, можно вызвать метод startLeScan(UUID[], 
+BluetoothAdapter.LeScanCallback), предоставляющий массив объектов UUID, в
+ котором можно указать услуги GATT, поддерживаемые вашим приложением.</p>
+
+<p>Вот реализация BluetoothAdapter.LeScanCallback, которая используется для получения результатов сканирования:</p>
+
+<pre><code class="java">
+private LeDeviceListAdapter mLeDeviceListAdapter;
+...
+// Обратный вызов поиска LE-устройств
+private BluetoothAdapter.LeScanCallback mLeScanCallback =
+        new BluetoothAdapter.LeScanCallback() {
+    @Override
+    public void onLeScan(final BluetoothDevice device, int rssi,
+            byte[] scanRecord) {
+        runOnUiThread(new Runnable() {
+           @Override
+           public void run() {
+               mLeDeviceListAdapter.addDevice(device);
+               mLeDeviceListAdapter.notifyDataSetChanged();
+}  });  }  };
+</code></pre>
+
+<p>Примечание: Вы можете сканировать или только BLE-устройства, или 
+только классические устройства Bluetooth. Нельзя сканировать BLE и 
+классические устройств одновременно.</p>
+
+<h2 class="text-warning">Подключение к GATT-серверу</h2>
+
+<p>Первым шагом во взаимодействии с BLE-устройством станет подключение к
+ нему – точнее, подключение к GATT-серверу на устройстве. Для 
+подключения к GATT-серверу на BLE-устройстве нужно использовать метод 
+connectGatt(). Этот метод принимает три параметра: объект контекста, 
+автосоединение (логическое значение, указывающее, следует ли 
+автоматически подключиться к BLE-устройству, как только оно станет 
+доступным), и ссылку на BluetoothGattCallback:</p>
+
+<pre><code class="java">
+mBluetoothGatt = device.connectGatt(this, false, mGattCallback);
+</code></pre>
+
+<p>Оно подключается к GATT-серверу, находящемуся на BLE-устройстве, и 
+возвращает экземпляр BluetoothGatt, который затем можно использовать для
+ проведения клиентских операций GATT. Приложение для Android является 
+GATT-клиентом. BluetoothGattCallback используется для получения 
+результатов клиентом, таких как статус подключения, а также любые 
+дополнительные клиентские операции GATT.</p>
+
+<p>В этом примере BLE-приложение предоставляет активности 
+(DeviceControlActivity) отображение данных о подключении, GATT-услугах и
+ характеристиках, поддерживаемых устройством. На основе ввода 
+пользователя, эта активность связывается со службой под названием 
+BluetoothLeService, который взаимодействует с BLE-устройством через 
+Android BLE API-интерфейс:</p>
+
+<pre><code class="java">
+// Служба, которая взаимодействует с BLE-устройством через Android BLE API
+public class BluetoothLeService extends Service {
+    private final static String TAG = BluetoothLeService.class.getSimpleName();
+
+    private BluetoothManager mBluetoothManager;
+    private BluetoothAdapter mBluetoothAdapter;
+    private String mBluetoothDeviceAddress;
+    private BluetoothGatt mBluetoothGatt;
+    private int mConnectionState = STATE_DISCONNECTED;
+
+    private static final int STATE_DISCONNECTED = 0;
+    private static final int STATE_CONNECTING = 1;
+    private static final int STATE_CONNECTED = 2;
+
+    public final static String ACTION_GATT_CONNECTED =
+            "com.example.bluetooth.le.ACTION_GATT_CONNECTED";
+    public final static String ACTION_GATT_DISCONNECTED =
+            "com.example.bluetooth.le.ACTION_GATT_DISCONNECTED";
+    public final static String ACTION_GATT_SERVICES_DISCOVERED =
+            "com.example.bluetooth.le.ACTION_GATT_SERVICES_DISCOVERED";
+    public final static String ACTION_DATA_AVAILABLE =
+            "com.example.bluetooth.le.ACTION_DATA_AVAILABLE";
+    public final static String EXTRA_DATA =
+            "com.example.bluetooth.le.EXTRA_DATA";
+
+    // Устанавливаем UUID, который используется для услуг измерения пульса
+    public final static UUID UUID_HEART_RATE_MEASUREMENT =
+            UUID.fromString(SampleGattAttributes.HEART_RATE_MEASUREMENT);
+
+    // Различные методы обратного вызова, определённые в BLE API
+    private final BluetoothGattCallback mGattCallback =
+            new BluetoothGattCallback() {
+        @Override
+        public void onConnectionStateChange(BluetoothGatt gatt, int status,
+                int newState) {
+            String intentAction;
+            if (newState == BluetoothProfile.STATE_CONNECTED) {
+                intentAction = ACTION_GATT_CONNECTED;
+                mConnectionState = STATE_CONNECTED;
+                broadcastUpdate(intentAction);
+                Log.i(TAG, "Connected to GATT server.");
+                Log.i(TAG, "Attempting to start service discovery:" +
+                        mBluetoothGatt.discoverServices());
+
+            } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+                intentAction = ACTION_GATT_DISCONNECTED;
+                mConnectionState = STATE_DISCONNECTED;
+                Log.i(TAG, "Disconnected from GATT server.");
+                broadcastUpdate(intentAction);
+            }
+        }
+
+        @Override
+        // При обнаружении нового сервиса
+        public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+            if (status == BluetoothGatt.GATT_SUCCESS) {
+                broadcastUpdate(ACTION_GATT_SERVICES_DISCOVERED);
+            } else {
+                Log.w(TAG, "onServicesDiscovered received: " + status);
+            }
+        }
+
+        @Override
+        // Результат чтения характеристики
+        public void onCharacteristicRead(BluetoothGatt gatt,
+                BluetoothGattCharacteristic characteristic,
+                int status) {
+            if (status == BluetoothGatt.GATT_SUCCESS) {
+                broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic);
+}  } ... }; ... }
+</code></pre>
+
+<p>Когда срабатывает конкретный обратный вызов, он вызывает 
+соответствующий вспомогательный метод broadcastUpdate() и передает ему 
+действие. Обратите внимание, что извлечение данных в этот раздел 
+выполняется в соответствии с профилем пульсометра.</p>
+
+<pre><code class="java">
+private void broadcastUpdate(final String action) {
+    final Intent intent = new Intent(action);
+    sendBroadcast(intent);
+}
+
+private void broadcastUpdate(final String action,
+                             final BluetoothGattCharacteristic characteristic) {
+    final Intent intent = new Intent(action);
+
+    // Это специальная обработка для пульсометра
+    // Извлечение данных осуществляется согласно спецификации профиля
+    if (UUID_HEART_RATE_MEASUREMENT.equals(characteristic.getUuid())) {
+        int flag = characteristic.getProperties();
+        int format = -1;
+        if ((flag &amp; 0x01) != 0) {
+            format = BluetoothGattCharacteristic.FORMAT_UINT16;
+            Log.d(TAG, "Heart rate format UINT16.");
+        } else {
+            format = BluetoothGattCharacteristic.FORMAT_UINT8;
+            Log.d(TAG, "Heart rate format UINT8.");
+        }
+        final int heartRate = characteristic.getIntValue(format, 1);
+        Log.d(TAG, String.format("Received heart rate: %d", heartRate));
+        intent.putExtra(EXTRA_DATA, String.valueOf(heartRate));
+    } else {
+        // For all other profiles, writes the data formatted in HEX.
+        final byte[] data = characteristic.getValue();
+        if (data != null &amp;&amp; data.length &gt; 0) {
+            final StringBuilder stringBuilder = new StringBuilder(data.length);
+            for(byte byteChar : data)
+                stringBuilder.append(String.format("%02X ", byteChar));
+            intent.putExtra(EXTRA_DATA, new String(data) + "\n" +
+                    stringBuilder.toString());
+        }
+    }
+    sendBroadcast(intent);
+}
+</code></pre>
+
+<p>Ещё в DeviceControlActivity, эти события обрабатываются в BroadcastReceiver:</p>
+
+<pre><code class="java">
+// Обрабатывает различные события, запущенные службы
+// ACTION_GATT_CONNECTED: подключение к серверу GATT 
+// ACTION_GATT_DISCONNECTED: отключён от сервера GATT 
+// ACTION_GATT_SERVICES_DISCOVERED: обнаружена услуга GATT 
+// ACTION_DATA_AVAILABLE: получил данные от устройства. Это может быть
+// результатом чтения или операцией уведомления
+private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        final String action = intent.getAction();
+        if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
+            mConnected = true;
+            updateConnectionState(R.string.connected);
+            invalidateOptionsMenu();
+        } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
+            mConnected = false;
+            updateConnectionState(R.string.disconnected);
+            invalidateOptionsMenu();
+            clearUI();
+        } else if (BluetoothLeService.
+                ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
+            // Показать в UI все поддерживаемые услуги и характеристики
+            displayGattServices(mBluetoothLeService.getSupportedGattServices());
+        } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
+            displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
+}  }  };
+</code></pre>
+
+<h2 class="text-warning">Чтение BLE-атрибутов</h2>
+
+<p>Как только ваше Android-приложение подключается к GATT-серверу и 
+обнаруживает услуги, оно может читать и писать атрибуты, где это 
+поддерживается. Например, этот фрагмент перебирает услуги и 
+характеристик сервера и отображает их в интерфейсе:</p>
+
+<pre><code class="java">
+public class DeviceControlActivity extends Activity {
+    ...
+    // Демонстрирует, как перебрать поддерживаемые GATT-услуги/характеристики.
+    // В этом примере мы заполняем структуру данных, которая привязана к ExpandableListView
+    // в интерфейсе пользователя.
+    private void displayGattServices(List&lt;BluetoothGattService&gt; gattServices) {
+        if (gattServices == null) return;
+        String uuid = null;
+        String unknownServiceString = getResources().
+                getString(R.string.unknown_service);
+        String unknownCharaString = getResources().
+                getString(R.string.unknown_characteristic);
+        ArrayList&lt;HashMap&lt;String, String&gt;&gt; gattServiceData =
+                new ArrayList&lt;HashMap&lt;String, String&gt;&gt;();
+        ArrayList&lt;ArrayList&lt;HashMap&lt;String, String&gt;&gt;&gt; gattCharacteristicData
+                = new ArrayList&lt;ArrayList&lt;HashMap&lt;String, String&gt;&gt;&gt;();
+        mGattCharacteristics =
+                new ArrayList&lt;ArrayList&lt;BluetoothGattCharacteristic&gt;&gt;();
+
+        // Перебирает доступные GATT-услуги
+        for (BluetoothGattService gattService : gattServices) {
+            HashMap&lt;String, String&gt; currentServiceData =
+                    new HashMap&lt;String, String&gt;();
+            uuid = gattService.getUuid().toString();
+            currentServiceData.put(
+                    LIST_NAME, SampleGattAttributes.
+                            lookup(uuid, unknownServiceString));
+            currentServiceData.put(LIST_UUID, uuid);
+            gattServiceData.add(currentServiceData);
+
+            ArrayList&lt;HashMap&lt;String, String&gt;&gt; gattCharacteristicGroupData =
+                    new ArrayList&lt;HashMap&lt;String, String&gt;&gt;();
+            List&lt;BluetoothGattCharacteristic&gt; gattCharacteristics =
+                    gattService.getCharacteristics();
+            ArrayList&lt;BluetoothGattCharacteristic&gt; charas =
+                    new ArrayList&lt;BluetoothGattCharacteristic&gt;();
+
+           // Перебирает доступные GATT-характеристики
+            for (BluetoothGattCharacteristic gattCharacteristic :
+                    gattCharacteristics) {
+                charas.add(gattCharacteristic);
+                HashMap&lt;String, String&gt; currentCharaData =
+                        new HashMap&lt;String, String&gt;();
+                uuid = gattCharacteristic.getUuid().toString();
+                currentCharaData.put(
+                        LIST_NAME, SampleGattAttributes.lookup(uuid,
+                                unknownCharaString));
+                currentCharaData.put(LIST_UUID, uuid);
+                gattCharacteristicGroupData.add(currentCharaData);
+            }
+            mGattCharacteristics.add(charas);
+            gattCharacteristicData.add(gattCharacteristicGroupData);
+}    ...    }...}
+</code></pre>
+
+<h2 class="text-warning">Получение GATT-уведомлений</h2>
+
+<p>Это общие для BLE-приложений запросы для получения уведомлений об 
+изменении отдельных характеристик на устройстве. Этот фрагмент 
+показывает, как настроить уведомление для какой-либо характеристики с 
+помощью метода setCharacteristicNotification():</p>
+
+<pre><code class="java">
+private BluetoothGatt mBluetoothGatt;
+BluetoothGattCharacteristic characteristic;
+boolean enabled;
+...
+mBluetoothGatt.setCharacteristicNotification(characteristic, enabled);
+...
+BluetoothGattDescriptor descriptor = characteristic.getDescriptor(
+        UUID.fromString(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
+descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+mBluetoothGatt.writeDescriptor(descriptor);
+
+Когда уведомления включены для характеристики, вызов onCharacteristicChanged() срабатывает, если характеристика была изменена на удаленном устройстве:
+
+@Override
+// Описание характеристики
+public void onCharacteristicChanged(BluetoothGatt gatt,
+        BluetoothGattCharacteristic characteristic) {
+    broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic);
+}
+</code></pre>
+
+<h2 class="text-warning">Закрытие клиента приложения</h2>
+
+<p>Когда приложение завершено с помощью BLE-устройства, оно должно 
+вызывать close(), чтобы система могла должным образом освобождать 
+ресурсы:</p>
+
+<pre><code class="java">
+public void close() {
+    if (mBluetoothGatt == null) {
+        return;
+    }
+    mBluetoothGatt.close();
+    mBluetoothGatt = null;
+}
+</code></pre>
+
+<h2 class="text-warning" id="bluetoothmanager">BluetoothManager</h2>
+
+<p>Менеджер высокого уровня, используемый для получения экземпляра 
+BluetoothAdapter и общего управления Bluetooth.
+Используйте getSystemService(java.lang.String) с BLUETOOTH_SERVICE чтобы
+ создать BluetoothManager; после этого вызывайте getAdapter() для 
+получения экземпляра BluetoothAdapter. Кроме того, можно просто вызвать 
+BluetoothAdapter.getDefaultAdapter().</p>
+
+<p>Общедоступные методы</p>
+
+<dl>
+  <dt>BluetoothAdapter getAdapter() [Добавлено в API 18]</dt>
+<dd>Получить стандартный Bluetooth-адаптер данного устройства. Возвращает: Стандартный Bluetooth-адаптер данного устройства.</dd>
+  <dt>List&lt;BluetoothDevice&gt; getConnectedDevices (int profile)</dt>
+  <dd>[Добавлено в API 18] Получить подключённые устройства указанного 
+профиля. Возвращает набор устройств, которые находятся в состоянии 
+STATE_CONNECTED. Это не относится к любой конфигурации приложения, но 
+отображает состояние Bluetooth-подключения данного профиля. Это может 
+использоваться в приложениях как строка состояния, которая просто хотела
+ бы знать состояние Bluetooth. Требуется разрешение BLUETOOTH. 
+Параметры: GATT или GATT_SERVER
+Возвращает: Список устройств. При ошибке список будет пуст.</dd>
+  <dt>int getConnectionState (BluetoothDevice device, int profile)</dt>
+  <dd>[Добавлено в API 18] Получить текущее состояние подключения 
+профиля к удаленному устройству. Это не относится к любой конфигурации 
+приложения, но отображает состояние Bluetooth-подключения данного 
+профиля. Это может использоваться в приложениях как строка состояния, 
+которая просто хотела бы знать состояние Bluetooth. Требуется разрешение
+ BLUETOOTH.
+Параметры: Удалённое Bluetooth-устройство; GATT или GATT_SERVER.
+Возвращает: Состояние соединения профиля, одно из:  STATE_CONNECTED, 
+STATE_CONNECTING, STATE_DISCONNECTED, STATE_DISCONNECTING.</dd>
+  <dt>List&lt;BluetoothDevice&gt; getDevicesMatchingConnectionStates (int profile, int[] states)</dt>
+  <dd>[Добавлено в API 18] Получить список устройств, которые 
+соответствуют любому из указанных состояний соединения.
+Если ни одно из устройств не соответствует ни одному из указанных 
+состояний, будет возвращён пустой список.
+Это не относится к любой конфигурации приложения, но представляет 
+состояние подключения локального адаптера Bluetooth для этого профиля. 
+Это может использоваться в приложениях, как в строке состояния, который 
+просто хотел бы знать состояние локального адаптера.
+Требуется разрешение BLUETOOTH.
+Параметры: GATT или GATT_SERVER; массив состояний:  STATE_CONNECTED, 
+STATE_CONNECTING, STATE_DISCONNECTED или STATE_DISCONNECTING.
+Возвращает: Список устройств. При ошибке список будет пуст.</dd>
+  <dt>BluetoothGattServer openGattServer (Context context, BluetoothGattServerCallback callback)</dt>
+  <dd>[Добавлено в API 18] Открывает GATT-сервер. Обратный вызов 
+используется для получения результатов, такие как состояние подключения,
+ а также результаты любых других серверных операций в рамках GATT. Метод
+ возвращает экземпляр BluetoothGattServer. Вы можете использовать 
+BluetoothGattServer для проведения операций на сервере в рамках GATT.
+Параметры: Контекст; обработчика обратных вызовов GATT-сервера, который 
+будет получать асинхронные обратные вызовы.
+Возвращает: Экземпляр GATT-сервера.</dd>
+</dl>
+
+<h5 class="text-error">Реклама</h5>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4224968932772057";
+/* Полноразмерный баннер 728х90 */
+google_ad_slot = "4077523505";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Android%20%20Bluetooth%20Low%20Energy_files/show_ads.js">
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" width="728" height="90" frameborder="0"></iframe></ins></ins>
+</div><!--/span-->
+</div><!--/row-->	
+</div><!--/span-->
+		
+	<div class="col-md-2">
+        <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript">
+    google_ad_client = "ca-pub-4224968932772057";
+    google_ad_slot = "8217353101";
+    google_ad_width = 160;
+    google_ad_height = 600;
+</script>
+<!-- 160 x 600 -->
+<script type="text/javascript" src="Android%20%20Bluetooth%20Low%20Energy_files/show_ads.js">
+</script><ins id="aswift_1_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent"><iframe marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" width="160" height="600" frameborder="0"></iframe></ins></ins>
+</div><!--/.well -->    </div><!--/span-->
+</div><!--/row-->
+	
+<hr>
+	  
+<div class="row">
+	<div class="col-md-12">
+	    <img src="Android%20%20Bluetooth%20Low%20Energy_files/cat_bottom.png" align="right">
+    </div><!--/span-->
+</div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2016 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		<!-- Place this code where you want the badge to render. -->
+        <a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+        <img src="Android%20%20Bluetooth%20Low%20Energy_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+    </span>
+	
+    <span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20Bluetooth%20Low%20Energy_files/counter_002.gif" alt="Рейтинг@Mail.ru" width="88" border="0" height="31"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20Bluetooth%20Low%20Energy_files/VJcl.gif" style="border:0" alt="" width="88" height="26"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+    <!-- Place this tag where you want the +1 button to render. -->
+    <div style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent none repeat scroll 0% 0%; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;" id="___plusone_0"><iframe hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" tabindex="0" vspace="0" id="I0_1476363371688" name="I0_1476363371688" src="Android%20%20Bluetooth%20Low%20Energy_files/fastbutton.htm" data-gapiattached="true" title="+1" width="100%" frameborder="0"></iframe></div>
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+</noindex>
+</footer>
+
+</div><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20Bluetooth%20Low%20Energy_files/jquery-1.js"></script>
+	<script src="Android%20%20Bluetooth%20Low%20Energy_files/jquery-migrate-1.js"></script>
+    <!-- 
+    <script src="http://developer.alexanderklimov.ru/assets/js/jquery.js"></script> 
+    <script src="http://developer.alexanderklimov.ru/assets/js/bootstrap-transition.js"></script>
+    <script src="http://developer.alexanderklimov.ru/assets/js/bootstrap-alert.js"></script>
+    <script src="http://developer.alexanderklimov.ru/assets/js/bootstrap-modal.js"></script> 
+    <script src="http://developer.alexanderklimov.ru/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://developer.alexanderklimov.ru/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://developer.alexanderklimov.ru/assets/js/bootstrap-tab.js"></script>
+    <script src="http://developer.alexanderklimov.ru/assets/js/bootstrap-tooltip.js"></script>
+    <script src="http://developer.alexanderklimov.ru/assets/js/bootstrap-popover.js"></script>
+    <script src="http://developer.alexanderklimov.ru/assets/js/bootstrap-button.js"></script>
+    <script src="http://developer.alexanderklimov.ru/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://developer.alexanderklimov.ru/assets/js/bootstrap-carousel.js"></script>
+    <script src="http://developer.alexanderklimov.ru/assets/js/bootstrap-typeahead.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    -->
+    
+    <script src="Android%20%20Bluetooth%20Low%20Energy_files/backtotop.js"></script>
+    <script src="Android%20%20Bluetooth%20Low%20Energy_files/bootstrap.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    
+    
+
+
+<iframe name="oauth2relay1190607106" id="oauth2relay1190607106" src="Android%20%20Bluetooth%20Low%20Energy_files/postmessageRelay.htm" style="width: 1px; height: 1px; position: absolute; top: -100px;" tabindex="-1" aria-hidden="true"></iframe></body></html>

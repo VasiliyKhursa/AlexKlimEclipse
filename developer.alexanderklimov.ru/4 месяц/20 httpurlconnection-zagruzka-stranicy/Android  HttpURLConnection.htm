@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: HttpURLConnection</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20HttpURLConnection_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20HttpURLConnection_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20HttpURLConnection_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20HttpURLConnection_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20HttpURLConnection_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20HttpURLConnection_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20HttpURLConnection_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20HttpURLConnection_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory/">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20HttpURLConnection_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20HttpURLConnection_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">HttpURLConnection: загрузка страницы</h1>
+<p>Четвёртый месяц обучения (закрытая зона)</p>
+
+
+
+<p>
+<a href="#intro">Знакомство с классом HttpURLConnection</a><br>
+<a href="#loadpage">Загружаем страницу</a><br>
+<a href="#loadimage">Загружаем картинку</a><br>
+<a href="#listviewitem">Загружаем картинку из интернета в ListActivity</a><br>
+
+</p>
+
+<h2 class="text-warning" id="intro">Знакомство с классом HttpURLConnection</h2>
+
+<p>Для соединения с веб-серверами Android предлагает несколько способов 
+взаимодействия. В новых проектах для современных устройств рекомендуется
+ использовать класс <b>HttpURLConnection</b>, который мы с вами рассмотрим на примерах.</p>
+
+<p>Класс <b>java.net.HttpURLConnection</b> является подклассом <b>java.net.URLConnection</b>
+ и позволяет реализовать работу по отправке и получении данных из сети. 
+Данные могут быть любого типа и длины. Данный класс следует использовать
+ для отправки и получения потоковых данных, размеры которых нельзя 
+заранее определить.</p>
+
+<p>Алгоритм использования следующий:</p>
+
+<ul>
+<li>Получить объект HttpURLConnection через вызов URL.openConnection() и привести результат к HttpURLConnection</li>
+<li>Подготовить необходимый запрос. Основное в запросе - сам сетевой 
+адрес. Также в запросе можно указать различные метаданные: учётные 
+данные, тип контента, куки сессии и т.п.</li>
+<li>Опционально загрузить тело запроса. В этом случае используется метод
+ setDoOutput(true). Передача данных, записанных в поток, возвращается 
+через метод getOutputStream()</li>
+<li>Прочитать ответ. Заголовок ответа обычно включает метаданные, такие 
+как тип и длина контента, даты изменения, куки сессии. Прочитать данные 
+из потока можно через метод getInputStream(). Если у ответа нет тела, то
+ метод возвращает пустой поток.</li>
+<li>Разорвать соединение. После прочтения ответа от сервера 
+HttpURLConnection следует закрыть через вызов метода disconnect(). Тем 
+самым вы освобождаете ресурсы, занимаемые соединением.</li>
+</ul>
+
+<p>Например, для получения страницы по адресу http://developer.alexanderklimov.ru/android/ можно использовать такой код:</p>
+
+<pre><code class="java">
+URL url = new URL("http://developer.alexanderklimov.ru/android/");
+HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+try {
+    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+    readStream(in);
+    finally {
+    urlConnection.disconnect();
+   }
+}
+</code></pre>
+
+<p>По умолчанию HttpURLConnection использует метод GET. Для 
+использования POST вызывайте setDoOutput(true). Другие HTTP-методы 
+(OPTIONS, HEAD, PUT, DELETE and TRACE) настраиваются через 
+setRequestMethod(String).</p>
+
+<p>Для работы через прокси-сервер используйте URL.openConnection(Proxy) при создании соединения.</p>
+
+<p>Каждый экземпляр HttpURLConnection может использоваться только для 
+одной пары запроса/ответа. Операции с соединениями следует проводить в 
+отдельном потоке.</p>
+
+
+
+
+
+
+<h2 class="text-warning" id="loadpage">Загружаем страницу</h2>
+
+<p>Перейдём к практическому примеру. Попробуем загрузить страницу из 
+сети. Добавим на экран активности кнопку для загрузки контента и 
+текстовую метку для отображения самого контента.</p>
+
+<pre><code class="xml">
+&lt;ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" &gt;
+
+    &lt;LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" &gt;
+
+        &lt;Button
+            android:id="@+id/buttonLoad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="Загрузить страницу" /&gt;
+
+        &lt;TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" /&gt;
+
+    &lt;/LinearLayout&gt;
+
+&lt;/ScrollView&gt;
+</code></pre>
+
+<p>Сразу установим необходимые разрешения для работы с интернетом и сетью в манифесте:</p>
+
+<pre><code class="java">
+&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
+</code></pre>
+
+<p>Переходим к коду. Прежде всего нужно помнить две вещи: нам требуется 
+наличие подключения к интернету и обеспечить загрузку страницы в 
+отдельном потоке.</p>
+
+<p>Начнём с проверки подключения к интернету.</p>
+
+<pre><code class="java">
+public void onClick(View view) {
+	ConnectivityManager myConnMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	NetworkInfo networkinfo = myConnMgr.getActiveNetworkInfo();
+
+	if (networkinfo != null &amp;&amp; networkinfo.isConnected()) {
+		new DownloadPageTask().execute(bestUrl); // запускаем в новом потоке
+	} else {
+		Toast.makeText(this, "Нет интернета", Toast.LENGTH_SHORT).show();
+	}
+}
+</code></pre>
+
+<p>Если подключение имеется, то запускаем новый поток AsyncTask и передаём ему нужный адрес. Сам код к задаче <b>DownloadPageTask</b> вы можете увидеть в исходнике, а мы сосредоточимся на методе <b>doInBackground()</b>, в котором выполняется основная работа:</p>
+
+<pre><code class="java">
+@Override
+protected String doInBackground(String... urls) {
+	try {
+		return downloadOneUrl(urls[0]);
+	} catch (IOException e) {
+		e.printStackTrace();
+		return "error";
+	}
+}
+
+private String downloadOneUrl(String myurl) throws IOException {
+   ...
+}
+</code></pre>
+
+<p>Для удобства весь код соединения с сервером вынесен в отдельный метод <b>downloadOneUrl()</b>, который возвращает текст с указанной страницы.</p>
+
+<p>Вначале мы указываем нужный адрес для загрузки в переменной типа URL. Далее получаем объект <b>HttpURLConnection</b> через вызов <b>URL.openConnection()</b>.</p>
+<p>Теперь можем настроить различные параметры для запроса. В моём 
+примере я использовал вызовы различных методов в демонстрационных целях.
+ Часть из них вполне можно пропустить, сверяйтесь с документацией.</p>
+
+<pre><code class="java">
+URL url = new URL(myurl);
+HttpURLConnection connection = (HttpURLConnection) url
+		.openConnection();
+connection.setReadTimeout(100000);
+connection.setConnectTimeout(100000);
+connection.setRequestMethod("GET");
+connection.setInstanceFollowRedirects(true);
+connection.setUseCaches(false);
+connection.setDoInput(true);
+</code></pre>
+
+<p>Далее идёт проверка кода ответа от сервера. Если страница существует и
+ сервер готов отдать её содержание по нашему запросу, то возвращается 
+код 200 (константа HttpURLConnection.HTTP_OK). Если страницы не 
+существует, то возвращается код 404. В этом случае нет смысла получать 
+содержимое страницы. Можно вывести собственное сообщение об ошибке, 
+используя полученный код через переменную <b>responseCode</b> или использовать встроенный метод <b>getResponseMessage()</b>,
+ который возвращает стандартные тексты ошибок (в примере я скомбинировал
+ оба варианта). Вы можете изменить адрес в коде на несуществующий адрес <b>"http://developer.alexanderklimov.ru/angry_birds"</b>, чтобы посмотреть, как поведёт себя программа</p>
+
+<pre><code class="java">
+int responseCode = connection.getResponseCode(); 
+
+if (responseCode == HttpURLConnection.HTTP_OK) { // 200 OK
+    ...
+} else {
+	data = connection.getResponseMessage() + " . Error Code : " + responseCode;
+}
+</code></pre>
+
+<p>Если проверка прошла успешно, то можно считывать данные с сервера. 
+Есть различные способы чтения потоков. В данном примере я использую 
+класс <b>ByteArrayOutputStream</b>.</p>
+
+<pre><code class="java">
+inputstream = connection.getInputStream();
+ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+int read = 0;
+while ((read = inputstream.read()) != -1) {
+	bos.write(read);
+}
+byte[] result = bos.toByteArray();
+bos.close();
+// текст страницы
+data = new String(result);
+</code></pre>
+
+<p>Итоговый текст попадает в переменную <b>data</b> и можно вывести теперь текст в TextView для просмотра.</p>
+
+<p>Полный код примера:</p>
+
+<pre><code class="java">
+// Если этот код работает, его написал Александр Климов,
+// а если нет, то не знаю, кто его писал.
+package ru.alexanderklimov.httpurlconnection;
+
+import ...
+
+public class MainActivity extends Activity {
+	
+	private TextView textView;
+	private String bestUrl = "http://developer.alexanderklimov.ru/android";
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		textView = (TextView) findViewById(R.id.textView);
+	}
+	
+	private class DownloadPageTask extends AsyncTask&lt;String, Void, String&gt; {
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			textView.setText("Загружаем...");
+		}
+
+		@Override
+		protected String doInBackground(String... urls) {
+			try {
+				return downloadOneUrl(urls[0]);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return "error";
+			}
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			textView.setText(result);
+			super.onPostExecute(result);
+		}
+	}
+
+	private String downloadOneUrl(String myurl) throws IOException {
+		InputStream inputstream = null;
+		String data = "";
+		try {
+			URL url = new URL(myurl);
+			HttpURLConnection connection = (HttpURLConnection) url
+					.openConnection();
+			connection.setReadTimeout(100000);
+			connection.setConnectTimeout(100000);
+			connection.setRequestMethod("GET");
+			connection.setInstanceFollowRedirects(true);
+			connection.setUseCaches(false);
+			connection.setDoInput(true);
+
+			int responseCode = connection.getResponseCode(); 
+
+			if (responseCode == HttpURLConnection.HTTP_OK) { // 200 OK
+				inputstream = connection.getInputStream();
+				ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+				int read = 0;
+				while ((read = inputstream.read()) != -1) {
+					bos.write(read);
+				}
+				byte[] result = bos.toByteArray();
+				bos.close();
+
+				data = new String(result);
+
+			} else {
+				data = connection.getResponseMessage() + " . Error Code : " + responseCode;
+			}
+			connection.disconnect();
+			//return data;
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (inputstream != null) {
+				inputstream.close();
+			}
+		}
+		return data;
+	}
+
+	public void onClick(View view) {
+		ConnectivityManager myConnMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkinfo = myConnMgr.getActiveNetworkInfo();
+
+		if (networkinfo != null &amp;&amp; networkinfo.isConnected()) {
+			new DownloadPageTask().execute(bestUrl);
+		} else {
+			Toast.makeText(this, "Нет интернета", Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.activity_main, menu);
+		return true;
+	}
+
+}
+</code></pre>
+
+<p><img src="Android%20%20HttpURLConnection_files/httpurlconnection1.png" alt="Загружаем страницу при помощи HttpURLConnection" height="400" width="240"></p>
+
+<h2 class="text-warning" id="loadimage">Загружаем картинку</h2>
+
+<p>Приведенный выше пример хорош для загрузки файлов, содержащих текст. 
+Вы можете указать в URL адрес картинки и увидеть набор бессмысленных 
+символов в текстовом поле. Смысла в этом никакого нет. Поэтому для 
+загрузки изображений в ImageView создадим отдельную задачу. Вы можете 
+сравнить код загрузки текста и изображения между собой, чтобы понять, 
+что различия минимальны.</p>
+
+<p>Прежде всего добавим на экран активности ещё одну кнопку и компонент ImageView, в который будем загружать картинку.</p>
+
+<p>Объявим в классе новые переменные:</p>
+
+<pre><code class="java">
+private ImageView iView;
+private String imageUrl = "http://developer.alexanderklimov.ru/android/images/android_cat.jpg";
+
+// в метод onCreate()
+iView = (ImageView) findViewById(R.id.imageView);
+</code></pre>
+
+<p>Чтобы не повторяться с кодом проверки доступности интернета, вынесем его в отдельный метод:</p>
+
+<pre><code class="java">
+private boolean isNetworkAvailable() {
+	boolean available = false;
+	ConnectivityManager myConnMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+	NetworkInfo networkInfo = myConnMgr.getActiveNetworkInfo();
+
+	if (networkInfo != null &amp;&amp; networkInfo.isConnected())
+		available = true;
+
+	return available;
+}
+</code></pre>
+
+<p>Переделайте код из первого примера с использованием нового метода (в качестве домашнего задания).</p>
+
+<p>Также создадим отдельный метод, отвечающий за загрузку изображения <b>downloadImageUrl()</b> по аналогии с методом <b>downloadOneUrl()</b>:</p>
+
+<pre><code class="java">
+private Bitmap downloadImageUrl(String strUrl) throws IOException {
+	Bitmap bitmap = null;
+	InputStream iStream = null;
+	try {
+		URL url = new URL(strUrl);
+		HttpURLConnection urlConnection = (HttpURLConnection) url
+				.openConnection();
+
+		// считываем данные
+		iStream = urlConnection.getInputStream();
+
+		// Создаем bitmap из полученного потока
+		bitmap = BitmapFactory.decodeStream(iStream);
+
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		if (iStream != null) {
+			iStream.close();
+		}
+	}
+	return bitmap;
+}
+</code></pre>
+
+<p>Осталось написать новую задачу для работы в отдельном потоке <b>DownloadImageTask</b>:</p>
+
+<pre><code class="java">
+private class DownloadImageTask extends AsyncTask&lt;String, Void, Bitmap&gt; {
+	Bitmap bitmap = null;
+
+	@Override
+	protected Bitmap doInBackground(String... url) {
+		try {
+			bitmap = downloadImageUrl(url[0]);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bitmap;
+	}
+
+	@Override
+	protected void onPostExecute(Bitmap result) {
+		iView.setImageBitmap(result);
+
+		Toast.makeText(getBaseContext(), "Картинка успешно загружена",
+				Toast.LENGTH_LONG).show();
+	}
+}
+</code></pre>
+
+<p>Запускаем задачу при нажатии на кнопку:</p>
+
+<pre><code class="java">
+public void onImageLoadClick(View v) {
+	if (isNetworkAvailable()) {
+		DownloadImageTask downloadImageTask = new DownloadImageTask();
+		downloadImageTask.execute(imageUrl);
+	} else {
+		Toast.makeText(getBaseContext(), "Нет интернета",
+				Toast.LENGTH_SHORT).show();
+	}
+}
+</code></pre>
+
+<p><img src="Android%20%20HttpURLConnection_files/httpurlconnection2.png" alt="Загружаем картинку при помощи HttpURLConnection" height="400" width="240"></p>
+
+<p>На всякий случай привожу полный код для двух примеров, если вдруг что-то пропустил в описании:</p>
+
+<details>
+    <summary>Показать код (щелкните мышкой)</summary>
+	
+<pre><code class="java">
+// Если этот код работает, его написал Александр Климов,
+// а если нет, то не знаю, кто его писал.
+package ru.alexanderklimov.httpurlconnection;
+
+import ...
+
+public class MainActivity extends Activity {
+
+	private TextView textView;
+	private ImageView iView;
+	private String bestUrl = "http://developer.alexanderklimov.ru/android/";
+	private String imageUrl = "http://developer.alexanderklimov.ru/android/images/android_cat.jpg";
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		textView = (TextView) findViewById(R.id.textView);
+		iView = (ImageView) findViewById(R.id.imageView);
+	}
+
+	private class DownloadPageTask extends AsyncTask&lt;String, Void, String&gt; {
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			textView.setText("Загружаем...");
+		}
+
+		@Override
+		protected String doInBackground(String... urls) {
+			try {
+				return downloadOneUrl(urls[0]);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return "error";
+			}
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			textView.setText(result);
+			super.onPostExecute(result);
+		}
+	}
+
+	private class DownloadImageTask extends AsyncTask&lt;String, Void, Bitmap&gt; {
+		Bitmap bitmap = null;
+
+		@Override
+		protected Bitmap doInBackground(String... url) {
+			try {
+				bitmap = downloadImageUrl(url[0]);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return bitmap;
+		}
+
+		@Override
+		protected void onPostExecute(Bitmap result) {
+			iView.setImageBitmap(result);
+
+			Toast.makeText(getBaseContext(), "Картинка успешно загружена",
+					Toast.LENGTH_LONG).show();
+		}
+	}
+
+	private String downloadOneUrl(String myurl) throws IOException {
+		InputStream inputstream = null;
+		String data = "";
+		try {
+			URL url = new URL(myurl);
+			HttpURLConnection connection = (HttpURLConnection) url
+					.openConnection();
+			connection.setReadTimeout(100000);
+			connection.setConnectTimeout(100000);
+			connection.setRequestMethod("GET");
+			connection.setInstanceFollowRedirects(true);
+			connection.setUseCaches(false);
+			connection.setDoInput(true);
+
+			int responseCode = connection.getResponseCode();
+
+			if (responseCode == HttpURLConnection.HTTP_OK) { // 200 OK
+				inputstream = connection.getInputStream();
+				ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+				int read = 0;
+				while ((read = inputstream.read()) != -1) {
+					bos.write(read);
+				}
+				byte[] result = bos.toByteArray();
+				bos.close();
+
+				data = new String(result);
+
+			} else {
+				data = connection.getResponseMessage() + " . Error Code : "
+						+ responseCode;
+			}
+			connection.disconnect();
+			// return data;
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (inputstream != null) {
+				inputstream.close();
+			}
+		}
+		return data;
+	}
+
+	private Bitmap downloadImageUrl(String strUrl) throws IOException {
+		Bitmap bitmap = null;
+		InputStream iStream = null;
+		try {
+			URL url = new URL(strUrl);
+			HttpURLConnection urlConnection = (HttpURLConnection) url
+					.openConnection();
+
+			// считываем данные
+			iStream = urlConnection.getInputStream();
+
+			// Создаем bitmap из полученного потока
+			bitmap = BitmapFactory.decodeStream(iStream);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (iStream != null) {
+				iStream.close();
+			}
+		}
+		return bitmap;
+	}
+
+	private boolean isNetworkAvailable() {
+		boolean available = false;
+		ConnectivityManager myConnMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		NetworkInfo networkInfo = myConnMgr.getActiveNetworkInfo();
+
+		if (networkInfo != null &amp;&amp; networkInfo.isConnected())
+			available = true;
+
+		return available;
+	}
+
+	public void onClick(View view) {
+		ConnectivityManager myConnMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkinfo = myConnMgr.getActiveNetworkInfo();
+
+		if (networkinfo != null &amp;&amp; networkinfo.isConnected()) {
+			new DownloadPageTask().execute(bestUrl);
+		} else {
+			Toast.makeText(this, "Нет интернета", Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	public void onImageLoadClick(View v) {
+		if (isNetworkAvailable()) {
+			DownloadImageTask downloadImageTask = new DownloadImageTask();
+			downloadImageTask.execute(imageUrl);
+		} else {
+			Toast.makeText(getBaseContext(), "Нет интернета",
+					Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.activity_main, menu);
+		return true;
+	}
+
+}
+</code></pre>	
+	
+</details>
+
+<h2 class="text-warning" id="listviewitem">Загружаем картинку из интернета в ListActivity</h2>
+
+<p>Теперь рассмотрим пример загрузки картинки из интернета, которая является частью пункта из списка в ListActivity.</p>
+
+<p>Не забываем про разрешение на соединение. Код проверки наличия интернета здесь опустим.</p>
+
+<p>Создадим отдельную разметку для элемента списка:</p>
+
+<h3 class="text-success">res/layout/row.xml</h3>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" &gt;
+
+    &lt;ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cat" /&gt;
+
+    &lt;TextView
+        android:id="@+id/weekofday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Осталось написать код для загрузки картинки с указанного адреса, а 
+также создать собственный адаптер для данных, которые будут размещаться в
+ ListActivity:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.fortest;
+
+import ...
+
+public class TestActivity extends ListActivity {
+
+	String image_URL = "http://developer.alexanderklimov.ru/android/views/paw_on.png";
+	Bitmap srcBitmap;
+
+	String[] weekday = { "Понедельник", "Вторник", "Среда", "Четверг",
+			"Котопятница", "Субкота", "Воскресенье" };
+
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		// setContentView(R.layout.activity_test);
+		new backgroundLoadListView().execute();
+	}
+
+	private void preLoadSrcBitmap() {
+		BitmapFactory.Options bmOptions;
+		bmOptions = new BitmapFactory.Options();
+		bmOptions.inSampleSize = 1;
+		srcBitmap = LoadImage(image_URL, bmOptions);
+	}
+	
+	private Bitmap LoadImage(String URL, BitmapFactory.Options options) {
+		Bitmap bitmap = null;
+		InputStream in = null;
+		try {
+			in = OpenHttpConnection(URL);
+			bitmap = BitmapFactory.decodeStream(in, null, options);
+			in.close();
+		} catch (IOException e1) {
+		}
+		return bitmap;
+	}
+	
+	private InputStream OpenHttpConnection(String strURL) throws IOException {
+		InputStream inputStream = null;
+		URL url = new URL(strURL);
+		URLConnection conn = url.openConnection();
+
+		try {
+			HttpURLConnection httpConn = (HttpURLConnection) conn;
+			httpConn.setRequestMethod("GET");
+			httpConn.connect();
+
+			if (httpConn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+				inputStream = httpConn.getInputStream();
+			}
+		} catch (Exception ex) {
+		}
+
+		return inputStream;
+	}
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		// super.onListItemClick(l, v, position, id);
+		String selection = l.getItemAtPosition(position).toString();
+		Toast.makeText(this, selection, Toast.LENGTH_LONG).show();
+	}
+
+	public class backgroundLoadListView extends AsyncTask&lt;Void, Void, Void&gt; {
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			Toast.makeText(TestActivity.this,
+					"onPreExecute 
+: preload bitmap in AsyncTask",
+					Toast.LENGTH_LONG).show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			preLoadSrcBitmap();
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			setListAdapter(new MyCustomAdapter(TestActivity.this, R.layout.row,
+					weekday));
+			Toast.makeText(TestActivity.this,
+					"onPostExecute \n: setListAdapter after bitmap preloaded",
+					Toast.LENGTH_LONG).show();
+		}
+
+	}
+
+	public class MyCustomAdapter extends ArrayAdapter&lt;String&gt; {
+		Bitmap bm;
+
+		public MyCustomAdapter(Context context, int textViewResourceId,
+				String[] objects) {
+			super(context, textViewResourceId, objects);
+			// TODO Auto-generated constructor stub
+
+			bm = srcBitmap;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			// return super.getView(position, convertView, parent);
+
+			View row = convertView;
+
+			if (row == null) {
+				LayoutInflater inflater = getLayoutInflater();
+				row = inflater.inflate(R.layout.row, parent, false);
+			}
+
+			TextView label = (TextView) row.findViewById(R.id.weekofday);
+			label.setText(weekday[position]);
+			ImageView icon = (ImageView) row.findViewById(R.id.icon);
+
+			icon.setImageBitmap(bm);
+
+			return row;
+		}
+	}
+</code></pre>
+
+<p><img src="Android%20%20HttpURLConnection_files/httpurlconnection3.png" alt="Загружаем картинку при помощи HttpURLConnection" height="400" width="240"></p>
+
+<h2>Отправка контента</h2>
+
+<p>Для загрузки данных на веб-сервер, настройте соединение для вывода данных через setDoOutput(true).</p>
+<p>Для лучшей производительности используйте метод 
+setFixedLengthStreamingMode(int), если вам известен размер данных. В 
+других случаях используйте setChunkedStreamingMode(int).</p>
+
+<p>Например:</p>
+
+<pre><code class="java">
+HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+try {
+    urlConnection.setDoOutput(true);
+    urlConnection.setChunkedStreamingMode(0);
+
+    OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+    writeStream(out);
+
+    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+    readStream(in);
+    finally {
+        urlConnection.disconnect();
+    }
+}
+</code></pre>
+
+<p>Продолжение следует...</p>
+
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20HttpURLConnection_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20HttpURLConnection_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20HttpURLConnection_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20HttpURLConnection_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20HttpURLConnection_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20HttpURLConnection_files/fastbutton.htm" name="I0_1379249093662" id="I0_1379249093662" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Android%20%20HttpURLConnection_files/postmessageRelay.htm" id="oauth2relay691589062" name="oauth2relay691589062"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20HttpURLConnection_files/jquery.js"></script>
+    <script src="Android%20%20HttpURLConnection_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20HttpURLConnection_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20HttpURLConnection_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20HttpURLConnection_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20HttpURLConnection_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20HttpURLConnection_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20HttpURLConnection_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20HttpURLConnection_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20HttpURLConnection_files/bootstrap-button.js"></script>
+    <script src="Android%20%20HttpURLConnection_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20HttpURLConnection_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20HttpURLConnection_files/bootstrap-typeahead.js"></script>
+
+</body></html>

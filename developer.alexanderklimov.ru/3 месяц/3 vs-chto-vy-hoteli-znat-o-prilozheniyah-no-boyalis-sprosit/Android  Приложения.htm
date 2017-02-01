@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Приложения</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Приложения</h1>
+<p>Третий месяц обучения (закрытая зона)</p>
+
+<p>
+<a href="#single">Однозадачный режим</a><br>
+<a href="#version">Получить номер версии программы</a><br>
+<a href="#build">Получить информацию о Build</a><br>
+<a href="#quickexit">Выйти из приложения с несколькими экранами</a><br>
+<a href="#killapp">Убить приложение</a><br>
+<a href="#mainentries">Несколько точек входа</a><br>
+<a href="#cleardata">Очистить пользовательские данные</a><br>
+<a href="#gohome">Свернуть приложение или Показать Домашний экран</a><br>
+<a href="#uninstall">Удалить приложение из устройства</a><br>
+<a href="#autodim">Отменить режим блокировки</a><br>
+<a href="#showdialoglauncher">Показать диалоговое окно выбора стартового экрана</a><br>
+<a href="#getalllaunchers">Получить список всех лоунчеров</a><br>
+<a href="#getdefaultlauncher">Лоунчер по умолчанию</a><br>
+<a href="#RunningAppProcessInfo">Запущено ли приложение</a><br>
+<a href="#shortcut">Добавляем ярлык на Домашний экран</a><br>
+<a href="#memoryheap">Просим больше памяти</a><br>
+</p>
+
+
+
+<h2 class="text-warning" id="single">Однозадачный режим</h2>
+
+<p>Приложение может быть запущено пользователем несколько раз, 
+получается в памяти будет содержаться несколько экземпляров одной и той 
+же деятельности, что приводит к перерасходу памяти. Во избежание 
+подобной ситуации вы можете контролировать поведение каждой активности 
+при помощи манифеста. Нужно добавить в элемент &lt;activity&gt; с 
+intent-фильтрами <b>MAIN</b> и <b>LAUNCHER</b> параметр <b>android:launchMode="singleInstance"</b>:</p>
+
+<pre><code class="xml">
+&lt;activity
+    android:name=".MenuActivity"
+	android:launchMode="singleInstance"
+	android:label="string/app_name"
+	&lt;intent-filter&gt;
+	    &lt;action android:name="android.intent.action.MAIN" /&gt;
+		&lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+	&lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre>
+
+<p>Теперь будет запускаться только один экземпляр активности. Можно 
+задать ещё более жёсткое ограничение. По умолчанию какждая дочерняя 
+активность запускается как отдельная задача. Чтобы все активности 
+запускались как одна задача, используется следующая форма записи:</p>
+
+<pre><code class="xml">
+android:launchMode="singleTask"
+</code></pre>
+
+<h2 class="text-warning" id="build">Получить информацию о Build</h2>
+
+<p>В Android есть класс <b>Build</b> и <b>Build.VERSION</b>, позволящие узнать различную информацию о системе:</p>
+
+<pre><code class="java">
+@Override
+public void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+
+	setContentView(R.layout.activity_main);
+	TextView infoView = (TextView) findViewById(R.id.textView1);
+
+	StringBuffer version = new StringBuffer();
+	version.append("CODENAME: " + Build.VERSION.CODENAME);
+	version.append("\nRELEASE: " + Build.VERSION.RELEASE);
+	version.append("\nINCREMENTAL: " + Build.VERSION.INCREMENTAL);
+	version.append("\nSDK (уст.): " + Build.VERSION.SDK);
+	version.append("\nSDK_INT: " + Build.VERSION.SDK_INT);
+	version.append("\nBOARD: " + Build.BOARD);
+	version.append("\nBRAND: " + Build.BRAND);
+	version.append("\nDEVICE: " + Build.DEVICE);
+	version.append("\nFINGERPRINT: " + Build.FINGERPRINT);
+	version.append("\nHOST: " + Build.HOST);
+	version.append("\nID: " + Build.ID);
+	
+	infoView.setText(version.toString());
+}
+</code></pre>
+
+<p><img src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/build.png" alt="Build" height="400" width="225"></p>
+
+<h2 class="text-warning" id="quickexit">Выйти из приложения с несколькими экранами</h2>
+
+<p>Допустим у вас приложение с десятью экранами (вопросник с кнопками 
+Далее). Чтобы выйти из приложения с последнего экрана, вам придётся 
+десять раз нажать на кнопку Back, чтобы вернуться на первый экран и 
+только потом выйти из приложения.</p>
+
+<p>Решением проблемы может стать создание намерения с специальным флагом:</p>
+
+<pre><code class="java">
+intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+</code></pre>
+
+<p>Также добавьте дополнительную инфрмацию, например, булево значение:</p>
+
+<pre><code class="java">
+intent.putExtra("EXIT", true);
+</code></pre>
+
+<p>Первая активность, получив это значение через намерение, может вызвать метод <b>finish()</b> в своём методе onCreate():</p>
+
+<pre><code class="java">
+if (getIntent().getBooleanExtra("EXIT", false)) {
+    finish();
+}
+</code></pre>
+
+<h2 class="text-warning" id="killapp">Убить приложение</h2>
+
+<p>Убить приложение можно несколькими способами:</p>
+
+<pre><code class="java">
+android.os.Process.killProcess(android.os.Process.myPid());
+
+System.exit(0);
+
+finish(); // метод класса Activity
+</code></pre>
+
+<p>Первые два способа считаются вредными, их использовать не нужно. 
+Третий способ используется только для закрытия активности, если 
+приложение состоит из нескольких активностей и вам не нужно держать в 
+памяти лишнее окно, например, Splash-заставку.</p>
+
+<h2 class="text-warning" id="mainentries">Несколько точек входа</h2>
+
+<p>Интересный трюк можно проделать с манифестом, чтобы у программы появилось несколько точек входа.</p>
+
+<p>У любого приложения есть основная активность, у которой прописано в <b>action</b> параметр <b>action.MAIN</b>. Если у вашего приложения несколько активностей, то вы можете у всех этих активностей сделать аналогичные записи:</p>
+
+<pre><code class="java">
+&lt;intent-filter&gt;
+    &lt;action android:name="android.intent.action.MAIN" /&gt;
+
+    &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+&lt;/intent-filter&gt;
+</code></pre>
+
+<p>В этом случае при компиляции на рабочем столе появится несколько 
+значков одного и тоже приложения, но запускать они будут именно свою 
+активность. Реальной пользы от этого я пока не придумал, но имейте в 
+виду, если вы это сделали по ошибке (копипаст, например).</p>
+
+<h2 class="text-warning" id="cleardata">Очистить пользовательские данные</h2>
+
+<p>На устройстве можно удалить пользовательские данные через кнопку <b>Очистить данные</b> (<b>Настройки | Диспетчер приложений | Ваше приложение</b>).</p>
+
+<p>Чтобы это сделать программно, создайте новый класс, наследующий от класса <b>Application</b>:</p>
+
+<pre><code class="java">
+import java.io.File;
+
+import android.app.Application;
+import android.util.Log;
+
+public class MyApplication extends Application {
+	private static MyApplication instance;
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		instance = this;
+	}
+	
+	public static MyApplication getInstance(){
+		return instance;
+	}
+	
+	public void clearApplicationData() {
+		File cache = getCacheDir();
+		File appDir = new File(cache.getParent());
+		if(appDir.exists()){
+			String[] children = appDir.list();
+			for(String s : children){
+				if(!s.equals("lib")){
+					deleteDir(new File(appDir, s));
+					Log.i("TAG", "**************** File /data/data/APP_PACKAGE/" + s +" DELETED *******************");
+				}
+			}
+		}
+	}
+	
+	public static boolean deleteDir(File dir) {
+	    if (dir != null &amp;&amp; dir.isDirectory()) {
+	        String[] children = dir.list();
+	        for (int i = 0; i &lt; children.length; i++) {
+	            boolean success = deleteDir(new File(dir, children[i]));
+	            if (!success) {
+	                return false;
+	            }
+	        }
+	    }
+	    return dir.delete();
+	}
+}
+</code></pre>
+
+<p>Далее нужно вызвать данный класс:</p>
+
+<pre><code class="java">
+MyApplication.getInstance().clearApplicationData();
+</code></pre>
+
+<p><a href="http://www.hrupin.com/2011/11/how-to-clear-user-data-in-your-android-application-programmatically">Источник</a></p>
+
+<h2 class="text-warning" id="gohome">Свернуть приложение или Показать Домашний экран</h2>
+
+<p>Не знаю, насколько практичен пример, но вдруг вам захочется свернуть 
+своё приложение (не закрывать), что равносильно показу Домашнего экрана.
+ Для удобства добавим уведомляющее соообщение при сворачивании:</p>
+
+<pre><code class="java">
+private NotificationManager mNM;
+Intent notificationIntent;
+
+public void onClick(View view) {
+	showNotification();
+	Intent home = new Intent(Intent.ACTION_MAIN);
+	home.addCategory(Intent.CATEGORY_HOME);
+	home.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	startActivity(home);
+}
+
+private void showNotification() {
+	mNM = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+    notificationIntent = new Intent(this, TestActivity.class);
+	CharSequence text = "Окно свёрнуто";
+	Notification notification = new Notification(R.drawable.ic_launcher,
+			text, System.currentTimeMillis());
+	PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+			new Intent(this, TestActivity.class), 0);
+	notification.setLatestEventInfo(this, "Наше приложение", "Работает",
+			contentIntent);
+	notification.flags = Notification.FLAG_ONGOING_EVENT
+			| Notification.FLAG_NO_CLEAR;
+	notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+			| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+	mNM.notify(1, notification);
+}
+</code></pre>
+
+<p>Для уведомлений я использовал устаревшие конструкции, вам следует использовать новые методы.</p>
+
+<h2 class="text-warning" id="uninstall">Удалить приложение из устройства</h2>
+
+<p>Вы можете удалять приложения из своей программы через намерение, зная
+ имя пакета. Удалить можно только то, что можно удалить стандартным 
+способом из Настроек. При удалении выводится диалоговое окно, поэтому 
+незаметно удалить не получится.</p>
+
+<pre><code class="java">
+Intent intent = new Intent(Intent.ACTION_DELETE);
+intent.setData(Uri.parse("package:ru.alexanderklimov.databasedemo"));
+startActivity(intent);
+</code></pre>
+
+<p><img src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/apps3.png" alt="Uninstall" height="400" width="240"></p>
+
+<h2 class="text-warning" id="autodim">Отменить режим блокировки</h2>
+
+<p>Если вы хотите, чтобы при работе приложения устройство не переходило в
+ режим блокировки, то можете отключить её. Помните, что такой режим 
+влияет на время работы аккумулятора.</p>
+
+<p>За режим блокировки отвечает класс <b>PowerManager</b>.</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.WakeLockDemo;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
+
+public class AndroidWakeLock extends Activity {
+ 
+    WakeLock wakeLock;
+ 
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        PowerManager powerManager =
+                (PowerManager)getSystemService(Context.POWER_SERVICE);
+        wakeLock =
+                powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK,
+                "Full Wake Lock");
+    }
+  
+    @Override
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        wakeLock.acquire();
+    }
+
+    @Override
+    protected void onPause() {
+        // TODO Auto-generated method stub
+        super.onPause();
+        wakeLock.release();
+    }
+}
+</code></pre>
+
+<p>Также необходимо внести разрешение <b>android.permission.WAKE_LOCK</b> в манифест приложения.</p>
+
+<h2 class="text-warning" id="showdialoglauncher">Показать диалоговое окно выбора стартового экрана</h2>
+
+<p>Пользователь может установить у себя несколько так называемых 
+лоунчеров - программы, которая берёт на себя функции стартового экрана. 
+Если вы задумаете написать свой менеджер по лоунчерам, то следующий код 
+запустит диалоговое окно выбора стартового экрана:</p>
+
+<pre><code class="java">
+static final String HOME_CHOOSER_PACKAGE_NAME = "android";
+static final String HOME_CHOOSER_CLASS_NAME = "com.android.internal.app.ResolverActivity";
+ 
+private void launchHomeChooser() {
+    Intent i = new Intent(Intent.ACTION_MAIN);
+    i.addCategory(Intent.CATEGORY_HOME);
+    i.setClassName(HOME_CHOOSER_PACKAGE_NAME, HOME_CHOOSER_CLASS_NAME);
+    startActivity(i);
+}
+</code></pre>
+
+<p><img src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/kioskmode1.png" alt="Лоунчер" height="240" width="400"></p>
+
+<p>В <a href="http://developer.alexanderklimov.ru/android/kiosk.php">статье</a>
+ вскольз упоминается о возможности создать самостоятельно программы, 
+которая будет вести себя как лоунчер. Возможно, в будущем стоит 
+посвятить данной теме отдельную статью.</p>
+
+<h2 class="text-warning" id="getalllaunchers">Получить список всех лоунчеров</h2>
+
+<p>Продолжим работу с лоунчерами. Чтобы получить список всех лоунчеров напишем следующий код:</p>
+
+<pre><code class="java">
+public static ArrayList&lt;ApplicationInfo&gt; getAllLaunchers(Context context) {
+	// create new intent
+	final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+	// all launchers register these two categories
+	mainIntent.addCategory(Intent.CATEGORY_HOME);
+	mainIntent.addCategory(Intent.CATEGORY_DEFAULT);
+
+	// query normally
+	final ArrayList&lt;ResolveInfo&gt; pkgAppsList = (ArrayList&lt;ResolveInfo&gt;) context
+			.getPackageManager().queryIntentActivities(mainIntent, 0);
+
+	// you can return 'pkgAppsList'
+	// anyway, I need the following information,
+	// so I just query what I need
+	ArrayList&lt;ApplicationInfo&gt; listAppInfo = new ArrayList&lt;ApplicationInfo&gt;();
+	for (ResolveInfo info : pkgAppsList) {
+		listAppInfo.add(info.activityInfo.applicationInfo);
+	}
+
+	return listAppInfo;
+}
+
+public void onClick(View view) {
+	ArrayList&lt;ApplicationInfo&gt; mylist = new ArrayList&lt;ApplicationInfo&gt;();
+
+	mylist = getAllLaunchers(getApplicationContext());
+	String alllaunchers = "";
+	for (int i = 0; i &lt; mylist.size(); i++) {
+		alllaunchers = alllaunchers + mylist.get(i).packageName + "\n";
+	}
+	tv.setText(alllaunchers);
+
+}
+</code></pre>
+
+<h2 class="text-warning" id="getdefaultlauncher">Лоунчер по умолчанию</h2>
+
+<p>Используя предыдущий метод для получения массива всех лоунчеров, можно также узнать текущий лоунчер по умолчанию.</p>
+
+<pre><code class="java">
+public void onClick(View view) {
+	ApplicationInfo defaultlauncher = new ApplicationInfo();
+
+	defaultlauncher = getDefaultLauncher(getApplicationContext());
+
+	tv.setText(defaultlauncher.packageName);
+
+}
+
+public static ApplicationInfo getDefaultLauncher(Context context) {
+	// first query all installed launcher
+	ArrayList&lt;ApplicationInfo&gt; listAppInfo = getAllLaunchers(context);
+
+	// the default launcher queried being stored here
+	ArrayList&lt;ComponentName&gt; listDefault = new ArrayList&lt;ComponentName&gt;();
+	// create list IntentFilter for Launcher apps
+	final IntentFilter filter = new IntentFilter(Intent.ACTION_MAIN);
+	filter.addCategory(Intent.CATEGORY_HOME);
+	filter.addCategory(Intent.CATEGORY_DEFAULT);
+	ArrayList&lt;IntentFilter&gt; listFilters = new ArrayList&lt;IntentFilter&gt;();
+	listFilters.add(filter);
+	// query default launcher
+	context.getPackageManager().getPreferredActivities(listFilters,
+			listDefault, null);
+
+	// check if default launcher
+	if (listDefault.size() &gt; 0) {
+		for (ComponentName name : listDefault) {
+			for (ApplicationInfo info : listAppInfo) {
+				if (name.getPackageName().equals(info.packageName)) {
+					// found yeah!
+					return info;
+				}
+			}
+		}
+	}
+
+	// not found any, no launcher set Default
+	return null;
+}
+</code></pre>
+
+<h2 class="text-warning&quot;" id="RunningAppProcessInfo">Запущено ли приложение</h2>
+
+<p>Данный пример желательно использовать при тестировании судя по 
+документации. Например, мы хотим узнать, запущено ли нужное нам 
+приложение (нужно знать имя пакета, которое следует ввести в текстовое 
+поле):</p>
+
+<pre><code class="java">
+String appinfo = "";
+EditText edit = (EditText) findViewById(R.id.editText1);
+appinfo = edit.getText().toString();
+ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+List<runningappprocessinfo> runningProcInfo = activityManager
+		.getRunningAppProcesses();
+for (int i = 0; i &lt; runningProcInfo.size(); i++) {
+	if (runningProcInfo.get(i).processName.equals(appinfo)) {
+		Log.i("AppInfo", appinfo + " запущен");
+		// по желанию также можно проверить - background, foreground, visible
+		// if (runningProcInfo.get(i).lru ==
+		// RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+		// Log.i("AppInfo", appinfo + " is in foreground");
+		// }
+	}
+}
+</runningappprocessinfo></code></pre>
+
+<h2 class="text-warning" id="shortcut">Добавляем ярлык на Домашний экран</h2>
+
+<p>Можно добавить ярлык на Домашний экран:</p>
+
+<pre><code class="java">
+Intent shortcutIntent = new Intent();
+Log.i("CreateShortcut", "Creating first intent called shortcutIntent");
+
+shortcutIntent.setClassName(getPackageName(), "TestActivity");
+shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+Intent intent = new Intent();
+Log.i("CreateShortcut", "Creating intent for broadcasting");
+intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+// Sets the custom shortcut's title
+intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Ярлык к программе");
+//intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, false); // значок программы по умолчанию
+// Если нужен другой значок
+intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(
+        TestActivity.this, R.drawable.ic_cat));
+intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+sendBroadcast(intent);
+</code></pre>
+
+<p>Процесс состоит из двух частей. Сначала мы создаём намерение с 
+указанием имени класса и дополнительными флагами. Затем создаём второе 
+намерение и добавляем в него первое намерение и запускаем 
+широковещательное сообщение. После данных действих на Домашнем экране 
+появится ярлык к вашей программе.</p>
+
+<h2 class="text-warning" id="memoryheap">Просим больше памяти</h2>
+
+<p>Можно попросить систему выделить приложению больше памяти, задав атрибут <b>android:largeHeap="true"</b> в теге <b>&lt;application&gt;</b>. Подробнее в <a href="http://developer.android.com/guide/topics/manifest/application-element.html#largeHeap">документации</a></p>
+
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/fastbutton.htm" name="I0_1378284292201" id="I0_1378284292201" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/jquery.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/postmessageRelay.htm" id="oauth2relay731680611" name="oauth2relay731680611"></iframe>
+    <script src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-typeahead.js"></script>
+
+</body></html>

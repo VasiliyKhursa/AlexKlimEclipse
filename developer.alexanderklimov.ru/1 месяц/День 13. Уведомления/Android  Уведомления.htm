@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Уведомления</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">   
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+          <ul class="nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->	
+<div class="clearfix"></div>
+	
+<noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Читайте на здоровье!</h3>
+            </div>
+            <div class="modal-body">
+            
+              <p>Статья проплачена кошками - всемирно известными производителями котят.</p>
+
+            <p>Если статья вам понравилась, то можете <a href="http://developer.alexanderklimov.ru/donate.php">поддержать проект</a>.</p>
+			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>            
+<h1 class="text-warning">Уведомления</h1>
+
+<p>
+<a href="#intro">Вступление</a><br>
+<a href="#theory">Теория</a><br>
+<a href="#ics">Пример для Android 4</a><br>
+<a href="#cancel">Удаление собственных уведомлений</a><br>
+</p>
+
+<h2 class="text-warning" id="intro">Вступление</h2>
+
+<p>Кроме <a href="http://developer.alexanderklimov.ru/android/toast.php">Toast-уведомлений</a>,
+ существует также другой тип уведомлений, который выводится в системной 
+строке состояния в виде значка. Если открыть окно уведомлений, то можно 
+увидеть расширенную текстовую информацию об уведомлении.</p>
+
+<p>Когда пользователь открывает расширенное сообщение, Android запускает объект <b>Intent</b>,
+ который определён в соответствии с уведомлением. Можно также 
+конфигурировать уведомление с добавлением звука, вибрации и мигающих 
+индикаторов на мобильном устройстве.</p>
+
+<p>Этот вид уведомления удобен в том случае, когда приложение работает в
+ фоновом режиме и должно уведомить пользователя о каком-либо важном 
+событии. Уведомление будет висеть до тех пор, пока пользователь не 
+отреагирует на него, в отличие от Toast-сообщения, которое исчезнет 
+через несколько секунд. Фоновое приложение создает уведомление в строке 
+состояния, но не запускает деятельность самостоятельно для получения 
+пользовательского взаимодействия. Это должен делать только сам 
+пользователь в удобное ему время.</p>
+
+
+<h2 class="text-warning" id="theory">Теория</h2>
+
+<p>Чтобы создать уведомление в строке состояния, необходимо использовать два класса:</p>
+<ul>
+<li><b>Notification</b> — определяем свойства уведомления строки 
+состояния: значок, расширенное сообщение и дополнительные параметры 
+настройки (звук и др.)</li>
+<li><b>NotificationManager</b> — системный сервис Android, который управляет всеми уведомлениями. Экземпляр <b>NotificationManager</b> создается при помощи вызова метода <b>getSystemService()</b>, а затем, когда надо показать уведомление пользователю, вызывается метод <b>notify()</b></li>
+</ul>
+
+<p>Обратите внимание, что в имени классов спрятан кот (Notifi<b>cat</b>ion, Notifi<b>cat</b>ionManager),
+ что намекает на целевое использование уведомлений. Уведомляйте 
+пользователя только о самом важном, например, что пора кормить кота.</p>
+
+<p>В старых версия Android до версии 3.0 использовались классы и методы,
+ которые теперь считаются устаревшими. Когда-то в данной статье был 
+материал по этой теме, но пришло время отказаться от него. Я удалил этот
+ материал. Он вам уже не пригодится, так как для старых версий можно 
+использовать библиотеку совместимости (о ней чуть позже).</p>
+
+<h2 class="text-warning" id="ics">Пример для Android 4</h2>
+
+<p>Начиная с Android 3, для уведомлений используется класс <b>Notification.Builder</b>.</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.notification;
+
+import ...
+
+public class NotificationDemoActivity extends Activity {
+
+	private static final int NOTIFY_ID = 101;
+	
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	}
+
+	public void onClick(View view) {
+		
+		Context context = getApplicationContext();
+
+		Intent notificationIntent = new Intent(context, NotificationDemoActivity.class);
+		PendingIntent contentIntent = PendingIntent.getActivity(context,
+		        0, notificationIntent,
+		        PendingIntent.FLAG_CANCEL_CURRENT);
+
+		NotificationManager nm = (NotificationManager) context 
+		        .getSystemService(Context.NOTIFICATION_SERVICE);
+		
+		Resources res = context.getResources();
+		Notification.Builder builder = new Notification.Builder(context);
+
+		builder.setContentIntent(contentIntent)
+		            .setSmallIcon(R.drawable.ic_launcher)
+		            // большая картинка
+		            .setLargeIcon(BitmapFactory.decodeResource(res, R.drawable.cat))
+		            //.setTicker(res.getString(R.string.warning)) // текст в строке состояния
+		            .setTicker("Последнее китайское предупреждение!")
+		            .setWhen(System.currentTimeMillis())
+		            .setAutoCancel(true)
+		            //.setContentTitle(res.getString(R.string.notifytitle)) // Заголовок уведомления
+		            .setContentTitle("Напоминание")
+		            //.setContentText(res.getString(R.string.notifytext))
+		            .setContentText("Пора покормить кота"); // Текст уведомленимя
+		
+		Notification n = builder.getNotification();
+
+		nm.notify(NOTIFY_ID, n);
+	}
+}
+</code></pre>
+
+<p>При создании уведомления надо получить ссылку на <b>NotificationManager</b> через вызов метода <b>getSystemService()</b>, передав ему в качестве параметра строковую константу <b>NOTIFICATION_SERVICE</b>, определённую в классе <b>Context</b></p>
+
+<p>Далее формируется внешний вид и поведение уведомления через построитель <b>Notification.Builder</b>. Вы можете задать текст уведомлений, значки и прочие атрибуты:</p>
+
+<ul>
+<li>Метод <b>setSmallIcon()</b> устанавливает маленький значок, который выводится в строке состояния, а также в правой части открытого уведомления.</li>
+<li>Метод <b>setLargeIcon()</b> устанавливает большой значок, который выводится в открытом уведомлении слева.</li>
+<li>Метод <b>setTicker()</b> выводит временную строку в строке состояния, которая затем исчезает. Остаётся только маленький значок (см. выше)</li>
+</ul>
+<p>Остальные методы поняты по названиям.</p>
+
+<p>После того, как мы сформировали уведомление, нужно создать объекты <b>Intent</b> и <b>PendingIntent</b>,
+ которые описывают намерения и целевые действия. В нашем случае мы хотим
+ запустить нашу активность, когда пользователь среагирует на 
+уведомление.</p>
+
+<p>На первой картинке мы видим, как появился маленький значок. Также 
+появляется текст "Последнее китайское предупреждение!", который быстро 
+исчезает.</p>
+
+<p><img src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/notification1.png" alt="Notification" height="400" width="240"></p>
+
+<p>Далее мы можем открыть уведомление, чтобы увидеть более подробную информацию.</p>
+
+<p><img src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/notification2.png" alt="Notification" height="400" width="240"></p>
+
+<p>Если коснуться уведомления, то запустится наша программа (даже если она была перед этим закрыта).</p>
+
+<p>Совсем не обязательно запускать своё приложение, хотя это является 
+распространённой практикой. Можете задать нужное поведение, например, 
+запустить свой сайт по указанному адресу. Переделаем код:</p>
+
+<pre><code class="java">
+Context context = getApplicationContext();
+Intent notificationIntent = new Intent(Intent.ACTION_VIEW,
+		Uri.parse("http://developer.alexanderklimov.ru/android/"));
+PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
+		notificationIntent, Intent.FLAG_ACTIVITY_NEW_TASK);
+
+Notification.Builder builder = new Notification.Builder(context)
+		.setContentTitle("Посетите мой сайт")
+		.setContentText("http://developer.alexanderklimov.ru/android/")
+		.setTicker("Внимание!").setWhen(System.currentTimeMillis())
+		.setContentIntent(pendingIntent)
+		.setDefaults(Notification.DEFAULT_SOUND).setAutoCancel(true)
+		.setSmallIcon(R.drawable.ic_launcher);
+
+NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+nm.notify(NOTIFY_ID, builder.getNotification());
+</code></pre>
+
+<p>Обратите внимание, что на этот раз мы не указали картинку для 
+большого значка и система подставляет в этом случае маленький значок, 
+растягивая его до нужных размеров. Также появился новый метод <b>setDefaults()</b>, о котором говорится ниже.</p>
+
+<h2 class="text-warning" id="cancel">Удаление собственных уведомлений</h2>
+
+<p>Вы можете из программы удалить своё уведомление, посланное по глупости (не вздумайте удалять уведомления про кормёжку кота!).</p>
+
+<pre><code class="java">
+nm.cancel(NOTIFY_ID); // nm - экземпляр класса NotificationManager
+</code></pre>
+
+<h2 class="text-warning">Использование настроек по умолчанию</h2>
+
+<p>Можно добавить вибрацию, звуковой сигнал или мерцание светодиодами 
+для ваших уведомлений при помощи настроек по умолчанию. В свойстве <b>defaults</b> вы можете сочетать следующие константы:</p>
+
+<ul>
+<li>Notification.DEFAULT_LIGHTS</li>
+<li>Notification.DEFAULT_SOUND</li>
+<li>Notification.DEFAULT_VIBRATE</li>
+</ul>
+
+<p>Чтобы к уведомлению добавить звук и вибрации по умолчанию, используйте код:</p>
+
+<pre><code class="java">
+notification.defaults = Notification.DEFAULT_SOUND |
+        Notification.DEFAULT_VIBRATE;
+</code></pre>
+
+<p>Если хотите установить сразу все значения по умолчанию, задействуйте константу <b>Notification.DEFAULT_ALL</b>.</p>
+
+<h2 class="text-warning">Звуковое сопровождение</h2>
+
+<p>Использование звуковых оповещений для уведомления пользователя о 
+событиях, связанных с устройством (например, входящий звонок), стало 
+привычным. Большинство стандартных событий, от входящих звонков до новых
+ сообщений и низкого заряда батареи, объявляются с помощью звуковых 
+мелодий. Android позволяет проигрывать любой звуковой файл на телефоне в
+ качестве уведомления. Чтобы это сделать, нужно присвоить свойству sound
+ путь URI:</p>
+
+<pre><code class="java">
+notification.sound = ringURI;
+</code></pre>
+
+<p>Также можно использовать собственный звуковой файл, загруженный на устройстве или добавленный в проект в качестве ресурса.</p>
+
+<pre><code class="java">
+Uri ringURI =
+        RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+notification.sound = ringURI;
+</code></pre>
+
+<p>С SD-карты:</p>
+
+<pre><code class="java">
+notification.sound = Uri.parse("file:///sdcard/cat.mp3"); // если знаем точный путь!
+</code></pre>
+
+<h2 class="text-warning" id="vibrate">Виброзвонок</h2>
+
+<p>Вы можете использовать функцию виброзвонка в телефоне, чтобы 
+сопровождать ваше уведомление вибрацией для привлечения внимания 
+пользователя.</p>
+
+<p>Чтобы использовать виброзвонок, передайте в свойство <b>vibrate</b> объекта <b>Notification</b> массив значений типа <b>long</b>.
+ Постройте массив, учитывая, что значения, отвечающие за 
+продолжительность вибрации (в миллисекундах), чередуются со значениями, 
+которые означают длину паузы между вибрациями.</p>
+
+<p>Прежде чем использовать виброзвонок в своем приложении, необходимо получить нужные полномочия:</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.VIBRATE"/&gt;
+</code></pre>
+
+<p>В следующем примере показано, как изменить уведомление, чтобы одна 
+секунда вибрации сменялась одной секундой паузы на протяжении пяти 
+секунд:</p>
+
+<pre><code class="java">
+long[] vibrate = new long[] { 1000, 1000, 1000, 1000, 1000 };
+notification.vibrate = vibrate;
+</code></pre>
+
+<div class="alert">
+В настоящее время эмулятор Android не умеет оповещать о вибрации ни визуально, ни с помощью звуковых сигналов.
+</div>
+
+<h2 class="text-warning">Светодиодная индикация</h2>
+
+<p>Объект Notification включает в себя свойства для настройки цвета и 
+частоты мерцания светодиодов устройства. Здесь стоит обратить внимание, 
+что конкретные модели устройств могут не содержать светодиодные 
+индикаторы или иметь другие цвета.</p>
+
+<p>Свойство <b>ledARGB может</b> устанавливать цвет для светодиодной подсветки. Свойства <b>ledOffMS</b> и <b>ledOnMS</b>
+ позволяют регулировать частоту 
+и поведение светодиодов. Вы можете включить светодиоды, присвоив 
+свойству ledOnMS значение 1, а ledOffMS – 0. Присвоив им обоим значения 
+0, светодиоды можно выключить.</p>
+
+<p>Настроив работу со светодиодами, необходимо также добавить флаг <b>FLAG_SHOW_LIGHTS</b> к свойству flags объекта Notification.</p>
+
+<p>В следующем фрагменте кода показано, как включить на устройстве красный светодиод:</p>
+
+<pre><code class="java">
+notification.ledARGB = Color.RED;
+notification.ledOffMS = 0;
+notification.ledOnMS = 1;
+notification.flags = notification.flags | Notification.FLAG_SHOW_LIGHTS;
+</code></pre>
+
+<div class="alert">
+В настоящее время эмулятор Android не умеет визуально показывать активность светодиодов.
+</div>
+
+<h2 class="text-warning">Текущие и настойчивые уведомления</h2>
+
+<p>Вы можете делать уведомления текущими и/или настойчивыми, 
+устанавливая флаги FLAG_INSISTENT и FLAG_ONGOING_EVENT. Уведомления, 
+помеченные как текущие, используются для представления событий, которые 
+выполняются в данный момент времени (например, загрузка файла, фоновое 
+проигрывание музыки). Текущие уведомления необходимы для сервисов, 
+работающих на переднем плане. Пример установки флагов:</p>
+
+<pre><code class="java">
+notification.flags = notification.flags | Notification.FLAG_ONGOING_EVENT;
+</code></pre>
+
+<p>В расширенной статусной строке текущие события отделены от обычных, чтобы вы сразу могли их отличить.</p>
+
+<p>Настойчивые уведомления непрерывно повторяют звуковые сигналы, 
+вибрируют и мерцают светодиодами, пока не будут остановлены. Подобные 
+уведомления, как правило, используются для событий, которые требуют 
+немедленного и своевременного внимания, таких как входящий звонок, 
+срабатывание будильника или время кормёжки кота. В следующем фрагменте 
+кода показано, как сделать уведомление настойчивым:</p>
+
+<pre><code class="java">
+notification.flags = notification.flags | Notification.FLAG_INSISTENT;
+</code></pre>
+
+<h2 class="text-warning">Уведомления для старых устройств</h2>
+
+<p>В старых устройствах были свои классы для уведомлений, которыми не стоит пользоваться. Вместо этого используется класс <b>NotificationCompat.Builder</b>, который входит в пакет <b>android.support.v4.app</b>. Практически, вам нужно чуть-чуть изменить имя класса <b>Notification.Builder</b> и весь код будет работать на старых устройствах.</p>
+
+<h5 class="text-error">Реклама</h5>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4224968932772057";
+/* Полноразмерный баннер 728х90 */
+google_ad_slot = "4077523505";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/show_ads.js">
+</script>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/fastbutton.htm" name="I0_1378010793370" id="I0_1378010793370" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/jquery.js"></script>
+    <script src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-modal.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/postmessageRelay.htm" id="oauth2relay264695811" name="oauth2relay264695811"></iframe>
+    <script src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%A3%D0%B2%D0%B5%D0%B4%D0%BE%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_files/bootstrap-typeahead.js"></script>
+
+</body></html>

@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Intent.ACTION_SEND - Пришли фотку, письмо, сообщение</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/counter_002.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Intent.ACTION_SEND - Пришли фотку, письмо, сообщение</h1>
+<p>Третий месяц обучения (закрытая зона)</p>
+
+<p>
+<a href="#theory">Теория</a><br>
+<a href="#sendphoto">Пришли фотку</a><br>
+<a href="#sendemail">Пришли письмо</a><br>
+<a href="#trueclients">Выводим реальный список программ для работы с почтой</a><br>
+<a href="#gmail">Запускаем сразу клиент GMail</a><br>
+<a href="#sendmailandgalleryimage">Посылаем письмо с картинкой, выбранной из Галереи</a><br>
+<a href="#validatemail">Проверка правильности электронного адреса</a><br>
+<a href="#sendbinary">Отправка бинарного контента</a><br>
+<a href="#sendmultiple">ACTION_SEND_MULTIPLE - Отправка нескольких типов контента</a><br>
+</p>
+
+<p>Константа намерения <b>ACTION_SEND</b> используется для отправки различных сообщений: электронное письмо, SMS, MMS и т.д.</p>
+
+
+
+
+
+<h2 class="text-warning" id="theory">Теория</h2>
+
+<p>Итак, у нас есть намерение что-то послать. Для этих целей существует константа <b>Intent.ACTION_SEND</b>, предназначенная для отсылки сообщений типа SMS, MMS, почты и т.д.:</p>
+
+<pre><code class="java">
+Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+</code></pre>
+
+<p>Далее нужно определить список программ по типу сообщения. Например, 
+текстовые данные можно отправить через почтовый клиент, а картинку через
+ почту и MMS и т.д. Для решения этой задачи используется метод <b>setType()</b>:</p>
+
+<pre><code class="java">
+// простой текст
+sharingIntent.setType("text/plain");
+</code></pre>
+
+<p>Существуют и другие типы: картинки, видео, pdf и др. Если вы 
+используете экзотические типы документов, то вам нужно быть уверенным, 
+что у пользователя есть программа, способная обработать намерение с 
+указанным типом.</p>
+
+<p>Если простого запуска приложения недостаточно, то можной задействовать метод <b>putExtra()</b>,
+ позволяющие передать запускаемой программе дополнительные данные. 
+Например, можно не просто запустить почтовый клиент, но и сразу указать в
+ письме адресата, тему письма и само сообщение.</p>
+
+<p>Для этого следует установить дополнительные параметры: EXTRA_EMAIL, EXTRA_CC, EXTRA_BCC, EXTRA_SUBJECT (Смотри <a href="#formemail">Формирование письма</a>).
+ Однако, если принимающее приложение не предназначено для их 
+использования, ничего не произойдет. Вы можете использовать 
+пользовательские дополнения, но это не произведет никакого эффекта, если
+ принимающее приложение не понимает их.</p>
+
+<p>Также вы можете установить свой заголовок для диалогового окна выбора нужной программы через метод <b>createChooser()</b>:</p>
+
+<pre><code class="java">
+startActivity(Intent.createChooser(sharingIntent, "Выбор за вами!"));
+</code></pre>
+
+<p>Если вы вызовите метод <b>Intent.createChooser()</b>, Android всегда 
+будет показывать диалог выбора приложения, даже если пользователь ранее 
+выбрал действие по умолчанию для этого намерения. При этом, если ни одно
+ приложение не будет найдено, Android отобразит системное сообщение.</p>
+
+<p>Рассмотрим применение ACTION_SEND на реальных примерах.</p>
+
+<h2 class="text-warning" id="sendphoto">Пришли фотку</h2>
+
+<p>Вы хотите похвастаться своим котом-красавцем перед всем миром. Вам 
+пишут: "Пришли фотку!". Не вопрос, напишем программу, которая будет из 
+программы отсылать картинку по электронной почте, MMS, через книгу морд 
+(FaceBook) и др.</p>
+
+<p>Разместим на форме кнопку.</p>
+
+<p>У нас есть намерение послать картинку:</p>
+
+<pre><code class="java">
+Intent picMessageIntent = new Intent(Intent.ACTION_SEND);
+</code></pre>
+
+<p>О существовании файла с котом должны знать ваше приложение и 
+программа, отвечающая за посылку сообщения. Если с первым пунктом 
+проблем нет (ваша программа знает о файлах, с которыми она работает), то
+ сторонние приложения не имеют доступа к файлам вашего приложения. 
+Поэтому файл нужно хранить где-то в доступном для всех месте, например, 
+на внешней SD-карте в публичном каталоге. Для примера (если у вас нет 
+кота) мы запустим браузер, найдём сайт с котами и загрузим картинку, 
+которой и поделимся с кем-то.</p>
+
+<p>Запустим приложение Браузер и зайдём на страницу <a href="http://developer.alexanderklimov.ru/android/catshop/flip.php">http://developer.alexanderklimov.ru/android/catshop/flip.php</a>. Выберем картинку в конце статьи долгим нажатием. Появится диалоговое окно для сохранения картинки и другие варианты.</p>
+
+<img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/sendpicture1.png" alt="Send Picture">
+
+<p>Сохраняем изображение. Когда загрузка завершится, то в строке 
+состояния увидим значок об успешной зазрузке. Откроем окно уведомлений, 
+чтобы увидеть имя файла, которое нам пригодится. Браузер сохраняет файлы
+ в доступном для других месте и к нему можно получить доступ через 
+специальные константы (об этом позже).</p>
+
+<img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/sendpicture2.png" alt="Файл загружен">
+
+<h2 class="text-warning">Тип для намерения</h2>
+
+<p>Вернёмся снова к намерению послать ACTION_SEND. Необходимо уточнить, что именно мы хотим послать. Через метод <b>setType()</b> мы говорим, что собираемся послать графический файл:</p>
+
+<pre><code class="java">
+picMessageIntent.setType("image/jpeg");
+</code></pre>
+
+<h2 class="text-warning">Адрес картинки</h2>
+
+<p>Настало время узнать адрес нашей картинки. Мы уже знаем имя файла 
+(flip1.png), осталось узнать путь к нему. Тогда мы сможем отослать 
+картинку при помощи параметра <b>Intent.EXTRA_STREAM</b>. А узнать путь к картинке, которую загрузили из браузера можно через класс <b>Environment</b>, у которого есть метод <b>getExternalStoragePublicDirectory()</b> с параметром <b>Environment.DIRECTORY_DOWNLOADS</b>. Теперь, зная директорию и имя файла, мы можем настроить экстра-данные для намерения и запустить его:</p>
+
+<pre><code class="java">
+File downloadedPic = new File(
+		Environment
+				.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+		"flip1.png");
+
+picMessageIntent.putExtra(Intent.EXTRA_STREAM,
+		Uri.fromFile(downloadedPic));
+		
+startActivity(picMessageIntent);
+</code></pre>
+
+<p>Если на устройстве имеется несколько приложений, способных посылать 
+(обрабатывать ACTION_SEND), то система предложит выбрать нужно 
+приложение.</p>
+
+<p><img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/sendpicture3.png" alt=""></p>
+
+<p>Также можно использовать другой вариант с выбором нужных приложений с настройкой собственного заголовка:</p>
+
+<pre><code class="java">
+startActivity(Intent.createChooser(picMessageIntent, "Пошли картинку при помощи:"));
+</code></pre>
+
+<p><img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/sendpicture4.png" alt=""></p>
+
+<p>На эмуляторе только две программы могут послать сообщение с картинкой. На самом деле таких программ больше:</p>
+
+<img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/Android-Send-Picture_03.jpg">
+
+<p>Таким образом вы узнали, как из своего приложения можно отослать 
+картинку куда-нибудь. Главное, знать путь к файлу и программу для 
+сообщений.</p>
+
+<h2 class="text-warning" id="sendemail">Пришли письмо</h2>
+
+<p>Используя данную технику, вы можете запустить почтовый клиент на 
+устройстве для отправки письма, так как используется точно такая же 
+техника. Добавим ещё одну кнопку на форму. И пишем код:</p>
+
+<pre><code class="java">
+Intent emailIntent = new Intent(Intent.ACTION_SEND);
+emailIntent.setType("plain/text");
+startActivity(emailIntent);
+</code></pre>
+
+<p>Как видите, практически код не изменился. Мы используем намерение с параметром <b>Intent.ACTION_SEND</b> и сообщаем, что собираемся использовать обычный текст (plain/text). И запускаем намерение.</p>
+
+<p>В результате у нас запустится почтовый клиент и мы можем в нём 
+указать адресата и написать текст. Если вы проверяете пример на 
+эмуляторе, то настройте на нём хотя бы один почтовый клиент, например, 
+приложение Email.</p>
+
+<p>Как и в случае с отправкой картинки, если почтовых клиентов 
+несколько, то пользователь может выбрать один из них. Также можно 
+вывести диалоговое окно со своим заголовком:</p>
+
+<pre><code class="java">
+startActivity(Intent.createChooser(emailIntent, "Пришли письмо через:"));
+</code></pre>
+
+<h3 class="text-warning" id="formemail">Формирование письма</h3>
+
+<p>Просто запустить почтовый клиент не слишком интересно. Неплохо бы 
+автоматически заполнить адреса получателей, текст письма, отправить 
+копии и т.д. Для этого нужно подготовить данные следующим образом:</p>
+
+<pre><code class="java">
+// Подготавливаем данные - массив получателей
+String aEmailList[] = { "barsik@yanesobaka.com","ryzhik@yanesobaka.com" };  
+String aEmailCCList[] = { "murzik@catmail.com","boss@catmail.com"}; 
+String aEmailBCCList[] = { "vaska@meow.com" };  
+  
+emailIntent.putExtra(Intent.EXTRA_EMAIL, aEmailList);  
+emailIntent.putExtra(Intent.EXTRA_CC, aEmailCCList);  // копия
+emailIntent.putExtra(Intent.EXTRA_BCC, aEmailBCCList);  // скрытая копия
+// Тема письма
+emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Мурке лично в лапы"); 
+
+emailIntent.setType("plain/text");
+
+emailIntent.putExtra(Intent.EXTRA_TEXT, "Приходи вечером на крышу. Будет весело"); 
+</code></pre>
+
+<p>Если нажать на кнопку отправки письма, то подготовленные данные сразу разместятся в нужных местах.</p>
+
+<p><img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/sendpicture5.png" alt="Почтовый клиент"></p>
+
+<p>Обратите внимание, что некто прислал Мурке (boss@catmail.com) 
+почему-то копию и заодно пригласил ещё кучу народу. Ой, что будет, что 
+будет.</p>
+
+<h2 class="text-warning">Исходник</h2>
+
+<pre><code class="java">
+package ru.alexanderklimov.sendpicture;
+
+import ...
+
+public class MainActivity extends Activity {
+
+	private static final String LOG_TAG = "SendPictureApp";
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	}
+
+	// нажатие на кнопку
+	public void sendPictureMessage(View v) {
+		try {
+			Intent picMessageIntent = new Intent(Intent.ACTION_SEND);
+			picMessageIntent.setType("image/jpeg");
+			File downloadedPic = new File(
+					Environment
+							.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+					"flip1.png");
+
+			picMessageIntent.putExtra(Intent.EXTRA_STREAM,
+					Uri.fromFile(downloadedPic));
+
+			// startActivity(picMessageIntent);
+
+			startActivity(Intent.createChooser(picMessageIntent,
+					"Пошли картинку при помощи:"));
+		} catch (Exception e) {
+			Log.e(LOG_TAG, "sendPictureMessage() failed to start activity.", e);
+			Toast.makeText(this, "No handler", Toast.LENGTH_LONG).show();
+		}
+	}
+	
+	// посылаем письмо
+	public void sendEmail(View v) {
+		try {
+			Intent emailIntent = new Intent(Intent.ACTION_SEND);
+			
+			// Подготавливаем данные
+			String aEmailList[] = { "barsik@yanesobaka.com","ryzhik@yanesobaka.com" };  
+			String aEmailCCList[] = { "murzik@catmail.com","boss@catmail.com"};  
+			String aEmailBCCList[] = { "vaska@meow.com" };  
+			  
+			emailIntent.putExtra(Intent.EXTRA_EMAIL, aEmailList);  
+			emailIntent.putExtra(Intent.EXTRA_CC, aEmailCCList);  // копия
+			emailIntent.putExtra(Intent.EXTRA_BCC, aEmailBCCList);  // скрытая копия
+			// Тема письма
+			emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Мурке лично в лапы"); 
+			
+			emailIntent.setType("plain/text");
+			
+			emailIntent.putExtra(Intent.EXTRA_TEXT, "Приходи вечером на крышу. Будет весело"); 
+			//startActivity(emailIntent);
+			startActivity(Intent.createChooser(emailIntent, "Пришли письмо через:"));
+		} catch (Exception e) {
+			Log.e(LOG_TAG, "sendSimpleEmail() failed to start activity.", e);
+			Toast.makeText(this, "No handler", Toast.LENGTH_LONG).show();
+		}
+	}
+}
+</code></pre>
+
+<p>Пример с письмом также можно использовать для обратной связи с 
+пользователем вашего приложения. Создайте в приложениии отдельную 
+активность с текстовыми полями для сообщения и кнопкой. Если у 
+пользователя появится желание написать вам и предложить какие-то идеи по
+ улучшению программы, то он может это сделать через вашу форму.</p>
+
+<h2 class="text-warning" id="trueclients">Выводим реальный список программ для работы с почтой</h2>
+
+<p>Когда мы устанавливаем тип <b>plain/text</b>, то возникает одна 
+проблема - работать с данным типом могут и программы, которые никакого 
+отношения к отправке письма не имеют. Например, программа "Decode QR 
+Code" тоже может работать с текстом.</p>
+
+<p><img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/sendpicture6.png" alt="Decode QR Code" height="400" width="240"></p>
+
+<p>Чтобы обойти эту проблему, можно установить другой тип:</p>
+
+<pre><code class="java">
+emailIntent.setType("message/rfc822");
+</code></pre>
+
+<h2 class="text-warning" id="gmail">Запускаем сразу клиент GMail</h2>
+
+<p>На сайте Stackoverflow наткнулся на ещё один интересный пример. Один 
+из посетителей сайта спросил, а как можно запустить сразу нужный клиент 
+GMail, минуя диалоговое окно выбора программ. Был предложен следующий 
+вариант:</p>
+
+<pre><code class="java">
+// обработчик нажатия кнопки
+public void onClick(View view) {
+	String[] aEmailList = { "barsik@yanesobaka.com" };
+	shareToGMail(aEmailList, "Купи подарок",
+			"Ваша киска купила бы Вискас. Уж мы то знаем.");
+}
+
+public void shareToGMail(String[] email, String subject, String content) {
+	Intent emailIntent = new Intent(Intent.ACTION_SEND);
+	emailIntent.putExtra(Intent.EXTRA_EMAIL, email);
+	emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+	emailIntent.setType("plain/text");
+	emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, content);
+	final PackageManager pm = getPackageManager();
+	final List<resolveinfo> matches = pm.queryIntentActivities(emailIntent,
+			0);
+	ResolveInfo best = null;
+	for (final ResolveInfo info : matches)
+		if (info.activityInfo.packageName.endsWith(".gm")
+				|| info.activityInfo.name.toLowerCase().contains("gmail"))
+			best = info;
+	if (best != null)
+		emailIntent.setClassName(best.activityInfo.packageName,
+				best.activityInfo.name);
+	startActivity(emailIntent);
+}
+</resolveinfo></code></pre>
+
+<p>Так как на эмуляторе у меня не было программы GMail, то проверить не 
+смог, но у меня сразу запустился клиент Email без промежуточного 
+диалогового окна. Может кому пригодится.</p>
+
+<h2 class="text-warning" id="sendmailandgalleryimage">Посылаем письмо с картинкой из Галереи</h2>
+
+<p>В начале статьи был пример, как загрузить картинку с сайта на 
+устройство, и отправить его письмом. Но обычно пользователь выбирает 
+нужную картинку через приложение Галерея и ему подобных программ. 
+Давайте напишем ещё одну программу для такой задачи.</p>
+
+<p>Создадим разметку:</p>
+
+<pre><code class="java">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Введите электронный адрес" /&gt;
+
+    &lt;EditText
+        android:id="@+id/email_address"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress" /&gt;
+
+    &lt;TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Тема письма:" /&gt;
+
+    &lt;EditText
+        android:id="@+id/email_subject"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailSubject" /&gt;
+
+    &lt;TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Сообщение:" /&gt;
+
+    &lt;EditText
+        android:id="@+id/email_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" /&gt;
+
+    &lt;TextView
+        android:id="@+id/imagepath"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" /&gt;
+
+    &lt;Button
+        android:id="@+id/selectimage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onSelectImageClick"
+        android:text="Выберите картинку" /&gt;
+
+    &lt;Button
+        android:id="@+id/sendemail_intent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onSendEmailClick"
+        android:text="Отправить письмо" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Теперь код. Тут вам должно быть всё знакомо:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.sendemail;
+
+import ...
+
+public class TestActivity extends Activity {
+	EditText edittextEmailAddress;
+	EditText edittextEmailSubject;
+	EditText edittextEmailText;
+	TextView textImagePath;
+
+	final int RQS_LOADIMAGE = 0;
+
+	Uri imageUri = null;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_test);
+
+		edittextEmailAddress = (EditText) findViewById(R.id.email_address);
+		edittextEmailSubject = (EditText) findViewById(R.id.email_subject);
+		edittextEmailText = (EditText) findViewById(R.id.email_text);
+		textImagePath = (TextView) findViewById(R.id.imagepath);
+
+	}
+
+	public void onSelectImageClick(View v) {
+		Intent intent = new Intent(Intent.ACTION_PICK,
+				android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+		startActivityForResult(intent, RQS_LOADIMAGE);
+	}
+
+	public void onSendEmailClick(View v) {
+		String emailAddress = edittextEmailAddress.getText().toString();
+		String emailSubject = edittextEmailSubject.getText().toString();
+		String emailText = edittextEmailText.getText().toString();
+		String emailAddressList[] = { emailAddress };
+
+		Intent intent = new Intent(Intent.ACTION_SEND);
+
+		intent.putExtra(Intent.EXTRA_EMAIL, emailAddressList);
+		intent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
+		intent.putExtra(Intent.EXTRA_TEXT, emailText);
+
+		if (imageUri != null) {
+			intent.putExtra(Intent.EXTRA_STREAM, imageUri);
+			intent.setType("image/png");
+		} else {
+			intent.setType("plain/text");
+		}
+
+		startActivity(Intent.createChooser(intent, "Отправить с помощью:"));
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		if (resultCode == RESULT_OK) {
+			switch (requestCode) {
+			case RQS_LOADIMAGE:
+				imageUri = data.getData();
+				textImagePath.setText(imageUri.toString());
+				break;
+			}
+		}
+	}
+}
+
+</code></pre>
+
+<p>Сначала с помощью первой кнопки мы выбираем картинку из галерии и её 
+адрес выводим в текстовом поле. А затем при нажатии второй кнопки 
+формируется письмо с вложенной картинкой. При этом адрес картинки в 
+письме заменяется на точное имя картинки (смотри скриншоты).</p>
+
+<p><img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/sendpicture7.png" alt="Письмо с картинкой" height="400" width="240"> <img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/sendpicture8.png" alt="Письмо с картинкой" height="400" width="240"></p>
+
+<h2 class="text-warning" id="validatemail">Проверка правильности электронного адреса</h2>
+
+<p>Если в вашем приложении пользователь должен ввести электронный адрес,
+ то неплохо бы проверить его корректность. Воспользуемся регулярным 
+выражением:</p>
+
+<pre><code class="java">
+public boolean validateEmail(String email) {
+	Pattern pattern;
+	Matcher matcher;
+	String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	pattern = Pattern.compile(EMAIL_PATTERN);
+	matcher = pattern.matcher(email);
+	return matcher.matches();
+}
+
+public void onClick(View view) {
+	String checkemail = edit.getText().toString();
+	if (validateEmail(checkemail))
+		Toast.makeText(getApplicationContext(), checkemail + ": true",
+				Toast.LENGTH_LONG).show();
+	else {
+		Toast.makeText(getApplicationContext(),
+				checkemail + ": проверьте адрес", Toast.LENGTH_LONG).show();
+	}
+}
+</code></pre>
+
+<h2 class="text-warning" id="sendbinary">Отправка бинарного контента</h2>
+
+<p>Двоичные данные передаются при помощи намерения ACTION_SEND с параметром <b>EXTRA_STREAM</b>. Мы уже видели пример отправки изображения этим способом. Его можно применять и для обмена любым типом бинарного контента.</p>
+
+<p>Вы можете использовать MIME-тип <b>"*/*"</b>, но это будет 
+соответствовать только тем активностям, которые в состоянии обрабатывать
+ общий поток данных. Принимающему приложению требуется разрешение для 
+доступа к данным, на которые указывает <b>Uri</b>. Вам следует записать данные в общедоступное хранилище данных (SD-карта)  и использовать <b>Uri.fromFile()</b> для создания <b>Uri</b>, который может быть передан в намерение. Учтите, что не все приложения обрабатывают схему file://.</p>
+
+<p>Изображения можно добавить в <b>MediaStore</b> путем использования метода <b>insertImage()</b>, который вернёт <b>content://</b>, подходящий для вашего намерения.</p>
+
+<h2 class="text-warning" id="sendmultiple">ACTION_SEND_MULTIPLE - Отправка нескольких типов контента</h2>
+
+<p>Для совместного использования нескольких типов контента, используйте намерение <b>ACTION_SEND_MULTIPLE</b>
+ вместе со списком URI, указывающих на содержание. MIME-тип меняется в 
+зависимости от сочетания контента который вы отправляете. Например, если
+ вы отправляете три jpg-изображения, то MIME-тип по-прежнему 
+"image/jpeg". Для нескольких типов изображений MIME-тип должен быть 
+"image/*", чтобы соответствовать активности, которая обрабатывает любые 
+типы изображений. Вы должны использовать "*/*" только если вы передаете 
+широкий спектр типов. Всё зависит от принимающего приложения, которое 
+анализирует и обрабатывает данные:</p>
+
+<pre><code class="java">
+ArrayList&lt;Uri&gt; imageUris = new ArrayList&lt;Uri&gt;();
+imageUris.add(imageUri1); // Add your image URIs here
+imageUris.add(imageUri2);
+ 
+Intent shareIntent = new Intent();
+shareIntent.setAction(Intent.ACTION_SEND_MULTIPLE);
+shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, imageUris);
+shareIntent.setType("image/*");
+startActivity(Intent.createChooser(shareIntent, "Share images to.."));
+</code></pre>
+
+<p>Напишем полный пример:</p>
+
+<p>Разметка</p>
+
+<pre><code class="xml">
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical"&gt;
+
+    &lt;TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter email address:"/&gt;
+    &lt;EditText 
+        android:id="@+id/email_address"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"/&gt;
+    &lt;TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter email Subject:"/&gt;
+    &lt;EditText 
+        android:id="@+id/email_subject"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailSubject"/&gt;
+    &lt;TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter Text:"/&gt;
+    &lt;EditText 
+        android:id="@+id/email_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/&gt;
+    
+    &lt;Button
+        android:id="@+id/addphoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add photo"/&gt;
+    &lt;Button
+        android:id="@+id/send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send"/&gt;
+    &lt;ListView
+        android:id="@+id/filelist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Код</p>
+
+<pre><code class="java">
+package com.example.androidselectmultifiles;
+
+import ...
+
+public class MainActivity extends Activity {
+ 
+    EditText edittextEmailAddress;
+    EditText edittextEmailSubject;
+    EditText edittextEmailText;
+    Button btnAddFile, btnSend;
+    ListView listViewFiles;
+    
+    ArrayList<uri> arrayUri = new ArrayList<uri>();
+    ArrayAdapter<uri> myFileListAdapter;
+ 
+    final int RQS_LOADIMAGE = 0;
+    final int RQS_SENDEMAIL = 1;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        edittextEmailAddress = (EditText)findViewById(R.id.email_address);
+        edittextEmailSubject = (EditText)findViewById(R.id.email_subject);
+        edittextEmailText = (EditText)findViewById(R.id.email_text);
+        
+        btnAddFile = (Button)findViewById(R.id.addphoto);
+        btnSend = (Button)findViewById(R.id.send);
+        btnAddFile.setOnClickListener(btnAddFileOnClickListener);
+        btnSend.setOnClickListener(btnSendOnClickListener);
+        
+        myFileListAdapter = new ArrayAdapter<uri>(
+                MainActivity.this,
+                android.R.layout.simple_list_item_1,
+                arrayUri);
+        listViewFiles = (ListView)findViewById(R.id.filelist);
+        listViewFiles.setAdapter(myFileListAdapter);
+    }
+    
+    OnClickListener btnAddFileOnClickListener
+            = new OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(Intent.ACTION_PICK, 
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, RQS_LOADIMAGE);
+    }};
+  
+   OnClickListener btnSendOnClickListener
+            = new OnClickListener(){
+
+        @Override
+        public void onClick(View v) {
+            String emailAddress = edittextEmailAddress.getText().toString();
+            String emailSubject = edittextEmailSubject.getText().toString();
+            String emailText = edittextEmailText.getText().toString();
+            String emailAddressList[] = {emailAddress};
+            
+            Intent intent = new Intent();
+            intent.putExtra(Intent.EXTRA_EMAIL, emailAddressList);  
+            intent.putExtra(Intent.EXTRA_SUBJECT, emailSubject); 
+            intent.putExtra(Intent.EXTRA_TEXT, emailText);
+   
+            if(arrayUri.isEmpty()){
+                //Send email without photo attached
+                intent.setAction(Intent.ACTION_SEND);
+                intent.setType("plain/text"); 
+            }else if(arrayUri.size() == 1){
+                //Send email with ONE photo attached
+                intent.setAction(Intent.ACTION_SEND); 
+                intent.putExtra(Intent.EXTRA_STREAM, arrayUri.get(0));
+                intent.setType("image/*");
+            }else{
+                //Send email with MULTI photo attached
+                intent.setAction(Intent.ACTION_SEND_MULTIPLE);
+                intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, arrayUri);
+                intent.setType("image/*");
+            }
+   
+            startActivity(Intent.createChooser(intent, "Choice App to send email:"));
+   
+        }};
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+  
+        if (resultCode == RESULT_OK){
+            switch(requestCode){
+                case RQS_LOADIMAGE:
+                    Uri imageUri = data.getData();
+                    arrayUri.add(imageUri);
+                    myFileListAdapter.notifyDataSetChanged();
+                    break; 
+                case RQS_SENDEMAIL:
+                    break; 
+            }
+        }
+    }
+}
+</uri></uri></uri></uri></code></pre>
+
+<p><img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/androidselectmultifiles.png" alt="Multi" height="400" width="240"></p>
+
+<p>Схожий пример, когда картинки выбираются из MediaStore.</p>
+
+<pre><code class="xml">
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical"&gt;
+   
+    &lt;TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter email address:"/&gt;
+    &lt;EditText 
+        android:id="@+id/email_address"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"/&gt;
+    &lt;TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter email Subject:"/&gt;
+    &lt;EditText 
+        android:id="@+id/email_subject"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailSubject"/&gt;
+    &lt;TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter Text:"/&gt;
+    &lt;EditText 
+        android:id="@+id/email_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/&gt;
+    
+    &lt;Button
+        android:id="@+id/send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Send"/&gt;
+    &lt;ListView
+        android:id="@+id/filelist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Код:</p>
+
+<pre><code class="java">
+package com.example.androidselectmultifiles;
+
+import java.util.ArrayList;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.widget.CursorAdapter;
+import android.support.v4.widget.SimpleCursorAdapter;
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.util.SparseBooleanArray;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+public class MainActivity extends Activity {
+ 
+    EditText edittextEmailAddress;
+    EditText edittextEmailSubject;
+    EditText edittextEmailText;
+    Button btnSend;
+    ListView listViewFiles;
+    
+    ArrayList&lt;Uri&gt; arrayUri = new ArrayList&lt;Uri&gt;();
+    ArrayAdapter&lt;Uri&gt; myFileListAdapter;
+ 
+    final int RQS_SENDEMAIL = 1;
+    
+    SimpleCursorAdapter listAdapter;
+    
+    final Uri sourceUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+    ListAdapter adapter;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        edittextEmailAddress = (EditText)findViewById(R.id.email_address);
+        edittextEmailSubject = (EditText)findViewById(R.id.email_subject);
+        edittextEmailText = (EditText)findViewById(R.id.email_text);
+        
+        btnSend = (Button)findViewById(R.id.send);
+        btnSend.setOnClickListener(btnSendOnClickListener);
+
+        listViewFiles = (ListView)findViewById(R.id.filelist);
+        String[] from = {MediaStore.MediaColumns.TITLE};
+        int[] to = {android.R.id.text1};
+
+        CursorLoader cursorLoader = new CursorLoader(
+            this, 
+            sourceUri, 
+            null, 
+            null, 
+            null, 
+            MediaStore.Audio.Media.TITLE);
+        
+        Cursor cursor = cursorLoader.loadInBackground();
+        listAdapter = new SimpleCursorAdapter(
+            this, 
+            android.R.layout.simple_list_item_multiple_choice, 
+            cursor, 
+            from, 
+            to, 
+            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        
+        listViewFiles.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        
+        listViewFiles.setAdapter(listAdapter);
+    }
+    
+    private ArrayList<uri> getSelectedFiles(){
+        ArrayList&lt;Uri&gt; arrayU = new ArrayList&lt;Uri&gt;();
+     
+        SparseBooleanArray checkedArray = listViewFiles.getCheckedItemPositions();
+     
+        for(int i = 0; i &lt; checkedArray.size(); i++) {
+            int pos = checkedArray.keyAt(i);
+            Cursor cursor = listAdapter.getCursor();
+            cursor.moveToPosition(pos);
+            String _id = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media._ID));
+            Uri selUri = Uri.withAppendedPath(sourceUri, _id);
+            arrayU.add(selUri);
+        }
+     
+        return arrayU;
+    }
+  
+    OnClickListener btnSendOnClickListener
+            = new OnClickListener(){
+
+    @Override
+    public void onClick(View v) {
+        arrayUri = getSelectedFiles();
+        
+        String emailAddress = edittextEmailAddress.getText().toString();
+        String emailSubject = edittextEmailSubject.getText().toString();
+        String emailText = edittextEmailText.getText().toString();
+        String emailAddressList[] = {emailAddress};
+        
+        Intent intent = new Intent();
+        intent.putExtra(Intent.EXTRA_EMAIL, emailAddressList);  
+        intent.putExtra(Intent.EXTRA_SUBJECT, emailSubject); 
+        intent.putExtra(Intent.EXTRA_TEXT, emailText);
+   
+        if(arrayUri.isEmpty()){
+            //Send email without photo attached
+            intent.setAction(Intent.ACTION_SEND);
+            intent.setType("plain/text"); 
+        }else if(arrayUri.size() == 1){
+            //Send email with ONE photo attached
+            intent.setAction(Intent.ACTION_SEND); 
+            intent.putExtra(Intent.EXTRA_STREAM, arrayUri.get(0));
+            intent.setType("image/*");
+        }else{
+            //Send email with MULTI photo attached
+            intent.setAction(Intent.ACTION_SEND_MULTIPLE);
+            intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, arrayUri);
+            intent.setType("image/*");
+        }
+   
+        startActivity(Intent.createChooser(intent, "Choice App to send email:"));
+    }};
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+  
+        if (resultCode == RESULT_OK){
+            switch(requestCode){
+                case RQS_SENDEMAIL:
+                    break; 
+            }
+        }
+    }
+}
+</uri></code></pre>
+
+<p><img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/androidselectmultifiles_02.png" alt="Multi" height="400" width="240"></p>
+
+
+<h2 class="text-warning" id="fromother">Получение данных от других приложений</h2>
+
+<p>Если вы хотите, чтоб ваше приложение тоже попадало в список программ,
+ способных обрабатывать письма или изображения, то необходимо прописать 
+соответствующие настройки в манифесте. Подробнее в статье <a href="http://developer.alexanderklimov.ru/android/contentreceiver.php">Android: Получение данных от других приложений</a>.</p>
+
+
+<p>По мотивам статей: <a href="http://mobile.tutsplus.com/tutorials/android/android-sdk-sending-pictures-the-easy-way/">Android SDK Quick Tip: Sending Pictures the Easy Way</a><br>
+<a href="http://mobile.tutsplus.com/tutorials/android/android-email-intent/">Quick Tip: Enabling Users to Send Email From Your Android Applications – The Easy Way</a><br>
+<a href="http://stackoverflow.com/a/14109610/1020887">how to direct open Gmail mail composer in android? - Stack Overflow</a><br>
+<a href="http://android-er.blogspot.ru/2012/08/send-email-with-image-by-starting.html">Android-er: Send email with Image by starting activity using Intent of ACTION_SEND</a><br>
+<a href="http://android-er.blogspot.ru/2012/10/start-activity-to-send-multi-images.html">Android-er: Start activity to send email with multi images attached, with action of ACTION_SEND_MULTIPLE.</a><br>
+<a href="http://android-er.blogspot.ru/2012/10/start-activity-to-send-email-with.html">Android-er: Start activity to send email with multiple images attached, with build-in MediaStore.Images.Media selector.</a>
+</p>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/counter.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/fastbutton.htm" name="I0_1378295398708" id="I0_1378295398708" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/postmessageRelay.htm" id="oauth2relay558141429" name="oauth2relay558141429"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/jquery.js"></script>
+    <script src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap-button.js"></script>
+    <script src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20Intent.ACTION_SEND%20-%20%D0%9F%D1%80%D0%B8%D1%88%D0%BB%D0%B8%20%D1%84%D0%BE%D1%82%D0%BA%D1%83,%20%D0%BF%D0%B8%D1%81%D1%8C%D0%BC%D0%BE,%20%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5_files/bootstrap-typeahead.js"></script>
+
+</body></html>

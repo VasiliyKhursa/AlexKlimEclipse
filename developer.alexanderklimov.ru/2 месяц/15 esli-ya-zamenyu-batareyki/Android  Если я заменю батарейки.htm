@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Если я заменю батарейки</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="http://developer.alexanderklimov.ru/android/secret/enter.php" id="drop3" role="button">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<p><a href="http://developer.alexanderklimov.ru/android/secret/secret.php?do=logout">Выйти из закрытой зоны</a></p>
+<h1 class="text-warning">Если я заменю батарейки</h1>
+
+<p><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/batterycat.jpg" alt="Кот на батарее"></p>
+
+<div class="alert" alert-warning"="">Речь пойдёт о других батареях!</div>
+
+<p>
+<a href="#emulatorsetting">Настройка уровня заряда батареи в эмуляторе</a><br>
+<a href="#getlevel">Получаем показания батареи в реальном времени</a><br>
+<a href="#low">Отслеживание низкого уровня заряда батареи</a><br>
+<a href="#charge">Отслеживание подсоединения к электросети</a><br>
+<a href="#intent">Вызываем приложение Батарея</a><br>
+<a href="#appwidget">Виджет на домашний экран</a><br>
+</p>
+
+
+
+<p>Одним из главных отличий в программировании для настольных и 
+мобильных систем является необходимость учитывать заряд батареи в 
+телефоне. Некоторые приложения очень прожорливы и потребляют слишком 
+много ресурсов. Нужно бережно относиться к расходу батареи, чтобы не 
+огорчать пользователя.</p>
+
+
+<h2 class="text-warning" id="emulatorsetting">Настройка уровня заряда батареи в эмуляторе</h2>
+
+<p>По умолчанию, в эмуляторе показывается 50% заряда батареи. Но вы 
+можете изменить эти показания для тестирования своих приложений, которые
+ должны реагировать на уровень заряда.</p>
+
+<p>Сначала запустите эмулятор. В заголовке эмулятора вы увидите 
+четырёхзначное число, которое обозначает порт сетевого адреса. Зная этот
+ порт, можно подключиться к эмулятору через <a href="http://winchanger.narod.ru/winprograms/telnet.htm">telnet</a>.</p>
+
+<div class="alert">
+В Windows 7 по умолчанию telnet отключен. Необходимо сначала его включить в настройках.
+</div>
+
+<p>Запускаем командную строку <b>cmd.exe</b> и вводим команду:</p>
+
+<pre>telnet localhost 5554
+</pre>
+
+<p><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/batteryemulator1.png" alt="Настройка уровня заряда батареи в эмуляторе"></p>
+
+<p>В случае успешного соединения вы получите сообщение OK и можете 
+вводить команды для эмулятора. Например, чтобы получить справку по 
+командам, которые относятся к батарее, нужно ввести команду:</p>
+
+<pre>help power
+</pre>
+
+<p><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/batteryemulator2.png" alt="Справка по батарее в эмуляторе"></p>
+
+<p>Нас интересует команда для изменения заряда <b>power capacity</b>. Вы
+ можете установить необходимый уровень заряда в батарее, причем 
+изменения сразу вступают в силу, что сразу видно на значке батареи в 
+эмуляторе</p>
+
+<pre>power capacity 100
+</pre>
+
+<p><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/batteryemulator3.png" alt="Установка уровня заряда батареи"></p>
+
+<pre>power capacity 20
+</pre>
+
+<p><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/batteryemulator4.png" alt="Установка уровня заряда батареи"></p>
+
+<h2 class="text-warning" id="getlevel">Получаем показания батареи в реальном времени</h2>
+
+<p>Теперь, когда мы научились устанавливать уровень заряда, можем 
+написать программу, которая в реальном времени будет отслеживать 
+показания заряда и другие параметры, которые можно вывести в текстовой 
+метке.</p>
+
+<p>В Android есть специальный механизм для опрашивания различных событий - <a href="http://developer.alexanderklimov.ru/android/broadcast.php">Broadcast</a>. C его помощью мы будем всегда в курсе о текущем состоянии батареи. Создадим новый стандартный проект.</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:id="@+id/level"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Уровень зарядки" /&gt;
+
+    &lt;TextView
+        android:id="@+id/voltage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Battery Voltage:" /&gt;
+
+    &lt;TextView
+        android:id="@+id/temperature"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Температура батареи:" /&gt;
+
+    &lt;TextView
+        android:id="@+id/techology"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Тип батареи:" /&gt;
+
+    &lt;TextView
+        android:id="@+id/status"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Статус:" /&gt;
+
+    &lt;TextView
+        android:id="@+id/health"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Состояние:" /&gt;
+
+    &lt;TextView
+        android:id="@+id/current"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Текущий уровень заряда:" /&gt;
+		
+	&lt;TextView
+        android:id="@+id/charge"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Тип зарядки:" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+
+<p>И напишем код:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.battery;
+
+import android.os.BatteryManager;
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+
+	private TextView batteryLevel, batteryVoltage, batteryTemperature,
+			batteryTechnology, batteryStatus, batteryHealth, batteryCurrent,
+			batteryCharge;
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		batteryLevel = (TextView) findViewById(R.id.level);
+		batteryVoltage = (TextView) findViewById(R.id.voltage);
+		batteryTemperature = (TextView) findViewById(R.id.temperature);
+		batteryTechnology = (TextView) findViewById(R.id.techology);
+		batteryStatus = (TextView) findViewById(R.id.status);
+		batteryHealth = (TextView) findViewById(R.id.health);
+		batteryCurrent = (TextView)findViewById(R.id.current);
+		batteryCharge = (TextView) findViewById(R.id.charge);
+
+		this.registerReceiver(this.myBatteryReceiver, new IntentFilter(
+				Intent.ACTION_BATTERY_CHANGED));
+	}
+
+	private BroadcastReceiver myBatteryReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// TODO Auto-generated method stub
+			if (intent.getAction().equals(Intent.ACTION_BATTERY_CHANGED)) {
+				batteryLevel.setText("Уровень заряда: "
+						+ String.valueOf(intent.getIntExtra("level", 0)) + "%");
+				batteryVoltage.setText("Вольтаж: "
+						+ String.valueOf((float) intent.getIntExtra("voltage",
+								0) / 1000) + "V");
+				batteryTemperature.setText("Температура батареи: "
+						+ String.valueOf((float) intent.getIntExtra(
+								"temperature", 0) / 10) + "°C");
+				batteryTechnology.setText("Тип батареи: "
+						+ intent.getStringExtra("technology"));
+				
+				// альтернативный способ вычисления текущего уровня зарядки
+				int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+				int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+
+				float batteryPct = level / (float)scale;
+				batteryCurrent.setText("Уровень зарядки: " + batteryPct);
+
+				int status = intent.getIntExtra("status",
+						BatteryManager.BATTERY_STATUS_UNKNOWN);
+				String strStatus;
+				if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
+					strStatus = "Заряжается";
+				} else if (status == BatteryManager.BATTERY_STATUS_DISCHARGING) {
+					strStatus = "Разряжается";
+				} else if (status == BatteryManager.BATTERY_STATUS_NOT_CHARGING) {
+					strStatus = "Не заряжается";
+				} else if (status == BatteryManager.BATTERY_STATUS_FULL) {
+					strStatus = "Полный заряд";
+				} else {
+					strStatus = "Ничего не понимаю";
+				}
+				batteryStatus.setText("Статус: " + strStatus);
+
+				int health = intent.getIntExtra("health",
+						BatteryManager.BATTERY_HEALTH_UNKNOWN);
+				String strHealth;
+				if (health == BatteryManager.BATTERY_HEALTH_GOOD) {
+					strHealth = "Хорошее";
+				} else if (health == BatteryManager.BATTERY_HEALTH_OVERHEAT) {
+					strHealth = "Перегретое";
+				} else if (health == BatteryManager.BATTERY_HEALTH_DEAD) {
+					strHealth = "Убитое";
+				} else if (health == BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE) {
+					strHealth = "Over Voltage";
+				} else if (health == BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE) {
+					strHealth = "Unspecified Failure";
+				} else {
+					strHealth = "Неизвестно";
+				}
+				batteryHealth.setText("Состояние батареи: " + strHealth);
+				
+				// Каким образом проходит зарядка?
+				int chargePlug = intent.getIntExtra(
+						BatteryManager.EXTRA_PLUGGED,
+						BatteryManager.BATTERY_STATUS_UNKNOWN);
+				String charge = "";
+				if (chargePlug == BatteryManager.BATTERY_PLUGGED_USB) {
+					charge = "Заряжается от USB";
+				} else if (chargePlug == BatteryManager.BATTERY_PLUGGED_AC) {
+					charge = "Заряжается от сети";
+				} else if (chargePlug == BatteryManager.BATTERY_PLUGGED_WIRELESS) {
+					charge = "Беспроводная зарядка";
+				} else {
+					charge = "Неизвестно";
+				}
+				batteryCharge.setText("Тип зарядки: " + charge);
+			}
+		}
+	};
+}
+</code></pre>
+
+<p>Запустите проект и посмотрите на результаты</p>
+
+<p><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/batteryemulator6.png" alt="Получение показаний батареи" height="213" width="300"></p>
+
+<p>Обратите внимание на первую и последнюю строчку на экране приложения.
+ В первой строке выводится текущий заряд в процентах, в последней - в 
+виде дробной части. Последний вариант я показал на всякий случай, хотя 
+смысла в нём не вижу. Также обратите внимание, что желательно 
+использовать готовые константы. Например, строке <b>level</b> соответствует константа <b>BatteryManager.EXTRA_LEVEL</b>. Поправьте код самостоятельно.</p>
+
+<p>Изменяйте через <i>telnet</i> значения заряда батареи, и вы увидите, что в текстовой метке также будет изменяться значение заряда.</p>
+
+<p><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/batteryemulator5.png" alt="Получение уровня заряда батареи" height="190" width="350"></p>
+
+<p>Если устройство подключено к сети переменного тока, то фоновые 
+обновления можно выполнять с максимальной частотой. Если устройство 
+заряжается через USB, частоту можно несколько сократить, а если 
+устройство не подключено к сети – сократить еще больше.</p>
+
+<h2 class="text-warning" id="low">Отслеживание низкого уровня заряда батареи</h2>
+
+<p>Постоянно отслеживать показания батареи не самая лучшая идея, 
+поскольку происходит дополнительная нагрузка на батарею. Рекомендуется 
+отслеживать только существенные изменения уровня заряда, в частности, 
+переход устройства в состояние низкого заряда и обратно.</p>
+
+<p>Перепишем предыдущий пример. Создадим новый класс, наследующий от <b>BroadcastReceiver</b>:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.battery;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.widget.Toast;
+
+public class BatteryLevelReceiver extends BroadcastReceiver {
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		// TODO Auto-generated method stub
+		boolean batteryLow = intent.getAction().equals(
+				Intent.ACTION_BATTERY_LOW);
+
+		if (batteryLow)
+			Toast.makeText(
+					context,
+					"Слишком низкий заряд. Устройство тоже нужно кормить, как и кота",
+					Toast.LENGTH_LONG).show();
+	}
+
+}
+</code></pre>
+
+<p>Далее в манифесте зарегистрируем нужные сообщения, которые требуется отслеживать (в разделе application):</p>
+
+<pre><code class="xml">
+&lt;receiver android:name=".BatteryLevelReceiver" &gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="android.intent.action.ACTION_BATTERY_LOW" /&gt;
+        &lt;action android:name="android.intent.action.ACTION_BATTERY_OKAY" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;
+</code></pre>
+
+<p>Для примера я использую только момент, когда заряд становится слишком низким (<b>ACTION_BATTERY_LOW</b>),
+ в этом случае нужно прекратить или уменьшить какие-то сложные операции в
+ приложении. В нашей программе просто выводится всплывающее сообщение <b>Слишком низкий заряд. Устройство тоже нужно кормить, как и кота</b>.</p>
+
+<p>Перейдём в класс активности, удалим код класса <b>myBatteryReceiver</b> и напишем новый код:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.battery;
+
+import ...
+
+public class MainActivity extends Activity {
+
+	private TextView batteryLevel, batteryVoltage, batteryTemperature,
+			batteryTechnology, batteryStatus, batteryHealth, batteryCurrent;
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		BroadcastReceiver batteryLevelReceiver = new BatteryLevelReceiver();
+		IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_LOW);
+		this.registerReceiver(batteryLevelReceiver, filter);
+	}
+}
+</code></pre>
+
+<p>Чтобы увидеть сообщение на эмуляторе, мне пришлось в <b>telnet</b> сначала отключить питание от сети командой:</p>
+
+<pre>power ac off</pre>
+
+<p>А затем установить уровень заряда на 10 процентов (или ниже):</p>
+
+<pre>power capacity 10</pre>
+
+<p>Только учтите, что сама система тоже отслеживает заряд батареи таким 
+же образом. Поэтому на эмуляторе системное диалоговое окно частично 
+перекрыло моё всплывающее сообщение (но конец фразы увидеть можно).</p>
+
+<p><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/battery1.png" alt="Низкий заряд батареи" height="400" width="240"></p>
+
+<p>По аналогии можете отслеживать момент, когда заряд батареи станет 
+нормальным, чтобы снова включить какие-то ресурсоёмкие операции.</p>
+
+<h2 class="text-warning" id="charge">Отслеживание подсоединения к электросети</h2>
+
+<p>Аналогично можно отслеживать момент подключения/отключения питания от
+ электросети. Напишем новый класс или добавим в предыдущий пример:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.battery;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.widget.Toast;
+
+public class PowerConnectionReceiver extends BroadcastReceiver {
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		// TODO Auto-generated method stub
+
+		if (intent.getAction().equals(Intent.ACTION_POWER_CONNECTED)) {
+			Toast.makeText(context, "Устройство заряжается", Toast.LENGTH_LONG)
+					.show();
+		} else if (intent.getAction().equals(Intent.ACTION_POWER_DISCONNECTED)) {
+			Toast.makeText(context, "Устройство не заряжается", Toast.LENGTH_LONG)
+			.show();
+		}
+	}
+}
+</code></pre>
+
+<p>В манифест добавим нужные фильтры:</p>
+
+<pre><code class="xml">
+&lt;receiver android:name=".PowerConnectionReceiver" &gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="android.intent.action.ACTION_POWER_CONNECTED" /&gt;
+        &lt;action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/receiver&gt;
+</code></pre>
+
+<h2 class="text-warning" id="intent">Вызываем приложение Батарея</h2>
+
+<p>Код для вызова стандартного приложения Батарея:</p>
+
+<pre><code class="java">
+// Глобальные переменные
+Intent intentBatteryUsage;
+Button butGetBattery;
+
+// загружаем кнопку в методе onCreate
+butGetBattery = (Button)findViewById(R.id.button1);
+
+// в этом же методе
+intentBatteryUsage = new Intent(Intent.ACTION_POWER_USAGE_SUMMARY);
+
+ResolveInfo resolveInfo = getPackageManager().resolveActivity(
+		intentBatteryUsage, 0);
+
+// проверяем, можно ли запустить приложение Батарея
+if (resolveInfo == null) {
+	Toast.makeText(BatteryDemoActivity.this,
+			"Не поддерживается!", Toast.LENGTH_LONG).show();
+	butGetBattery.setEnabled(false); // делаем кнопку недоступной
+} else {
+	butGetBattery.setEnabled(true);
+}
+
+// нажатие на кнопку вызывает приложение Батарея
+public void OnButtonClick(View v) {
+	// вызываем приложение Батарея
+	startActivity(intentBatteryUsage);
+}
+</code></pre>
+
+<h2 class="text-warning" id="appwidget">Виджет на домашний экран</h2>
+
+<p>Создадим простую разметку для виджета, состоящую из компонента TextView.</p>
+
+<h3 class="text-success">res/layout/batterywidget_layout.xml</h3>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:id="@+id/level"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textColor="#FFFFFF" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Далее создадим файл для провайдера:</p>
+
+<h3 class="text-success">res/xml/batteryproviderinfo.xml</h3>
+
+<pre><code class="xml">
+&lt;appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialLayout="@layout/batterywidget_layout"
+    android:minHeight="72dp"
+    android:minWidth="146dp" &gt;
+
+&lt;/appwidget-provider&gt;
+</code></pre>
+
+<p>Напишем класс, наследующий от AppWidgetProvider:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.batterywidget;
+
+import android.appwidget.AppWidgetManager;
+import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.widget.RemoteViews;
+
+public class BatteryWidgetProvider extends AppWidgetProvider {
+	@Override
+	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
+			int[] appWidgetIds) {
+		// TODO Auto-generated method stub
+		updateWidget(context);
+		context.startService(new Intent(context, MyBatteryReceiver.class));
+	}
+
+	public void updateWidget(Context context) {
+		RemoteViews updateViews = new RemoteViews(context.getPackageName(),
+				R.layout.batterywidget_layout);
+		updateViews.setTextViewText(R.id.level, "waiting!");
+
+		ComponentName myComponentName = new ComponentName(context,
+				BatteryWidgetProvider.class);
+		AppWidgetManager manager = AppWidgetManager.getInstance(context);
+		manager.updateAppWidget(myComponentName, updateViews);
+	}
+}
+</code></pre>
+
+<p>В созданном классе мы запускаем службу <b>MyBatteryReceiver</b>. Напишем новый класс для службы:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.batterywidget;
+
+import android.app.Service;
+import android.appwidget.AppWidgetManager;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
+import android.os.IBinder;
+import android.widget.RemoteViews;
+
+public class MyBatteryReceiver extends Service {
+
+	private int batterylevel = 0;
+	private String batteryStatus = "";
+
+	private BroadcastReceiver myReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (action.equals(Intent.ACTION_BATTERY_CHANGED)) {
+				batterylevel = intent.getIntExtra("level", 0);
+
+				int status = intent.getIntExtra("status",
+						BatteryManager.BATTERY_STATUS_UNKNOWN);
+				
+				if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
+					batteryStatus = "Charging";
+				} else if (status == BatteryManager.BATTERY_STATUS_DISCHARGING) {
+					batteryStatus = "Discharging";
+				} else if (status == BatteryManager.BATTERY_STATUS_NOT_CHARGING) {
+					batteryStatus = "Not charging";
+				} else if (status == BatteryManager.BATTERY_STATUS_FULL) {
+					batteryStatus = "Full";
+				} else {
+					batteryStatus = "";
+				}
+
+				updateAppWidget(context);
+			}
+		}
+
+		public void updateAppWidget(Context context) {
+			RemoteViews updateViews = new RemoteViews(context.getPackageName(),
+					R.layout.batterywidget_layout);
+			updateViews.setTextViewText(R.id.level, "Bat. Status:
+"
+					+ "Level: " + batterylevel + "%
+" + "Status: "
+					+ batteryStatus);
+
+			ComponentName myComponentName = new ComponentName(context,
+					BatteryWidgetProvider.class);
+			AppWidgetManager manager = AppWidgetManager.getInstance(context);
+			manager.updateAppWidget(myComponentName, updateViews);
+		}
+	};
+
+	@Override
+	public IBinder onBind(Intent arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void onCreate() {
+		// TODO Auto-generated method stub
+		super.onCreate();
+
+		IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+		registerReceiver(myReceiver, intentFilter);
+	}
+
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		unregisterReceiver(myReceiver);
+	}
+}
+</code></pre>
+
+<p>В методе <b>onCreate()</b> регистрируем широковещательное сообщение с намерением <b>Intent.ACTION_BATTERY_CHANGED</b>. И обновляем виджет в методе <b>myReceiver.onReceive()</b>.</p>
+
+<p>Пропишем службу и приёмник широковещательных сообщений в манифесте для секции <b>application</b>:</p>
+
+<pre><code class="xml">
+&lt;receiver android:name=".BatteryWidgetProvider" &gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="android.appwidget.action.APPWIDGET_UPDATE" /&gt;
+    &lt;/intent-filter&gt;
+
+    &lt;meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/batteryproviderinfo" /&gt;
+&lt;/receiver&gt;
+
+&lt;service
+    android:name=".MyBatteryReceiver"
+    android:label="MyBatteryReceiver" &gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="android.intent.action.BATTERY_CHANGED" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/service&gt;
+</code></pre>
+
+<p>Готово. Можете установить виджет на домашний экран.</p>
+
+
+
+<p><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/battery2.png" alt="Виджет" height="400" width="225"></p>
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/fastbutton.htm" name="I0_1378022383104" id="I0_1378022383104" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/postmessageRelay.htm" id="oauth2relay598121153" name="oauth2relay598121153"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/jquery.js"></script>
+    <script src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%95%D1%81%D0%BB%D0%B8%20%D1%8F%20%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8E%20%D0%B1%D0%B0%D1%82%D0%B0%D1%80%D0%B5%D0%B9%D0%BA%D0%B8_files/bootstrap-typeahead.js"></script>
+
+</body></html>

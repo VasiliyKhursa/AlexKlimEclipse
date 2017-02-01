@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Шар судьбы (Magic 8 ball)</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">   
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+          <ul class="nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->	
+<div class="clearfix"></div>
+	
+<noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+            
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Читайте на здоровье!</h3>
+            </div>
+            <div class="modal-body">
+            
+              <p>Статья проплачена кошками - всемирно известными производителями котят.</p>
+
+            <p>Если статья вам понравилась, то можете <a href="http://developer.alexanderklimov.ru/donate.php">поддержать проект</a>.</p>
+			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>            
+<h1 class="text-warning">Шар судьбы (Magic 8 ball)</h1>
+
+<p><img src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/5d3e826ce3a674cd87776cf4da84b7f9.png" alt="Magig 8 ball"></p>
+
+<p>Мы напишем программу <b>Шар судьбы</b> (Magic 8-Ball), которому можно
+ будет задать вопрос, потрясти и получить ответ. Небольшая вибрация 
+оповестит нас о том, что тряски достаточно.</p>
+
+<p>Написана по мотивам статьи <a href="http://habrahabr.ru/blogs/i_am_advertising/102381/">Шарик, отвечающий на вопросы</a>.</p>
+
+<p>Полная версия исходного кода лежит на <a href="http://code.google.com/p/magic-8-ball/">google code</a>. Там же можно скачать готовую программу на <a href="https://play.google.com/store/apps/details?id=ru.alexanderklimov.magic8ball">Google Play</a></p>
+
+<h2 class="text-warning">Локализация</h2>
+
+<p>Создадим несколько наборов ресурсов, первый — по умолчанию 
+res/values/strings.xml, а также создадим папку res/values-ru для русской
+ локализации, в которой также будет находиться файл strings.xml, 
+содержащий название приложения, заголовки и ответы магического шара, 
+которые хранятся в массиве responses.</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="app_name"&gt;Magic 8-Ball&lt;/string&gt;
+    &lt;string name="shake_me_caption"&gt;Потряси\nменя&lt;/string&gt;
+    &lt;string name="press_menu_shake_caption"&gt;Нажмите\nМеню -\nТрясти&lt;/string&gt;
+    &lt;string name="menu_shake_caption"&gt;Трясти&lt;/string&gt;
+    &lt;string name="menu_preferences_caption"&gt;Настройки&lt;/string&gt;
+    &lt;string name="preferences_section_title"&gt;Настройки Magic 8-ball&lt;/string&gt;
+    ...
+    
+    &lt;string-array name="responses"&gt;
+        &lt;item&gt;Я вижу это\nкак Да&lt;/item&gt;
+        &lt;item&gt;Это\nфакт&lt;/item&gt;
+        &lt;item&gt;Это\nбесспорно\nтак&lt;/item&gt;
+        &lt;item&gt;Наиболее\nвероятно&lt;/item&gt;
+        &lt;item&gt;Перспектива\nхорошая&lt;/item&gt;
+        &lt;item&gt;Знаки\nговорят\nда&lt;/item&gt;
+        &lt;item&gt;Без\nсомнения&lt;/item&gt;
+        ...
+    &lt;/string-array&gt;
+&lt;/resources&gt;
+</code></pre>
+
+<h2 class="text-warning">Разметка, анимация и вибрация</h2>
+
+<p>Для фона возьмем картинку с изображением космоса. На нем лежит 
+элемент ImageView с изображением шара, а сообщения будут выводиться с 
+помощью TextView (файл main.xml):</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg" &gt;
+
+    &lt;ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="10px"
+        android:src="@drawable/eight_ball" /&gt;
+
+    &lt;LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical" &gt;
+
+        &lt;TextView
+            android:id="@+id/MessageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="14dip"
+            android:background="@drawable/triangle"
+            android:focusable="false"
+            android:gravity="center_vertical|center"
+            android:text="@string/shake_me_caption" &gt;
+        &lt;/TextView&gt;
+    &lt;/LinearLayout&gt;
+
+&lt;/FrameLayout&gt;
+</code></pre>
+
+<h2 class="text-warning">Меню</h2>
+
+<p>Реализуем возможность получить ответ с помощью меню. Создадим файл 
+menu.xml в папке res/menu/, который содержит пункты Shake и Preference:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;menu xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+
+    &lt;item
+        android:id="@+id/shake"
+        android:icon="@android:drawable/ic_menu_always_landscape_portrait"
+        android:title="@string/menu_shake_caption"/&gt;
+
+    &lt;item
+        android:id="@+id/preferences"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/menu_preferences_caption"/&gt;
+
+&lt;/menu&gt;
+</code></pre> 
+
+<h2 class="text-warning">Код</h2>
+
+<p>Для появляющегося ответа будем использовать класс AlphaAnimation, 
+который как нельзя кстати подходит для нашей задачи, позволяя объектам 
+появляться и исчезать, используя alpha-уровень объекта.</p>
+
+<pre><code class="java">
+private void showMessage(String message) 
+{
+    TextView triangle = (TextView) findViewById(R.id.MessageTextView);
+    triangle.setVisibility(TextView.INVISIBLE);
+    triangle.setText(message);
+
+    AlphaAnimation animation = new AlphaAnimation(0, 1);
+    animation.setStartOffset(Defaults.START_OFFSET);
+    triangle.setVisibility(TextView.VISIBLE);
+    animation.setDuration(Defaults.FADE_DURATION);
+    triangle.startAnimation(animation);
+
+    vibrator.vibrate(Integer.parseInt(preferences.getString(
+            getString(R.string.vibrate_time_id), Defaults.VIBRATE_TIME)));
+}
+</code></pre>
+
+<p>Перед тем как дать ответ Magic 8-Ball завибрирует на время 
+VIBRATE_TIME, взятое из настроек (о них ниже). По умолчанию это значение
+ равно 250мс. Вибрацию с маленькой длительностью (50мс) можно 
+использовать в приложениях как ответную реакцию на действия 
+пользователя. Для корректной работы с классом Vibrator нужно не забыть 
+объявить uses-permission в файле AndroidManifest.xml:</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.VIBRATE" /&gt;
+</code></pre> 
+
+<h3 class="text-warning">Методы для меню</h3>
+
+<p>Класс MenuInflater используется для создания объектов Меню из 
+xml-файла. В метод onOptionsItemSelected мы попадаем в момент выбора 
+элемента меню. При нажатии на кнопку Shake, мы получим ответ. Кнопка 
+Preferences предназначена для настроек.</p>
+
+<pre><code class="java">
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+}
+
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.shake:
+                showMessage(getAnswer());
+                return true;
+        case R.id.preferences:
+                startActivity(new Intent(this, Preferences.class));
+                return true;
+        }
+        return false;
+}
+</code></pre>
+
+<h3 class="text-warning">Работа с сенсором</h3>
+
+<p>Для взаимодействий с сенсором нам нужно имплементировать интерфейс SensorEventListener. У него объявлены два метода:</p>
+<ul>
+<li>onAccuracyChanged - вызывается когда изменилась точность датчика, он нам не нужен</li>
+<li>onSensorChanged - вызывается при изменениях значений датчика, этот нам нужен</li>
+</ul>
+
+<p>Еще один немаловажный момент — чтобы работать с сенсором нам нужно его найти и зарегистрироваться у SensorManager.</p>
+
+<pre><code class="java">
+sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+</code></pre>
+
+<p>Заметим, что мы получаем сенсор с атрибутом 
+Sensor.TYPE_ACCELEROMETER, это означает, что данные приходящие в метод 
+onSensorChanged будут в единицах ускорения (м/с^2). Значениям по трем 
+осям X, Y и Z будут соответствовать значения event.values[0], 
+event.values[1], event.values[2] класса SensorEvent.</p>
+
+<pre><code class="java">
+public void onSensorChanged(SensorEvent event) 
+{
+	if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
+		if (isShakeEnough(event.values[0], event.values[1], event.values[2]))
+			showMessage(getAnswer());
+}
+
+private boolean isShakeEnough(float x, float y, float z) 
+{
+	double force = 0.0d;
+	force += Math.pow((x - lastX) / SensorManager.GRAVITY_EARTH, 2.0);
+	force += Math.pow((y - lastY) / SensorManager.GRAVITY_EARTH, 2.0);
+	force += Math.pow((z - lastZ) / SensorManager.GRAVITY_EARTH, 2.0);
+	force = Math.sqrt(force);
+
+	lastX = x;
+	lastY = y;
+	lastZ = z;
+
+	if (force &gt; Float.parseFloat(preferences.getString(
+			getString(R.string.threshold_id), Defaults.THRESHOLD))) {
+		shakeCount++;
+		if (shakeCount &gt; Integer.parseInt(preferences.getString(
+				getString(R.string.shake_count_id), Defaults.SHAKE_COUNT))) {
+			shakeCount = 0;
+			lastX = 0;
+			lastY = 0;
+			lastZ = 0;
+			return true;
+		}
+	}
+	return false;
+}
+</code></pre>
+
+<p>Временем жизни нашей активности управляет Android, и нам не нужно 
+чтобы наше приложение вибрировало от случайных трясок в кармане, поэтому
+ мы перестаем работать с сенсором, как только приложение становится 
+неактивно. Также, если сенсор не найден, то мы не предлагаем трясти 
+устройство.</p>
+
+<pre><code class="java">
+@Override
+public void onResume() 
+{
+    super.onResume();
+    registerSensorListener();
+    if (isSensorRegistered())
+        showMessage(getString(R.string.shake_me_caption));
+    else
+        showMessage(getString(R.string.menu_shake_caption));
+}
+
+@Override
+public void onPause() 
+{
+    unregisterSensorListener();
+    super.onPause();
+}
+</code></pre>
+
+<h3 class="text-warning">Настройки</h3>
+
+<p>Тестирование на различных телефонах показало необходимость задавать 
+порог силы встряхивания — threshold. Между HTC Wildfire, Motorola 
+Milestone и, например, Highscreen Zeus, это значение отличалось раза в 
+три. Это ставит перед нами задачи:</p>
+<ul>
+<li>Нужно окно настроек, где пользователь может вручную задать значение порога и другие параметры</li>
+<li>Эти значения настроек надо где-то хранить и откуда-то читать.</li>
+</ul>
+
+<p>Воспользуемся для этих целей готовыми классами PreferenceActivity 
+(для отображения настроек) и SharedPreferences (для хранения настроек).</p>
+
+<p>PreferenceActivity — класс, который визуально отображает нам иерархию
+ объектов preference. Он загружает контент из xml-файла методом 
+addPreferencesFromResource. Он автоматически взаимодействует с объектом 
+класса SharedPreferences и сохраняет настройки по указанному ключу. 
+Создадим xml-файл наших настроек и надуем (inflate) наш 
+PreferenceActivity.</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+
+    &lt;PreferenceCategory android:title="@string/preferences_section_title" &gt;
+
+        &lt;EditTextPreference
+            android:defaultValue="4"
+            android:dialogTitle="@string/shake_count_dialogTitle"
+            android:inputType="number"
+            android:key="@string/shake_count_id"
+            android:maxLength="1"
+            android:numeric="integer"
+            android:summary="@string/shake_count_summary"
+            android:title="@string/shake_count_title" /&gt;
+
+        &lt;EditTextPreference
+            android:defaultValue="2.75f"
+            android:dialogTitle="@string/threshold_dialogTitle"
+            android:inputType="numberDecimal"
+            android:key="@string/threshold_id"
+            android:maxLength="4"
+            android:numeric="decimal"
+            android:summary="@string/threshold_summary"
+            android:title="@string/threshold_title" /&gt;
+
+        &lt;EditTextPreference
+            android:defaultValue="250"
+            android:dialogTitle="@string/vibrate_time_dialogTitle"
+            android:inputType="number"
+            android:key="@string/vibrate_time_id"
+            android:maxLength="3"
+            android:numeric="integer"
+            android:summary="@string/vibrate_time_summary"
+            android:title="@string/vibrate_time_title" /&gt;
+    &lt;/PreferenceCategory&gt;
+
+&lt;/PreferenceScreen&gt;
+</code></pre>
+
+<p>В нашем файле все вложенные элементы — EditTextPreference. Этот класс
+ удобен для показа пользователю диалогового окна  с текстовыми полями, в
+ которые можно ввести значения.</p>
+
+<p>Создаем новую активность с настройками (см. Preferences.java) и не забываем указать ее в файле AndroidManifest.xml:</p>
+
+<pre><code class="xml">
+&lt;activity android:name=".activities.Preferences"
+      android:label="@string/app_name"&gt;
+&lt;/activity&gt;
+</code></pre>
+
+<p>Теперь, пользователь может менять значения некоторых настроек, а нам 
+осталось начать их корректно считывать. Чтобы получить экземпляр 
+SharedPreferences мы обратимся к методу 
+PreferenceManager.getDefaultSharedPreferences(this). У нас есть ключи по
+ которым мы храним данные, как нам их прочитать? Например, время 
+вибрации, так:
+
+</p><pre>vibrator.vibrate(Integer.parseInt(preferences.getString(getString(R.string.vibrate_time_id), Defaults.VIBRATE_TIME)));
+</pre>
+
+<p>К сожалению, preferences.getInt(...) упорно выдает 
+ClassCastException. Похоже, это связано с тем, что preferences хранятся 
+как строки. Остальные значения считываем по такому же принципу. Изменив 
+значение threshold, мы можем убедиться в том, что нужна различная сила, 
+чтобы растрясти шарик на ответ.</p>
+
+<p>Скриншоты для английской версии</p>
+
+<img src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/0_5a48c_2bfd8d74_L.png" alt="Magic 8 ball"> <img src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/0_5a48d_29556458_L.png" alt="Magic 8 ball">
+
+<p>Подготовлено на основе статьи <a href="http://habrahabr.ru/blogs/android/108948/">Пишем Magic 8-Ball для Android</a></p>
+
+<h5 class="text-error">Реклама</h5>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4224968932772057";
+/* Полноразмерный баннер 728х90 */
+google_ad_slot = "4077523505";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/show_ads.js">
+</script>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/fastbutton.htm" name="I0_1378011280975" id="I0_1378011280975" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/jquery.js"></script>
+    <script src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap-modal.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/postmessageRelay.htm" id="oauth2relay1908598075" name="oauth2relay1908598075"></iframe>
+    <script src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%A8%D0%B0%D1%80%20%D1%81%D1%83%D0%B4%D1%8C%D0%B1%D1%8B%20%28Magic%208%20ball%29_files/bootstrap-typeahead.js"></script>
+
+</body></html>

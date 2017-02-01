@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Hello Kitty - Создаем первое приложение для Android</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">   
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+          <ul class="nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->	
+<div class="clearfix"></div>
+	
+<noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+            
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Читайте на здоровье!</h3>
+            </div>
+            <div class="modal-body">
+            
+              <p>Статья проплачена кошками - всемирно известными производителями котят.</p>
+
+            <p>Если статья вам понравилась, то можете <a href="http://developer.alexanderklimov.ru/donate.php">поддержать проект</a>.</p>
+			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Hello Kitty - Создаем первое приложение для Android</h1>
+
+<p>После <a href="http://developer.alexanderklimov.ru/android/android1.php">установки всех необходимых пакетов</a> для разработки приложения можно приступать к созданию своей первой программы.</p>
+
+<p>В качестве языка программирования для Android используется Java. Для 
+создания пользовательского интерфейса используется XML. Также существует
+ возможность визуального проектирования приложения путем перетаскивания 
+элементов управления на форму.</p>
+
+<p>По традиции, заложенной в прошлом веке, каждый программист должен был
+ написать «Hello World!» (Здравствуй, Мир!) в качестве первой программы.
+ Но, времена меняются, и программа «Hello World!» уже встроена в среду 
+разработки под Android в целях совместимости, а современные программисты
+ должны писать программу <b class="text-success">Hello Kitty!</b> (Привет, киска!). Согласитесь, что здороваться с котёнком имеет больше здравого смысла, чем с каким-то миром.</p>
+
+<p>Поэтому мы разобьём задачу на две части. Сначала запустим готовую 
+программу Hello World! без написания кода, чтобы убедиться, что весь 
+инструментарий корректно установился, и мы можем создавать и отлаживать 
+программы. А потом уже напишем свою первую программу.</p>
+
+<h2 class="text-warning">Создание нового проекта</h2>
+
+<p>Запускаем Eclipse и выбираем <b>File | New | Project...</b>, в списке выбираем <b>Android | Android Application Project</b> и нажимаем кнопку <b>Next</b>.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld1.png" alt="New Android Project"></p>
+
+<p>При повторном запуске Eclipse у вас появится возможность запуска проекта на один щелчок меньше через <b class="text-success">File | New | Android Application Project</b>.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld2.png" alt="New Android Project"></p>
+
+<p>Далее у вас откроется диалоговое окно мастера настройки <b class="text-success">New Android App</b>, в котором необходимо заполнить текстовые поля своими данными.</p>
+
+<p>Поле <b>Application name:</b> - понятное имя для приложения, которое будет отображаться в заголовке приложения. Вставим сюда <b>Hello, World</b>. В принципе вы могли написать здесь и <b>Здравствуй, мир!</b>,
+ но у Android есть замечательная возможность выводить нужные строки на 
+телефонах с разными языками. Скажем, у американца на телефоне появится 
+надпись на английском, а у русского - на русском. Поэтому в 
+первоначальных настройках всегда используются английские варианты, а 
+локализованные строки подготовите позже. Необходимо сразу вырабатывать 
+привычку к правильному коду.</p>
+
+<p>В поле <b>Project Name</b> вводим имя проекта, хотя обычно имя 
+формируется автоматически исходя из выбранного имени приложения в 
+предыдущем шаге. Но если вам хочется чего-то своего, то пишите другое 
+имя. Кстати, в последних версиях в имени проекта можно использовать 
+пробелы между словами (раньше было нельзя). По старой привычке я 
+использовал <b>HelloWorld</b>. Данное имя используется только в Eclipse и отношения к самой программе не имеет.</p>
+
+<p><b>Package Name</b> - Мастер любезно подсказывает, что в данном поле должно быть имя пакета в формате <b>com.example.helloworld</b>,
+ как это принято в Java. Имя должно быть уникальным. Если у вас есть 
+свой сайт, то можно использовать его для уникальности (в обратном 
+порядке). Или просто используйте свои имя и фамилию, например, <b>ru.alexanderklimov.helloworld</b>. Последнее слово также формируется автоматически.</p>
+
+<div class="alert alert-warning">
+Не используйте в своих проектах словосочетание "com.example", такой 
+пакет нельзя будет загрузить в Google Play. И хотя вы не будете 
+загружать свои учебные программы в магазин приложений, лучше сразу 
+привыкайте создавать нормальные имена. Если с фантазией плохо, то 
+используйте <b>meow.cats</b>. Коты разрешили.
+</div>
+
+<p>В поле <b>Minimum Required SDK</b> выбирается минимальная поддерживаемая платформа. По умолчанию здесь используется <b>API 8: Android 2.2 (Froyo)</b>. Выбирать более старые версии нет смысла, так как их доля на рынке совсем мала и стремительно падает.</p>
+
+<p>В поле <b>Target SDK</b> выбирается платформа, под которую вы будете писать программы. Можно оставить значение по умолчанию.</p>
+
+<p><b>Compile With</b> - здесь по умолчанию ставится самая последняя версия Android. Оставляем без изменений.</p>
+
+<p><b>Theme</b> - здесь выбирается тема для вашего приложения. Можете выбрать любую. Пока оставляем без изменений.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld3.png" alt="New Android Project" height="471" width="500"></p>
+
+<p>Заполнив все поля, нажимаем на кнопку <b>Next</b> для перехода в следующее окно.</p>
+
+<p>Оставляем флажок в поле <b>Create custom launcher icon</b>, чтобы иметь возможность установить собственный значок для программы.</p>
+
+<p>Оставляем флажок в поле <b>Create activity</b>.</p>
+
+<p>Не ставим флажок в поле <b>Mark this project as library</b>, она предназначена для создания библиотек. Вам ещё рано об этом думать.</p>
+
+<p>Оставляем флажок в поле <b>Create Project in Workspace</b> - все ваши проекты будут храниться в специальной папке. Либо вы можете задать свой путь для проекта.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld12.png" alt="New Android Project"></p>
+
+<p>В следующем окне мастера можно выбрать и настроить свой значок для 
+приложения. Настройки достаточно понятны, поэтому останавливаться здесь 
+не будем. Разберётесь сами.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld4.png" alt="New Android Project" height="476" width="500"></p>
+
+<p>Вы можете выбрать для значка свою картинку, текст или что-то выбрать из небольшого клипарта.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld15.png" alt="Clipart" height="441" width="500"></p>
+
+<p>Закончив с этими настройками, снова нажимаем на кнопку <b>Next</b> для перехода на следующее окно.</p>
+
+<p><b>Create Activity:</b> - большинство приложений на Android имеют 
+свой экран (форму, окно), которое называется активностью или 
+деятельностю (Activity). Мастер проекта предлагает на выбор несколько 
+шаблонов:</p>
+<ul>
+<li><b>Blank Activity</b></li>
+<li><b>Fullscreen Activity</b></li>
+<li><b>Master/Detail Flow</b></li>
+</ul>
+
+<p>Шаблон <b>BlankActivity</b> предназначен для обычных телефонов. 
+Справа вы видите приблизительный вид приложения с использованием данного
+ шаблона. В основном мы будем использовать этот шаблон в своих опытах.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld13.png" alt="New Android Project" height="476" width="500"></p>
+
+<p>Шаблон <b>Master/Detail Flow</b> предназначен для планшетов.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld14.png" alt="New Android Project" height="476" width="500"></p>
+
+<p>Остальные шаблоны предназначены для других распространённых задач.</p>
+
+<p>В следующем окне (для шаблона BlankActivity) идёт настройка главного 
+окна приложения. Оставим всё по умолчанию. Постепенно, когда наберётесь 
+опыта, сможете указывать другие значения.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld5.png" alt="New Android Project"></p>
+
+<p>Щёлкаем кнопку <b>Finish</b> - у нас будет создан новый проект. В 
+левой части среды разработки появится иерархический список из папок, 
+которые относятся к проекту. Изучим его.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld6.png" alt="New Android Project" height="558" width="900"></p>
+
+<h2 class="text-warning">Содержание проекта</h2>
+
+<p>Проект состоит из нескольких папок и файлов. Основные из них:</p>
+<ul>
+<li><b class="text-success">src</b> – исходный код на Java. Здесь находится основной файл для работы. Здесь же будут находиться новые классы</li>
+<li><a href="#gen"><b>gen</b> – файлы сгенерированные самой Java</a></li>
+<li><b class="text-success">res</b> – <a href="http://developer.alexanderklimov.ru/android/resources.php">файлы ресурсов</a>. Содержит несколько подкаталогов
+   <ul>
+   <li>res/drawable-*dpi — в этих пяти папках содержатся ресурсы, 
+предназначенные для разных расширений экрана. Если зайти в каждую папку,
+ то можно найти там файл <i>ic_launcher.png</i>, который является 
+значком вашего приложения. В папке drawable-ldpi ничего нет, так как это
+ папка для старых телефонов, которые уже не стоит поддерживать.</li>
+   <li>res/layout — в данной папке содержатся xml-файлы, описывающие 
+внешний вид форм и различных элементов форм. После создания проекта там 
+уже имеется файл activity_main.xml.</li>
+   <li>res/menu - здесь находятся ресурсы для меню</li>
+   <li>res/values — тут у нас располагаются какие-либо строковые 
+ресурсы, ресурсы цветов, тем, стилей и измерений, которые мы можем 
+использовать в нашем проекте. Также есть схожие с ним папки 
+values-large, values-v11 (для планшетов Android 3.0), values-14 (для 
+Android 4) предназначенные для определенных видов устройств</li>
+   </ul></li>
+<li><a href="#manifest">AndroidManifest.xml</a> — файл-манифест с основными свойствами проекта. В них в частности прописываются разрещения на использование интернета</li>
+</ul>
+
+<h3 class="text-warning" id="gen">gen</h3>
+
+<p>Каталог «gen» в Android-проекте содержит генерированные значения. В частности, файл <b>R.java</b>
+ — генерированный класс, который содержит ссылки на ресурсы из папки 
+«res» проекта. Эти ресурсы содержатся в директории «res» и могут быть 
+XML-файлами, значениями, меню, схемами, значками, рисунками или 
+анимациями.</p>
+
+<p>Если вы создаете новые ресурсы, то соответствующие ссылки будут 
+автоматически созданы в «R.java». Ссылки являются статичными 
+значениями-интервалами, система Android предоставляет методы доступа к 
+соответствующим ресурсам. Например, для доступа к строке с 
+идентификатором ссылки «R.string.yourString» используйте метод 
+getString(R.string.yourString). Не рекомендуется вручную изменять файл 
+«R.java», так как они всё равно будут перезаписаны компилятором.</p>
+
+<h3 class="text-warning" id="manifest">AndroidManifest.xml</h3>
+
+<p>В этом файле должны быть объявлены все Activity, службы, приёмники и 
+контент-провайдеры приложения. Также он должен содержать требуемые 
+приложением разрешения. Например, если приложению требуется доступ к 
+сети, это должно быть определено здесь. «AndroidManifest.xml» можно 
+рассматривать, как описание для развертывания Android-приложения.</p>
+
+<p>Более подробно о структуре манифеста читайте в дополнительной статье <a href="http://developer.alexanderklimov.ru/android/theory/AndroidManifestXML.php">Файл AndroidManifest.xml</a></p>
+
+<h2 class="text-warning">Работа с проектом - Здравствуй, Мир!</h2>
+
+<p>Как уже говорилось, программа <b>Hello, World!</b> уже встроена в 
+любой новый проект, поэтому вам даже не нужно ничего писать. Просто 
+нужно запустить проект и получить готовую программу!</p>
+
+<p>Раскройте папку <b>src</b> и подпапку <b>ru.alexanderklimov.helloworld</b>, которая является именем вашего пакета (у вас будет своя подпапка), чтобы увидеть файл <b>MainActivity.java</b>. Дважды щёлкните на файле, чтобы открыть его в редакторе кода. В файле <b>MainActivity.java</b> уже есть минимальный код, сгенерированный средой разработки.</p>
+
+<p>Ещё проще открыть этот файл через панель инструментов, которая находится над формой. Найдите там кнопку <b>MainActivity</b> и выберите пункт <b>Open MainActivity</b>.</p>
+
+<p> <img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld16.png" alt="Open MainActivity" height="147" width="371">
+
+</p><p>Посмотрим на код:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.helloworld;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+
+public class MainActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}
+</code></pre>
+
+<p>Несколько слов о коде, который мы видим. Перед вами открыт файл класса, где имя класса <b>MainActivity</b>
+ совпадает с именем файла с расширением java (это правило, установленное
+ языком Java). В первой строке идет название пакета - его мы задавали 
+при создании проекта (Package Name). Далее идут строки импорта 
+необходимых классов для проекта. Если слева от названий классов есть 
+предупреждающие значки, то прочитайте сообщения, которые появляются при 
+подведении к ним курсора. Например, если вы видите жёлтые треугольники с
+ восклицательным знаком и сообщением, что данный класс нигде не 
+используется, то можете спокойно удалить лишние строки.</p>
+
+<p>Далее идёт объявление самого класса, который наследуется (extends) от
+ абстрактного класса Activity. В самом классе мы видим метод <b>onCreate()</b> – он вызывается, когда приложение создает и отображает разметку активности. Разберём код метода.</p>
+
+<p>Строка <b>super.onCreate(savedInstanceState);</b> – это конструктор 
+родительского класса, выполняющий необходимые операции для работы 
+активности. Эту строчку вам не придётся трогать, оставляйте её без 
+изменений.</p>
+
+<p>Вторая строчка <b>setContentView(R.layout.activity_main);</b> представляет больший интерес. Метод <b>setContentView(int)</b> подключает содержимое из файла разметки. В качестве аргумента мы указываем имя файла без расширения из папки <b>res/layout/</b>. По умолчанию проект создаёт в нём файл <b>activity_main.xml</b>. Вы можете переименовать файл или создать свой файл с именем cat.xml, тогда код будет выглядеть так:</p>
+
+<pre><code class="java">
+setContentView(R.layout.cat);
+</code></pre>
+
+<p>Если ваше приложение будет состоять из множества экранов, то вы 
+будете создавать для каждого экрана свою разметку и подключать её 
+описанным выше образом.</p>
+
+<p>Проверим работу приложения. Для этого попробуем запустить проект.</p>
+
+<h2 class="text-warning">Запуск проекта</h2>
+
+<p>Выбираем в меню <b>Run | Run</b>. При первой попытке запустить проект
+ вы можете получить сообщение, что у нас нет необходимого устройства и 
+его нужно сначала создать. Для отладки приложений используется эмулятор 
+телефона - виртуальная машина, на которой будет запускаться наше 
+приложение.</p>
+
+<p>Чтобы создать эмулятор телефона, выбираем в меню <b>Window | Android Virtual Device Manager</b> и нажимаем кнопку <b>New...</b>, в новом окне вводим любое понятное имя, например, Android4. Из выпадающего списка <b>Device</b>
+ можете выбрать устройство, наиболее подходящее для ваших опытов, 
+например, можно выбрать стандартный смартфон Nexus S.  Выбираем нужную 
+версию Android для поля <b>Target</b>. В поле <b>CPU/ABI</b> выбираем 
+тип процессора (если доступно). При необходимости можно создать 
+эмуляторы для каждой версии ОС и проверять программу на 
+работоспособность. Остальные настройки можно оставить без изменений. . 
+Вы всегда можете вернуться к настройкам и отредактировать снова. Часто 
+рекомендут использовать опцию <b>Use Host GPU</b>, чтобы задействовать возможности графического процессора. Это даёт прирост скорости эмулятора. Нажимаем кнопку <b>OK</b>.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/createnewavd.png" alt="Create New AVD" height="808" width="499"></p>
+
+<p>Если вы создали несколько эмуляторов, то выделите нужный и нажмите кнопку <b>Start</b> для запуска эмулятора.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/avdmanager.png" alt="Android Virtual Device Manager"></p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/launchoptions.png" alt="Launch Options"></p>
+
+<div class="warning">
+<p>Помните, что виртуальные машины по умолчанию сохраняются в папке 
+пользователя, и пути к папке не должны содержать русские символы во 
+избежание проблем.</p>
+<p>Если вы всё же попались в эту ловушку, то дам ссылку по смене папки пользователя на английский: <noindex><a href="http://www.cherneenet.ru/lokalnaj_zapis.html">http://www.cherneenet.ru/lokalnaj_zapis.html</a></noindex>
+ (спасибо читателю Евгению Степанову за подсказку). Также можно 
+подправить ini-файл и прописать путь к виртуальному устройству таким 
+образом, чтобы в пути не встречались русские буквы (соответственно, сам 
+файл *.avd также нужно переместить в другое место).
+</p></div>
+
+<p>В зависимости от мощности компьютера нужно немного подождать, чтобы сначала загрузился эмулятор.</p>
+
+<p>Не закрывая эмулятор, вернитесь к проекту и запустите его ещё раз. 
+Если всё сделали правильно, то в эмуляторе загрузится ваша программа. 
+Поздравляю!</p>
+
+<p>После создания эмулятора его не нужно запускать отдельно, запускайте 
+ сразу свой проект и эмулятор автоматически запустится самостоятельно 
+(настраивается).</p>
+
+<p>Итак, если программа загрузилась в эмуляторе, то увидите окно приложения с надписью <b>Hello World</b> . Заголовок у программы будет также <b>Hello World</b>. Все эти строки можно найти в файле <b>res/values/strings.xml</b> и отредактировать при желании.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld7.png" alt="Hello World!" height="400" width="240"></p>
+
+<h2 class="text-warning">Hello Kitty!</h2>
+
+<p>Поздравляю, вы создали новую программу, но это ещё не повод считать 
+себя программистом, так как вы не написали не единой строчки кода. 
+Настало время набраться смелости и создать программу "Hello Kitty!". На 
+данный момент наша программа слишком проста. Представьте себе, что у вас
+ на форме должны располагаться несколько кнопок, текстовых полей и т.д. 
+Каждому объекту нужно задать размеры, координаты, цвет, текст и так 
+далее. Android поддерживает способ, основанный на XML-разметке, который 
+будет напоминать разметку веб-страницы. Начинающие программисты могут 
+использовать визуальный способ перетаскивания объектов с помощью мыши. 
+Более продвинутые могут писать код вручную. Чаше используется 
+комбинированный подход.</p>
+
+<p>Файлы XML-разметки находятся в папке <b>res/layout/</b> вашего 
+проекта. Слово "res" является сокращением от слова "resources" 
+(ресурсы). Папка содержит ресурсы, не связанные с кодом. Кроме разметки,
+ там же содержатся изображения, звуки, строки для локализации.</p>
+
+<p>Раскройте слева в структуре проектов папки <b>res/layout</b> и дважды щелкните на файле <b>activity_main.xml</b>.
+ Обратите внимание, что XML-файлы можно просматривать в двух режимах: 
+текстовом и визуальном. Для этого предназначены две вкладки в нижней 
+части окна редактора: Graphical Layout и XML-код (используется имя 
+файла, в данном случае activity_main.xml).</p><p> 
+
+</p><p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld8.png" alt="activity_main.xml"></p>
+
+<p>Переключитесь в режим редактора XML. Если брать наш пример, то в XML-код будет описан следующим образом:</p>
+
+<pre><code class="xml">
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" &gt;
+
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" /&gt;
+
+&lt;/RelativeLayout&gt;
+</code></pre>
+
+<p>Структура XML-файла достаточна проста - стандартное дерево 
+XML-элементов, где каждый узел является именем класса View (TextView - 
+один из элементов View). Вы можете создать интерфейс программы, 
+используя структуру и синтаксис XML. Подобный подход позволяет разделить
+ код программы и визуальное представление.</p>
+
+<p>В принципе, можно продолжить работу над открытым проектом и 
+модифицировать её под новые задачи. Но для приобретения твёрдых навыков 
+лучше снова создать новый проект, не подглядывая в описание. Назовите 
+проект <b>Hello Kitty</b> и повторите все предыдущие шаги.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/hellokitty1.png" alt="Проект Hello Kitty" height="400" width="240"></p>
+
+<p>Когда разметка открыта в графическом представлении, то слева от 
+основной части редактора кода можно увидеть панель инструментов, в 
+которой сгруппированы различные элементы по группам <b>Form Widgets</b>, <b>Text Fields</b> и так далее. Раскройте группу <b>Images &amp; Media</b>. Подхватите мышкой элемент <b>ImageButton</b>,
+ перетащите её на форму и отпустите. Точное расположение нас не 
+интересует, поэтому не заморачивайтесь по этому поводу, постарайтесь 
+разместить компонент в центре экрана активности. Когда вы отпустите 
+кнопку мыши, то среда разработки предложит выбрать графический ресурс 
+для нашей кнопки <b>ImageButton</b>. Можете выбрать, к примеру, ресурс <i>ic_launcher</i> или выбрать кнопку Cancel. В любом случае позже мы поменяем картинку.</p>
+
+<p>Теперь научимся менять фон для формы. Сейчас у нас форма белого 
+цвета. Сначала нам нужно подготовить соответствующий цветовой ресурс.</p>
+
+<p>Посмотрим, как добавлять и редактировать строковые и другие ресурсы через визуальный интерфейс. Слева в папке <b>res/values/</b> откройте файл <b>strings.xml</b> и переключитесь на вкладку <b>Resources</b>.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/helloworld10.png" alt="Ресурсы"></p>
+
+<p>Щелкните кнопку <b>Add...</b>, в новом диалоговом окне <b>Create a new element at the top level, in Resources.</b> выберите нужный тип ресурсов, например, <b>Color</b> и щелкните кнопку <b>OK</b>.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/0_51833_d51d20b_XL.jpg" title="" alt="" border="0" height="573" width="526"></p>
+
+<p>После этого нужно указать имя добавленного ресурса (Name) и его 
+значение (Value). Среда разработки подсказывает, что для цвета нужно 
+указывать значения в формате #RGB, #ARGB, #RRGGBB или ##AARRGGBB. В 
+нашем случае нужно создать ресурс под именем background_color и указать 
+значение <b>#ffc0cb</b></p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/0_51835_1ba859fc_XL.jpg" title="" alt="" border="0" height="571" width="800"></p>
+
+<p>Щелкните в левой части окна на пункте <b>Color</b>, чтобы введенные 
+значения вступили в силу. Переключитесь в XML-представление файла и 
+посмотрите, как выглядит код. Визуальный способ добавления ресурсов 
+будет полезен на первых шагах начинающим программистам, так как 
+позволяет избежать опечаток и не вспоминать правильный формат ресурсов. 
+Позже, возможно, вам будет проще напрямую редактировать XML-файл.</p>
+
+<div class="alert alert-info">
+Сама среда разработки не имеет встроенного помощника для выбора цвета, 
+что немного напрягает. Читатель Евгений Степанов подсказал, что можно 
+скачать бесплатный плагин <a href="http://milanl.wz.cz/eclipse/colors/">Colors Eclipse plugin</a>. Очень полезная штука. Рекомендую.
+</div>
+
+<p>Возвращаемся в файл разметки <b>activity_main.xml</b>. Справа найдите вкладку <b>Properties</b>,
+ в которой отображаются свойства для выбранного элемента. Новички часто 
+путаются на первых порах и начинают менять свойства не у тех элементов, 
+которые им были нужны. Сейчас у вас есть сама форма, графическая кнопка 
+ImageButton и текстовая метка TextView с надписью <b>Hello World!</b>. 
+Пощёлкайте по этим элементами, чтобы увидеть, как меняется содержание 
+свойств в панели свойств. Так как мы собираемся работать с фоном экрана 
+приложения, то щёлкните в области формы и в панели свойств найдите 
+свойство <b>Background</b>.</p>
+
+<p>Нажмите на кнопку с тремя точками, чтобы запустить диалоговое окно выбора ресурса, раскройте элемент <b>Color</b> и выберите созданный нами ранее ресурс <b>background_color</b>. Отлично, форма окрасилась в розовый цвет. Получилось гла<b class="text-success">МУР</b>ненько.</p>
+
+<p>Далее я обещал вам поменять картинку для графической кнопки. Находим подходящее изображение и копируем его, например, в папку <b>res/drawable-hdpi</b> (можно прямо из Проводника потащить мышкой в Eclipse).</p>
+
+<p>Картинку можете взять у меня.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/pinkhellokitty.jpg" alt="Hello Kitty"></p>
+
+<p>Когда вы копируете графический файл в указанную папку, то Android автоматически создаёт ресурс типа <b>Drawable</b> с именем файла без расширения, к которому можно обращаться программно. Выделяем элемент <b>ImageButton</b> на форме и в панели свойств выбираем свойство <b>Src</b>. Снова щёлкаем на кнопке с тремя кнопками и выбираем ресурс в категории Drawable - вы там должные увидеть ресурс <i>pinkhellokitty</i> (имя добавленного ранее файла).</p>
+
+<div class="alert alert-info">
+Запомните, что имена ресурсов должны начинаться с буквы и могут 
+содержать буквы и цифры, а также знак нижнего подчеркивания. Другие 
+символы типа тире, решётки и т.д. использовать нельзя. Иногда Eclipse не
+ состоянии определить подобный тип ошибки и не может вам подсказать. 
+Будьте бдительны.
+</div>
+
+<p>Там же в окне свойств находим свойство <b>On Click</b> и прописываем <b>onClick</b> - это будет именем метода для обработки нажатия на кнопку.</p>
+
+<p>Мы закончили работу с графическим интерфейсом приложения. Напоследок, выделите элемент <b>TexView</b> с надписью <b>Hello, World</b> и в окне свойств посмотрите на его идентификатор (ID) - это самая первая строчка в окне свойств. Скорее всего, у вас будет <b>@+id/textView1</b>.
+ Запомните его. Попробуйте этот элемент также подвигать по экрану, чтобы
+ выбрать более подходящее место, допустим под картинкой.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/hellokitty2.png" alt="Hello Kitty"></p>
+
+<p>Теперь нужно написать код. Открываем файл <b>MainActivity.java</b>. Так как мы собираемся менять текст в текстовой метке, необходимо прописать данный элемент в коде. До метода <b>onCreate()</b> добавьте строчку:</p>
+
+<pre><code class="java">
+TextView tvHello;
+</code></pre>
+
+<p>Мы объявили переменную типа <b>TextView</b> под именем <b>tvHello</b>.
+ Когда вы наберёте эту строку, то слово TextView будет подчёркнуто 
+красной волнистой линией. Подведите курсор к слову и дождитесь 
+всплывающей подсказки. Выбирайте пункт с <b>Import 'TextView' (android.widget)</b>,
+ чтобы прописать нужный класс. Есть альтернативный вариант с помощью 
+функции автозавершения - наберите несколько первых символов, например, <i>textv</i>
+ и нажмите комбинацию клавиш Ctr+Пробел. Среда разработки предложит 
+несколько вариантов для продолжения, выбираем вариант с TextView и 
+импорт класса будет осуществлён автоматически.</p>
+
+<p>Далее внутри метода <b>onCreate()</b> после вызова метода <b>setContentView()</b> добавьте строку:</p>
+
+<pre><code class="java">
+tvHello = (TextView) findViewById(R.id.textView1); // помните, я просил запомнить идентификатор?
+</code></pre>
+
+<p>Избегайте соблазна скопировать строку с сайта и вставить в код, 
+пишите самостоятельно и активно используйте автозавершение (Ctrl+Пробел)
+ при наборе слов. Теперь система знает о существовании элемента TextView
+ и мы можем к нему обращаться для изменения различных свойств, например,
+ поменять текст.</p>
+
+<p>Создаём метод для обработки нажатия на графическую кнопку. Если вы помните, в свойстве <b>On Click</b> мы назначили имя методу как <b>onClick</b>. Поэтому пишем отдельный метод где-нибудь в конце класса:</p>
+
+<pre><code class="java">
+public void onClick(View v){
+    	
+}
+</code></pre>
+
+<p>В следующих занятиях мы подробнее разберём работу с данным методом, пока просто перепишите в слово в слово. Слово <b>View</b> также будет подчёркнуто красной линией - подводим снова курсор и импортируем нужный класс.</p>
+
+<p>Внутри созданного метода пишем код:</p>
+
+<pre><code class="java">
+tvHello.setText("Hello Kitty!");
+</code></pre>
+
+<p>Мы обращаемся к элементу tvHello и через метод <b>setText()</b> программно меняем текст на нужные слова.</p>
+
+<p>Запускаем программу и нажимаем на кнопку с изображением котёнка. Если
+ всё сделали правильно, то отобразится замечательная фраза. С этого 
+момента можете считать себя настоящим программистом - вы научились 
+создавать цветовые и графические ресурсы, менять фон у приложения через 
+XML-разметку, обрабатывать нажатия кнопки и выводить текстовые 
+сообщения.</p>
+
+<p><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/hellokitty3.png" alt="Hello Kitty"></p>
+
+<p>В папке <b>bin</b> проекта можно найти готовый APK-файл, который 
+можно выложить у себя на сайте и дать скачать знакомым девушкам (в 
+телефоне должно быть разрешение на установку неподписанных приложений), 
+вы станете невероятно круты в их глазах.</p>
+
+<h2 class="text-warning">Исходный код для ленивых</h2>
+
+<pre><code class="java">
+// Если этот код работает, его написал Александр Климов,
+// а если нет, то не знаю, кто его писал.
+
+package ru.alexanderklimov.hellokitty;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+	
+	TextView tvHello;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        tvHello = (TextView) findViewById(R.id.textView1);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
+    }
+    
+    public void onClick(View v){
+    	tvHello.setText("Hello Kitty!");
+    }
+}
+</code></pre>
+
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4224968932772057";
+/* Полноразмерный баннер 728х90 */
+google_ad_slot = "4077523505";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/show_ads.js">
+</script>
+				
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/fastbutton.htm" name="I0_1378010726249" id="I0_1378010726249" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/jquery.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/postmessageRelay.htm" id="oauth2relay644154457" name="oauth2relay644154457"></iframe>
+    <script src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap-button.js"></script>
+    <script src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20Hello%20Kitty%20-%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B4%D0%BB%D1%8F%20Android_files/bootstrap-typeahead.js"></script>
+
+</body></html>

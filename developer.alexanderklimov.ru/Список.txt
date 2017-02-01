@@ -1,0 +1,273 @@
+	Месяц 1
+
+День 1. Подготовка\
+День 2. Hello Kitty!\
+День 3. Щелчок\
+День 4. Светофор\
+День 5. На другой экран\
+День 6. Ориентация\
+День 7. Темы и стили\
+День 8. Меню\
+День 9. Контекстное меню\
+День 10. Toast\
+День 11. AlertDialog\
+День 12. ListActivity\
+День 13. Уведомления\
+День 14. Конвертер\
+День 15. Используем звуковые эффекты\
+День 16. Графика\
+День 17. Анимация\
+День 18. Браузер\
+День 19. Клавиатура\
+День 20. Справочник\
+День 21. Камера\
+День 22. Локализация\
+День 23. Настройки\
+День 24. Блокнот\
+День 25. Карты и StreetView\
+День 26. Шар судьбы\
+День 27. Штрих-код\
+День 28. База данных\
+День 29. XML\
+День 30. Публикация\
+
+	Месяц 2
+
+День 1 tekst-vdol-okruzhnosti-na-gradientnom-fone\
+День 2 ekran\
+День 3 spiski-so-znachkami\
+День 4 nastraivaem-svoy-zagolovok-u-prilozheniya\
+День 5 faylovaya-sistema-dlya-prilozheniya\
+День 6 faylovyy-menedzher\
+День 7 sd-karta\
+День 8 gps\
+День 9 geolokaciya\
+День 10 vidzhet-na-glavnyy-ekran\
+День 11 setevaya-podderzhka\
+День 12 ivan-susanin-nas-ne-provedt-ispolzuem-mapview\
+День 13 muzyka-nas-svyazala\
+День 14 video\
+День 15 esli-ya-zamenyu-batareyki\
+День 16 rabotaem-s-bluetooth\
+День 17 skazka-o-poteryannom-vremeni-rabotaem-s-datami-i-vremenem\
+День 18 prodvinutyy-webview\
+День 19 sobiraem-pokazaniya-datchikov-obschaya-informaciya\
+День 20 datchik-osvescheniya\
+День 21 datchik-rasstoyaniya\
+День 22 temperaturnyy-datchik\
+День 23 sozdam-sobstvennyy-element-view\
+День 24 u-nas-est-fotik-i-kotik-rabotaem-s-kameroy\
+День 25 upravlyaem-avtonomnym-rezhimom-airplane-mode\
+День 25 Работаем с локалью\
+День 26 rabotaem-s-wi-fi\
+День 27 eti-naglye-ryzhie-mordy-raspoznavanie-lic\
+День 28 diktofon-delaem-zapis-s-mikrofona\
+День 29 sms\
+День 30 alarm-service-signalizaciya\
+
+	Месяц 3
+
+День 1 oboi-glavnogo-ekrana-wallpaper\
+День 2 kto-skazal-myau-ispolzuem-tehnologii-preobrazovaniya-teksta-v-rech\
+День 3 vs-chto-vy-hoteli-znat-o-prilozheniyah-no-boyalis-sprosit\
+День 4 schityvaem-shtrih-kod\
+День 5 miniatyury\
+День 6 rabotaem-s-dannymi-json\
+День 7 xmlresourceparser-razbor-xml-dokumenta-iz-resursov\
+День 8 akselerometr\
+День 9 rabotaem-s-sistemnym-prilozheniem-galereya\
+День 10 listfragment\
+День 11 actionbar\
+День 12 poisk-v-actionbar\
+День 13 propal-kotnok-naydetsya-vs\
+День 14 chtenie-i-zapis-faylov\
+День 15 popupmenu-vsplyvayuschee-menyu\
+День 16 obratnyy-otscht-varim-yayca\
+День 17 panel-navigacii\
+День 18 proekt-popugay-slushaem-i-povtoryaem\
+День 19 intent-action_send-prishli-fotku\
+День 20 vsplyvayuschee-okno-popupwindow\
+День 21 kontakt-est-kontakt\
+День 22 downloadmanager-menedzher-zagruzok\
+День 23 ispolzuem-apparatnoe-uskorenie\
+День 24 dobavlyaem-sobytiya-v-kalendar\
+День 25 dialogfragment\
+День 26 sekretnyy-kod\
+День 27 klass-application\
+День 28 prodvinutoe-prilozhenie-s-ispolzovaniem-listview\
+День 29 kompas\
+День 30 rabotaem-s-buferom-obmena\
+
+	Месяц 4
+
+День 1 ringtony\
+День 2 ispolzuem-asynctask-dlya-zagruzki-izobrazheniy-iz-seti\
+День 3 ispolzuem-asynctask-dlya-zagruzki-tekstovogo-fayla-iz-seti\
+День 4 arhivaciya-faylov\
+День 5 zapis-video\
+День 6 allo-allo-ispolzuem-telefoniyu\
+День 7 sozdam-sms-avtootvetchik\
+День 8 datchik-orientacii\
+День 9 gorizont-zavalen\
+День 10 kasaniya-sensornogo-ekrana\
+День 11 poluchenie-dannyh-ot-drugih-prilozheniy\
+День 12 biblioteka-osmdroid-ispolzuem-karty-openstreetmap\
+День 13 viewpager\
+День 14 mediastore\
+День 15 ascii-art-editor\
+День 16 raspoznam-zhesty\
+День 17 oblaka-stali-blizhe-oblachnyy-hosting\
+День 18 google-maps-android-api-v2\
+День 19 rabotaem-s-pdf\
+День 20 httpurlconnection-zagruzka-stranicy\
+День 21 xpath-parser-xml-dokumentov-rekomendovan-w3c\
+День 22 ispolzuem-veb-servisy-na-primere-twitter\
+День 23 servisy-geonames-pogoda-pochtovye-indeksy-i-c\
+День 23 servisy-geonames-pogoda-pochtovye-indeksy-i-chasovoy-poyas\
+День 24 vnedryaem-paypal\
+День 25 rabotaem-s-knigoy-mord-facebook\
+День 26 adresnaya-kniga\
+День 27 google-search-api\
+День 28 youtube-android-player-api\
+День 29 vnedryaem-google-analytics\
+День 30 daydream-zastavka\
+
+	Месяц 5
+
+День 1 sozdam-internet-magazin-chast-pervaya-php-mysql\
+День 2 sozdam-internet-magazin-chast-vtoraya-android-prilozhenie\
+День 3 nfc-near-field-communication\
+День 4 provayder-browser\
+День 5 identifikaciya-ustroystva\
+День 6 renderscript\
+День 7 prodvinutye-primy-dlya-uvedomleniy\
+День 8 tochki-ostanova-breakpoint\
+День 9 rezhim-kioska\
+День 10 sozdam-sluzhbu-dlya-planirovschika-zadach\
+День 11 preferencefragment\
+День 12 klass-geocoder\
+День 13 klass-gsmcelllocation\
+День 14 vnedryaem-biblioteku-zxing-v-svo-prilozhenie\
+День 15 sozdam-xml-dokument\
+День 16 perehodi-na-svetluyu-storonu-dinamicheskaya-smena-temy\
+День 17 rabotaem-s-menedzherom-paketov\
+День 18 keyboardview-sozdam-svoyu-klaviaturu\
+День 19 ispolzuem-dropbox-sync-api\
+День 20 timepickerdialog-cherez-dialogfragment\
+День 21 datepickerdialog-cherez-dialogfragment\
+День 22 vnedryaem-reklamu-admob-v-svo-prilozhenie\
+День 23 sozdam-svoyu-galereyu\
+День 24 karmannyy-fonarik\
+День 25 drag-n-drop\
+День 26 stek-aktivnostey-i-zadaniya-stack-and-task\
+День 27 prava-dostupa\
+День 28 podklyuchaem-usb-ustroystva\
+День 29 sozdam-sobstvennuyu-biblioteku\
+День 30 Список задач\
+
+
+
+
+	СПИСОК С САЙТА
+
+	Пятый курс
+
+День 1 Создаём интернет-магазин. Часть первая. PHP+MySQL
+День 2 Создаём интернет-магазин. Часть вторая. Android-приложение
+День 3 NFC (Near Field Communication)
+День 4 Провайдер Browser
+День 5 Идентификация устройства
+День 6 Облачная викторина
+День 7 Режим киоска
+День 8 Создаём службу для планировщика задач
+День 9 PreferenceFragment
+День 10 Продвинутые приёмы с Preferences Framework
+День 11 Класс GeoCoder
+День 12 Класс GsmCellLocation
+День 13 Внедряем библиотеку ZXing в своё приложение
+День 14 Создаём XML-документ
+День 15 Переходи на светлую сторону - динамическая смена темы
+День 16 Работаем с менеджером пакетов
+День 17 KeyboardView - создаём свою клавиатуру
+День 18 Используем Dropbox Sync API
+День 19 TimePickerDialog через DialogFragment
+День 20 DatePickerDialog через DialogFragment
+День 21 Барометр
+День 22 Создаём свою галерею
+День 23 Журнал о входящих, исходящих и пропущенных звонках
+День 24 Drag-n-Drop
+День 25 Стек активностей и Задания (Stack and Task)
+День 26 Права доступа
+День 27 Подключаем USB-устройства
+День 28 Создаём собственную библиотеку
+День 29 Список задач
+День 30 Живые обои
+День 31 ViewOverlay
+
+
+	Шестой курс
+
+
+День 1 Библиотека Google Play services
+День 2 Google Play services. AppStateClient - Сохраняемся в облаке
+День 3 Google Play services. ImageManager
+День 4 Google Play services. Google Drive
+День 5 Google Play services. Location
+День 6 Google Play services. Geofence (Геозоны)
+День 7 Google Play services. Google+
+День 8 Google Play services. ActivityRecognition (Распознавание активности)
+День 9 Google Play services. Analytics (Аналитика)
+День 10 Google Play services. Face Detection (Распознавание лиц)
+День 11 Google Play services. Barcode Detection (Распознавание штрих-кодов)
+День 12 Google Play services. Nearby Connections (Сетевой обмен данными)
+День 13 Внедряем рекламу AdMob в своё приложение
+День 14 Покупаем кота в мешке
+День 15 Сокеты
+День 16 FTP
+День 17 Пишем универсальное приложение для смартфонов и планшетов
+День 18 Storage Access Framework
+День 19 Провайдер SMS
+День 20 Загружаем файл с помощью IntentService
+День 21 Администраторы устройства
+День 22 Датчик для счётчика шагов
+День 23 Датчик силы тяжести. TYPE_GRAVITY
+День 24 Два фрагмента - список и детальная информация
+День 25 Слайдер при помощи GridView и ViewPager
+День 26 Меняем пароли хранилища и псевдонима ключа
+День 27 Создаём собственную библиотеку-2
+День 28 Добавить аккаунт
+День 29 Печать документов (Kitkat)
+День 30 Ищем книгу
+День 31 Сохраняем объекты в настройках SharedPreferences
+День 32 Система регистрации пользователей в облаке
+День 33 Оцени программу
+День 34 Пять способов создания Splash-экрана
+День 35 Yandex SpeechKit Mobile SDK 2.2
+День 36 Контактируем с владельцами котиков
+День 37 Реверс-инжиниринг
+День 38 Bluetooth LE (черновик)
+День 39 Интерактивная игрушка Sphero
+День 40 MediaMetadataRetriever
+День 41 Renderscript. Новая попытка (API 17)
+День 42 Профиль с ограниченным доступом (API 18)
+День 43 Firebase
+День 44 NotificationListenerService. Прослушка уведомлений
+
+
+	Седьмой курс
+
+		Material Design
+
+	Восьмой курс
+
+
+	Мимиметр зашкаливает
+	Новая модель разрешений в Android 6.0
+	Chrome Custom Tabs
+	Создаём библиотеку в Android Studio
+	Информация об устройстве
+	BottomSheetBehavior
+	ShareCompat. Поделись улыбкою своей...
+	RxAndroid
+	Работаем с Arduino
+	Криминальное чтиво

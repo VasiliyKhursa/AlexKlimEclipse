@@ -1,0 +1,89 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:id="@+id/bluetoothstate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/buttonTurnOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="buttonTurnOn" />
+
+    <Button
+        android:id="@+id/buttonBlueState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/buttonTurnOn"
+        android:text="buttonBlueState" />
+
+    <Button
+        android:id="@+id/scandevice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/buttonBlueState"
+        android:layout_alignLeft="@+id/bluetoothstate"
+        android:text="scandevice" />
+
+    <TextView
+        android:id="@+id/btName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignLeft="@+id/scandevice"
+        android:text="TextView" />
+
+    <EditText
+        android:id="@+id/newBTname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:ems="10" >
+
+    </EditText>
+
+    <Button
+        android:id="@+id/checkBTname"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonBlueState"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:text="checkBTname" />
+
+    <Button
+        android:id="@+id/setBtname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="18dp"
+        android:text="setBtname" />
+
+    <ListView
+        android:id="@+id/devicesfound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/newBTname" >
+
+    </ListView>
+
+</RelativeLayout>

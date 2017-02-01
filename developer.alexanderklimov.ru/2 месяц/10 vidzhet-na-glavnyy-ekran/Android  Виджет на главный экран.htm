@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Виджет на главный экран</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="http://developer.alexanderklimov.ru/android/secret/enter.php" id="drop3" role="button">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Виджет на главный экран</h1>
+
+<p>
+<a href="#theory">Теория</a><br>
+<a href="#create">Создание виджета "Отсчёт до праздника"</a><br>
+<a href="#datetime">Виджет для вывода даты и времени</a><br>
+</p>
+
+<p>Кроме обычных приложений существуют еще виджеты, которые размещают на
+ главном экране устройства. Смысл такого виджета заключаются в том, что 
+мы сразу видим определенную информацию прямо на экране без необходимости
+ запускать приложение. Например, можно вывести информацию о количестве 
+непрочитанных писем, напоминание о встрече, о погоде в городе и т.д.</p>
+
+<p>Android предоставляет необходимый инструментарий для создания такого 
+вида приложений. Виджеты могут оказаться полезными для определенного 
+вида программ, которые должны сообщать об обновлении статуса и 
+информации. Сегодня мы рассмотрим пример создания такого виджета.</p>
+
+
+<h2 class="text-warning" id="theory">Теория</h2>
+
+<p>Прежде чем мы начнем разрабатывать виджет, несколько слов о теории. 
+Кроме обычного макета, для виджета необходимо создать еще один XML-файл 
+Widget provider - файл, описывающий метаданные виджета, который должен 
+располагаться в папке res/xml. В данном файле нужно указать размеры 
+виджета, частоту его обновления, файл шаблона и класс конфигурации. Во 
+второй строчке после указания кодировки используется тег <b>appwidget-provider</b>.</p>
+
+<h3 class="text-warning">Провайдер</h3>
+
+<p>Создаём новую папку /res/xml и в ней файл <b>hello_widget_provider.xml</b> с следующим содержанием:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialLayout="@layout/main"
+    android:minHeight="74dp"
+    android:minWidth="74dp"
+    android:updatePeriodMillis="10000" /&gt;
+</code></pre>
+
+<p>В этом файле определяется виджет с настройками.
+
+</p><p>Наиболее используемые атрибуты для провайдера</p>
+
+<dl>
+<dt>minWidth и minHeight</dt><dd>Размеры виджета в dp. Домашний экран 
+условно разбит на ячейки с размерами 74 пикселей. В каждой ячейки может 
+находится только один элемент, поэтому виджеты не перекрывают друг 
+друга. Если требуется создать более длинный виджет, то его размер 
+вычисляется путем умножения размера ячейки на число ячеек и вычитанием 
+2dp из полученного результата. Т.е. 74 * 2 - 2 = 146. В этом случае 
+виджет будет занимать две ячейки таблицы домашнего экрана</dd>
+<dt>updatePeriodMillis</dt><dd>Частота обновления виджета. Минимально 
+допустимое значение 1800000 миллисекунд (не чаще 30 минут). Если 
+обновлять не требуется, то установите 0</dd>
+<dt>initialLayout</dt><dd>Файл шаблона виджета, который нам знаком по обычным приложениям, когда использовался шаблон main.xml</dd>
+<dt>focusable</dt><dd>Булево значение <i>true</i> или <i>false</i>. Позволяет или запрещает фокусировать курсор на элементах виджета</dd>
+</dl>
+
+<h3 class="text-warning">Манифест</h3>
+
+<p>Далее вносятся изменения в манифест файла - добавляется тег <b>receiver</b> с мета-данными (смотри примеры ниже), который определяет получаемые намерения и другую информацию.</p>
+
+<h3>Шаблон</h3>
+
+<p>Шаблон для виджета несколько отличается от шаблонов для обычных приложений. Можно использовать следующие элементы:</p>
+
+<ul>
+<li>LinearLayout</li>
+<li>FrameLayout</li>
+<li>RelativeLayout</li>
+<li>TextView</li>
+<li>ImageView</li>
+<li>Button</li>
+<li>ImageButton</li>
+<li>ProgressBar</li>
+<li>AnalogClock</li>
+<li>Chronometer</li>
+</ul>
+
+<p>Использовать классы, расширяющие указанные выше элементы, не допускается. Поэтому возможности несколько ограничены.</p>
+
+<h3 class="text-warning">Java-код</h3>
+
+<p>В Java-коде для класса нужно наследоваться не от Activity, а от <b>AppWidgetProvider</b>
+ (public class CatDaysWidgetActivity extends AppWidgetProvider). В 
+отличие от стандартных активностей, в виджетах вместо метода onCreate() 
+используется метод <b>onUpdate()</b>.</p>
+
+<h4 class="text-warning">Методы</h4>
+
+<p>Класс <b>AppWidgetProvider</b> содержит пять методов, которые можно переопределить</p>
+
+<dl>
+<dt><b>onUpdate()</b></dt><dd>Метод вызывается по истечении интервала времени, указанного в свойствах виджета</dd>
+<dt><b>onDeleted()</b></dt><dd>Метод вызывается при удалении виджета</dd>
+<dt><b>onEnabled()</b></dt><dd>Метод вызывается при создании первого 
+экземпляра виджета, но не вызывается при создании последующих 
+экземпляров. Создание нескольких экземпляров одного виджета быывает 
+полезным, например, погодный виджет с разными городами</dd>
+<dt><b>onDisabled()</b></dt><dd>Метод вызывается при удалении последнего экземпляра данного виджета</dd>
+<dt><b>onReceive()</b></dt><dd>Метод вызывается для всех получаемых широковещательных событий</dd>
+</dl>
+
+<p>Отображение виджета происходит через интерфейс <b>RemoteViews</b>. 
+Объект типа RemoteViews используется в тех случаях, когда отображение 
+представления (виджета) будет происходить из другого процесса. Виджеты 
+отображаются из хост-процесса виджетов, а не из основного процесса 
+приложения.</p>
+
+
+
+<h2 class="text-warning" id="create">Создание виджета "Отсчёт до праздника"</h2>
+
+<p>Наш виджет будет вычислять количество дней до главного праздника - 
+Всемирного дня кошек, который отмечается 1 марта по всей Галактике.</p>
+
+<p>Создадим новый проект CatDaysWidget обычным способом. Добавим в 
+проект значок и картинку, которая послужит нам фоном для виджета.</p>
+
+<p>Заменим строчки в res/values/strings.xml:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="hello"&gt;загружаем виджет...&lt;/string&gt;
+    &lt;string name="app_name"&gt;Всемирный День Кошек&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre>
+
+<p>Пока все как обычно. А теперь начинаются отличия. Так как мы создаем 
+не обычное приложение, а виджет, нужно сообщить об этом Android. В 
+виджетах не используются активности (Activity). Вместо них используются <b>receiver</b> с мета-данными. Откройте манифест проекта, удалите теги <b>activity</b> и вставьте новые строчки. Должно получиться так:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.alexanderklimov.catday"
+    android:versionCode="1"
+    android:versionName="1.0" &gt;
+
+    &lt;uses-sdk android:minSdkVersion="10" /&gt;
+
+    &lt;application
+        android:icon="@drawable/caticon"
+        android:label="@string/app_name" &gt;
+
+        &lt;!-- Broadcast Receiver that will process AppWidget updates --&gt;
+        &lt;receiver
+            android:name=".CatDaysWidgetActivity"
+            android:label="@string/app_name" &gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.appwidget.action.APPWIDGET_UPDATE" /&gt;
+            &lt;/intent-filter&gt;
+
+            &lt;meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/hello_widget_provider" /&gt;
+        &lt;/receiver&gt;
+    &lt;/application&gt;
+
+&lt;/manifest&gt;
+</code></pre>
+
+<p>Далее откроем разметку main.xml из res/layout и модифицируем его. 
+Следует запомнить, что виджет обладает меньшей функциональностью, чем 
+обычное приложение. Поэтому не все элементы управления можно размещать в
+ макете виджета. Элемент TextView входит в число разрешенных элементов и
+ нам его вполне достаточно для вывода текста.</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/paw"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:id="@+id/catdayleft"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dip"
+        android:paddingTop="35dip"
+        android:text="@string/hello"
+        android:textColor="#f11c8a"
+        android:layout_gravity="center" android:textStyle="bold"/&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Предварительные приготовления закончены, пора приступить к написанию программного кода. Открываем java-файл и пишем следующее:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.catday;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Timer;
+import java.util.TimerTask;
+import android.appwidget.AppWidgetManager;
+import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
+import android.content.Context;
+import android.widget.RemoteViews;
+
+public class CatDaysWidgetActivity extends AppWidgetProvider {
+	@Override
+	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
+			int[] appWidgetIds) {
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new MyTime(context, appWidgetManager), 1,
+				60000);
+	}
+
+	private class MyTime extends TimerTask {
+		RemoteViews remoteViews;
+		AppWidgetManager appWidgetManager;
+		ComponentName thisWidget;
+
+		public MyTime(Context context, AppWidgetManager appWidgetManager) {
+			this.appWidgetManager = appWidgetManager;
+			remoteViews = new RemoteViews(context.getPackageName(),
+					R.layout.main);
+			thisWidget = new ComponentName(context, CatDaysWidgetActivity.class);
+		}
+
+		@Override
+		public void run() {
+			Calendar thatDay = new GregorianCalendar(2013, 2, 1);
+ 		    Calendar today = Calendar.getInstance();
+			
+			long days = ((thatDay.getTimeInMillis() - today.getTimeInMillis()) / (24 * 60 * 60 * 1000)) + 1;
+			
+			remoteViews.setTextViewText(R.id.catdayleft, "Осталось дней: " + days);
+			appWidgetManager.updateAppWidget(thisWidget, remoteViews);
+		}
+	}
+}
+</code></pre>
+
+<p>В методе <b>run()</b> мы вычисляем количество дней между сегодняшней 
+датой и 1 марта 2012 года. Обратите внимание, что отсчет месяцев 
+начинается с 0, поэтому март - второй месяц. Так как время вычисляется в
+ миллисекундах, то нужно разделить получившееся число на число 
+миллисекунд, секунд, минут, часов, чтобы получить количество дней. Я 
+также прибавил к результату еще один день, чтобы результат был более 
+привычным.</p>
+
+<p>Запускайте проект в эмуляторе. Так как это не стандартное приложение,
+ а виджет, то ничего на экране не появится. Нажмите на главной экране и 
+удерживайте мышку некоторое время, чтобы появилось всплывающее меню. 
+Выберите в нем пункт <b>Виджеты</b> и найдите свой виджет.</p>
+
+<p><img src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/widget1.png" alt="Widget"></p>
+
+<p>Если все сделали правильно, то на главном экране устройстве у вас 
+появится новый виджет, который будет отображать количество дней до 
+главного кошачьего праздника! Позаботьтесь о подарке для кота заранее!</p>
+
+<img src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/widget2.png" alt="Наш Widget">
+
+<p>Как видите, ничего сложного в создании виджетов для экранов нет.</p>
+
+<h2 class="text-warning" id="datetime">Виджет для вывода даты и времени</h2>
+
+<p>Для закрепления материала рассмотрим еще один пример виджета, 
+выводящий текущую дату и время. Мы добавим к виджету возможность 
+конфигурирования и посмотрим на реализацию других методов виджета.</p>
+
+<p>Разметку оставим простейшую - текстовой метки TextView вполне достаточно для нашей задачи.</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:id="@+id/widgettext"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Теперь создадим провайдер (res/xml/widget_provider.xml):</p>
+
+<pre><code class="xml">
+&lt;appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialLayout="@layout/main"
+    android:minHeight="72dp"
+    android:minWidth="146dp"
+    android:updatePeriodMillis="1800000"
+	android:configure="ru.alexanderklimov.datetimewidget.WidgetConfig"	&gt;
+
+&lt;/appwidget-provider&gt;
+</code></pre>
+
+<p>Обратите внимание на атрибут <b>android:configure</b>, в котором прописан класс WidgetConfig.java. Создадим его.</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.datetimewidget;
+
+import android.app.Activity;
+import android.appwidget.AppWidgetManager;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class WidgetConfig extends Activity {
+	Button configOkButton;
+	int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+	// TODO Auto-generated method stub
+	super.onCreate(savedInstanceState);
+
+	setResult(RESULT_CANCELED);
+
+	     setContentView(R.layout.config);
+	  
+	     configOkButton = (Button)findViewById(R.id.okconfig);
+	     configOkButton.setOnClickListener(configOkButtonOnClickListener);
+	  
+	     Intent intent = getIntent();
+	     Bundle extras = intent.getExtras();
+	     if (extras != null) {
+	         mAppWidgetId = extras.getInt(
+	                 AppWidgetManager.EXTRA_APPWIDGET_ID,
+	                 AppWidgetManager.INVALID_APPWIDGET_ID);
+	     }
+	  
+	     // If they gave us an intent without the widget id, just bail.
+	     if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
+	         finish();
+	     }
+	}
+
+	private Button.OnClickListener configOkButtonOnClickListener
+	= new Button.OnClickListener(){
+
+	@Override
+	public void onClick(View arg0) {
+	 // TODO Auto-generated method stub
+
+	 final Context context = WidgetConfig.this;
+
+	 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+
+	 //RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.hellowidget_layout);
+	 //appWidgetManager.updateAppWidget(mAppWidgetId, views);
+	 DateTimeWidgetActivity.updateAppWidget(context, appWidgetManager, mAppWidgetId);
+
+	 Toast.makeText(context, "WidgetConfig.onClick(): " + String.valueOf(mAppWidgetId) , Toast.LENGTH_LONG).show();
+
+	 Intent resultValue = new Intent();
+	 resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
+	 setResult(RESULT_OK, resultValue);
+	 finish();
+	}};
+}
+</code></pre>
+
+<p>Не забываем внести изменения в манифест файла:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.alexanderklimov.datetimewidget"
+    android:versionCode="1"
+    android:versionName="1.0" &gt;
+
+    &lt;uses-sdk android:minSdkVersion="10" /&gt;
+&lt;application android:icon="@drawable/ic_launcher" android:label="@string/app_name"&gt;
+    &lt;receiver android:name=".DateTimeWidgetActivity" &gt;
+   &lt;intent-filter&gt;
+       &lt;action android:name="android.appwidget.action.APPWIDGET_UPDATE" /&gt;
+   &lt;/intent-filter&gt;
+   &lt;meta-data android:name="android.appwidget.provider"
+    android:resource="@xml/widget_provider" /&gt;
+&lt;/receiver&gt;
+&lt;activity android:name=".WidgetConfig"
+               android:label="Hello Widget Config"&gt;
+         &lt;intent-filter&gt;
+             &lt;action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" /&gt;
+         &lt;/intent-filter&gt;
+     &lt;/activity&gt;
+&lt;/application&gt;
+&lt;/manifest&gt;
+</code></pre>
+
+<p>Создадим макет для экрана конфигурации. Здесь будет просто одна кнопка для примера (res/layout/config.xml).</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello" /&gt;
+
+    &lt;Button
+        android:id="@+id/okconfig"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="OK" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Теперь осталось написать код на Java</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.datetimewidget;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import android.appwidget.AppWidgetManager;
+import android.appwidget.AppWidgetProvider;
+import android.content.Context;
+import android.widget.RemoteViews;
+import android.widget.Toast;
+
+public class DateTimeWidgetActivity extends AppWidgetProvider {
+	private static SimpleDateFormat formatter = new SimpleDateFormat(
+			"dd MMM yyyy  hh:mm:ss a");
+	static String strWidgetText = "";
+
+	@Override
+	public void onDeleted(Context context, int[] appWidgetIds) {
+		// TODO Auto-generated method stub
+		// super.onDeleted(context, appWidgetIds);
+		Toast.makeText(context, "onDeleted()", Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void onDisabled(Context context) {
+		// TODO Auto-generated method stub
+		// super.onDisabled(context);
+		Toast.makeText(context, "onDisabled()", Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void onEnabled(Context context) {
+		// TODO Auto-generated method stub
+		// super.onEnabled(context);
+		Toast.makeText(context, "onEnabled()", Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
+			int[] appWidgetIds) {
+		// TODO Auto-generated method stub
+		super.onUpdate(context, appWidgetManager, appWidgetIds);
+
+		final int N = appWidgetIds.length;
+		for (int i = 0; i &lt; N; i++) {
+			int appWidgetId = appWidgetIds[i];
+			updateAppWidget(context, appWidgetManager, appWidgetId);
+
+			Toast.makeText(
+					context,
+					"onUpdate(): " + String.valueOf(i) + " : "
+							+ String.valueOf(appWidgetId), Toast.LENGTH_LONG)
+					.show();
+		}
+
+	}
+
+	public static void updateAppWidget(Context context,
+			AppWidgetManager appWidgetManager, int appWidgetId) {
+		String currentTime = formatter.format(new Date());
+		strWidgetText = currentTime;
+
+		RemoteViews updateViews = new RemoteViews(context.getPackageName(),
+				R.layout.main);
+		updateViews.setTextViewText(R.id.widgettext,
+				"[" + String.valueOf(appWidgetId) + "]" + strWidgetText);
+		appWidgetManager.updateAppWidget(appWidgetId, updateViews);
+
+		Toast.makeText(
+				context,
+				"updateAppWidget(): " + String.valueOf(appWidgetId) + "
+"
+						+ strWidgetText, Toast.LENGTH_LONG).show();
+
+	}
+}
+</code></pre>
+
+<p>Особенность данного виджета состоит в том, что пользователь может 
+установить несколько копий виджетов на экран. В нем в квадратных скобках
+ выводится количество щелчков на кнопке ОК на конфигурационном экране, а
+ затем текущие даты и время. Обратите внимание на всплывающие сообщения,
+ которые будут появляться при сбрабатывании методов onDeleted(), 
+onDisabled(), onEnabled(), onUpdate().</p>
+
+<p><img src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/widget3.png" alt="Date Time Widget"></p>
+
+<p><a href="http://developer.alexanderklimov.ru/android/apk/CatDaysWidget.zip">Скачать исходник</a></p>
+
+<h2 class="text-warning">Виджет на экран блокировки</h2>
+
+<p>Начиная с Android 4.2, у разработчик появилась возможность размещать 
+виджет не только на домашнем экране, но и на экране блокировке. Для 
+этого следует прописать в манифесте дополнительные параметры и задать 
+различные свойства. Подробнее в <a href="http://developer.android.com/guide/topics/appwidgets/index.html#lockscreen">документации</a>.</p>
+
+<h2 class="text-warning">Дополнительное чтение</h2>
+
+<p><a href="http://developer.alexanderklimov.ru/android/battery.php#appwidget">Виджет заряда батареи</a></p>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/fastbutton.htm" name="I0_1378022377320" id="I0_1378022377320" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/postmessageRelay.htm" id="oauth2relay620136553" name="oauth2relay620136553"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/jquery.js"></script>
+    <script src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%20%D0%BD%D0%B0%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD_files/bootstrap-typeahead.js"></script>
+
+</body></html>

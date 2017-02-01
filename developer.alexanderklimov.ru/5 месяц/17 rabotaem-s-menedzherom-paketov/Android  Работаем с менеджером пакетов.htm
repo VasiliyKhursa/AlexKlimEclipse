@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Работаем с менеджером пакетов</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory/">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Работаем с менеджером пакетов</h1>
+
+<p>Закрытая зона/5-й месяц</p>
+
+<p><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/packagecat.jpg" alt="Менеджер пакетов"></p>
+
+<div class="alert" alert-warning"="">Речь пойдёт о другом менеджере и других пакетах!</div>
+
+<p>
+<a href="#manifest">Извлекаем информацию из манифеста</a><br>
+<a href="#list">Список установленных приложений</a><br>
+<a href="#getapp">Установлено ли нужное приложение</a><br>
+<a href="#whereinstall">Где установлено приложение - в памяти или на SD</a><br>
+<a href="#startactivity">Запуск приложения по имени пакета</a><br>
+<a href="#intent">Могу ли запустить намерение для загрузки приложения</a><br>
+<a href="#features">Список возможностей устройства</a><br>
+<a href="#googleplay">Установлен ли Google Play</a><br>
+</p>
+
+<p>Для начала небольшой совет - если вам нужно переименовать пакет в 
+своём проекте, то делать это надо через контекстное меню. Щёлкните 
+правой кнопкой мыши на имени пакета и выберите команду <b>Refactor | Rename...</b>.</p>
+
+<p>Вы уже знаете, что в любом Android-приложении обязательно должен быть <a href="http://developer.alexanderklimov.ru/android/theory/AndroidManifestXML.php">манифест</a>, который содержит важную информацию о самом приложении и его компонентах - активности, сервисы и т.д.</p>
+
+<p>Для доступа программным путём к данным, которые содержатся в манифесте, используется класс <b>android.content.pm.PackageManager</b>. Он позволяет работать с пакетами, которые находятся в приложении.</p>
+
+
+<p>Для работы с пакетом существуют классы:</p>
+<dl>
+<dt>PackageInfo</dt><dd>Класс, позволяющий узнать данные о пакете приложения: активности, сервисы, разрешения, имя и версия пакета и др.</dd>
+<dt>ComponentInfo</dt>
+<dd>Класс для хранения информации о различных компонентах приложения: 
+активности (ActivityInfo), сервиса (ServiceInfo), контент-провайдера 
+(ProviderInfo)</dd>
+<dt>ResolveInfo</dt>
+<dd>Класс позволяет узнать информацию о намерениях, соответствующих компонентам приложения</dd>
+</dl>
+
+<h2 class="text-warning">PackageManager</h2>
+
+<p>Получить экземпляр класса <b>PackageManager</b> можно с помощью метода <b>getPackageManager()</b>.</p>
+
+<p>Основные методы класса:</p>
+
+<dl>
+<dt>PackageInfo getPackageInfo(String packageName, int flags)</dt>
+<dd>Возвращает данные об установленном приложении с заданным именем 
+пакета. Если приложение не установлено, будет выброшено исключение.</dd>
+<dt>List&lt;ResolveInfo&gt; queryIntentActivities(Intent intent, int flags)</dt>
+<dd>Возвращает список активностей, соответствующих заданному намерению.</dd>
+</dl>
+
+<p>Рассмотрим примеры</p>
+
+<h2 class="text-warning" id="manifest">Извлекаем информацию из манифеста</h2>
+
+<p>Любое приложение имеет манифест, содержащий важную информацию о самом
+ приложении. Вы можете излечь эту информацию (не только из своей 
+программы, но из любого приложения, если вам известно имя пакета).</p>
+
+<h3 class="text-warning" id="version">Получить номер версии программы</h3>
+
+<p>Рассмотрим сначала частный случай. В манифесте имеются два атрибута <b>android:versionCode</b> и <b>android:versionName</b>, которые указывают на номер версии программы. Вы можете программно получить номера этих версий через класс <b>PackageManager</b>. Создадим две функции для извлечения номеров версии.</p>
+
+<pre><code class="java">
+private String getVersionName() {
+	String versionName = "";
+	try {
+		versionName = getPackageManager().getPackageInfo(getPackageName(),
+				0).versionName;
+	} catch (NameNotFoundException e) {
+		// Какая-то ошибка
+	}
+	return versionName;
+}
+
+private int getVersionCode() {
+	int ver = 0;
+	try {
+		ver = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+	} catch (NameNotFoundException e) {
+		// Какая-то ошибка
+	}
+	return ver;
+}
+</code></pre>
+
+<p>Обратите внимание, что нужно обязательно использовать конструкциию <b>try/catch</b> - без них компилятор не позволяет запустить программу. Теперь осталось вызвать функции, например, при нажатии кнопки.</p>
+
+<pre><code class="java">
+textVersion.setText("Номер версии: " + getVersionCode());
+// или
+textVersion.setText("Номер версии: " + getVersionName());
+</code></pre>
+
+<p>Также вы можете узнать имя пакета, дату последнего обновления и 
+список разрешений. По поводу разрешений небольшое уточнение. В обычном 
+случае попытка получить список разрешений обернётся возвращаемым 
+значением <b>null</b>. Чтобы получить массив строк с разрешениями, необходимо сначала установить флаг <b>GET_PERMISSIONS</b>. Полный код примера будет выглядеть следующим образом:</p>
+
+<pre><code class="java">
+public void onClick(View view) {
+	TextView tv = (TextView) findViewById(R.id.textView1);
+	
+	try {
+		PackageInfo mInfo = getPackageManager().getPackageInfo(
+				getPackageName(), PackageManager.GET_META_DATA);
+		tv.append("PackageName = " + mInfo.packageName + "\n");
+		tv.append("VersionName = " + mInfo.versionName + "\n");
+		tv.append("VersionCode = " + mInfo.versionCode + "\n");
+		tv.append("Last Update Time = " + new Date(mInfo.lastUpdateTime)
+				+ "\n");
+		tv.append("Permission = " + mInfo.permissions + "\n");
+
+		mInfo = getPackageManager().getPackageInfo(getPackageName(),
+				PackageManager.GET_PERMISSIONS);
+
+		// получим массив разрешений
+		String[] requestedPermissions = mInfo.requestedPermissions;
+
+		if (requestedPermissions != null) {
+			for (int i = 0; i &lt; requestedPermissions.length; i++) {
+				tv.append(requestedPermissions[i] + "\n");
+			}
+		}
+	} catch (NameNotFoundException e) {
+		// Какая-то ошибка
+		e.printStackTrace();
+	}
+}
+</code></pre>
+
+<p> <img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/packageinfo.png" alt="PackageInfo" height="400" width="240"></p>
+
+<h2 class="text-warning" id="list">Список установленных приложений</h2>
+
+<p>Класс <b>android.content.pm.PackageManager</b> позволяет получить список установленных приложений. Добавим на форму элемент ListView и напишем код:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.applications;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+public class ApplicationsActivity extends Activity {
+
+	private ListView listApps;
+	private ArrayList&lt;String&gt; results = new ArrayList&lt;String&gt;();
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		listApps = (ListView) findViewById(R.id.listView1);
+		PackageManager pm = this.getPackageManager();
+
+		Intent intent = new Intent(Intent.ACTION_MAIN, null);
+		intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+		List&lt;ResolveInfo&gt; list = pm.queryIntentActivities(intent,
+				PackageManager.PERMISSION_GRANTED);
+		for (ResolveInfo rInfo : list) {
+			results.add(rInfo.activityInfo.applicationInfo.loadLabel(pm)
+					.toString());
+		}
+
+		listApps.setAdapter(new ArrayAdapter&lt;String&gt;(this,
+				android.R.layout.simple_list_item_1, results));
+	}
+}
+</code></pre>
+
+<p>Запущенный проект даст следующий результат:</p>
+
+<p><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/apps1.png" alt=""></p>
+
+<h2 class="text-warning">Доработка программы</h2>
+
+<p>Базовое приложение получилось скучноватым. Давайте его доработаем, 
+чтобы у нас выводились значки, названия программ и имена пакетов.</p>
+
+<p>Также при щелчке на выбранном приложении оно должно запуститься. По сути мы создадим замену для системной программы <b>Приложения</b>.</p>
+
+<p>Создадим собственный шаблон для элементов списка, чтобы можно было вывести значки (файл res/layout/list_item.xml):</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="5dip" &gt;
+
+    &lt;ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="5dp"
+        android:scaleType="center" /&gt;
+
+    &lt;LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" &gt;
+
+        &lt;TextView
+            android:id="@+id/tvName"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical" /&gt;
+
+        &lt;TextView
+            android:id="@+id/tvPack"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ellipsize="marquee"
+            android:singleLine="true" /&gt;
+    &lt;/LinearLayout&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Основной шаблон main.xml остаётся прежним:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" &gt;
+    &lt;/ListView&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Теперь код для основного экрана:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.applications;
+
+import ...
+
+public class ApplicationsActivity extends Activity {
+
+	private ListView listApps;
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		listApps = (ListView) findViewById(R.id.listView1);
+
+		// Создаем новый адаптер
+		AppInfoAdapter adapter = new AppInfoAdapter(this,
+				Utilities.getInstalledApplication(this), getPackageManager());
+		// устанавливаем адаптер для ListView
+		listApps.setAdapter(adapter);
+		
+		// обработка щелчков на элементах списка
+		listApps.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView&lt;?&gt; parent, View view, int pos,
+					long id) {
+				// получаем адаптер
+				AppInfoAdapter appInfoAdapter = (AppInfoAdapter) parent
+						.getAdapter();
+				// получаем выбранный элемент списка
+				ApplicationInfo appInfo = (ApplicationInfo) appInfoAdapter
+						.getItem(pos);
+				// запускаем выбранное приложение
+				Utilities.launchApp(parent.getContext(), getPackageManager(),
+						appInfo.packageName);
+			}
+		});
+	}
+}
+</code></pre>
+
+<p>В коде встречаются ссылки на новые классы AppInfoAdapter и Utilities,
+ в которых реализована логика создания адаптера и запуска приложений.</p>
+
+<p>Класс AppInfoAdapter</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.applications;
+
+import ...
+
+public class AppInfoAdapter extends BaseAdapter {
+	private Context mContext;
+	private List&lt;ApplicationInfo&gt; mListAppInfo;
+	private PackageManager mPackManager;
+
+	public AppInfoAdapter(Context c, List&lt;ApplicationInfo&gt; list, PackageManager pm) {
+		mContext = c;
+		mListAppInfo = list;
+		mPackManager = pm;
+	}
+
+	@Override
+	public int getCount() {
+		return mListAppInfo.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return mListAppInfo.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		// get the selected entry
+		ApplicationInfo entry = mListAppInfo.get(position);
+
+		// reference to convertView
+		View v = convertView;
+
+		// inflate new layout if null
+		if(v == null) {
+			LayoutInflater inflater = LayoutInflater.from(mContext);
+			v = inflater.inflate(R.layout.list_item, null);
+		}
+
+		// загружаем элементы из ресурсов
+		ImageView ivAppIcon = (ImageView)v.findViewById(R.id.ivIcon);
+		TextView tvAppName = (TextView)v.findViewById(R.id.tvName);
+		TextView tvPkgName = (TextView)v.findViewById(R.id.tvPack);
+
+		// назначаем данные (значки, имена программ и пакетов)
+		ivAppIcon.setImageDrawable(entry.loadIcon(mPackManager));
+		tvAppName.setText(entry.loadLabel(mPackManager));
+		tvPkgName.setText(entry.packageName);
+
+		return v;
+	}
+}
+</code></pre>
+
+<p>Класс Utilities</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.applications;
+
+import java.util.List;
+
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.widget.Toast;
+
+public class Utilities {
+
+	public static List&lt;ApplicationInfo&gt; getInstalledApplication(Context c) {
+		return c.getPackageManager().getInstalledApplications(PackageManager.GET_META_DATA);
+	}
+
+	public static boolean launchApp(Context c, PackageManager pm, String pkgName) {
+		Intent intent = pm.getLaunchIntentForPackage(pkgName);
+		// if intent is available
+		if(intent != null) {
+			try {
+				// launch application
+				c.startActivity(intent);
+				// if succeed
+				return true;
+
+			// if fail
+			} catch(ActivityNotFoundException ex) {
+				// quick message notification
+				Toast toast = Toast.makeText(c, "Application Not Found", Toast.LENGTH_LONG);
+				// display message
+				toast.show();
+			}
+		}
+		// by default, fail to launch
+		return false;
+	}
+}
+</code></pre>
+
+<p>Запускаем проект и видим список всех установленных приложений, в том 
+числе и системных и служебных, которые не предназначены для запуска. 
+Можете пощёлкать по ним, чтобы увидеть, что ничего не происходит.</p>
+
+<p><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/apps2.png" alt="Список установленных программ"></p>
+
+<h2 class="text-warning" id="getapp">Установлено ли нужное приложение</h2>
+
+<p>В некоторых случаях нужно узнать, установлено ли конкретное 
+устройство у пользователя, например, Twitter, FaceBook и т.д. Вы можете 
+получить список всех программ и определить присутствие нужной программы,
+ но такой подход не слишком эффективен, особенно, если программ очень 
+много.</p>
+
+<p>Мы пойдём другим путём. Попробуем запустить нужную программу, если её нет на устройстве, то возникнет исключение <b>NameNotFoundException</b>. Мы сможем обработать данную ситуацию в своих целях.</p>
+
+<p>Создадим новый класс <b>Utils</b>:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.apps;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.content.pm.PackageManager.NameNotFoundException;
+
+public class Utils {
+
+	/** Проверка на существование программы */
+	public static boolean checkApp(Context context, PackageManager pm,
+			String packageName) {
+		try {
+			// если программа установлена, то возвращает true
+			pm.getApplicationInfo(packageName, 0);
+			return true;
+		} catch (NameNotFoundException ex) {
+			// Запускаем Google Play
+			launchMarket(context, packageName);
+			return false;
+		}
+	}
+
+	/** Запускаем Google Play для установки программы */
+	public static void launchMarket(Context context, String packageName) {
+		Uri uri = Uri.parse("market://details?id=" + packageName);
+		Intent iDown = new Intent(Intent.ACTION_VIEW, uri);
+		if (isAvaialable(intent, mContext)) {
+		    context.startActivity(iDown);
+		} else {
+		    Uri uri = Uri.parse("http://play.google.com/store/apps/details?id=" + packageName);
+            iDown.setData(uri);
+            startActivity(iDown); 
+		}
+	}
+	
+	public static boolean isAvailable(Context ctx, Intent intent) {
+        final PackageManager mgr = ctx.getPackageManager();
+        List list = mgr.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        return list.size() &gt; 0;
+    }
+}
+</code></pre>
+
+<p>Чтобы проверить наличие установленной программы, нужно знать имя его 
+пакета. Например, для официального приложения FaceBook имя пакета <b>com.facebook.katana</b>. Пишем код для кнопки:</p>
+
+<pre><code class="java">
+public void onClick(View view) {
+    if(Utils.checkApp(this, getPackageManager(), "com.facebook.katana")) {
+            Toast.makeText(this, "Facebook установлен", Toast.LENGTH_SHORT).show();
+    }else {
+    	Toast.makeText(this, "Facebook не установлен", Toast.LENGTH_SHORT).show();
+	}
+}
+</code></pre>
+
+<p>Отсутствие Фейсбука на устройстве - это не страшно. Установлена ли у вас моя программа <a href="https://play.google.com/store/apps/details?id=ru.alexanderklimov.crib">Справочник для котов</a>? Если нет, то я с вами не вожусь и не хочу с вами разговаривать дальше. Вот сейчас и проверим:</p>
+
+<pre><code class="java">
+public void onClick(View view) {
+    if(Utils.checkApp(this, getPackageManager(), "ru.alexanderklimov.crib")) {
+            Toast.makeText(this, "Мяу! Справочник для котов установлен", Toast.LENGTH_SHORT).show();
+    }else {
+    	Toast.makeText(this, "Рррр! А справочник-то не установлен!", Toast.LENGTH_SHORT).show();
+	}
+}
+</code></pre>
+
+<p>Признавайтесь, какое сообщение выводится на экране.</p>
+
+<div class="alert">
+В коде предполагается запуск Google Play, который нельзя запустить на 
+эмуляторе. Поэтому нужно закомментировать строчку в классе Utils:<br> launchMarket(context, packageName);
+если тестируете код на эмуляторе.
+</div>
+
+<h2 class="text-warning" id="whereinstall">Где установлено приложение - в памяти или на SD</h2>
+
+<p>Хотие узнать, куда пользователь установил ваше приложение (во 
+внутренюю или внешнюю память)? Вот небольшая функция для определения:</p>
+
+<pre><code class="java">
+public static boolean isExternal(Context context) {
+	PackageManager pm = context.getPackageManager();
+	final String my_package = context.getPackageName();
+	
+	try {
+		ApplicationInfo applicationInfo = pm.getApplicationInfo(my_package, 0);
+		int flags = applicationInfo.flags;
+		final boolean isExternal = (flags &amp; ApplicationInfo.FLAG_EXTERNAL_STORAGE) == ApplicationInfo.FLAG_EXTERNAL_STORAGE;
+		return isExternal;
+	} catch (NameNotFoundException e) {
+		Log.d(TAG, "Нет такого пакета.", e);
+	}
+	return false;
+}
+</code></pre>
+
+<h2 class="text-warning" id="startactivity">Запуск приложения по имени пакета</h2>
+
+<p>По существу, запуск приложения является запуском нужной активности. 
+Всё, что нам нужно знать - это имя пакета. В предыдущих примерах мы уже 
+видели, как это можно сделать. Для удобства вынес запуск активности в 
+отдельный метод:</p>
+
+<pre><code class="java">
+public static boolean launchApp(Context context, PackageManager pm, String pkgName) {
+	Intent intent = pm.getLaunchIntentForPackage(pkgName);
+	// если намерение доступно
+	if(intent != null) {
+		try {
+			// запускаем приложение
+			context.startActivity(intent);
+			// в успешном случае возвращаем true
+			return true;
+
+		// если ошибка
+		} catch(ActivityNotFoundException e) {
+			Toast toast = Toast.makeText(context, "Приложение не найдено", Toast.LENGTH_LONG);
+			toast.show();
+		}
+	}
+	// по умолчанию выводим false
+	return false;
+}
+</code></pre>
+
+<h2 class="text-warning" id="intent">Могу ли запустить намерение для загрузки приложения</h2>
+
+<p>Еще один подход к решению стандартной задачи. Мы проверяем наличие нужного пакета через метод <b>queryIntentActivities()</b>
+ и в зависимости от результата присваиваем нужное значение булевой 
+переменной. И теперь мы можем, например, заблокировать пункт меню, если 
+нужное приложение отсутствует на устройстве (<a href="http://android-developers.blogspot.ru/2009/01/can-i-use-this-intent.html">источник</a>):</p>
+
+<pre><code class="java">
+/**
+ * Indicates whether the specified action can be used as an intent. This
+ * method queries the package manager for installed packages that can
+ * respond to an intent with the specified action. If no suitable package is
+ * found, this method returns false.
+ *
+ * @param context The application's environment.
+ * @param action The Intent action to check for availability.
+ *
+ * @return True if an Intent with the specified action can be sent and
+ *         responded to, false otherwise.
+ */
+public static boolean isIntentAvailable(Context context, String action) {
+    final PackageManager packageManager = context.getPackageManager();
+    final Intent intent = new Intent(action);
+    List&lt;ResolveInfo&gt; list =
+            packageManager.queryIntentActivities(intent,
+                    PackageManager.MATCH_DEFAULT_ONLY);
+    return list.size() &gt; 0;
+}
+
+@Override
+public boolean onPrepareOptionsMenu(Menu menu) {
+    final boolean scanAvailable = isIntentAvailable(this,
+        "com.google.zxing.client.android.SCAN");
+
+    MenuItem item;
+    item = menu.findItem(R.id.menu_item_add);
+    item.setEnabled(scanAvailable);
+
+    return super.onPrepareOptionsMenu(menu);
+}
+</code></pre>
+
+<h2 class="text-warning" id="features">Список возможностей устройства</h2>
+
+<p>С помощью класса <b>FeatureInfo</b> можно получить список возможностей устройства. Добавим на экран ListView и напишем код:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.applications;
+
+import ...
+
+public class ApplicationsActivity extends Activity {
+
+	private ListView mList;
+	private ArrayList&lt;String&gt; systemFeaturesList = new ArrayList&lt;String&gt;();
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		mList = (ListView) findViewById(R.id.listView1);
+		PackageManager mPackageManager = getPackageManager();
+		FeatureInfo[] systemFeature = mPackageManager
+				.getSystemAvailableFeatures();
+
+		for (int i = 0; i &lt; systemFeature.length; i++) {
+			String feature = systemFeature[i].name;
+			if (feature == null) {
+				feature = "OpenGL Version : " + systemFeature[i].reqGlEsVersion;
+			}
+			systemFeaturesList.add(feature);
+		}
+		mList.setAdapter(new SystemFeatureListAdapter(this));
+	}
+
+	private class SystemFeatureListAdapter extends BaseAdapter {
+
+		private Context mContext;
+
+		public SystemFeatureListAdapter(Context context) {
+			mContext = context;
+		}
+
+		@Override
+		public int getCount() {
+			return systemFeaturesList.size();
+		}
+
+		@Override
+		public Object getItem(int index) {
+			return systemFeaturesList.get(index);
+		}
+
+		@Override
+		public long getItemId(int id) {
+			return id;
+		}
+
+		@Override
+		public View getView(int position, View view, ViewGroup parent) {
+			TextView text = new TextView(mContext);
+			text.setText((CharSequence) systemFeaturesList.get(position));
+			return text;
+		}
+	}
+}
+</code></pre>
+
+<p><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/apps4.png" alt="FeatureInfo" title="FeatureInfo" height="400" width="240"></p>
+
+<p>Документация говорит, что программа сканирует в манифесте тег <b>uses-feature</b>.
+ Но принцип работы я что-то не понял, хотя я в манифесте указал на 
+запрет использования камеры, она всё равно выводилась в списке.</p>
+
+<h2 class="text-warning" id="googleplay">Установлен ли Google Play</h2>
+
+<p>На китайских аппаратах и на эмуляторе не установлен Google Play. Для 
+проверки наличия данного магазина приложений можно воспользоваться 
+классом <b>com.google.process.gapps</b>. Второе решение использует более
+ хитрую схему - делаем запрос по заданной схеме и смотрим на результат. 
+Если есть приложения, способные обработать данный запрос, то можно 
+предполагать, что Google Play установлен. Нельзя утверждать наверняка, 
+что оба способа гарантировано работоспособны.</p>
+
+<pre><code class="java">
+boolean isMarketAvailable(Context context) {
+    Intent intent = new Intent();
+    intent.setAction(Intent.ACTION_VIEW);
+    intent.setData(Uri.parse("market://search?q=foo"));
+    PackageManager pm = context.getPackageManager();
+    List&lt;ResolveInfo&gt; list = pm.queryIntentActivities(intent, 0);
+
+    boolean installed = !(list == null || list.isEmpty());
+
+    return installed;
+}
+</code></pre>
+
+<p>Теперь вы знаете, как выглядит настоящий менеджер пакетов:</p>
+
+<p><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/packagecat2.jpg" alt="Менеджер пакетов"></p>
+
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/fastbutton.htm" name="I0_1379797879858" id="I0_1379797879858" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/postmessageRelay.htm" id="oauth2relay749938407" name="oauth2relay749938407"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/jquery.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%D0%BE%D0%BC%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D0%BE%D0%B2_files/bootstrap-typeahead.js"></script>
+
+</body></html>

@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Датчик ориентации</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory/">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Датчик ориентации</h1>
+<p>Четвёртый месяц обучения (закрытая зона)</p>
+
+
+<p>
+<a href="#orientationeventlistener">OrientationEventListener - грубый способ определения ориентации экрана</a><br>
+<a href="#sensororientation">SensorEventListener - точный способ определения положения в пространстве</a><br>
+<a href="#combosensors">Вычисление положения с помощью акселерометра и датчика магнитного поля</a><br>
+</p>
+
+<p>Датчик ориентации — это комбинация датчика магнитного поля, 
+выполняющего роль электронного компаса, и акселерометра, измеряющего 
+наклон и вращение.</p>
+
+<p>Если вы знакомы с тригонометрией, то можете самостоятельно вычислять 
+необходимые данные и определять положение устройства относительно всех 
+трёх осей, основываясь на показаниях акселерометра и датчика магнитного 
+поля. Однако есть хорошая новость - Android может сделать все вычисления
+ сам.</p>
+
+<p>При использовании стандартной системы отсчета положение устройства 
+вычисляется в трёх измерениях. Как и в случае с акселерометром, 
+устройство рассматривается в состоянии покоя, лёжа экраном вверх на 
+плоской поверхности.</p>
+
+<p><img src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/sensor-orientation1.png" alt="Датчик ориентации"></p>
+
+<p><b>Ось X</b> (направление). Направление устройства при движении вокруг оси X; 0°/360° — север, 90° — восток, 180° — юг, 270° — запад.</p>
+<p><b>Ось Y</b> (наклон). Угол наклона устройства при вращении 
+относительно оси Y. Он равняется 0°, если устройство лежит на задней 
+крышке, 
+–90° — если расположено вертикально (верхняя часть устройства указывает 
+вверх), 90° — если перевернуто, 180°/–180° — если экраном вниз.</p>
+<p><b>Ось Z</b> (поворот). Поворот писывает боковой наклон устройства по оси Z между –90° и 90°. При 0° устройство лежит на задней крышке, при 
+–90° экран повернут влево, при 90° — вправо.</p>
+
+<p>Существует два способа определения положения устройства. Можно 
+сделать запрос напрямую к датчику ориентации или получить необходимые 
+данные с помощью акселерометра и датчика магнитного поля. Второй вариант
+ более медленный, но имеет повышенную точность и возможность изменять 
+систему отсчета при определении положения в пространстве. Рассмотрим оба
+ варианта.</p>
+
+
+
+<h2 class="text-warning" id="orientationeventlistener">OrientationEventListener - грубый способ определения ориентации экрана</h2>
+
+<p>В свою очередь можно получать показания с датчика ориентации грубым и
+ точным способом. Грубый способ позволяет определить повороты на 90 
+градусов - 0°, 90°, 180°, 270°, 360°. В некоторых случаях этого вполне 
+достаточно для приложения.</p>
+
+<p>Для отслеживания таких поворотов нужно подписаться на слушатель <b>OrientationEventListener</b>. Создадим простую разметку:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:id="@+id/tvOrientation"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Ориентация: " /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>И напишем код:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.orientation;
+
+import android.app.Activity;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.view.OrientationEventListener;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+
+	TextView tvOrientation;
+	OrientationEventListener myOrientationEventListener;
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		tvOrientation = (TextView) findViewById(R.id.tvOrientation);
+
+		myOrientationEventListener = new OrientationEventListener(this,
+				SensorManager.SENSOR_DELAY_NORMAL) {
+
+			@Override
+			public void onOrientationChanged(int arg0) {
+				// TODO Auto-generated method stub
+				tvOrientation.setText("Ориентация: "
+						+ String.valueOf(arg0));
+			}
+		};
+
+		if (myOrientationEventListener.canDetectOrientation()) {
+			Toast.makeText(this, "Могу определить ориентацию экрана", Toast.LENGTH_LONG)
+					.show();
+			myOrientationEventListener.enable();
+		} else {
+			Toast.makeText(this, "Не могу определить ориентацию экрана", Toast.LENGTH_LONG)
+					.show();
+			// Перестаем отслеживать изменение ориентации
+			myOrientationEventListener.disable();
+		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		myOrientationEventListener.disable();
+	}
+}
+</code></pre>
+
+<h2 class="text-warning" id="sensororientation">SensorEventListener - точный способ определения положения в пространстве</h2>
+
+<p>Более точный способ отслеживать положение устройства в пространстве — зарегистрировать слушатель <b>SensorEventListener</b> с помощью объекта <b>SensorManager</b>, используя датчик ориентации по умолчанию:</p>
+
+<pre><code class="java">
+SensorManager sm = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+
+int sensorType = Sensor.TYPE_ORIENTATION;
+sm.registerListener(myOrientationListener,
+        sm.getDefaultSensor(sensorType),
+        SensorManager.SENSOR_DELAY_NORMAL);
+</code></pre>
+
+<p>Когда положение устройства меняется, в вашей реализации интерфейса <b>SensorEventListener</b> срабатывает обработчик <b>onSensorChanged()</b>. Параметр <b>SensorEvent</b> включает в себя массив значений типа <i>float</i>,
+ описывающий положение устройства по трем осям. Первый элемент этого 
+массива (values[0]) — направление, второй — наклон (values[1]), третий —
+ поворот (values[2]).</p>
+
+<pre><code class="java">
+final SensorEventListener myOrientationListener = new SensorEventListener() {
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_ORIENTATION) {
+            float headingAngle = sensorEvent.values[0];
+            float pitchAngle = sensorEvent.values[1];
+            float rollAngle = sensorEvent.values[2];
+            // TODO Использовать изменение положения в своей программе.
+        }
+    }
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+};
+</code></pre>
+
+<div class="alert">
+Имейте в виду, что <b>TYPE_ORIENTATION</b> объявлен устаревшим. 
+Рекомендуется использовать более точный (но и более сложный) способ с 
+использованием акселерометра и датчика магнитного поля.
+</div>
+
+<h3 class="text-warning">Базовый пример</h3>
+
+<p>Для начала напишем простой пример, который будет выводить значения поворотов в плоскости в текстовые метки.</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:id="@+id/textazimuth"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Azimuth: " /&gt;
+
+    &lt;TextView
+        android:id="@+id/textpitch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Pitch: " /&gt;
+
+    &lt;TextView
+        android:id="@+id/textroll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Roll: " /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Код для активности:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.test;
+
+import java.util.List;
+
+import android.app.Activity;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class TestActivity extends Activity {
+
+	TextView textviewAzimuth, textviewPitch, textviewRoll;
+	private static SensorManager mySensorManager;
+	private boolean sersorrunning;
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_test);
+		textviewAzimuth = (TextView) findViewById(R.id.textazimuth);
+		textviewPitch = (TextView) findViewById(R.id.textpitch);
+		textviewRoll = (TextView) findViewById(R.id.textroll);
+
+		mySensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+		List<sensor> mySensors = mySensorManager
+				.getSensorList(Sensor.TYPE_ORIENTATION);
+
+		if (mySensors.size() &gt; 0) {
+			mySensorManager.registerListener(mySensorEventListener,
+					mySensors.get(0), SensorManager.SENSOR_DELAY_NORMAL);
+			sersorrunning = true;
+			Toast.makeText(this, "Start ORIENTATION Sensor", Toast.LENGTH_LONG)
+					.show();
+		} else {
+			Toast.makeText(this, "No ORIENTATION Sensor", Toast.LENGTH_LONG)
+					.show();
+			sersorrunning = false;
+			finish();
+		}
+	}
+
+	private SensorEventListener mySensorEventListener = new SensorEventListener() {
+
+		@Override
+		public void onSensorChanged(SensorEvent event) {
+			// TODO Auto-generated method stub
+
+			textviewAzimuth.setText("Azimuth: "
+					+ String.valueOf(event.values[0]));
+			textviewPitch.setText("Pitch: " + String.valueOf(event.values[1]));
+			textviewRoll.setText("Roll: " + String.valueOf(event.values[2]));
+		}
+
+		@Override
+		public void onAccuracyChanged(Sensor sensor, int accuracy) {
+			// TODO Auto-generated method stub
+		}
+	};
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+
+		if (sersorrunning) {
+			mySensorManager.unregisterListener(mySensorEventListener);
+			Toast.makeText(this, "unregisterListener", Toast.LENGTH_SHORT)
+					.show();
+		}
+	}
+}
+</sensor></code></pre>
+
+
+<h3 class="text-warning">Продвинутый пример</h3>
+
+<p>Напишем практический пример с использованием датчика ориентации. 
+Реализуем свой компонент View, который будет выводить маленький кружочек
+ внутри квадрта. В зависимости от наклонов кружочек будет смещаться. В 
+текстовых полях будем выводить показания датчика.</p>
+
+<p>Сначала напишем код для класса компонента:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.orientation;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.View;
+
+public class HorizontalView extends View {
+
+	private float mPitch = 0;
+	private float mRoll = 0;
+
+	private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+	private boolean firstDraw;
+	final float radiusPt = (float) 3;
+
+	public HorizontalView(Context context) {
+		super(context);
+		// TODO Auto-generated constructor stub
+		init();
+	}
+
+	public HorizontalView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		// TODO Auto-generated constructor stub
+		init();
+	}
+
+	public HorizontalView(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		// TODO Auto-generated constructor stub
+		init();
+	}
+
+	private void init() {
+
+		paint.setStyle(Paint.Style.STROKE);
+		paint.setStrokeWidth(3);
+		paint.setColor(Color.WHITE);
+		paint.setTextSize(20);
+
+		firstDraw = true;
+	}
+
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		// TODO Auto-generated method stub
+		setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec),
+				MeasureSpec.getSize(heightMeasureSpec));
+	}
+
+	@Override
+	protected void onDraw(Canvas canvas) {
+		// TODO Auto-generated method stub
+
+		int cxPlan = getMeasuredWidth() / 2;
+		int cyPlan = getMeasuredHeight() / 2;
+
+		float fullLength, halfLength, ptPerDegree;
+
+		if (cxPlan &gt; cyPlan) {
+			fullLength = (float) (getMeasuredHeight() * 0.9);
+
+		} else {
+			fullLength = (float) (getMeasuredWidth() * 0.9);
+		}
+		halfLength = fullLength / 2;
+		ptPerDegree = fullLength / 360;
+
+		canvas.drawRect(cxPlan - halfLength, cyPlan - halfLength, cxPlan
+				+ halfLength, cyPlan + halfLength, paint);
+
+		canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), paint);
+
+		if (!firstDraw) {
+			float yPt = cyPlan + (mPitch * ptPerDegree);
+			float xPt = cxPlan + (mRoll * ptPerDegree);
+			canvas.drawCircle(xPt, yPt, radiusPt, paint);
+		}
+	}
+
+	public void updateHorizontal(float tPitch, float tRoll) {
+		firstDraw = false;
+		mPitch = tPitch;
+		mRoll = tRoll;
+		invalidate();
+	}
+}
+</code></pre>
+
+<p>Создадим разметку для активности:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:id="@+id/tvPitch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" /&gt;
+
+    &lt;TextView
+        android:id="@+id/tvRoll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" /&gt;
+
+    &lt;view
+        android:id="@+id/horizontalview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        class="ru.alexanderklimov.orientation.HorizontalView" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Код для активности:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.orientation;
+
+import java.util.List;
+
+import android.app.Activity;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+
+	private static SensorManager mSensorManager;
+	private boolean sersorrunning;
+	private HorizontalView mHorizontalView;
+	private TextView tvPitch, tvRoll;
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		mHorizontalView = (HorizontalView) findViewById(R.id.horizontalview);
+		tvPitch = (TextView) findViewById(R.id.tvPitch);
+		tvRoll = (TextView) findViewById(R.id.tvRoll);
+
+		mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+		List<sensor> mySensors = mSensorManager
+				.getSensorList(Sensor.TYPE_ORIENTATION);
+
+		if (mySensors.size() &gt; 0) {
+			mSensorManager.registerListener(mySensorEventListener,
+					mySensors.get(0), SensorManager.SENSOR_DELAY_NORMAL);
+			sersorrunning = true;
+		} else {
+			Toast.makeText(this, "Датчик ориентации не обнаружен", Toast.LENGTH_LONG)
+					.show();
+			sersorrunning = false;
+			finish();
+		}
+	}
+
+	private SensorEventListener mySensorEventListener = new SensorEventListener() {
+
+		@Override
+		public void onAccuracyChanged(Sensor sensor, int accuracy) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void onSensorChanged(SensorEvent event) {
+			// TODO Auto-generated method stub
+
+			tvPitch.setText("Pitch: " + String.valueOf(event.values[1]));
+			tvRoll.setText("Roll: " + String.valueOf(event.values[2]));
+
+			mHorizontalView.updateHorizontal((float) event.values[1],
+					(float) event.values[2]);
+		}
+	};
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+
+		if (sersorrunning) {
+			mSensorManager.unregisterListener(mySensorEventListener);
+		}
+	}
+}
+</sensor></code></pre>
+
+<p>Запустив проект, вы можете наблюдать движение шарика внутри квадрата.
+ По такой схеме работают многие игры, где надо управлять шариком.</p>
+
+<h3 class="text-warning">Простейший компас</h3>
+
+<p>Несмотря на то, что <b>TYPE_ORIENTATION</b> является устаревшим, 
+возможна ситуация, когда только датчик ориентации доступен на 
+устройстве. Вдобавок к предыщуему примеру с шариком, рассмотрим пример с
+ компасом для общего развития. Пример взят <a href="http://android-er.blogspot.ru/2010/08/simple-compass-sensormanager-and.html">отсюда</a>.</p>
+
+<p>Логика работы осталась практически без изменений, только для компаса 
+нужно считывать лишь показания направления - первый элемент массива 
+values[0].</p>
+
+<p>Создадим новый класс <b>MyCompassView</b>:</p>
+
+<pre><code class="java">
+package com.exercise.AndroidCompass;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.View;
+
+public class MyCompassView extends View {
+
+    private float direction = 0;
+    private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private boolean firstDraw;
+    
+    public MyCompassView(Context context) {
+        super(context);
+        // TODO Auto-generated constructor stub
+        init();
+    }
+    
+    public MyCompassView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        // TODO Auto-generated constructor stub
+        init();
+    }
+    
+    public MyCompassView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        // TODO Auto-generated constructor stub
+        init();
+    }
+    
+    private void init(){
+    
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(3);
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(30);
+        
+        firstDraw = true;
+    }
+    
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        // TODO Auto-generated method stub
+        setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec));
+    }
+    
+    @Override
+    protected void onDraw(Canvas canvas) {
+        // TODO Auto-generated method stub
+        
+        int cxCompass = getMeasuredWidth()/2;
+        int cyCompass = getMeasuredHeight()/2;
+        float radiusCompass;
+        
+        if(cxCompass &gt; cyCompass){
+            radiusCompass = (float) (cyCompass * 0.9);
+        }
+        else{
+            radiusCompass = (float) (cxCompass * 0.9);
+        }
+        canvas.drawCircle(cxCompass, cyCompass, radiusCompass, paint);
+        canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), paint);
+        
+        if(!firstDraw){
+        
+        canvas.drawLine(cxCompass, cyCompass,
+                (float)(cxCompass + radiusCompass * Math.sin((double)(-direction) * 3.14/180)),
+                (float)(cyCompass - radiusCompass * Math.cos((double)(-direction) * 3.14/180)),
+                paint);
+        
+        canvas.drawText(String.valueOf(direction), cxCompass, cyCompass, paint);
+        }
+    }
+    
+    public void updateDirection(float dir)
+    {
+        firstDraw = false;
+        direction = dir;
+        invalidate();
+    }
+}
+</code></pre>
+
+<p>Разметка:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;view
+        android:id="@+id/mycompassview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        class="com.exercise.AndroidCompass.MyCompassView" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Код для активности.</p>
+
+<pre><code class="java">
+package com.exercise.AndroidCompass;
+
+import java.util.List;
+
+import android.app.Activity;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.widget.Toast;
+
+public class AndroidCompass extends Activity {
+
+    private static SensorManager mySensorManager;
+    private boolean sersorrunning;
+    private MyCompassView myCompassView;
+    
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+      
+        myCompassView = (MyCompassView)findViewById(R.id.mycompassview);
+      
+        mySensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        List<sensor> mySensors = mySensorManager.getSensorList(Sensor.TYPE_ORIENTATION);
+      
+        if(mySensors.size() &gt; 0){
+            mySensorManager.registerListener(mySensorEventListener, mySensors.get(0), 
+			    SensorManager.SENSOR_DELAY_NORMAL);
+            sersorrunning = true;
+            Toast.makeText(this, "Start ORIENTATION Sensor", Toast.LENGTH_LONG).show();
+        
+        }
+        else{
+            Toast.makeText(this, "No ORIENTATION Sensor", Toast.LENGTH_LONG).show();
+            sersorrunning = false;
+            finish();
+        }
+    }
+    
+    private SensorEventListener mySensorEventListener = new SensorEventListener(){
+    
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            // TODO Auto-generated method stub
+        }
+        
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            // TODO Auto-generated method stub
+            myCompassView.updateDirection((float)event.values[0]);
+        }
+    };
+        
+    @Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+        
+        if(sersorrunning){
+            mySensorManager.unregisterListener(mySensorEventListener);
+        }
+    }
+}
+</sensor></code></pre>
+
+<p>Желательно отключить автоповорот в манифесте, чтобы не сбивать показания датчика.</p>
+
+<pre><code class="xml">
+<activity android:name=".AndroidCompass" android:label="@string/app_name" android:screenorientation="portrait">
+</activity></code></pre>
+
+<p><img src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/DSCN9910.JPG"></p>
+
+<p>В других статьях на сайте вы увидите продвинутые примеры создания компаса.</p>
+
+<h2 class="text-warning" id="combosensors">Вычисление положения с помощью акселерометра и датчика магнитного поля</h2>
+
+<p>Лучший способ определить положение устройства в пространстве — 
+вычислить его, используя напрямую показания акселерометра и датчика 
+магнитного поля. Данный подход позволяет вам изменять систему отсчета 
+для переназначения осей X, Y и Z, чтобы корректировать ожидаемую 
+ориентацию устройства.</p>
+
+<p>При таком подходе используются сразу два датчика — акселерометр и 
+датчик магнитного поля, поэтому вам необходимо создать и 
+зарегистрировать две реализации SensorEventListener. Внутри методов 
+onSensorChanged для каждой из них записывайте свойство <b>values</b>, получаемое из двух разных полей.</p>
+
+<pre><code class="java">
+float[] accelerometerValues;
+float[] magneticFieldValues;
+final SensorEventListener myAccelerometerListener = new SensorEventListener() {
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
+            accelerometerValues = sensorEvent.values;
+    }
+    
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+};
+
+final SensorEventListener myMagneticFieldListener = new SensorEventListener() {
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD)
+            magneticFieldValues = sensorEvent.values;
+    }
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+};
+</code></pre>
+
+<p>Зарегистрируйте обе реализации SensorEventListener с помощью объекта 
+SensorManager. В следующем листинге используются аппаратные датчики по 
+умолчанию и частота обновления SENSOR_DELAY_UI:</p>
+
+<pre><code class="java">
+SensorManager sm = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+Sensor aSensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+Sensor mfSensor = sm.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+sm.registerListener(myAccelerometerListener,
+        aSensor,
+        SensorManager.SENSOR_DELAY_UI);
+sm.registerListener(myMagneticFieldListener,
+        mfSensor,
+        SensorManager.SENSOR_DELAY_UI);
+</code></pre>
+
+<p>Чтобы вычислить текущее положение в пространстве с помощью показаний этих датчиков, используйте методы <b>getRotationMatrix()</b> и <b>getOrientation()</b> из объекта SensorManager. Обратите внимание на то, что getOrientation возвращает радианы, а не градусы.</p>
+
+<pre><code class="java">
+float[] values = new float[3];
+float[] R = new float[9];
+SensorManager.getRotationMatrix(R, null,
+        accelerometerValues,
+        magneticFieldValues);
+SensorManager.getOrientation(R, values);
+// Преобразуйте радианы в градусы.
+values[0] = (float) Math.toDegrees(values[0]);
+values[1] = (float) Math.toDegrees(values[1]);
+values[2] = (float) Math.toDegrees(values[2]);
+</code></pre>
+
+<h3 class="text-warning">Переопределение системы отсчета</h3>
+
+<p>Чтобы вычислить положение устройства в пространстве с помощью системы
+ отсчета, отличной от стандартной (описанной выше), используйте метод <b>remapCoordinateSystem()</b> из объекта SensorManager.</p>
+
+<p>При стандартной системе отсчета считается, что устройство должно было
+ лежать на плоской поверхности экраном вверх. Подобный подход позволяет 
+вам изменять систему координат для вычисления положения в пространстве. 
+Таким образом, положение, при котором устройство расположено 
+вертикально, можно обозначить как состояние покоя.</p>
+
+<p>Метод <b>remapCoordinateSystem()</b> принимает четыре параметра:</p>
+<ul>
+<li>исходная матрица поворота, получаемая методом getRotationMatrix(), как описывалось ранее;</li>
+<li>переменная, используемая для хранения конечной (преобразованной) матрицы поворота;</li>
+<li>переопределенная ось X;</li>
+<li>переопределенная ось Y</li>
+</ul>
+
+<p>Два последних параметра используются для указания новой системы 
+отсчета. Эти значения определяют новые оси X и Y, смещенные относительно
+ стандартных. Класс SensorManager предоставляет набор констант, 
+позволяющих указывать значения для осей: AXIS_X, AXIS_Y, AXIS_Z, 
+AXIS_MINUS_X, AXIS_MINUS_Y и AXIS_MINUS_Z.</p>
+
+<p>Переопределим систему отсчёта таким образом, чтобы состояние покоя 
+наступало, когда устройство расположено вертикально в портретном режиме,
+ экран повернут к пользователю.</p>
+
+<p><img src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/sensor-orientation2.png" al=""></p>
+
+<pre><code class="java">
+SensorManager.getRotationMatrix(R, null, aValues, mValues);
+float[] outR = new float[9];
+SensorManager.remapCoordinateSystem(R,
+        SensorManager.AXIS_X,
+        SensorManager.AXIS_Z,
+        outR);
+SensorManager.getOrientation(outR, values);
+// Преобразуйте радианы в градусы.
+values[0] = (float) Math.toDegrees(values[0]);
+values[1] = (float) Math.toDegrees(values[1]);
+values[2] = (float) Math.toDegrees(values[2]);
+</code></pre>
+
+<p>Тема датчиков на продвинутых примерах будет затронута в других статьях.</p>
+
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/fastbutton.htm" name="I0_1379249073443" id="I0_1379249073443" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/postmessageRelay.htm" id="oauth2relay848699830" name="oauth2relay848699830"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/jquery.js"></script>
+    <script src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%94%D0%B0%D1%82%D1%87%D0%B8%D0%BA%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D0%B8_files/bootstrap-typeahead.js"></script>
+
+</body></html>

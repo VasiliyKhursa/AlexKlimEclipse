@@ -1,0 +1,91 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="1"
+    android:orientation="vertical"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <Button
+        android:id="@+id/buttonTurnOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TurnOn" />
+
+    <Button
+        android:id="@+id/buttonBlueState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="buttonBlueState" />
+
+    <Button
+        android:id="@+id/scandevice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/buttonBlueState"
+        android:layout_alignLeft="@+id/bluetoothstate"
+        android:text="scandevice" />
+
+    <EditText
+        android:id="@+id/newBTname"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:ems="10" >
+    </EditText>
+
+    <Button
+        android:id="@+id/checkBTname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="checkBTname" />
+
+    <ListView
+        android:id="@+id/devicesfound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true" >
+    </ListView>
+
+    <Button
+        android:id="@+id/buttonTurnOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_gravity="right|top"
+        android:layout_row="0"
+        android:text="TurnOff" />
+
+    <TextView
+        android:id="@+id/bluetoothstate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="16dp"
+        android:layout_row="1"
+        android:text="TextView"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/btName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_gravity="right|bottom"
+        android:layout_row="3"
+        android:text="btName"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/setBtname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_column="0"
+        android:layout_gravity="right|top"
+        android:layout_row="4"
+        android:text="setBtname" />
+
+</GridLayout>

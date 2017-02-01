@@ -1,0 +1,4 @@
+debugger.should.show.context.dialog.preference=always
+debugger.should.show.dont.show.again.dialog.preference=always
+debugger.should.show.reset.dialog.preference=always
+eclipse.preferences.version=1

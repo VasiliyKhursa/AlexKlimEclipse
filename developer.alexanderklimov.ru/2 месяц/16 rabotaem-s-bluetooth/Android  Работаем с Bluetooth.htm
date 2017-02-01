@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Работаем с Bluetooth</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="http://developer.alexanderklimov.ru/android/secret/enter.php" id="drop3" role="button">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<p><a href="http://developer.alexanderklimov.ru/android/secret/secret.php?do=logout">Выйти из закрытой зоны</a></p>		
+			
+<h1 class="text-warning">Работаем с Bluetooth</h1>
+
+<p>
+<a href="#basic">Общая информация</a><br>
+<a href="#check">Проверяем состояние</a><br>
+<a href="#turnon">Включаем Bluetooth</a><br>
+<a href="#found">Обнаружение устройств по соседству</a><br>
+<a href="#btconnect">Использование Bluetooth для связи</a><br>
+</p>
+
+<h2 class="text-warning" id="basic">Общая информация</h2>
+
+<p>Технология Bluetooth - одна из самых старых технологий для связи 
+между устройствами, которая использовалась ещё на КПК. Это сетевой 
+протокол, созданный для связи в условиях низкой пропускной способности и
+ ограниченного радиуса действия. Она пришла на смену жутко неудобному 
+протоколу на инфракрасной связи. Сейчас и Bluetooth сдаёт свои позиции 
+под напором различных облачных интернет-решений, но тем не менее ещё 
+может сослужить полезную службу.</p>
+
+<p>Библиотеки для работы с Bluetooth стали доступны в Android только с 
+версии 2.0 (SDK API level 5). В Android поддерживаются исключительно 
+зашифрованные соединения, поэтому вы можете устанавливать связь только 
+между спаренными устройствами.</p>
+
+<p>В составе Android есть пакет <b>android.bluetooth</b>, имеющий необходимые классы для работы с синим зубом:</p>
+
+<ul>
+<li><b>BluetoothAdapter</b> - локальный Bluetooth-адаптер, то есть 
+устройство, на котором работает ваше приложение. Предоставляет интерфейс
+ обнаружения и установки Bluetooth-соединений</li>
+<li><b>BluetoothClass</b> - общие характеристики Bluetooth-устройства</li>
+<li><b>BluetoothDevice</b> - информация об удалённом Bluetooth-устройстве, к которому вы хотите подключиться</li>
+<li><b>BluetoothSocket</b> - сокет или точка соединения для данных, которыми наша система обменивается с другим устройством</li>
+<li><b>BluetoothServerSocket</b> - сокет для прослушивания входящих 
+Bluetooth-соединений. Даёт возможность отслеживать входящие сетевые 
+запросы, поступающие от удалённых устройств</li>
+</ul>
+
+<p>Для передачи данных с использованием Bluetooth требуется сделать следующее:</p>
+
+<ul>
+<li>Включить адаптер Bluetooth</li>
+<li>Найти доступные устройства с включёнными Bluetooth-адаптерами</li>
+<li>Подключиться к выбранному устройству</li>
+<li>Обменяться данными (переслать картинку, файл, музыку)</li>
+</ul>
+
+<h3 class="text-warning">Разрешения</h3>
+
+<p>Для работы с Bluetooth обычно требуются два разрешения:</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.BLUETOOTH"&gt;&lt;/uses-permission&gt;
+&lt;uses-permission android:name="android.permission.BLUETOOTH_ADMIN"&gt;&lt;/uses-permission&gt;
+</code></pre>
+
+<p>Второе разрешение <b>BLUETOOTH_ADMIN</b> используется в тех случаях, когда требуется изменить какие-то свойства адаптера.</p>
+
+<p>Требование к устройству</p>
+
+<pre><code class="java">
+&lt;uses-feature android:name="android.hardware.bluetooth"/&gt;
+</code></pre>
+
+
+<h2 class="text-warning" id="check">Проверяем состояние</h2>
+
+<p>Прежде чем использовать Bluetooth, надо сначала убедиться, что 
+Bluetooth вообще имеется на устройстве, а также его текущее состояние: 
+включен, выключен, в режиме поиска устройства, с которым можно 
+спариться.</p>
+
+<p>Так как операция считается системной, то требуется разрешение <b>android.permission.BLUETOOTH</b>, которое нужно прописать в манифесте:</p>
+
+<p>Локальное Bluetooth-устройство управляется классом <b>BluetoothAdapter</b>. Чтобы получить доступ к Bluetooth-адаптеру, используемому по умолчанию, вызовите метод <b>getDefaultAdapter()</b>.</p>
+
+<div class="alert alert-info">
+Устройства под управлением Android могут иметь несколько 
+Bluetooth-устройств, но на сегодняшний день доступ можно получить только
+ к тому, которое является Адаптером по умолчанию.
+</div>
+
+<p>Попробуем узнать текущее состояние Bluetooth. Свойства 
+Bluetooth-адаптера могут быть прочитаны и изменены только в том случае, 
+если он включен (то есть если устройство имеет статус включенного). Если
+ же устройство выключено, любой из методов класса BluetoothAdapter 
+вернёт значение null.</p>
+
+<p>Для примера нам понадобится текстовая метка TextView и кнопка, позволяющая узнать текущее состояние чипа:</p>
+
+<pre><code class="java">
+TextView labelStateBluetooth;
+BluetoothAdapter bluetoothAdapter;
+
+/** Called when the activity is first created. */
+@Override
+public void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.main);
+
+	labelStateBluetooth = (TextView) findViewById(R.id.bluetoothstate);
+	Button buttonBluetoothState = (Button) findViewById(R.id.buttonBlueState);
+
+	// получаем адаптер по умолчанию
+	bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+	buttonBluetoothState.setOnClickListener(new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			if (bluetoothAdapter == null) {
+				labelStateBluetooth
+						.setText("Bluetooth на вашем устройстве не поддерживается");
+			} else {
+				if (bluetoothAdapter.isEnabled()) {
+					if (bluetoothAdapter.isDiscovering()) {
+						labelStateBluetooth
+								.setText("Bluetooth в процессе включения.");
+					} else {
+						labelStateBluetooth.setText("Bluetooth доступен.");
+					}
+				} else {
+					labelStateBluetooth.setText("Bluetooth не доступен!");
+				}
+			}
+		}
+	});
+}
+</code></pre>
+
+<h3 class="text-warning"> Считывааем свойства Bluetooth-адаптера</h3>
+
+<p>Свойств у адаптера не так много. Вот ещё один пример для их считывания:</p>
+
+<pre><code class="java">
+BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+String toastText;
+
+if (bluetoothAdapter.isEnabled()) {
+  String address = bluetoothAdapter.getAddress();
+  String name = bluetoothAdapter.getName();
+  toastText = name + " : " + address;
+}
+else
+    toastText = "Bluetooth is not enabled";
+Toast.makeText(this, toastText, Toast.LENGTH_LONG).show();
+</code></pre>
+
+<p>С помощью метода <b>getName()</b> мы получили имя адаптера. Что изменить его, воспользуйтесь методом <b>setName()</b> (необходимо иметь полномочия BLUETOOTH_ADMIN):</p>
+
+<pre><code class="java">
+bluetoothAdapter.setName("Blackcat");
+</code></pre>
+
+<p>Для более подробной информации о состоянии Bluetooth-адаптера воспользуйтесь методом <b>getState()</b>, который вернёт одну из нижеследующих констант, принадлежащих классу BluetoothAdapter:</p>
+
+<ul>
+<li><b>STATE_TURNING_ON</b></li>
+<li><b>STATE_ON</b></li>
+<li><b>STATE_TURNING_OFF</b></li>
+<li><b>STATE_OFF</b></li>
+</ul>
+
+
+
+<h2 class="text-warning" id="turnon">Включаем Bluetooth</h2>
+
+<p>Мы уже умеем определять текущее состояние чипа беспроводной связи. 
+Следующий шаг - включить Bluetooth, если он выключен. Изначально 
+Bluetooth-адаптер выключен (для экономии заряда батареи и из соображений
+ безопасности большинство пользователей включают его, когда он нужен). 
+Для этого нужно вызвать намерение с параметром - с статической 
+константой из класса BluetoothAdapter <b>ACTION_REQUEST_ENABLE</b>. Добавляем на форму ещё одну кнопку, с помощью которого будем включать связь:</p>
+
+<pre><code class="java">
+// включаем Bluetooth
+buttonTurnOn.setOnClickListener(new OnClickListener() {
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+		startActivity(enableBtIntent);
+	}
+});
+</code></pre>
+
+<p>Обратите внимание, что вам не удастся незаметно включить 
+Bluetooth-соединение. Когда вы нажмёте на кнопку, то на экране появится 
+системное модальное окно с запросом на включение. И если пользователь 
+согласится и выберет вариант <b>ДА</b>, то только в этом случае ваш код запустится и Bluetooth будет включён.</p>
+
+<div class="alert">
+Если в манифесте приложения содержится полномочие BLUETOOTH_ADMIN, вы 
+можете включать и выключать Bluetooth-адаптер с помощью методов enable()
+ и disable().
+Такой подход применяется только при крайней необходимости. В большинстве
+ случаев лучше использовать механизм, описанный ранее.
+</div>
+
+<p>Включение и выключение Bluetooth-адаптера занимает некоторое время и 
+происходит в асинхронном режиме. Вместо того чтобы постоянно опрашивать 
+устройство, ваше приложение должно зарегистрировать приёмник 
+широковещательных намерений, который будет следить за действием <b>ACTION_STATE_CHANGED</b>. Транслируемое намерение будет содержать два дополнительных параметра — <b>EXTRA_STATE</b> и <b>EXTRA_PREVIOUS_STATE</b>, указывающих на текущее и предыдущее состояния адаптера соответственно.</p>
+
+<p>В следующем листинге демонстрируется намерение, с помощью которого 
+пользователю предлагается активизировать Bluetooth, а также объект 
+BroadcastReceiver, отслеживающий изменения в состоянии адаптера.</p>
+
+<pre><code class="java">
+BluetoothAdapter bluetooth = BluetoothAdapter.getDefaultAdapter();
+
+BroadcastReceiver bluetoothState = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        String prevStateExtra = BluetoothAdapter.EXTRA_PREVIOUS_STATE;
+        String stateExtra = BluetoothAdapter.EXTRA_STATE;
+        int state = intent.getIntExtra(stateExtra, -1);
+        int previousState = intent.getIntExtra(prevStateExtra, -1);
+        String tt = "";
+		
+        switch (state) {
+            case (BluetoothAdapter.STATE_TURNING_ON) : {
+                tt = "Bluetooth turning on"; 
+				break;
+            }
+            case (BluetoothAdapter.STATE_ON) : {
+                tt = "Bluetooth on";
+                unregisterReceiver(this);
+                break;
+            }
+            case (BluetoothAdapter.STATE_TURNING_OFF) : {
+                tt = "Bluetooth turning off"; break;
+            }
+            case (BluetoothAdapter.STATE_OFF) : {
+                tt = "Bluetooth off"; break;
+            }
+	        default: break;
+        }
+        Toast.makeText(this, tt, Toast.LENGTH_LONG).show();
+    }
+};
+
+if (!bluetooth.isEnabled()) {
+    String actionStateChanged = BluetoothAdapter.ACTION_STATE_CHANGED;
+    String actionRequestEnable = BluetoothAdapter.ACTION_REQUEST_ENABLE;
+    registerReceiver(bluetoothState,
+            new IntentFilter(actionStateChanged));
+    startActivityForResult(new Intent(actionRequestEnable), 0);
+}
+</code></pre>
+
+<h2 class="text-warning" id="found">Обнаружение устройств по соседству</h2>
+
+<p>Прежде чем вы сможете пользоваться объектом BluetoothSocket, ваш 
+Bluetooth-адаптер на устройстве должен связаться с удалённым 
+устройством. Но для этого нужно, чтобы оба устройства обладали 
+возможностью «увидеть» друг друга. Для обнаружения родственников, у 
+которых включён Bluetooth, нужно послать широковещательное сообщение <b>BroadcastReceiver</b>.</p>
+
+<p>В свою очередь, чтобы ваш локальный Bluetooth-адаптер во время 
+сканирования мог быть обнаружен удалённым устройством на базе Android, 
+необходимо сделать его доступным для обнаружения.</p>
+
+<p>Обнаруживаемость Bluetooth-адаптера зависит от установленного режима для сканирования, который вы можете узнать, вызвав метод <b>getScanMode()</b> 
+из объекта BluetoothAdapter. К вам вернется одна из констант.</p>
+
+<ul>
+<li><b>SCAN_MODE_CONNECTABLE_DISCOVERABLE</b>. Возможны оба режима 
+сканирования — inquiry scan и page scan. Это значит, что адаптер 
+доступен при сканировании любым Bluetooth-устройством.</li>
+<li><b>SCAN_MODE_CONNECTABLE</b>. Сканирование возможно только в режиме 
+page scan. Это значит, что локальный адаптер может быть обнаружен только
+ тем устройством, которое уже ранее было к нему подключено и привязано. 
+Новые устройства ничего не обнаружат.</li>
+<li><b>SCAN_MODE_NONE</b>. Локальный адаптер не может быть обнаружен никаким удаленным устройством.</li>
+</ul>
+
+<p>Для обеспечения конфиденциальности устройства на базе Android по умолчанию имеют режим <b>SCAN_MODE_NONE</b>.
+ Чтобы это изменить, вам нужно получить явное подтверждение от 
+пользователя. Сделать это можно с помощью запуска новой активности, 
+используя действие <b>ACTION_REQUEST_DISCOVERABLE</b>:</p>
+
+<pre><code class="java">
+String aDiscoverable = BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE;
+startActivityForResult(new Intent(aDiscoverable),
+        DISCOVERY_REQUEST);
+</code></pre>
+
+<p>По умолчанию установленный режим проработает две минуты. Вы можете 
+изменить эту цифру, добавив к намерению дополнительный параметр <b>EXTRA_DISCOVERABLE_DURATION</b>, указав время (в секундах), на протяжении которого должен сохраняться данный режим.</p>
+
+<p>При передаче этого намерения на экране появится диалоговое окно, в 
+котором пользователю будет предложено сделать локальный 
+Bluetooth-адаптер видимым для других устройств на протяжении указанного 
+промежутка времени.</p>
+
+<p>Чтобы узнать о выборе пользователя, переопределите обработчик onActivityResult(). Возвращаемый параметр <b>resultCode</b>
+ в случае положительного ответа будет содержать временной интервал. Если
+ пользователь запретил делать Bluetooth-адаптер доступным для 
+сканирования, resultCode будет иметь отрицательное значение.</p>
+
+<pre><code class="java">
+@Override
+protected void onActivityResult(int requestCode,
+        int resultCode, Intent data) {
+    if (requestCode == DISCOVERY_REQUEST) {
+        boolean isDiscoverable = resultCode &gt; 0;
+        int discoverableDuration = resultCode;
+    }
+}
+</code></pre>
+
+<p>В качестве альтернативного подхода можно отслеживать изменения в состоянии доступности адаптера, получая действие <b>ACTION_SCAN_MODE_CHANGED</b>. Широковещательное намерение в виде дополнительных параметров содержит текущий и предыдущий режимы сканирования.</p>
+
+<pre><code class="java">
+registerReceiver(new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        String prevScanMode = BluetoothAdapter.EXTRA_PREVIOUS_SCAN_MODE;
+        String scanMode = BluetoothAdapter.EXTRA_SCAN_MODE;
+        int scanMode = intent.getIntExtra(scanMode, -1);
+        int prevMode = intent.getIntExtra(prevScanMode, -1);
+    }
+};
+
+new IntentFilter(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED));
+</code></pre>
+
+<p>Теперь поговорим о поиске устройст со своего аппарата. Процесс 
+обнаружения может занять некоторое время (до 12 секунд). При этом 
+производительность адаптера заметно снизится. Используйте механизм, 
+описанный в этом разделе, чтобы проверять и отслеживать статус 
+доступности Bluetooth-адаптера, избегая операций, требующих высокой 
+пропускной способности (в том числе подключение к удаленному 
+устройству), пока выполняется процесс обнаружения.</p>
+
+<p>Узнать о том, занят ли Bluetooth-адаптер процессом сканирования, вы можете с помощью метода <b>isDiscovering()</b>.</p>
+
+<p>Чтобы начать обнаружение, вызовите метод <b>startDiscovery()</b> из объекта BluetoothAdapter; чтобы его отменить, воспользуйтесь методом 
+<b>cancelDiscovery()</b>.</p>
+
+<p>Процесс обнаружения идет в асинхронном режиме. Android использует 
+Широковещательные намерения, чтобы уведомлять ваше приложение о начале 
+и конце сканирования, а также об устройствах, которые были обнаружены.</p>
+
+<p>Вы можете отслеживать изменения в ходе обнаружения, создав Приёмник широковещательных намерений, настроенный на действия <b>ACTION_DISCOVERY_STARTED</b> и <b>ACTION_DISCOVERY_FINISHED</b>.</p>
+
+<pre><code class="java">
+BroadcastReceiver discoveryMonitor = new BroadcastReceiver() {
+    String dStarted = BluetoothAdapter.ACTION_DISCOVERY_STARTED;
+    String dFinished = BluetoothAdapter.ACTION_DISCOVERY_FINISHED;
+    
+	@Override
+    public void onReceive(Context context, Intent intent) {
+        if (dStarted.equals(intent.getAction())) {
+            // Процесс обнаружения начался.
+            Toast.makeText(getApplicationContext(),
+                    "Discovery Started...", Toast.LENGTH_SHORT).show();
+        }
+        else if (dFinished.equals(intent.getAction())) {
+            // Процесс обнаружения завершился.
+            Toast.makeText(getApplicationContext(),
+                    "Discovery Completed...", Toast.LENGTH_SHORT).show();
+        }
+    }
+};
+
+registerReceiver(discoveryMonitor, new IntentFilter(dStarted));
+registerReceiver(discoveryMonitor, new IntentFilter(dFinished));
+</code></pre>
+
+<p>Обнаруженные Bluetooth-устройства возвращаются через Широковещательные намерения с действием ACTION_FOUND.</p>
+
+<p>Каждое такое Намерение содержит имя удалённого устройства в качестве дополнительного параметра с ключом <b>BluetoothDevice.EXTRA_NAME</b>, а также неизменяемый объект <b>BluetoothDevice</b> (реализующий интерфейс Parcelable), хранящийся в дополнительном параметре с ключом <b>BluetoothDevice.EXTRA_DEVICE</b>.</p>
+
+<pre><code class="java">
+BroadcastReceiver discoveryResult = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        String remoteDeviceName =
+        intent.getStringExtra(BluetoothDevice.EXTRA_NAME);
+        BluetoothDevice remoteDevice;
+        remoteDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+        
+		Toast.makeText(getApplicationContext(),
+                "Discovered: " + remoteDeviceName,
+                Toast.LENGTH_SHORT).show();
+        // TODO Сделать что-нибудь с объектом BluetoothDevice.
+    }
+};
+
+registerReceiver(discoveryResult, new IntentFilter(BluetoothDevice.ACTION_FOUND));
+if (!bluetooth.isDiscovering())
+    bluetooth.startDiscovery();
+</code></pre>
+
+<p>Объект BluetoothDevice, возвращенный через Намерение, — это 
+обнаруженное Bluetooth-устройство. Этот объект можно использовать для 
+создания соединения, привязки и в конечном счете передачи данных между 
+локальным адаптером и удаленным устройством.</p>
+
+<p>Продолжим пример. Добавим на форму кнопку для запуска сканирования 
+устройств и ListView, в котором будем выводить найденные устройства.</p>
+
+<p>Полностью код будет следующим:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.bluetoothdemo;
+
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+
+public class BluetoothDemoActivity extends Activity {
+
+	TextView labelStateBluetooth;
+	BluetoothAdapter bluetoothAdapter;
+
+	private static final int REQUEST_ENABLE_BT = 1;
+	ListView listDevicesFound;
+	Button btnScanDevice;
+
+	ArrayAdapter&lt;String&gt; btArrayAdapter;
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		labelStateBluetooth = (TextView) findViewById(R.id.bluetoothstate);
+		Button buttonBluetoothState = (Button) findViewById(R.id.buttonBlueState);
+		Button buttonTurnOn = (Button) findViewById(R.id.buttonTurnOn);
+
+		btnScanDevice = (Button) findViewById(R.id.scandevice);
+		listDevicesFound = (ListView) findViewById(R.id.devicesfound);
+
+		bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+		btArrayAdapter = new ArrayAdapter&lt;String&gt;(BluetoothDemoActivity.this,
+				android.R.layout.simple_list_item_1);
+		listDevicesFound.setAdapter(btArrayAdapter);
+
+		btnScanDevice.setOnClickListener(btnScanDeviceOnClickListener);
+
+		registerReceiver(ActionFoundReceiver, new IntentFilter(
+				BluetoothDevice.ACTION_FOUND));
+
+		buttonBluetoothState.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				CheckBlueToothState();
+			}
+		});
+
+		// включаем Bluetooth
+		buttonTurnOn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent enableBtIntent = new Intent(
+						BluetoothAdapter.ACTION_REQUEST_ENABLE);
+				startActivity(enableBtIntent);
+			}
+		});
+	}
+
+	private void CheckBlueToothState() {
+		if (bluetoothAdapter == null) {
+			labelStateBluetooth.setText("Bluetooth на вашем устройстве не поддерживается");
+		} else {
+			if (bluetoothAdapter.isEnabled()) {
+				if (bluetoothAdapter.isDiscovering()) {
+					labelStateBluetooth
+							.setText("Bluetooth в процессе включения.");
+				} else {
+					labelStateBluetooth.setText("Bluetooth доступен..");
+					btnScanDevice.setEnabled(true);
+				}
+			} else {
+				labelStateBluetooth.setText("Bluetooth не доступен!");
+				Intent enableBtIntent = new Intent(
+						BluetoothAdapter.ACTION_REQUEST_ENABLE);
+				startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+			}
+		}
+	}
+
+	private Button.OnClickListener btnScanDeviceOnClickListener = new Button.OnClickListener() {
+
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			btArrayAdapter.clear();
+			bluetoothAdapter.startDiscovery();
+		}
+	};
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		if (requestCode == REQUEST_ENABLE_BT) {
+			CheckBlueToothState();
+		}
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		unregisterReceiver(ActionFoundReceiver);
+	}
+	
+	private final BroadcastReceiver ActionFoundReceiver = new BroadcastReceiver(){
+
+		  @Override
+		  public void onReceive(Context context, Intent intent) {
+		   // TODO Auto-generated method stub
+		   String action = intent.getAction();
+		   if(BluetoothDevice.ACTION_FOUND.equals(action)) {
+		             BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+		             btArrayAdapter.add(device.getName() + "
+" + device.getAddress());
+		             btArrayAdapter.notifyDataSetChanged();
+		         }
+		  }};
+}
+</code></pre>
+
+<h2 class="text-warning" id="btconnect">Использование Bluetooth для связи</h2>
+
+<p>API для установления связи через Bluetooth считается обёрткой вокруг 
+протокола RFCOMM (Radio Frequency Communication). RFCOMM, в свою 
+очередь, поддерживает стандарт передачи данных RS232 поверх протокола 
+L2CAP (Logical Link Control and Adaptation Protocol). На практике все 
+эти непонятные аббревиатуры можно назвать механизмом для открытия 
+сетевых сокетов между двумя связанными Bluetooth-устройствами.</p>
+
+<p>Вы можете установить канал связи по протоколу RFCOMM для двунаправленного обмена данными, используя классы:</p>
+
+<ul>
+<li><b>BluetoothServerSocket</b> — нужен для создания ожидающего сокета,
+ чтобы установить связь между двумя устройствами, при этом одно из 
+устройств выступает в роли сервера, ожидая и принимая запрос на 
+соединение;</li>
+<li><b>BluetoothSocket</b> — применяется для создания нового клиентского
+ сокета, чтобы соединиться с ожидающим объектом BluetoothServerSocket. 
+Как только связь будет установлена, оба сокета, на стороне клиента и 
+сервера, могут быть использованы для передачи и приема потоков данных.</li>
+</ul>
+
+<p>В процессе создания приложения, использующего Bluetooth в качестве 
+канала связи, вам необходимо реализовать и BluetoothServerSocket, чтобы 
+иметь возможность ожидать соединение, и BluetoothSocket, чтобы создавать
+ новые каналы и управлять связью.</p>
+
+<p>При подключении сокет BluetoothServerSocket возвращает объект 
+BluetoothSocket, который впоследствии используется серверным устройством
+ для передачи и приема данных. Этот BluetoothSocket, работающий на 
+стороне сервера, может быть использован точно так же, как и клиентский 
+сокет. Понятия «сервер» и «клиент» актуальны только на момент 
+установления связи. Далее они никак не влияют на способ передачи данных.</p>
+
+<h3 class="text-warning">Установка сокета BluetoothServerSocket в режим ожидания</h3>
+
+<p>BluetoothServerSocket используется для ожидания запроса на 
+подключение от объекта BluetoothSocket, расположенного на удаленном 
+устройстве. Чтобы установить связь между двумя адаптерами, один из них 
+должен вести себя, как сервер (ожидая и принимая запросы на 
+подключение), а другой — как клиент (инициируя запрос на подключение к 
+серверу).</p>
+
+<p>При подключении управление связью на обоих концах ведется с помощью объектов BluetoothSocket.</p>
+
+<p>Чтобы начать процесс ожидания входящего соединения, вызовите метод <b>listenUsingRfcommWithServiceRecord()</b>
+ из объекта BluetoothAdapter, передавая ему в качестве параметров строку
+ name (для идентификации вашего сервера) и универсальный уникальный 
+идентификатор устройства UUID. В результате этих действий вы получите 
+объект BluetoothServerSocket. Обратите внимание, что клиентский сокет, 
+который будет подключаться к данному адаптеру, должен знать его UUID.</p>
+
+<p>Начать отслеживание входящих подключений поможет метод <b>accept()</b>,
+ вызванный из серверного сокета (при необходимости можно также указать  
+длительность этого процесса). Теперь BluetoothServerSocket будет 
+заблокирован, пока к нему не попытается подключиться удаленное 
+устройство,  передающее соответствующий UUID. Если подключение 
+инициировано с устройства, которое еще не было связано с локальным 
+адаптером, пользователю предложат разрешить связывание устройств, прежде
+ чем метод accept() закончит работу.</p>
+
+<p>Если запрос на входящее подключение завершился успешно, метод 
+accept() вернет объект BluetoothSocket, подключенный к клиентскому 
+устройству. Вы можете использовать его для передачи данных. Метод 
+accept() блокирует работу приложения, поэтому ожидание входящих 
+подключений рекомендуется осуществлять в фоновом режиме, вместо того 
+чтобы «замораживать» пользовательский интерфейс, пока соединение не 
+будет установлено.</p>
+
+<p>Важно отметить, что для установления связи ваш адаптер должен быть 
+доступным для обнаружения удаленными Bluetooth-устройствами. В листин 
+показан каркас, в котором ACTION_REQUEST_DISCOVERABLE используется для 
+того, чтобы узнать, доступен ли адаптер для сканирования, и только затем
+ инициируется ожидание запросов на подключение, длящееся на протяжении 
+времени, значение которого передается в параметре resultCode.</p>
+
+<pre><code class="java">
+startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE),
+        DISCOVERY_REQUEST);
+		
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if (requestCode == DISCOVERY_REQUEST) {
+        boolean isDiscoverable = resultCode &gt; 0;
+        int discoverableDuration = resultCode;
+        if (isDiscoverable) {
+            UUID uuid = UUID.fromString("a60f35f0-b93a-11de-8a39-08002009c666");
+            String name = "bluetoothserver";
+      
+            final BluetoothServerSocket btserver = bluetooth.listenUsingRfcommWithServiceRecord(name, uuid);
+      
+            Thread acceptThread = new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        // Блокируется, пока соединение не будет установлено.
+                        BluetoothSocket serverSocket = btserver.accept();
+                        // TODO Передать данные с помощью серверного сокета
+                    } catch (IOException e) {
+                        Log.d("BLUETOOTH", e.getMessage());
+                    }
+                }
+            });
+        acceptThread.start();
+        }
+    }
+}
+</code></pre>
+
+<h3 class="text-warning">Выбор удаленных Bluetooth-устройств для подключения</h3>
+
+<p>Класс BluetoothSocket используется клиентским устройством для 
+создания канала связи между вашим приложением и ожидающим серверным 
+сокетом.</p>
+
+<p>Создание клиентского сокета происходит с помощью вызова метода <b>createRfcommSocketToServiceRecord()</b>
+ из объекта BluetoothDevice. Этот объект представляет собой удалённое 
+устройство, с которым необходимо связаться. На самом удалённом 
+устройстве должен находиться объект BluetoothServerSocket, ожидающий 
+запросов на подключение (описано выше).</p>
+
+<p>Есть несколько способов получить ссылку на удалённое устройство. 
+Существуют также некоторые ограничения в отношении устройств, с которыми
+ вы можете устанавливать связь.</p>
+
+<p>Чтобы объект BluetoothSocket мог установить соединение с удаленным Bluetooth-устройством, должны выполняться следующие условия:</p>
+
+<ul>
+<li>удаленное устройство должно быть доступным для обнаружения;</li>
+<li>удаленное устройство должно принимать подключения с помощью объекта BluetoothServerSocket;</li>
+<li>локальное и удаленное устройства должны быть спаренными (или 
+связанными), иначе при установлении соединения пользователю будет 
+предложено их связать.</li>
+</ul>
+
+<p>Каждый экземпляр класса BluetoothDevice — удаленное устройство. Эти 
+объекты используются для получения свойств удаленного адаптера и для 
+соединения 
+через BluetoothSocket. Существует несколько способов получить объект 
+BluetoothDevice внутри своей программы.</p>
+
+<p>В любом случае необходимо убедиться в том, что устройство, к которому
+ вы хотите подключиться, доступно для обнаружения, и (при необходимости)
+ узнать, привязано ли оно к вашему адаптеру. Если вы не можете 
+обнаружить удаленное устройство, то предложите пользователю сделать его 
+доступным для сканирования.</p>
+
+<p>Ранее вы уже познакомились с одним способом обнаружения Bluetooth-устройств, который заключался в использовании метода <b>startDiscovery()</b>
+ и в отслеживании срабатывания действия ACTION_FOUND. Вы знаете, что 
+каждое полученное Намерение содержит дополнительный параметр 
+BluetoothDevice.EXTRA_DEVICE, в котором находится объект 
+BluetoothDevice, представляющий обнаруженное устройство.</p>
+
+<p>Можно использовать и метод <b>getRemoteDevice()</b> из объекта BluetoothAdapter, указывая аппаратный адрес удаленного адаптера, к которому нужно подключиться.</p>
+
+<pre><code class="java">
+BluetoothDevice device = bluetooth.getRemoteDevice("01:23:77:35:2F:AA");
+</code></pre>
+
+<p>Чтобы получить набор связанных на данный момент устройств, вызовите метод <b>getBondedDevices()</b> из объекта BluetoothAdapter. Можно посылать 
+запросы внутри возвращенного набора, чтобы проверить, связано ли целевое устройство с локальным адаптером.</p>
+
+<pre><code class="java">
+Set&lt;BluetoothDevice&gt; bondedDevices = bluetooth.getBondedDevices();
+if (bondedDevices.contains(remoteDevice))
+// TODO Целевое устройство связано с локальным адаптером.
+</code></pre>
+
+<p>В следующем листинге представлен пример того, как можно проверить доступность целевого устройства для обнаружения и связанности.</p>
+
+<pre><code class="java">
+final BluetoothDevice device = 
+        bluetooth.getRemoteDevice("01:23:77:35:2F:AA");
+final Set&lt;BluetoothDevice&gt; bondedDevices = bluetooth.getBondedDevices();
+
+BroadcastReceiver discoveryResult = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        BluetoothDevice remoteDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+        if ((remoteDevice.equals(device) &amp;&amp; (bondedDevices.contains(remoteDevice)) {
+            // TODO Целевое устройство связано с локальным адаптером
+            // и доступно для обнаружения
+        }
+    };
+	
+registerReceiver(discoveryResult, new IntentFilter(BluetoothDevice.ACTION_FOUND));
+
+if (!bluetooth.isDiscovering())
+    bluetooth.startDiscovery();
+</code></pre>
+
+<h3 class="text-warning">Создание соединения с помощью клиентского сокета BluetoothSocket</h3>
+
+<p>Чтобы наладить канал связи с удаленным устройством, создайте сокет 
+BluetoothSocket с помощью объекта BluetoothDevice, который это 
+устройство представляет.</p>
+
+<p>Для соединения вызовите метод <b>createRfcommSocketToServiceRecord()</b>
+ в контексте Bluetooth-устройства, к которому хотите подключиться, 
+передав идентификатор UUID серверного сокета, ожидающего запрос на 
+подключение.</p>
+
+<p>Если вы попытаетесь подключиться к устройству, которое еще не было 
+связано с вашим локальным адаптером, пользователю будет предложено 
+осуществить связывание, прежде чем завершится вызов метода connect().</p>
+
+<p>Оба пользователя, на локальном и удаленном устройствах, должны разрешить связывание, чтобы соединение было установлено.</p>
+
+<p>Объект BluetoothSocket, который при этом возвращается, может 
+использоваться для подключения с помощью метода connect(). Метод 
+connect() блокирует работу приложения, поэтому запросы на подключение 
+рекомендуется делать в фоновом режиме, вместо того чтобы «замораживать» 
+пользовательский интерфейс, пока соединение не установлено.</p>
+
+<pre><code class="java">
+try{
+    BluetoothDevice device = bluetooth.getRemoteDevice("00:23:76:35:2F:AA");
+    BluetoothSocket clientSocket =
+        device.createRfcommSocketToServiceRecord(uuid);
+    clientSocket.connect();
+    // TODO Передача данных с помощью BluetoothSocket
+} catch (IOException e) {
+    Log.d("BLUETOOTH", e.getMessage());
+}
+</code></pre>
+
+<h3 class="text-warning">Передача данных с помощью BluetoothSocket</h3>
+
+<p>Установив между собой соединение, оба устройства, клиентское и 
+серверное, получат в распоряжение объекты BluetoothSocket. С этого 
+момента все 
+различия между ними нивелируются: с помощью объектов BluetoothSocket 
+каждое устройство может отправлять и принимать данные.</p>
+
+<p>Передача данных с помощью Bluetooth-сокетов управляется стандартными 
+для Java объектами InputStream и OutputStream, которые вы можете 
+получить из BluetoothSocket, используя методы getInputStream() и 
+getOutputStream() соответственно.</p>
+
+<p>В листинге показаны два простых каркасных метода: первый используется
+ для отправки строки на удаленное устройство с помощью OutputStream, 
+второй — для ожидания входящих строк (с помощью InputStream). Такой 
+подход можно применять для передачи любых потоковых данных.</p>
+
+<pre><code class="java">
+private void sendMessage(String message){
+    OutputStream outStream;
+    try {
+        outStream = socket.getOutputStream();
+        // Добавьте контрольный символ для остановки.
+        byte[] byteArray = (message + " ").getBytes();
+        byteArray[byteArray.length - 1] = 0;
+        outStream.write(byteArray);
+    } catch (IOException e) { }
+}
+
+private String listenForMessage() {
+    String result = "";
+    int bufferSize = 1024;
+    byte[] buffer = new byte[bufferSize];
+    try {
+        InputStream instream = socket.getInputStream();
+        int bytesRead = -1;
+        while (true) {
+            bytesRead = instream.read(buffer);
+            if (bytesRead != -1) {
+                while ((bytesRead == bufferSize) &amp;&amp; (buffer[bufferSize-1] != 0)){
+                    message = message + new String(buffer, 0, bytesRead);
+                    bytesRead = instream.read(buffer);
+                }
+                message = message + new String(buffer, 0, bytesRead - 1);
+                return result;
+            }
+        }
+    } catch (IOException e) {}
+    return result;
+}
+</code></pre>
+
+<p>Описанная выше теория реализована в примере, который можно найти в 
+книге Рето Майера "Android 2. Программирование приложений". Приводить 
+весь код здесь не буду.</p>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/fastbutton.htm" name="I0_1378022384482" id="I0_1378022384482" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/jquery.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/postmessageRelay.htm" id="oauth2relay974705220" name="oauth2relay974705220"></iframe>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20Bluetooth_files/bootstrap-typeahead.js"></script>
+
+</body></html>

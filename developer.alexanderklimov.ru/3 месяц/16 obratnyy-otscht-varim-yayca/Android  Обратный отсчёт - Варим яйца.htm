@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Обратный отсчёт - Варим яйца</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Обратный отсчёт - Варим яйца</h1>
+<p>Третий месяц обучения (закрытая зона)</p>
+
+<p>В системе Android есть абстрактный класс <b>CountDownTimer</b> позволяющий организовать обратный отсчёт.</p>
+
+<p>Для первого знакомства напишем пример отсчёта с 10 секунд до 0.</p>
+
+
+
+
+<p>Смоделируем центр управления космическими полётами. Нам понадобится 
+текстовая метка, в котором будет выводиться число оставшихся секунд. 
+Когда счётчик дойдёт до 0, то появится надпись: Поехали!</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.helloworld;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.View;
+import android.widget.TextView;
+import android.os.CountDownTimer;
+
+public class MainActivity extends Activity {
+
+	TextView tvHello;
+	protected CountDownTimer timer;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		tvHello = (TextView) findViewById(R.id.textView1);
+		timer = new MyCounter(10000, 1000);
+		timer.start();
+
+	}
+
+	public void butCancel_Click(View v) {
+		timer.cancel();
+	}
+
+	public class MyCounter extends CountDownTimer {
+
+		public MyCounter(long millisInFuture, long countDownInterval) {
+			super(millisInFuture, countDownInterval);
+		}
+
+		@Override
+		public void onFinish() {
+			tvHello.setText("Поехали!");
+		}
+
+		@Override
+		public void onTick(long millisUntilFinished) {
+			tvHello.setText((String.valueOf(millisUntilFinished / 1000)));
+		}
+	}
+}
+</code></pre>
+
+<p>Мы создали свой класс MyCounter, который происходит от абстрактного 
+класса CountDownTimer, в котором используются два метода. Метод <b>onTick()</b> срабатывает через одинаковый интервал, а метод <b>onFinish()</b> вызывается при окончании отсчёта.</p>
+
+<p>Также я добавил на форму кнопку, позволяющую остановить отсчёт при помощи метода <b>cancel()</b>.</p>
+
+<h2>Варка яиц</h2>
+
+<p>Теперь рассмотрим более продвинутый пример.</p>
+
+<p>Чтобы отследить время варки яиц многие смотрят на часы. Более 
+продвинутые пользуются специальными кухонными таймерами. А мы будем 
+пользоваться телефоном и напишем специальное приложение для этих целей. 
+Естественно, вы можете переделать программу под себя и контролировать, 
+например, время заварки чая и другие глупые вещи, которые не приносят 
+пользы котам.</p>
+
+<img src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/eggtimer.jpg" alt="Таймер на кухне">
+
+<p>Создаём новый проект EggTimer и приступим к разработке 
+пользовательского интерфейса. Самое главное - это наличие таймера с 
+отсчётом времени. Также по бокам добавим кнопки "+" и "-", позволяющие 
+уменьшать или увеличивать значение таймера. Когда пользователь нажмет 
+кнопку Старт, отсчёт времени начнется в течение указанного количества 
+минут. Также пользователь может отменить своё решение, нажав на кнопку 
+ещё раз. Для большей функциональности добавим также подсчёт сваренных 
+яиц.</p>
+
+<details>
+    <summary>Показать код (щелкните мышкой)</summary>
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dip" &gt;
+
+        &lt;TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/eggs_count"
+            android:textSize="20dip" /&gt;
+
+        &lt;TextView
+            android:id="@+id/egg_count_label"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@string/egg_quantity"
+            android:textSize="20dip" /&gt;
+    &lt;/LinearLayout&gt;
+
+    &lt;LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dip" &gt;
+
+        &lt;Button
+            android:id="@+id/egg_time_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minus"
+            android:textSize="40dip" /&gt;
+
+        &lt;TextView
+            android:id="@+id/egg_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:text="@string/timer"
+            android:textSize="40dip" /&gt;
+
+        &lt;Button
+            android:id="@+id/egg_time_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/plus"
+            android:textSize="40dip" /&gt;
+    &lt;/LinearLayout&gt;
+
+    &lt;Button
+        android:id="@+id/egg_start"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="@string/start" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+</details>
+
+<p>Перейдём к программной части. Откроем java-файл и сразу после 
+объявления класса и до метода onCreate() объявим несколько переменных 
+для кнопок и текстовых меток, с которыми будем работать, а уже в самом 
+методе привяжем к ним необходимые ресурсы:</p>
+
+<pre><code class="java">
+protected Button eggAddTime;
+protected Button eggDecreaseTime;
+protected Button startEgg;
+protected TextView eggCountLabel;
+protected TextView eggTimeLabel;
+
+public void onCreate...
+    eggAddTime = (Button) findViewById(R.id.egg_time_up);
+	eggDecreaseTime = (Button) findViewById(R.id.egg_time_down);
+	startEgg = (Button) findViewById(R.id.egg_start);
+	eggCountLabel = (TextView) findViewById(R.id.egg_count_label);
+	eggTimeLabel = (TextView) findViewById(R.id.egg_time);
+</code></pre>
+
+<h2>Прослушка событий</h2>
+
+<p>Мы уже знакомы с обработкой нажатий на кнопку. Закрепим материал. 
+Итак, для определения нажатия кнопок нам необходимо реализовать их 
+прослушивание. Android предоставляет интерфейс <b>OnClickListener</b>, 
+определяющий методы, которые будут срабатывать при возникновении 
+события. OnClickListener уведомит ваше приложение, когда пользователь 
+нажимает на определенную кнопку. Кроме того, необходимо сообщить каждой 
+кнопке о OnClickListener через метод <b>setOnClickListener</b>:</p>
+
+<pre><code class="java">
+import android.view.View.OnClickListener;
+
+public class EggTimerActivity extends Activity implements OnClickListener...
+
+eggAddTime.setOnClickListener(this);
+eggDecreaseTime.setOnClickListener(this);
+startEgg.setOnClickListener(this);
+
+// Обрабатываем нажатия кнопок
+public void onClick(View v) {
+	if(v == eggAddTime) // кнопка с плюсом
+	      setEggTime(eggTime + 1); // увеличиваем счётчик
+	    else if(v == eggDecreaseTime) // кнопка с минусом
+	      setEggTime(eggTime -1); // уменьшаем счётчик
+	    else if(v == startEgg) { // кнопка запуска таймера
+	      if(isEggTimer)
+	        stopEgg(); // останавливаем таймер
+	      else
+	        startEgg(); // запускаем таймер
+	    }
+}
+</code></pre>
+
+<p>Далее добавим код, который обрабатывает нажатие конкретной кнопки. 
+Нам также понадобятся новые свойства, позволяющие пользователю 
+установить и отслеживать время варки яиц: сколько варок было сделано и 
+запущен ли таймер. </p>
+
+<pre><code class="java">
+protected int eggTime = 3;
+protected CountDownTimer eggCountDownTimer;
+protected int eggCount = 0;
+protected boolean isEggTimer = false;
+</code></pre>
+
+<p>Обратите внимание, на класс <b>CountDownTimer</b>, позволяющий легко 
+создавать и запускать счётчик, а также получать уведомления через равные
+ промежутки времени в то время, как идет обратный отсчёт.</p>
+
+<h3>Методы</h3>
+
+<p>Осталось разработать методы для настройки времени варки, запуска и 
+остановки варки, а также счётчика. Мы можем сразу инициализировать 
+некоторые свойства при помощи методов при запуске приложения.</p>
+
+<p><b>setEggTime()</b> - устанавливает время варки в минутах</p>
+
+<p><b>setEggCount()</b> - подсчитывает число сваренных яиц</p>
+
+<p><b>startEgg()</b> - запускает таймер</p>
+
+<p><b>stopEgg()</b> - останавливает таймер</p>
+
+<p>Обратите внимание, что в методе <b>startEgg()</b> мы определяем 
+слушателей CountDownTimer (onTick и onFinish). onTick будет вызываться 
+каждые 1000 миллисекунд (1 секунду), в то время как вызов onFinish 
+происходит тогда, когда таймер достигнет нуля (смотри исходник ниже).</p>
+
+<p>Всё готово для запуска. Справляемся с нахлынувшим волнением и запускаем проект. Нажимаем на кнопку Старт и время пошло...</p>
+
+<img src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/eggtimer.png" alt="Egg Timer">
+
+<h3>Исходный код</h3>
+
+<pre><code class="java">
+package ru.alexanderklimov.eggtimer;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.widget.Button;
+import android.widget.TextView;
+import android.view.View;
+import android.view.View.OnClickListener;
+
+public class EggTimerActivity extends Activity implements OnClickListener {
+	protected Button eggAddTime;
+	protected Button eggDecreaseTime;
+	protected Button startEgg;
+	protected TextView eggCountLabel;
+	protected TextView eggTimeLabel;
+	
+	// Свойства
+	protected int eggTime = 3;
+	protected CountDownTimer eggCountDownTimer;
+	protected int eggCount = 0;
+	protected boolean isEggTimer = false;
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		eggAddTime = (Button) findViewById(R.id.egg_time_up);
+		eggDecreaseTime = (Button) findViewById(R.id.egg_time_down);
+		startEgg = (Button) findViewById(R.id.egg_start);
+		eggCountLabel = (TextView) findViewById(R.id.egg_count_label);
+		eggTimeLabel = (TextView) findViewById(R.id.egg_time);
+		
+		eggAddTime.setOnClickListener(this);
+	    eggDecreaseTime.setOnClickListener(this);
+	    startEgg.setOnClickListener(this);
+		
+	    // Инициализируем значения счётчиков
+		setEggCount(0);
+	    setEggTime(3);
+	}
+
+	// Обрабатываем нажатия кнопок
+	public void onClick(View v) {
+		if(v == eggAddTime) // кнопка с плюсом
+		      setEggTime(eggTime + 1); // увеличиваем счётчик
+		    else if(v == eggDecreaseTime) // кнопка с минусом
+		      setEggTime(eggTime -1); // уменьшаем счётчик
+		    else if(v == startEgg) { // кнопка запуска таймера
+		      if(isEggTimer)
+		        stopEgg(); // останавливаем таймер
+		      else
+		        startEgg(); // запускаем таймер
+		    }
+	}
+	
+	/**
+	   * Устанавливаем значение в минутах для варки.
+	   * Во время запущенного таймера не работает.
+	   * @param minutes - число минут.
+	   */
+	  public void setEggTime(int minutes) {
+	    if(isEggTimer)
+	      return;
+	 
+	    eggTime = minutes;
+	 
+	    if(eggTime &lt; 1)
+	      eggTime = 1;
+	    // выводим время варки в текстовую метку
+	    eggTimeLabel.setText(String.valueOf(eggTime));
+	  }
+	  
+	  /**
+	   * Подсчитывает число сваренных яиц и выводит результат на экран.
+	   * @param count - число сваренных яиц
+	   */
+	  public void setEggCount(int count) {
+	    eggCount = count;
+	    // выводим число в текстовую метку
+	    eggCountLabel.setText(String.valueOf(eggCount));
+	  }
+	  
+	  /**
+	   * Запускает таймер
+	   */
+	  public void startEgg() {
+	    // Создаем новый экземпляр класса CountDownTimer для отсчета времени варки
+	    eggCountDownTimer = new CountDownTimer(eggTime * 60 * 1000, 1000) {
+	      @Override
+	      public void onTick(long millisUntilFinished) {
+	    	  // выводим оставшееся время в текстовой метке
+	          eggTimeLabel.setText(String.valueOf(millisUntilFinished / 1000));
+	      }
+	 
+	      @Override
+	      public void onFinish() {
+	    	  isEggTimer = false;
+	          setEggCount(eggCount + 1);
+	 
+	          eggTimeLabel.setText("Готово!");
+	          startEgg.setText("Пуск");
+	      }
+	    };
+	 
+	    eggCountDownTimer.start();
+	    startEgg.setText("Стоп");
+	    isEggTimer = true;
+	  }
+	  
+	  /**
+	   * Останавливает таймер
+	   */
+	  public void stopEgg() {
+	    if(eggCountDownTimer != null)
+	      eggCountDownTimer.cancel();
+	 
+	    isEggTimer = false;
+	    startEgg.setText("Пуск");
+	  }
+}
+</code></pre>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/fastbutton.htm" name="I0_1378295396460" id="I0_1378295396460" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/jquery.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/postmessageRelay.htm" id="oauth2relay731646306" name="oauth2relay731646306"></iframe>
+    <script src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%9E%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B9%20%D0%BE%D1%82%D1%81%D1%87%D1%91%D1%82%20-%20%D0%92%D0%B0%D1%80%D0%B8%D0%BC%20%D1%8F%D0%B9%D1%86%D0%B0_files/bootstrap-typeahead.js"></script>
+
+</body></html>

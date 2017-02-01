@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: SD-карта</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="http://developer.alexanderklimov.ru/android/secret/enter.php" id="drop3" role="button">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<p><a href="http://developer.alexanderklimov.ru/android/secret/secret.php?do=logout">Выйти из закрытой зоны</a></p>
+<h1 class="text-warning">SD-карта</h1>
+
+<p>
+<a href="#rightpath">Получить путь к SD-карте</a><br>
+<a href="#createfolder">Программное создание папки на SD-карте</a><br>
+<a href="#isready">Проверить наличие SD-карты на устройстве</a><br>
+<a href="#freespace">Определить, сколько свободного места осталось на SD-карте</a><br>
+<a href="#fullinfo">Полная информация о SD-карте</a><br>
+<a href="#install">Установка приложения на SD-карту<br>
+</a><a href="#sdcardimageview">Загрузка изображения с карточки в ImageView<br>
+</a><a href="#imgviewsdcard">Сохранение картинки из ImageView на SD-карту<br>
+</a><a href="#samples">Другие примеры</a><br>
+</p>
+
+<p>Кроме встроенной памяти, устройства могут иметь слот для подключения 
+дополнительной флеш-памяти, обычно в виде SD-карты. Дополнительная 
+память как правило больше встроенной, и на ней удобно хранить музыку, 
+видео, сложные приложения навигации и т.д.</p>
+
+
+<p>При записи на внешнюю карту необходим получить разрешение <b>WRITE_EXTERNAL_STORAGE</b> в манифесте приложения.</p>
+
+<p>Например, для проигрывания видео с карты можно использовать код:</p>
+
+<pre><code class="java">
+video.setVideoPath("/sdcard/sample.3gp"); // класс Video
+video.start();
+</code></pre>
+
+<h2 class="text-warning" id="rightpath">Получить путь к SD-карте</h2>
+
+<p>В большинстве случаев, путь к карте будет <b>/sdcard</b> и многие 
+программисты жёстко прописывают данный путь в коде, но на самом деле это
+ неправильный подход. Производители могут установить своё имя для 
+карточки, поэтому для получения пути нужно использовать метод <b>Environment.getExternalStorageDirectory()</b>.</p>
+
+<p>Не совсем правильно воспринимать название функции, как доступ к 
+внешней папке на SD, многие устройства имеют встроенную карточку памяти.</p>
+
+<p>С этой функцией иногда нужно быть осторожной. Например, на устройстве Samsung Galaxy S3 метод возвращал <b>/storage/sdcard0</b>, но сама карточка была прописана как <b>/storage/extSdCard</b>. Чтобы избежать проблемы, приходилось вызывать метод <b>Environment.getExternalStorageDirectory().getParent()</b> и уже от этого плясать дальше (<a href="http://android-er.blogspot.ru/2013/02/file-explorer-access-sd-card-on-samsung.html">подробнее описано тут</a>).</p> 
+
+<p>Если ваша программа хранит большие собственные данные, которые не 
+должны быть доступны другим приложениям, и вам необходимо использовать 
+SD-карту вместо встроенной памяти, то используйте специальный метод <b>Context.getExternalFilesDir()</b>
+ для получения доступа к папке внешней файловой системы, где она может 
+разместить файлы для постоянного хранения. Android удалит эти файлы, 
+когда приложение будет деинсталлировано. В этом случае у пользователя 
+будет порядок с папками и файлами, а не мешанина. В этом случае вам не 
+требуется разрешение на запись.</p>
+
+<p>Также есть метод <b>getExternalStoragePublicDirectory()</b>, который 
+появился в API 8. Предназначен для сохранения файлов определённого типа 
+для общего доступа. Например, картинке размещаются в папке /SD/Pictures 
+(условно). Пример размещения картинки (из документации):</p>
+
+<pre><code class="java">
+void createExternalStoragePublicPicture() {
+    // Create a path where we will place our picture in the user's
+    // public pictures directory.  Note that you should be careful about
+    // what you place here, since the user often manages these files.  For
+    // pictures and other media owned by the application, consider
+    // Context.getExternalMediaDir().
+    File path = Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_PICTURES);
+    File file = new File(path, "DemoPicture.jpg");
+
+    try {
+        // Make sure the Pictures directory exists.
+        path.mkdirs();
+
+        // Very simple code to copy a picture from the application's
+        // resource into the external file.  Note that this code does
+        // no error checking, and assumes the picture is small (does not
+        // try to copy it in chunks).  Note that if external storage is
+        // not currently mounted this will silently fail.
+        InputStream is = getResources().openRawResource(R.drawable.balloons);
+        OutputStream os = new FileOutputStream(file);
+        byte[] data = new byte[is.available()];
+        is.read(data);
+        os.write(data);
+        is.close();
+        os.close();
+
+        // Tell the media scanner about the new file so that it is
+        // immediately available to the user.
+        MediaScannerConnection.scanFile(this,
+                new String[] { file.toString() }, null,
+                new MediaScannerConnection.OnScanCompletedListener() {
+            public void onScanCompleted(String path, Uri uri) {
+                Log.i("ExternalStorage", "Scanned " + path + ":");
+                Log.i("ExternalStorage", "-&gt; uri=" + uri);
+            }
+        });
+    } catch (IOException e) {
+        // Unable to create file, likely because external storage is
+        // not currently mounted.
+        Log.w("ExternalStorage", "Error writing " + file, e);
+    }
+}
+
+void deleteExternalStoragePublicPicture() {
+    // Create a path where we will place our picture in the user's
+    // public pictures directory and delete the file.  If external
+    // storage is not currently mounted this will fail.
+    File path = Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_PICTURES);
+    File file = new File(path, "DemoPicture.jpg");
+    file.delete();
+}
+
+boolean hasExternalStoragePublicPicture() {
+    // Create a path where we will place our picture in the user's
+    // public pictures directory and check if the file exists.  If
+    // external storage is not currently mounted this will think the
+    // picture doesn't exist.
+    File path = Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_PICTURES);
+    File file = new File(path, "DemoPicture.jpg");
+    return file.exists();
+}
+</code></pre>
+
+<p>При использовании метода <b>getExternalStoragePublicDirectory()</b> картинки остаются на месте при удалении программы.</p>
+
+<p>В примере использовалась константа <b>DIRECTORY_PICTURES</b>, кроме неё есть и другие константы:</p>
+
+<ul>
+<li>DIRECTORY_ALARMS</li>
+<li>DIRECTORY_DCIM</li>
+<li>DIRECTORY_DOWNLOADS</li>
+<li>DIRECTORY_MOVIES</li>
+<li>DIRECTORY_MUSIC</li>
+<li>DIRECTORY_NOTIFICATIONS</li>
+<li>DIRECTORY_PICTURES</li>
+<li>DIRECTORY_PODCASTS</li>
+<li>DIRECTORY_RINGTONES</li>
+</ul>
+
+<h2 class="text-warning" id="createfolder">Программное создание папки на SD-карте</h2>
+
+<p>Для создания папки можно использовать стандартный Java-код с использованием метода <b>mkdir()</b> класса <b>java.io.File</b> (не забываем про разрешение android.permission.WRITE_EXTERNAL_STORAGE).</p>
+
+<pre><code class="java">
+String newFolder = "/CatAlbum";
+// получаем путь к SD-карте
+String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+File myNewFolder = new File(extStorageDirectory + newFolder);
+myNewFolder.mkdir();
+</code></pre>
+
+<h2 class="text-warning" id="isready">Проверить наличие SD-карты на устройстве</h2>
+
+<p>Чтобы убедиться, что SD-карта имеется на устройстве, я написал такую 
+функцию проверки (Виктор Аленьков предложил позже укороченный вариант):</p>
+
+<pre><code class="java">
+// укороченный вариант
+private boolean isSDCardReady() {
+	return (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED));
+}
+
+// первоначальный вариант
+private boolean isSDCardReady() {
+	if (Environment.getExternalStorageState().equals(
+			Environment.MEDIA_MOUNTED)) {
+		// SD-карта вставлена
+		return true;
+	} else {
+		// SD-карты нет
+		return false;
+	}
+}
+</code></pre>
+
+<h2 class="text-warning" id="freespace">Определить, сколько свободного места осталось на SD-карте</h2>
+
+<p>Если вам необходимо узнать, сколько свободного места осталось на SD-карте, то воспользуйтесь следующим кодом:</p>
+
+<pre><code class="java">
+public static final float BYTE_IN_MB = 1024f*1024f;
+
+private static int getSpaceForFile(String path) {
+
+	StatFs statfs = new StatFs(path);
+	final int blocks = statfs.getAvailableBlocks();
+	final int blockSize = statfs.getBlockSize();
+	final int totalBytes = blocks * blockSize;
+	// переводим в мегабайты
+	final int freespace = (int) (totalBytes / BYTE_IN_MB);
+	
+	return freespace;
+}
+
+public static int getExternalFreeSpace() {
+
+	final String path = Environment.getExternalStorageDirectory().getPath();
+	final int freespace = getSpaceForFile(path);
+
+	return freespace;
+}
+
+public static int getInternalFreeSpace() {
+
+	final String path = Environment.getDataDirectory().getPath();
+	final int freespace = getSpaceForFile(path);
+
+	return freespace;
+}
+</code></pre>
+
+<p>Метод getExternalFreeSpace() использует вспомогательный метод 
+getSpaceForFile(), который можно использовать и для получения информации
+ о свободном месте на внутренней карточке памяти.</p>
+
+<h2 class="text-warning" id="fullinfo">Полная информация о SD-карте</h2>
+
+<p>Объединив полученные данные, можно написать приложение, которое 
+определяет доступность внешней карточки и выводит информация о полном 
+объёме хранилища и сколько осталось места (в байтах, килобайтах, 
+мегабайтах). В разметку добавьте два TextView:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.sdcard;
+
+import ...
+
+public class TestActivity extends Activity {
+	// the statistics of the SD card
+	private StatFs stats;
+	// the state of the external storage
+	private String externalStorageState;
+
+	// the total size of the SD card
+	private double totalSize;
+	// the available free space
+	private double freeSpace;
+
+	// a String to store the SD card information
+	private String outputInfo;
+	// a TextView to output the SD card state
+	private TextView tv_state;
+	// a TextView to output the SD card information
+	private TextView tv_info;
+
+	// set the number format output
+	private NumberFormat numberFormat;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_test);
+
+		// initialize the Text Views with the data at the main.xml file
+		tv_state = (TextView) findViewById(R.id.tv_state);
+		tv_info = (TextView) findViewById(R.id.tv_info);
+
+		// get external storage (SD card) state
+		externalStorageState = Environment.getExternalStorageState();
+
+		// checks if the SD card is attached to the Android device
+		if (externalStorageState.equals(Environment.MEDIA_MOUNTED)
+				|| externalStorageState.equals(Environment.MEDIA_UNMOUNTED)
+				|| externalStorageState
+						.equals(Environment.MEDIA_MOUNTED_READ_ONLY)) {
+			// obtain the stats from the root of the SD card.
+			stats = new StatFs(Environment.getExternalStorageDirectory()
+					.getPath());
+
+			// Add 'Total Size' to the output string:
+			outputInfo = "\nTotal Size:\n";
+
+			// total usable size
+			totalSize = stats.getBlockCount() * stats.getBlockSize();
+
+			// initialize the NumberFormat object
+			numberFormat = NumberFormat.getInstance();
+			// disable grouping
+			numberFormat.setGroupingUsed(false);
+			// display numbers with two decimal places
+			numberFormat.setMaximumFractionDigits(2);
+
+			// Output the SD card's total size in gigabytes, megabytes,
+			// kilobytes and bytes
+			outputInfo += "Size in gigabytes: "
+					+ numberFormat.format((totalSize / (double) 1073741824))
+					+ " GB \n" + "Size in megabytes: "
+					+ numberFormat.format((totalSize / (double) 1048576))
+					+ " MB \n" + "Size in kilobytes: "
+					+ numberFormat.format((totalSize / (double) 1024))
+					+ " KB \n" + "Size in bytes: "
+					+ numberFormat.format(totalSize) + " B \n";
+
+			// Add 'Remaining Space' to the output string:
+			outputInfo += "\nRemaining Space:\n";
+
+			// available free space
+			freeSpace = stats.getAvailableBlocks() * stats.getBlockSize();
+
+			// Output the SD card's available free space in gigabytes,
+			// megabytes, kilobytes and bytes
+			outputInfo += "Size in gigabytes: "
+					+ numberFormat.format((freeSpace / (double) 1073741824))
+					+ " GB \n" + "Size in megabytes: "
+					+ numberFormat.format((freeSpace / (double) 1048576))
+					+ " MB \n" + "Size in kilobytes: "
+					+ numberFormat.format((freeSpace / (double) 1024))
+					+ " KB \n" + "Size in bytes: "
+					+ numberFormat.format(freeSpace) + " B \n";
+
+			// output the SD card state
+			tv_state.setTextColor(Color.GREEN);
+			tv_state.setText("SD card found! SD card is "
+					+ externalStorageState + ".");
+
+			// output the SD card info
+			tv_info.setText(outputInfo);
+		} else // external storage not found
+		{
+			// output the SD card state
+			tv_state.setTextColor(Color.RED);
+			tv_state.setText("SD card not found! SD card state is \""
+					+ externalStorageState + "\".");
+		}
+	}
+}
+</code></pre>
+
+<p><img src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/sdcard1.png" alt="SD-карта" height="400" width="240"></p>
+
+<p><a href="http://www.41post.com/4374/programming/android-obtaining-sd-card-memory-information">Источник</a></p>
+
+<h2 class="text-warning" id="install">Установка приложения на SD-карту</h2>
+
+<p>Начиная с версии Android 2.2, у разработчика появилась возможность 
+задать установку программы не только во внутреннюю память телефона, но и
+ на SD-карту. Просто добавьте атрибут <b>android:installLocation = ""</b> в теге manifest. Можно использовать два значения: <b>auto</b> и <b>preferExternal</b>.</p>
+
+<p>Значение <b>auto</b> позволяет системе самой решать, куда установить программу, параметр <b>preferExternal</b>
+ запрашивает у системы установку (но не гарантирует). У пользователя 
+появляется возможность перемещать установленное приложение между 
+внутренней и внешней памятью с помощью установки приложения.</p>
+
+<p>Есть еще параметр <b>internalOnly</b>, который указывает на установку
+ во внутреннюю память, но её можно не использовать, так как отсутствие 
+атрибута приводит к такому же результату.</p>
+
+<p>Следует осторожно использовать возможность установки приложения на 
+SD-карту, ведь её можно в любой момент вытащить из телефона. Google не 
+рекомендует использовать установку на SD-карту, если приложение имеет:</p>
+
+<ul>
+<li>управление учетными записями</li>
+<li>таймеры</li>
+<li>интерактивные папки</li>
+<li>сервисы</li>
+<li>адаптеры синхронизации</li>
+<li>виджеты на рабочем столе</li>
+</ul>
+
+<h2 class="text-warning" id="sdcardimageview">Загрузка изображения с карточки в ImageView</h2>
+
+<p>Если вам известен путь к изображению, которое хранится на SD-карте, то можно использовать следующий код:</p>
+
+<pre><code class="java">
+TextView textJpgName = (TextView)findViewById(R.id.textviewjpgname);
+ImageView jpgView = (ImageView)findViewById(R.id.jpgview);
+
+String myJpgPath = "/sdcard/DSC_3524.JPG"; //путь к картинке. У вас будет свой
+
+textJpgName.setText(myJpgPath); // выводим путь в текстовом поле
+
+BitmapFactory.Options options = new BitmapFactory.Options();
+options.inSampleSize = 2;
+Bitmap bm = BitmapFactory.decodeFile(myJpgPath, options);
+jpgView.setImageBitmap(bm); 
+</code></pre>
+
+<p>Здесь нужно обратить вниманию на одну особенность. При загрузке 
+слишком большого изображения (особенно на устройствах с мощной камерой) 
+вылезает ошибка. Поэтому рекомендуется уменьшить размер картинки при 
+помощи свойства <b>inSampleSize</b> для экономии памяти.</p>
+
+<h2 class="text-warning" id="imgviewsdcard">Сохранение картинки из ImageView на SD-карту</h2>
+
+<p>Рассмотрим противоположную задачу - сохранение картинки из ImageView 
+на SD-карту. Кстати, этот способ можно использовать для передачи 
+картинок из одной активности в другую. Сохранив изображение на внешнюю 
+память, вам достаточно передать второй активности строку с адресом 
+картинки.</p>
+
+<pre><code class="java">
+bmImage = (ImageView) findViewById(R.id.image1);
+
+public void onClick(View view) {
+	bmImage.setDrawingCacheEnabled(true);
+	Bitmap bitmap = bmImage.getDrawingCache();
+
+	File picDir = Environment
+			.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+	File picFile = new File(picDir + "/" + "cat.png");
+
+	try {
+		picFile.createNewFile();
+		FileOutputStream picOut = new FileOutputStream(picFile);
+		boolean worked = bitmap.compress(CompressFormat.PNG, 100,
+				picOut);
+		if (worked) {
+			Toast.makeText(
+					getApplicationContext(),
+					"Image saved to your device Pictures "
+							+ "directory!", Toast.LENGTH_SHORT).show();
+		} else {
+			Toast.makeText(getApplicationContext(),
+					"Whoops! File not saved.", Toast.LENGTH_SHORT)
+					.show();
+		}
+		picOut.close();
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		Toast.makeText(TestActivity.this, e.toString(), Toast.LENGTH_LONG)
+				.show();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		Toast.makeText(TestActivity.this, e.toString(), Toast.LENGTH_LONG)
+				.show();
+	}
+}
+</code></pre>
+
+<h2 class="text-warning" id="samples">Другие примеры</h2>
+
+<p><a href="http://developer.alexanderklimov.ru/android/emulator.php#emulatorsd">Создание SD-карты на эмуляторе</a></p>
+<p><a href="http://developer.alexanderklimov.ru/android/music.php#mp3fromsd">Воспроизведение MP3 из SD-карты</a></p>
+<p><a href="http://developer.alexanderklimov.ru/android/video.php">Воспроизведение видео из SD-карты</a></p>
+<p><a href="http://developer.alexanderklimov.ru/android/zip.php">Архивация файлов на SD-карте</a></p>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/fastbutton.htm" name="I0_1378022373621" id="I0_1378022373621" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/postmessageRelay.htm" id="oauth2relay1427384265" name="oauth2relay1427384265"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/jquery.js"></script>
+    <script src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap-button.js"></script>
+    <script src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20SD-%D0%BA%D0%B0%D1%80%D1%82%D0%B0_files/bootstrap-typeahead.js"></script>
+
+</body></html>

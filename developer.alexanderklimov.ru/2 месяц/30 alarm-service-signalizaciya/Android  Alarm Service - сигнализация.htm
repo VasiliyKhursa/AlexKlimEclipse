@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Alarm Service - сигнализация</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="http://developer.alexanderklimov.ru/android/secret/enter.php" id="drop3" role="button">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>			
+<p><a href="http://developer.alexanderklimov.ru/android/secret/secret.php?do=logout">Выйти из закрытой зоны</a></p>
+<h1 class="text-warning">Alarm Service - сигнализация</h1>
+
+<p>
+<a href="#alarmmanager">Менеджер оповещений AlarmManager</a><br>
+<a href="#singlealarm">Пример: Одноразовая сигнализация</a><br>
+<a href="#repaeatalarm">Пример: Установка повторяющейся сигнализации</a><br>
+<a href="#phenix">Феникс: восстание из пепла</a><br>
+<a href="#sendnotify">Шлём уведомления</a><br>
+</p>
+
+<p>Служба <b>Alarm Service</b> используется для отправки пользователю 
+разовых или повторяющихся сообщений в заданное время. Таким образом вы 
+сможете создавать различные планировщики, будильники, реализовать 
+выполнение регулярных сетевых запросов, запуска трудоёмких или дорогих 
+операций, запланированных на определенное время и другие приложения, 
+которые должны срабабывать по расписанию.</p>
+
+
+<p>Важно помнить, что механизм сигнализации не зависит от конкретного 
+приложения, это значит, что прописанные намерения сработают в 
+определённое время или с заданным интервалом. Так как сигнализация 
+устанавливается за пределами вашего приложения, она может быть 
+использована для вызова событий, принадлежащих приложению, или для 
+запуска самого приложения, даже если оно закрыто. Сигнализация может 
+стать мощным инструментом в сочетании с приёмниками широковещательных 
+намерений.</p>
+
+<p>Таким образом, сигнализация чрезвычайно полезна, когда речь идет о 
+снижении требований к ресурсам, особенно в случае с приложениями, 
+которые работают в фоновом режиме, позволяя останавливать сервисы и 
+отключать таймеры, сохраняя возможность выполнять запланированные 
+действия.</p>
+
+<div class="alert alert-info">
+Для планирования операций, которые работают только на протяжении 
+жизненного цикла вашего приложения, вместо механизма сигнализации лучше 
+использовать класс Handler в сочетании с таймерами и потоками. Это 
+позволит Android лучше контролировать системные ресурсы.
+</div>
+
+<p>Сигнализация в Android остается активной даже тогда, когда устройство
+ находится в режиме ожидания и при необходимости может его «пробудить», 
+однако она отменяется каждый раз, когда устройство перезагружается.</p>
+
+<h2 class="text-warning" id="alarmmanager">Менеджер оповещений AlarmManager</h2>
+
+<p>Доступ к службе Alarm Service осуществляется при помощи объекта <b>AlarmManager</b> следующим образом:</p>
+
+<pre><code class="java">
+AlarmManager manager = (AlarmManager)getSystemService(
+        Context.ALARM_SERVICE);
+</code></pre>
+
+<h3 class="text-warning">Методы</h3>
+
+<ul>
+<li><b>cancel()</b> - удаляет все сигнализации</li>
+<li><b>setTime()</b> - устанавливает системное время</li>
+<li><b>setTimeZone()</b> - устанавливает временную зону</li>
+<li><b>set()</b> - задаёт одноразовую сигнализацию</li>
+<li><b>setRepeating()</b> - задаёт повторяющиеся сигнализации с фиксированным временным интервалом</li>
+<li><b>setInexactRepeating()</b> - устанавливает повторяющиеся сигнализации без строгого требования к точности периода повторения</li>
+</ul>
+
+<p>Чтобы создать сигнализацию, которая сработает всего один раз, используйте метод <b>set()</b>,
+ укажите тип сигнализации, время срабатывания и ожидающее намерение, 
+которое должно запуститься. Если время срабатывания, которое вы указали 
+для сигнализации, уже прошло, указанное намерение запустится немедленно.</p>
+
+<h3 class="text-warning">Параметры</h3>
+
+<p>Методы <b>set()</b>, <b>setRepeating()</b>, <b>setInexactRepeating()</b> используют следующие параметры:</p>
+
+<ul>
+<li><b>typeOne</b> - тип используемого времени (системное или всемирное время UTC), который определяется константами</li>
+    <ul>
+	    <li><b>ELAPSED_REALTIME</b> - запускает ожидающее намерение, 
+основываясь на времени, которое прошло с момента загрузки устройства, но
+ не с момента выхода из режима ожидания. Это время включает любой 
+временной промежуток, в котором устройство находилось в данном режиме. 
+Обратите внимание, что прошедшее время вычисляется на основании того, 
+когда устройство было загружено. Используется системное время</li>
+		<li><b>ELAPSED_REALTIME_WAKEUP</b> - по прошествии указанного 
+промежутка времени с момента загрузки выводит устройство из спящего 
+режима и запускает ожидающее намерение. Используется системное время</li>
+		<li><b>RTC</b> - запускает ожидающее намерение в указанное время, но 
+не выводит устройство из режима ожидания. Используется всемирное время 
+UTC</li>
+		<li><b>RTC_WAKEUP</b> - выводит устройство из режима ожидания для запуска ожидающего намерения в указанное время. Используется всемирное время UTC</li>
+	</ul>
+<li><b>triggerTime</b> - время работы оповещения</li>
+<li><b>interval</b> - интервал между отправкой повторных сигнализаций в миллисекундах. Также можно использовать константы</li>
+    <ul>
+	<li><b>INTERVAL_DAY</b> </li>
+	<li><b>INTERVAL_HALF_DAY</b></li>
+	<li><b>INTERVAL_HOUR</b></li>
+	<li><b>INTERVAL_HALF_HOUR</b></li>
+	<li><b>INTERVAL_FIFTEEN_MINUTES</b></li>
+	</ul>
+<li><b>operation</b> - объект PendingIntent, определяющий действие, выполняемое при запуске сигнализации</li>
+</ul>
+
+<h3 class="text-warning">Служба</h3>
+
+<p>Для установки сигнализации вам придётся создать собственную службу, наследуясь от базового класса <b>Service</b> (либо через приёмник BroadcastReceiver, об этом в другом примере):</p>
+
+<pre><code class="java">
+public class AlarmService extends Service {...}
+</code></pre>
+
+<p>Запуск и управление службой происходит при помощи объекта Intent.</p>
+
+<h3 class="text-warning">Установка времени для сигнализаций</h3>
+
+<p>Для задания времени работы оповещения необходимо установить его время
+ запуска и добавить к нему длительность работы этого оповещения. 
+Напрммер, нам необходимо, чтобы оповещение отрабатывало 5 секунд после 
+запуска:</p>
+
+<pre><code class="java">
+long time = SystemClock.elapsedRealTime() + 5000;
+</code></pre>
+
+<p>Также можно использовать объект <b>Calendar</b>. Напрммер, мы хотим, чтобы продолжительность сигнала оповещения была 10 секунд, а период повторения оповещения был один час:</p>
+
+<pre><code class="java">
+Calendar calendar = Calendar.getInstance();
+calendar.setTimeInMillis(System.currentTimeMillis());
+calendar.add(Calendar.SECOND, 10);
+long time = calendar.getTimeInMillis();
+
+manager.setRepeating(AlarmManager.RTC_WAKEUP, time,
+        AlarmManager.INTERVAL_HOUR, pendingIntent);
+</code></pre>
+
+<h2 class="text-warning" id="singlealarm">Пример: Одноразовая сигнализация</h2>
+
+<p>Поместим на форму две кнопки:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;Button
+        android:id="@+id/startalarm"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Start" /&gt;
+
+    &lt;Button
+        android:id="@+id/cancelalarm"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Создадим новый класс для службы (MyAlarmService.java):</p>
+
+<details>
+    <summary>Показать код (щелкните мышкой)</summary>
+<pre><code class="java">
+package ru.alexanderklimov.alarm;
+
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
+import android.widget.Toast;
+
+public class MyAlarmService extends Service {
+	@Override
+	public void onCreate() {
+		// TODO Auto-generated method stub
+		Toast.makeText(this, "MyAlarmService.onCreate()", Toast.LENGTH_LONG)
+				.show();
+	}
+
+	@Override
+	public IBinder onBind(Intent intent) {
+		// TODO Auto-generated method stub
+		Toast.makeText(this, "MyAlarmService.onBind()", Toast.LENGTH_LONG)
+				.show();
+		return null;
+	}
+
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		Toast.makeText(this, "MyAlarmService.onDestroy()", Toast.LENGTH_LONG)
+				.show();
+	}
+
+	@Override
+	public void onStart(Intent intent, int startId) {
+		// TODO Auto-generated method stub
+		super.onStart(intent, startId);
+		Toast.makeText(this, "MyAlarmService.onStart()", Toast.LENGTH_LONG)
+				.show();
+	}
+
+	@Override
+	public boolean onUnbind(Intent intent) {
+		// TODO Auto-generated method stub
+		Toast.makeText(this, "MyAlarmService.onUnbind()", Toast.LENGTH_LONG)
+				.show();
+		return super.onUnbind(intent);
+	}
+}
+</code></pre>
+</details>
+
+<p>Код для основной активности:</p>
+
+<details>
+    <summary>Показать код (щелкните мышкой)</summary>
+<pre><code class="java">
+package ru.alexanderklimov.alarm;
+
+import java.util.Calendar;
+
+import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class AlarmActivity extends Activity {
+
+	private PendingIntent pendingIntent;
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		Button buttonStart = (Button) findViewById(R.id.startalarm);
+		Button buttonCancel = (Button) findViewById(R.id.cancelalarm);
+
+		buttonStart.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent myIntent = new Intent(AlarmActivity.this,
+						MyAlarmService.class);
+
+				pendingIntent = PendingIntent.getService(AlarmActivity.this, 0,
+						myIntent, 0);
+
+				AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTimeInMillis(System.currentTimeMillis());
+				calendar.add(Calendar.SECOND, 10);
+
+				alarmManager.set(AlarmManager.RTC_WAKEUP,
+						calendar.getTimeInMillis(), pendingIntent);
+
+				Toast.makeText(AlarmActivity.this, "Start Alarm",
+						Toast.LENGTH_LONG).show();
+			}
+		});
+
+		buttonCancel.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+				alarmManager.cancel(pendingIntent);
+				// Tell the user about what we did.
+				Toast.makeText(AlarmActivity.this, "Cancel!",
+						Toast.LENGTH_LONG).show();
+			}
+		});
+	}
+}
+</code></pre>
+</details>
+
+<p>Осталось только прописать в манифесте созданную службу (перед закрывающим тегом application):</p>
+
+<pre><code class="java">
+&lt;service android:name=".MyAlarmService" /&gt;
+</code></pre>
+
+<p>Запустите проект и нажмите на кнопку для запуска службы. Далее можно 
+закрыть приложение. Запущенная служба через 10 секунд выведет 
+всплывающее сообщение Toast, что говорит о работе запущенной службы.</p>
+
+<p>Для отмены сигнализации вызовите метод <b>cancel()</b> из объекта AlarmManager, передав ему ожидающее намерение, которое больше не должно срабатывать (смотри код для второй кнопки).</p>
+
+<h2 class="text-warning" id="repaeatalarm">Установка повторяющейся сигнализации</h2>
+
+<p>В предыдущем примере сигнализация выводилась один раз. Если вы 
+хотите, чтобы сигнализация повторялась постоянно через определённый 
+промежуток времени, то измените одну строку кода:</p>
+
+<pre><code class="java">
+// Предыдущий код
+//alarmManager.set(AlarmManager.RTC_WAKEUP,
+//		calendar.getTimeInMillis(), pendingIntent);
+
+// Новый код - интервал 7 секунд
+alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+		calendar.getTimeInMillis(), 7000, pendingIntent);
+</code></pre>
+
+<p>Повторяющаяся сигнализация работает точно так же, как и одиночная, 
+описанная ранее, но она продолжает срабатывать через определённые 
+промежутки времени, пока ее не отменят.</p>
+
+<p>Поскольку сигнализация находится вне контекста вашего приложения, она
+ идеально подходит для регулярных обновлений или поиска данных, поэтому 
+ей не нужен сервис, постоянно работающий в фоновом режиме.</p>
+
+<p>Чтобы установить повторяющуюся сигнализацию, используйте метод 
+setRepeating() или setInexactRepeating() из объекта AlarmManager. Оба 
+метода поддерживают тип сигнализации, начальный момент срабатывания и 
+ожидающее намерение, которое должно запускаться.</p>
+
+<p>Применяйте метод setRepeating() в тех случаях, когда нужно 
+контролировать точный интервал между срабатываниями сигнализации. 
+Значение интервала, переданное в данный метод, дает возможность 
+определить точные временные промежутки, вплоть до миллисекунды.</p>
+
+<h2 class="text-warning" id="phenix">Феникс: восстание из пепла</h2>
+
+<p>Напишем ещё одну программу, которая будет надоедать пользователю. 
+Суть в следующем. Создадим два экрана. На первом экране разместим кнопку
+ для запуска сигнализации и закрытия самого экрана. Далее через 
+несколько секунд по установленному правилу будет запускаться наше 
+приложение, но уже со вторым экраном (для разнообразия) с грозной 
+надписью "Накорми кота!". Пользователь может закрывать этот экран 
+сколько угодно раз, но он снова и снова будет появляться на устройстве, 
+выводя пользователя из себя. Чтобы снять сигнализацию, придётся 
+перезагружать устройство. Впрочем, мы же не звери какие-нибудь, поэтому у
+ нас будет отдельная кнопка, которая выключит сигнализацию.</p>
+
+<p>Начнём с основной активности и добавим на экран кнопку для запуска сигнализации:</p>
+
+<pre><code class="xml">
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" &gt;
+
+    &lt;Button
+        android:id="@+id/buttonStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp"
+        android:onClick="onClick"
+        android:text="Запустить сигнализацию" /&gt;
+
+&lt;/RelativeLayout&gt;
+</code></pre>
+
+<p>Сразу же создадим разметку для второго экрана (scheduledactivity.xml):</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Накорми кота!"
+        android:textSize="36sp" /&gt;
+
+    &lt;Button
+        android:id="@+id/dismiss"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="Закрыть экран" /&gt;
+
+    &lt;Button
+        android:id="@+id/stop"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="Остановить сигнализацию" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Напишем код для основной активности, в которой будет происходить запуск сигнализации по щелчку кнопки:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.alarmdemo;
+
+import java.util.Calendar;
+import android.os.Bundle;
+import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.view.Menu;
+import android.view.View;
+
+public class AlarmActivity extends Activity {
+
+	AlarmManager alarmManager;
+	PendingIntent pendingIntent;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_alarm);
+
+		alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+	}
+
+	public void onClick(View v) {
+
+		Intent myIntent = new Intent(getBaseContext(),
+				MyScheduledReceiver.class);
+
+		PendingIntent pendingIntent = PendingIntent.getBroadcast(
+				getBaseContext(), 0, myIntent, 0);
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTimeInMillis(System.currentTimeMillis());
+		calendar.add(Calendar.SECOND, 10);
+		long interval = 60 * 1000; //
+		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+				calendar.getTimeInMillis(), interval, pendingIntent);
+		finish();
+
+	}
+}
+</code></pre>
+
+<p>При запуске сигнализации задействуется класс MyScheduledReceiver, 
+который наследуется от BroadcastReceiver. Напишем код для этого класса:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.alarmdemo;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
+public class MyScheduledReceiver extends BroadcastReceiver {
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		// TODO Auto-generated method stub
+		Intent scheduledIntent = new Intent(context, MyScheduledActivity.class);
+		scheduledIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(scheduledIntent);
+	}
+}
+</code></pre>
+
+<p>В намерении мы указали, что для запуска нужен класс 
+MyScheduledActivity (можно было использовать и стартовый экран 
+приложения). Напишем код для него:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.alarmdemo;
+
+import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
+public class MyScheduledActivity extends Activity {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.scheduledactivity);
+	}
+
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.dismiss:
+			finish();
+
+			break;
+		case R.id.stop:
+			Intent myIntent = new Intent(getBaseContext(),
+					MyScheduledReceiver.class);
+
+			PendingIntent pendingIntent = PendingIntent.getBroadcast(
+					getBaseContext(), 0, myIntent, 0);
+
+			AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+			alarmManager.cancel(pendingIntent);
+
+			Intent intent = new Intent();
+			intent.setClass(MyScheduledActivity.this, AlarmActivity.class);
+			startActivity(intent);
+			finish();
+
+			break;
+
+		default:
+			break;
+		}
+	};
+}
+</code></pre>
+
+<p>Класс MyScheduledActivity служит для вывода экрана с разметкой 
+scheduledactivity.xml. Первая кнопка служит для закрытия экрана, как мы 
+помним, это не поможет пользователю избавиться от него, так как через 
+несколько секунд экран запустится снова. Вторая кнопка позволит 
+отключить сигнализацию.</p>
+
+<p>последний штрих - указать в манифесте созданный второй класс и приёмник (&lt;receiver&gt;):</p>
+
+<pre><code class="xml">
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.alexanderklimov.alarmdemo"
+    android:versionCode="1"
+    android:versionName="1.0" &gt;
+
+    &lt;uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="15" /&gt;
+
+    &lt;application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" &gt;
+        &lt;activity
+            android:name=".AlarmActivity"
+            android:label="@string/title_activity_alarm" &gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+        &lt;activity android:name="MyScheduledActivity" &gt;
+        &lt;/activity&gt;
+
+        &lt;receiver
+            android:name="MyScheduledReceiver"
+            android:process=":remote" /&gt;
+    &lt;/application&gt;
+
+&lt;/manifest&gt;
+</code></pre>
+
+<h2 class="text-warning" id="sendnotify">Шлём уведомления</h2>
+
+<p>Помните, что когда-то мы изучали <a href="http://developer.alexanderklimov.ru/android/notification.php">уведомления</a>. Можно переделать предыдущий пример, чтобы не запускать активность, а отсылать уведомления пользователю.</p>
+
+<p>Добавим на стартовый экран ещё одну кнопку и дополнительный код для основной активности:</p>
+
+<pre><code class="java">
+// обработка щелчка второй кнопки
+public void onClickNotify(View v){
+	// Для одноразового запуска
+	//setOneTimeAlarm();
+	
+	// Для многоразового запуска
+	//setRepeatingAlarm();
+}
+
+public void setOneTimeAlarm() {
+	Intent intent = new Intent(this, MyScheduledReceiver.class);
+	PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,
+			intent, PendingIntent.FLAG_ONE_SHOT);
+	alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()
+			+ (5 * 1000), pendingIntent);
+}
+
+public void setRepeatingAlarm() {
+	Intent intent = new Intent(this, MyScheduledReceiver.class);
+	PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,
+			intent, PendingIntent.FLAG_CANCEL_CURRENT);
+	alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+			System.currentTimeMillis(), (5 * 1000), pendingIntent);
+}
+</code></pre>
+
+<p>Теперь заменим код для класса-приёмника:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.alarmdemo;
+
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.BitmapFactory;
+
+public class MyScheduledReceiver extends BroadcastReceiver {
+
+	NotificationManager nm;
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		// TODO Auto-generated method stub
+		Intent scheduledIntent = new Intent(context, AlarmActivity.class);
+		scheduledIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+		PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
+				scheduledIntent, 0);
+
+		nm = (NotificationManager) context
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+
+		Resources res = context.getResources();
+		Notification.Builder builder = new Notification.Builder(context);
+
+		builder.setContentIntent(contentIntent)
+				.setSmallIcon(R.drawable.ic_launcher)
+				.setLargeIcon(
+						BitmapFactory.decodeResource(res,
+								R.drawable.ic_launcher))
+				.setTicker("Накорми кота!")
+				// текст в строке состояния
+				.setWhen(System.currentTimeMillis()).setAutoCancel(true)
+				.setContentTitle("Время кормить кота") // Заголовок уведомления
+				.setContentText("Да накорми кота, наконец"); // Текст
+																// уведомления
+		Notification n = builder.getNotification();
+
+		nm.notify(1, n);
+	}
+}
+</code></pre>
+
+<p>В манифесте ничего менять не надо, а вторую активность можно удалить.
+ Запускайте проект и вы увидите, что через заданный промежуток времени 
+появится уведомление. Имейте в виду, что если вы выберите повторяющуюся 
+сигнализацию, то оповещения будут постоянно появляться, как только вы 
+закроете предыдущее. Вам нужно предусмотреть отключение сигнализации, 
+это вам в качестве домашнего задания.</p>
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/fastbutton.htm" name="I0_1378022401529" id="I0_1378022401529" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/postmessageRelay.htm" id="oauth2relay548797669" name="oauth2relay548797669"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/jquery.js"></script>
+    <script src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-button.js"></script>
+    <script src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20Alarm%20Service%20-%20%D1%81%D0%B8%D0%B3%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-typeahead.js"></script>
+
+</body></html>

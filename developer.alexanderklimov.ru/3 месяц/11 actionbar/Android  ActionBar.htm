@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: ActionBar</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20ActionBar_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20ActionBar_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20ActionBar_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20ActionBar_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20ActionBar_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20ActionBar_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20ActionBar_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20ActionBar_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20ActionBar_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20ActionBar_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">ActionBar</h1>
+<p>Третий месяц обучения (закрытая зона)</p>
+
+<p>
+<a href="#hide">Прячем и показываем ActionBar</a><br>
+<a href="#title">Устанавливаем заголовок и подзаголовок</a><br>
+<a href="#drawable">Используем Drawable</a><br>
+<a href="#navigationbutton">Прячем системные кнопки навигации</a><br>
+<a href="#additems">Добавляем элементы в ActionBar</a><br>
+<a href="#groupcheck">Добавляем в меню переключатели</a><br>
+<a href="#code">Программное добавление элементов</a><br>
+<a href="#split">Split action bar</a><br>
+<a href="#appicon">Используем значок приложения как элемент навигации</a><br>
+<a href="#search">Добавляем поле для поиска</a><br>
+<a href="#tab">Добавляем вкладки</a><br>
+<a href="#spinner">Выпадающий список</a><br>
+<a href="#spinner2">Обычный Spinner</a><br>
+<a href="#themecontext">Используем правильный Context для ActionBar</a><br>
+<a href="#customview">CustomView</a><br>
+<a href="#shareactionprovider">ShareActionProvider</a><br>
+</p>
+
+<p>После того, как вы познакомились с <a href="http://developer.alexanderklimov.ru/android/theory/actionbar.php">теорией</a>, рассмотрим примеры с использованием <b>ActionBar</b></p>
+
+<h2 class="text-warning" id="hide">Прячем и показываем ActionBar</h2>
+
+<p>В Android 4.0 новинка включена по умолчанию. Чтобы увидеть разницу в 
+активности с ActionBar и без нее, напишем простой пример. Добавим на 
+форму элемент ToggleButton и пропишем такой код, скрывающий и 
+показывающий ActionBar:</p>
+
+
+<pre><code class="java">
+package ru.alexanderklimov.actionbar;
+
+import android.app.ActionBar;
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ToggleButton;
+
+public class ActionBarActivity extends Activity implements
+		OnCheckedChangeListener {
+	
+	ToggleButton toggleButton;
+	ActionBar actionBar;
+	
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+		
+		toggleButton = (ToggleButton) findViewById(R.id.toggleButton1);
+		actionBar = getActionBar();
+		toggleButton.setOnCheckedChangeListener(this);
+	}
+	
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		// TODO Auto-generated method stub
+		if (isChecked){
+	        actionBar.hide();
+		}
+		else {
+	        actionBar.show();
+		}
+	}
+}
+</code></pre>
+
+<p><img src="Android%20%20ActionBar_files/actionbar1.png" alt="ActionBar" height="240" width="400"> 
+
+<img src="Android%20%20ActionBar_files/actionbar2.png" alt="ActionBar" height="240" width="400"></p>
+
+<p>Как видите, на втором рисунке при выключенном ActionBar мы не видим заголовка и значка программы.</p>
+
+<p>Текущее состояние панели действий можно узнать при помощи метода <b>isShowing()</b>, что облегчит написание кода:</p>
+
+<pre><code class="java">
+public void onClick(View v) {
+	ActionBar myActionBar = getActionBar();
+	boolean myActionBarisShowing = myActionBar.isShowing();
+	if (myActionBarisShowing) {
+		myActionBar.hide();
+	} else {
+		myActionBar.show();
+	};
+}
+</code></pre>
+
+<p>Казалось бы, всё замечательно. Но запустим пример, скроем панель 
+действий и сменим ориентацию. Мы увидим, что ActionBar снова появился. 
+Чтобы избежать подобной накладки, можно сохраниить информацию о 
+видимости панели в методе <b>onSaveInstanceState()</b>, используя его параметр типа <b>Bundle</b>, а в методе <b>onCreate()</b> восстановить нужное состояние.</p>
+
+<pre><code class="java">
+@Override
+public void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_test);
+
+	if (savedInstanceState != null) {
+	    // извлекаем информацию
+		Boolean savedActionBarisShowing = savedInstanceState.getBoolean(
+				"KEY_ACTIONBAR_ISSHOWING", true);
+		if (savedActionBarisShowing) {
+			getActionBar().show();
+		} else {
+			getActionBar().hide();
+		}
+	}
+}
+
+@Override
+protected void onSaveInstanceState(Bundle savedInstanceState) {
+	super.onSaveInstanceState(savedInstanceState);
+	// сохраняем информацию о видимости
+	savedInstanceState.putBoolean("KEY_ACTIONBAR_ISSHOWING", getActionBar()
+			.isShowing());
+}
+</code></pre>
+
+<p>Также можно устроить небольшую проверку, чтобы не вызывать ошибок на старых устройствах:</p>
+
+<pre><code class="java">
+// Make sure we're running on Honeycomb or higher to use ActionBar APIs
+if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.HONEYCOMB) {
+    // For the main activity, make sure the app icon in the action bar
+    // does not behave as a button
+    ActionBar actionBar = getActionBar();
+}
+</code></pre>
+
+
+
+<p>Чтобы избавиться от ActionBar на этапе разработки, можно в манифесте прописать нужную тему, например <b>Theme.Holo.NoActionBar</b> или <b>Theme.Holo.NoActionBar.Fullscreen</b>:</p>
+
+<pre><code class="xml">
+&lt;application
+    android:icon="@drawable/ic_launcher"
+    android:label="@string/app_name"
+    <b>android:theme="@android:style/Theme.Holo.NoActionBar"</b> &gt;
+</code></pre>
+
+<h2 class="text-warning" id="title">Устанавливаем заголовок и подзаголовок</h2>
+
+<p>Панель действий  - это самостоятельный элемент, который заменяет 
+стандартный заголовок у активности. Сейчас мы в этом убедимся. Напишем 
+код:</p>
+
+<pre><code class="java">
+actionBar.setNavigationMode(ActionBar.DISPLAY_SHOW_TITLE);
+actionBar.setTitle("Рыжик");
+actionBar.setSubtitle("Самый умный кот");
+this.setTitle("Котяра"); // этот текст вы не увидите
+</code></pre>
+
+<p>В первой строке кода мы установили режим вывода панели действий, 
+используемый по умолчанию. Дальше в статье вы увидите примеры, когда 
+панель действий может использоваться в других режимах, например, как 
+выпадающий список и т.д.</p>
+
+<p>Во второй строке мы установили свой заголовок. Имя метода совпадает с именем метода для активности <b>Activity.setTitle()</b>, но имеет больший приоритет. Поэтому, если вы даже установите текст для заголовка активности, то его не увидите.</p>
+
+<p>Кроме того, у панели действий есть ещё один интересный метод <b>setSubtitle()</b>, который выводит подзаголовок мелким шрифтом под основным заголовком. Используйте по желанию.</p>
+
+<p><img src="Android%20%20ActionBar_files/actionbar15.png" alt="Заголовок в ActionBar" height="94" width="300"></p>
+
+<h2 class="text-warning" id="drawable">Используем Drawable</h2>
+
+<p>Можно использовать графические ресурсы в качестве фонового рисунка для панели через вызов метода <b>ActionBar.setBackgroundDrawable()</b>.
+ Картинка будет растягиваться по всей панели, поэтому позаботьтесь о 
+размерах заранее или используйте форматы 9-patch или XML-drawable. В 
+Android 4.2 можно использовать анимационные drawable.</p>
+
+<pre><code class="java">
+Drawable catdrawable = getResources().getDrawable(R.drawable.cat);
+actionBar.setBackgroundDrawable(catdrawable);
+</code></pre>
+
+<h2 class="text-warning" id="navigationbutton">Прячем системные кнопки навигации</h2>
+
+<p>Чтобы скрыть системную панель навигации с кнопками Home, Back, можно использовать код:</p>
+
+<pre><code class="java">
+getWindow().
+		getDecorView().
+		setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+</code></pre>
+
+<p>Этот способ подойдёт для игр, читалок и прочих приложений, где 
+системная панель занимает лишнее пространство. Панель не удаляется, а 
+просто скрывается из виду. Когда пользователь нажмёт на экран в той 
+позиции, где находится данная панель, то она автоматически появится.</p>
+
+<p>Также есть <a href="http://developer.alexanderklimov.ru/android/navigationbar.php">другие варианты</a>.</p>
+
+<h2 class="text-warning" id="additems">Добавляем элементы в ActionBar</h2>
+
+<p>Сейчас у нас пустой ActionBar, если не учитывать заголовок и значок 
+приложения. Но ActionBar переводится как Панель действий, а никаких 
+действий мы пока не видим. Доработаем приложение и наполним панель 
+элементами меню. Вспоминаем урок, <a href="http://developer.alexanderklimov.ru/android/menu.php">посвященный разработке меню</a>, и создаём меню для ActionBar по такому же принципу. Создаем папку <b>res/menu</b> и в ней файл <b>action_items.xml</b> следующего содержания:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;menu xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+
+    &lt;item
+        android:id="@+id/menu_save"
+        android:icon="@android:drawable/ic_menu_save"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_save"/&gt;
+    &lt;item
+        android:id="@+id/menu_delete"
+        android:icon="@android:drawable/ic_delete"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_delete"/&gt;
+
+&lt;/menu&gt;
+</code></pre>
+
+<p>В качестве значков для элементов меню я использовал системные 
+картинки. Обратите внимание, что для элеметов меню, которые будут 
+использоваться на панели действий, необходимо использовать атрибуты <b>showAsAction</b> и <b>title</b>.</p>
+
+<p>Осталось переопределить методы <b>onCreateOptionsMenu()</b> и <b>onOptionsItemSelected()</b>:</p>
+
+<pre><code class="java">
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+	MenuInflater inflater = getMenuInflater();
+	inflater.inflate(R.menu.action_items, menu);
+	return true;
+}
+
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+	// TODO Auto-generated method stub
+	switch (item.getItemId()) {
+	case R.id.menu_save:
+		toast = Toast.makeText(getApplicationContext(), 
+				   "Вы нажали элемент Save", Toast.LENGTH_SHORT); 
+				toast.show();  
+		return true;
+	case R.id.menu_delete:
+		toast = Toast.makeText(getApplicationContext(), 
+				   "Вы нажали элемент Delete", Toast.LENGTH_SHORT); 
+				toast.show(); 
+		return true;
+	default:
+		return false;
+	}
+}
+</code></pre>
+
+<p>В результате получим панель действий с элементами меню.</p>
+
+<p><img src="Android%20%20ActionBar_files/actionbar3.png" alt="ActionBar" height="240" width="400"></p>
+
+<p>Поведение добавленных элементов будет зависеть от пространства. Если 
+места хватает, то меню будет выводиться со значками и текстом, если 
+пространство ограничено, то будут показываться только значки. Это легко 
+увидеть, если перевести устройство в портретный режим. Если вы 
+изначально не хотите показывать текст, то не используйте параметр <b>withText</b>, но тем не менее используйте атрибут <b>android:title</b>.</p>
+
+<h2 class="text-warning" id="groupcheck">Добавляем в меню переключатели</h2>
+
+<p>Также в меню можно добавить и переключатели. В этот же файл action_items.xml добавим группу элементов:</p>
+
+<pre><code class="xml">
+&lt;group android:checkableBehavior="single" &gt;
+    &lt;item
+        android:id="@+id/selecta"
+        android:checked="true"
+        android:title="Переключатель A"/&gt;
+    &lt;item
+        android:id="@+id/selectb"
+        android:title="Переключатель B"/&gt;
+    &lt;item
+        android:id="@+id/selectc"
+        android:title="Переключатель C"/&gt;
+&lt;/group&gt;
+</code></pre>
+
+<p>Отслеживать выбранный элемент можно в методе onOptionsItemSelected():</p>
+
+<pre><code class="java">
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+	// TODO Auto-generated method stub
+
+	switch (item.getItemId()) {
+	case R.id.selecta:
+		item.setChecked(true);
+		Toast.makeText(getApplicationContext(), "Выбран переключатель A",
+				Toast.LENGTH_LONG).show();
+		return true;
+	case R.id.selectb:
+		item.setChecked(true);
+		Toast.makeText(getApplicationContext(), "Выбран переключатель B",
+				Toast.LENGTH_LONG).show();
+		return true;
+	case R.id.selectc:
+		item.setChecked(true);
+		Toast.makeText(getApplicationContext(), "Выбран переключатель C",
+				Toast.LENGTH_LONG).show();
+		return true;
+
+	default:
+		return false;
+	}
+}
+</code></pre>
+
+<p><img src="Android%20%20ActionBar_files/actionbar10.png" alt="Меню с переключателями"></p>
+
+<h2 class="text-warning" id="code">Программное добавление элементов</h2>
+
+<p>В предыдущем примере мы задали элементы меню в XML-файле и подключали
+ через MenuInflater. Также можно программно задать элементы. Напишем 
+код, который добавляет к двум ранее элементам меню еще один пункт, а 
+также несколько элементов подменю.</p>
+
+<pre><code class="java">
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+	super.onCreateOptionsMenu(menu);
+	MenuInflater inflater = getMenuInflater();
+	inflater.inflate(R.menu.action_items, menu);
+
+	 MenuItem menu0 = menu.add(0, 0, 0, "Элемент-кнопка");
+	 {
+	 menu0.setIcon(R.drawable.ic_launcher);
+	 menu0.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+	 }
+
+	// Шаблон: menu.add(int groupId, int itemId, int order, CharSequence title);
+    menu.add(0, 1, 1, "Элемент 1");
+	menu.add(0, 2, 2, "Элемент 2");
+	menu.add(0, 3, 3, "Элемент 3");
+	menu.add(0, 4, 4, "Элемент 4");
+
+	return true;
+}
+
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+	// TODO Auto-generated method stub
+	switch (item.getItemId()) {
+	case R.id.menu_save:
+		toast = Toast.makeText(getApplicationContext(),
+				"Вы нажали элемент Save", Toast.LENGTH_SHORT);
+		toast.show();
+		return true;
+	case R.id.menu_delete:
+		toast = Toast.makeText(getApplicationContext(),
+				"Вы нажали элемент Delete", Toast.LENGTH_SHORT);
+		toast.show();
+		return true;
+	case 0:
+		Toast.makeText(this, "Выбран 0 элемент!", Toast.LENGTH_LONG)
+				.show();
+		return true;
+	case 1:
+		Toast.makeText(this, "Выбран 1-й элемент!", Toast.LENGTH_LONG)
+				.show();
+		return true;
+	case 2:
+		Toast.makeText(this, "Выбран 2-й элемент!", Toast.LENGTH_LONG)
+				.show();
+		return true;
+	case 3:
+		Toast.makeText(this, "Выбран 3-й элемент!", Toast.LENGTH_LONG)
+				.show();
+		return true;
+	case 4:
+		Toast.makeText(this, "Выбран 4-й элемент!", Toast.LENGTH_LONG)
+				.show();
+		return true;
+	default:
+		return false;
+	}
+}
+</code></pre>
+
+<p>Обратите внимание, что элементы подменю не видны на экране. Их можно 
+увидеть, если нажать на кнопку Menu на аппарате. Если такой кнопки на 
+аппарате нет (например, на планшетах), то в углу экрана появится значок 
+плавающего меню, который раскроется при нажатии на него лапкой.</p>
+
+<p><img src="Android%20%20ActionBar_files/actionbar4.png" alt="Menu"></p>
+
+<h2 class="text-warning" id="split">Split action bar</h2>
+
+<p>В Android 4.0 появилось ещё одно новшество - использование дополнительной панели, получившей название <b>Split action bar</b>.
+ Панель появляется при портретном режиме на телефоне в нижней части 
+экрана, давая возможность управлять элементами панели одной рукой. Чтобы
+ включить эту панель в своем приложении или активности, нужно в 
+манифесте добавить атрибут <b>android:uiOptions</b> со значением <b>splitActionBarWhenNarrow</b>:</p>
+
+<pre><code class="xml">
+&lt;application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:uiOptions="splitActionBarWhenNarrow" &gt;
+</code></pre>
+
+<p>Если телефон повернуть с альбомного режима на портретный, то увидите, что элементы меню окажутся внизу.</p>
+
+<p><img src="Android%20%20ActionBar_files/actionbar5.png" alt="Split action bar" height="400" width="240"></p>
+
+<h2 class="text-warning" id="appicon">Используем значок приложения как элемент навигации</h2>
+
+<p>Начиная с Android 3.0, можно использовать значок приложения как 
+элемент навигации для быстрого возврата на главный экран приложения (на 
+самом деле возможности шире, я беру простейший пример). Когда 
+пользователь щелкает по значку, система вызывает метод <b>onOptionsItemSelected()</b> с зарезервированным идентификатором <b>android.R.id.home</b>.
+ Вы можете вернуться на главную активность приложения или на один шаг 
+назад в програмнной иерархии. Возврат на начальную активность происходит
+ при помощи намерения с флагом <b>FLAG_ACTIVITY_CLEAR_TOP</b></p>
+
+<p>Чтобы реализовать данный пример, необходимо создать еще одну 
+активность. В первой основной активности нужно прописать код для 
+перехода на вторую активность, например, при щелчке на кнопку. Далее во 
+второй активности пишем следующий код:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.actionbar;
+
+import android.app.ActionBar;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+
+public class Second extends Activity {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.two);
+		ActionBar bar = getActionBar();
+		bar.setHomeButtonEnabled(true); // обязательно для Android 4.0
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// app icon in action bar clicked; go home
+			Intent intent = new Intent(this, ActionBarActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+}
+</code></pre>
+
+<p>Особо нужно обратить внимание на код в методе <b>onCreate()</b>. Чтобы значок распознавал нажатие, нужно явно вызвать метод <b>setHomeButtonEnabled()</b>.
+ Это правило действует для версий 4.0, в версии Android 3.0 такой 
+необходимости не было, что вызвало определённые трудности у части 
+проектов, которые вдруг перестали работать.</p>
+
+<p>Теперь при щелчке по значку мы со второго экрана должны вернуться на 
+первый экран. Не всякий пользователь догадается о такой возможности. 
+Поэтому можно вызвать еще один метод, который добавит стрелку слева от 
+значка:</p>
+
+<pre><code class="java">
+bar.setDisplayHomeAsUpEnabled(true);
+</code></pre>
+
+<p>Метод можно вызвать после первого метода <b>setHomeButtonEnabled()</b> или даже вместо него, так как значок в этом случае у меня также распознавал нажатие.</p>
+
+<p><img src="Android%20%20ActionBar_files/actionbar6.png" alt="Up"></p>
+
+<p>Стоит также отметить, что вместо значка можно использовать логотип. По умолчанию система использует атрибут <b>android:icon</b> в элементах &lt;application&gt; или &lt;activity&gt; файла-манифеста. Вы можете использовать атрибут <b>android:logo</b>
+ в тех случаях, когда квадратный значок не очень подходит дизайну вашего
+ приложения. Логотип будет вести себя также, как и значок и реагировать 
+на нажатие.</p>
+
+<p>Начиная с Android 4.1, можно не писать код для возврата на главную активность. Достаточно установить атрибут <b>parentActivityName</b> в манифесте у второй активности. Тогда нажатие на значок будет распознаваться автоматически.</p>
+
+<pre><code class="java">
+&lt;activity
+  android:name=".SecondActivity"
+  android:label="@string/app_name" 
+  android:parentActivityName="MainActivity"&gt;
+&lt;/activity&gt; 
+</code></pre>
+
+<h2 class="text-warning" id="search">Добавляем поле для поиска</h2>
+
+<p>Когда мы добавляли на панель действий значки с текстом, то они 
+представляли работали как кнопки - нажатие вызывало действие, 
+прописанное в коде. На панель действий можно добавить и другие элементы,
+ в частности текстовое поле для поискового запроса. Вернёмся к файлу 
+action_items.xml и добавим ещё один элемент:</p>
+
+<pre><code class="xml">
+&lt;item
+    android:id="@+id/menu_search"
+    android:actionViewClass="android.widget.SearchView"
+    android:icon="@android:drawable/ic_search_category_default"
+    android:showAsAction="ifRoom|collapseActionView"
+    android:title="@string/menu_search"/&gt;
+</code></pre>
+
+<p>Здесь нужно обратить внимание на атрибут <b>android:actionViewClass</b>, в котором задаётся элемент Поисковая строка, а также параметр <b>collapseActionView</b>, который выводит строку в свёрнутом виде как кнопку. При нажатии кнопка разворачивается в поисковую строку.</p>
+
+<p><img src="Android%20%20ActionBar_files/actionbar7.png" alt="SearchView"></p>
+
+<p>Чтобы обработать введённый текст используем простейший код (остальное ищите в документации):</p>
+
+<pre><code class="java">
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+	super.onCreateOptionsMenu(menu);
+	MenuInflater inflater = getMenuInflater();
+	inflater.inflate(R.menu.action_items, menu);
+
+	final SearchView searchView = (SearchView) menu.findItem(
+			R.id.menu_search).getActionView();
+
+	searchView.setOnQueryTextListener(new OnQueryTextListener() {
+
+		@Override
+		public boolean onQueryTextSubmit(String query) {
+			// TODO Auto-generated method stub
+			toast = Toast.makeText(getApplicationContext(), "Вам нужен "
+					+ searchView.getQuery() + "?", Toast.LENGTH_SHORT);
+			toast.show();
+			return true;
+		}
+
+		@Override
+		public boolean onQueryTextChange(String newText) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+	});
+// тут остальной код...
+}
+</code></pre>
+
+<p>Теперь, когда пользователь вводит запрос и нажимает Enter, то мы обрабатываем событие в методе <b>onQueryTextSubmit()</b> и выводим сообщение. Конечно, в серьёзном приложении требуются более осмысленные действия, чем в этом примере. В статье <a href="http://developer.alexanderklimov.ru/android/actionbarsearchview.php">Поиск в ActionBar</a> показан один из таких примеров.</p>
+
+<h2 class="text-warning" id="tab">Добавляем вкладки</h2>
+
+<p>Ещё одна интересная особенность у ActionBar - возможность 
+использовать вкладки. Рассмотрим пример. Создадим три фрагмента, которые
+ будут отвечать за вкладку. Сначала создадим три файла разметки для 
+фрагментов fragment_a.xml, fragment_b.xml, fragment_c.xml. Содержание 
+файлов будет одинаковым, только поменяем текст в TextView, чтобы их 
+различать на экране.</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Это первый фрагмент" /&gt;
+
+    &lt;ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_launcher" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Теперь создадим три класса FragmentA.java, FragmentB, FragmentC.java тоже с одинаковым содержанием, только в методе <b>setContentView</b> используйте соответствующую разметку.</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.actionbar;
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class FragmentA extends Fragment {
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View myFragmentView = inflater.inflate(R.layout.fragment_a, container,
+				false);
+		return myFragmentView;
+	}
+}
+</code></pre>
+
+<p>Теперь переходим к основному классу и пишем код:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.actionbar;
+
+import ...
+
+public class ActionBarActivity extends Activity implements
+		OnCheckedChangeListener {
+
+	ActionBar actionBar;
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		actionBar = getActionBar();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+		Tab tabA = actionBar.newTab();
+		tabA.setText("Вкладка A");
+		tabA.setTabListener(new TabListener&lt;FragmentA&gt;(this, "Tag A",
+				FragmentA.class));
+		actionBar.addTab(tabA);
+
+		Tab tabB = actionBar.newTab();
+		tabB.setText("Вкладка B");
+		tabB.setTabListener(new TabListener&lt;FragmentB&gt;(this, "Tag B",
+				FragmentB.class));
+		actionBar.addTab(tabB);
+
+		Tab tabC = actionBar.newTab();
+		tabC.setText("Вкладка C");
+		tabC.setTabListener(new TabListener&lt;FragmentC&gt;(this, "Tag C",
+				FragmentC.class));
+		actionBar.addTab(tabC);
+
+		if (savedInstanceState != null) {
+			int savedIndex = savedInstanceState.getInt("SAVED_INDEX");
+			getActionBar().setSelectedNavigationItem(savedIndex);
+		}
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		// TODO Auto-generated method stub
+		super.onSaveInstanceState(outState);
+		outState.putInt("SAVED_INDEX", getActionBar()
+				.getSelectedNavigationIndex());
+	}
+
+	public static class TabListener&lt;T extends Fragment&gt; implements
+			ActionBar.TabListener {
+
+		private final Activity myActivity;
+		private final String myTag;
+		private final Class&lt;T&gt; myClass;
+
+		public TabListener(Activity activity, String tag, Class<t> cls) {
+			myActivity = activity;
+			myTag = tag;
+			myClass = cls;
+		}
+
+		@Override
+		public void onTabSelected(Tab tab, FragmentTransaction ft) {
+
+			Fragment myFragment = myActivity.getFragmentManager()
+					.findFragmentByTag(myTag);
+
+			// Check if the fragment is already initialized
+			if (myFragment == null) {
+				// If not, instantiate and add it to the activity
+				myFragment = Fragment
+						.instantiate(myActivity, myClass.getName());
+				ft.add(android.R.id.content, myFragment, myTag);
+			} else {
+				// If it exists, simply attach it in order to show it
+				ft.attach(myFragment);
+			}
+
+		}
+
+		@Override
+		public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+
+			Fragment myFragment = myActivity.getFragmentManager()
+					.findFragmentByTag(myTag);
+
+			if (myFragment != null) {
+				// Detach the fragment, because another one is being attached
+				ft.detach(myFragment);
+			}
+		}
+
+		@Override
+		public void onTabReselected(Tab tab, FragmentTransaction ft) {
+			// TODO Auto-generated method stub
+		}
+	}
+}
+</t></code></pre>
+
+<p><img src="Android%20%20ActionBar_files/actionbar9.png" alt="Tab in ActionBar"></p>
+
+<h2 class="text-warning" id="spinner">Выпадающий список</h2>
+
+<p>Когда у вас две-три вкладки, то работать вполне комфортно. Но если 
+вам нужно больше экранов, то навигация между ними становится 
+утомительной. В таких случаях подойдёт выпадающий список на основе 
+компонента <b>Spinner</b>. Если вы посмотрите на приложение Google Карты, то там как раз реализовано данное решение.</p>
+
+<p>Для начала следует установить нужный режим, а также убрать заголовок, чтобы освободить место:</p>
+
+<pre><code class="java">
+actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+actionBar.setTitle( "" );
+</code></pre>
+
+<p>Далее осталось создать адаптер, заполнить его данными и вывести на экран. Нам необходим список объектов <b>Map</b>,
+ где каждая карта содержит две записи: "title" (заголовок), который 
+выводится в самом Spinner и "fragment" (фрагмент), который содержит 
+Fragment, выводимый при выборе элемента из выпадающего списка. Для 
+адаптера используется <b>SimpleAdapter</b>, который использует стандартную системную разметку для списка Spinner, карту с записями <b>title</b> и элемент TextView для отдельного элемента списка.</p>
+
+<p>SimpleAdapter является подклассом SpinnerAdapter и удобен для 
+связывания статических данных. В более сложных приложениях может 
+понадобиться другие адаптере.</p>
+
+<p>Когда адаптер будет готов, следует реализовать обработчик <b>OnNavigationListener</b>
+ для навигации. Получится следующий код для навигации по ранее созданным
+ фрагментам (поменялся код только в onCreate(), лишнее закомментировал):</p>
+
+<pre><code class="java">
+/** Called when the activity is first created. */
+@Override
+public void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.main);
+
+	// toggleButton = (ToggleButton) findViewById(R.id.toggleButton1);
+
+	// toggleButton.setOnCheckedChangeListener(this);
+
+	if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.HONEYCOMB) {
+		// For the main activity, make sure the app icon in the action bar
+		// does not behave as a button
+		actionBar = getActionBar();
+
+	}
+
+	// actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+	//
+	// Tab tabA = actionBar.newTab();
+	// tabA.setText("Вкладка A");
+	// tabA.setTabListener(new TabListener<fragmenta>(this, "Tag A",
+	// FragmentA.class));
+	// actionBar.addTab(tabA);
+	//
+	// Tab tabB = actionBar.newTab();
+	// tabB.setText("Вкладка B");
+	// tabB.setTabListener(new TabListener<fragmentb>(this, "Tag B",
+	// FragmentB.class));
+	// actionBar.addTab(tabB);
+	//
+	// Tab tabC = actionBar.newTab();
+	// tabC.setText("Вкладка C");
+	// tabC.setTabListener(new TabListener<fragmentc>(this, "Tag C",
+	// FragmentC.class));
+	// actionBar.addTab(tabC);
+	//
+	// if (savedInstanceState != null) {
+	// int savedIndex = savedInstanceState.getInt("SAVED_INDEX");
+	// getActionBar().setSelectedNavigationItem(savedIndex);
+	// }
+
+	actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+	actionBar.setTitle("");
+
+	final List&lt;Map&lt;String, Object&gt;&gt; data = new ArrayList&lt;Map&lt;String, Object&gt;&gt;();
+	Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();
+	
+	map.put("title", "Фрагмент 1");
+	map.put("fragment",
+			Fragment.instantiate(this, FragmentA.class.getName()));
+	data.add(map);
+	
+	map = new HashMap&lt;String, Object&gt;();
+	map.put("title", "Фрагмент 2");
+	map.put("fragment",
+			Fragment.instantiate(this, FragmentB.class.getName()));
+	data.add(map);
+	
+	map = new HashMap&lt;String, Object&gt;();
+	map.put("title", "Фрагмент 3");
+	map.put("fragment",
+			Fragment.instantiate(this, FragmentC.class.getName()));
+	data.add(map);
+	
+	SimpleAdapter adapter = new SimpleAdapter(this, data,
+			android.R.layout.simple_spinner_dropdown_item,
+			new String[] { "title" }, new int[] { android.R.id.text1 });
+
+	actionBar.setListNavigationCallbacks(adapter,
+			new OnNavigationListener() {
+				@Override
+				public boolean onNavigationItemSelected(int itemPosition,
+						long itemId) {
+					Map<string, object=""> map = data.get(itemPosition);
+					Object o = map.get("fragment");
+					if (o instanceof Fragment) {
+						FragmentTransaction tx = getFragmentManager()
+								.beginTransaction();
+						tx.replace(android.R.id.content, (Fragment) o);
+						tx.commit();
+					}
+					return true;
+				}
+			});
+}
+</string,></fragmentc></fragmentb></fragmenta></code></pre>
+
+<p>Метод <b>onNavigationItemSelected()</b> вызывается, когда пользователь выбирает пункт из выпадающего списка. При этом мы получаем экземпляр Fragment, добавленный в <b>data</b> и заменяем им текущий контент экрана.</p>
+
+<p><img src="Android%20%20ActionBar_files/actionbar11.png" alt="ActionBar Spinner" height="400" width="240"></p>
+
+<h2 class="text-warning" id="spinner2">Обычный Spinner</h2>
+
+<p>В предыдущем примере мы использовали встроенный Spinner для 
+ActionBar. Он располагается в левой части панели у значка (или 
+логотипа). Также можно добавить на ActionBar обычный свой Spinner, 
+который будет находиться в правой части.</p>
+
+<p>Добавим в меню (res/menu/action_items.xml) новый элемент:</p>
+
+<pre><code class="xml">
+&lt;item
+    android:id="@+id/menu_spinner"
+    android:actionViewClass="android.widget.Spinner"
+    android:showAsAction="always"
+    android:title="Месяцы"/&gt;
+</code></pre>
+
+<p>Параметр <b>always</b> заставит выводит выпадающий список всегда на панели действий. Заполним список массивом строк в файле <b>res/values/strings.xml</b>:</p>
+
+<pre><code class="xml">
+&lt;string-array name="spinner_data"&gt;
+    &lt;item&gt;Январь&lt;/item&gt;
+    &lt;item&gt;Февраль&lt;/item&gt;
+    &lt;item&gt;Март&lt;/item&gt;
+    &lt;item&gt;Апрель&lt;/item&gt;
+&lt;/string-array&gt;
+</code></pre>
+
+<p>Осталось связать данные с компонентом Spinner. В коде главной активности пишем код:</p>
+
+<pre><code class="java">
+// объявим переменную в классе
+private MenuItem mSpinnerItem;
+
+@Override
+public boolean onCreateOptionsMenu( Menu menu )
+{
+    getMenuInflater().inflate( R.menu.main, menu );
+    mSpinnerItem = menu.findItem( R.id.menu_spinner );
+	setupSpinner(mSpinnerItem);
+    return true;
+}
+
+// вспомогательный метод
+private void setupSpinner( MenuItem item )
+{
+	item.setVisible( getActionBar().getNavigationMode() == ActionBar.NAVIGATION_MODE_LIST );
+	View view = item.getActionView();
+	if (view instanceof Spinner)
+	{
+		Spinner spinner = (Spinner) view;
+		spinner.setAdapter( ArrayAdapter.createFromResource( this,
+				R.array.spinner_data,
+				android.R.layout.simple_spinner_dropdown_item ) );
+	}
+}
+</code></pre>
+
+<p>Опустим реализацию <b>OnItemSelectedListener</b> для обработки выбора элементов. Запустим код и увидим Spinner с месяцами года.</p>
+
+<p><img src="Android%20%20ActionBar_files/actionbar12.png" alt="Spinner ActionBar" height="240" width="400"></p>
+
+<h2 class="text-warning" id="themecontext">Используем правильный Context для ActionBar</h2>
+
+<p>В примерах, когда требовалось указать контекст, мы использовали <b>this</b>. Но более грамотным решением будет использование конструкции <b>getActionBar().getThemedContext()</b>,
+ так как панель действий может иметь свою тему, и тогда список будет 
+соответствовать теме ActionBar. В этом случае текст на выпадающем списке
+ будет всегда хорошо виден. Для сравнения посмотрите на выпадающий 
+список названий месяцев. В первом случае использовалось ключевое слово <b>this</b> и текст едва различим, во втором использовался код <b>getActionBar().getThemedContext()</b> и текст стал отлично виден.</p>
+
+<p><img src="Android%20%20ActionBar_files/actionbar13.png" alt="ActionBar" height="400" width="240"> <img src="Android%20%20ActionBar_files/actionbar14.png" alt="ActionBar" height="400" width="240"></p>
+
+<h2 class="text-warning" id="customview">CustomView</h2>
+
+<p>На панель действий также можно добавлять элементы View. Выше мы 
+видели пример, когда SearchView добавлялся как элемент меню. Сейчас мы 
+добавим элемент EditText как самостоятельный элемент. Для этого нужно 
+создать разметку, затем вызвать метод <b>setCustomView()</b> для класса ActionView, а также установить флаг <b>ActionBar.DISPLAY_SHOW_CUSTOM</b> для метода <b>setDisplayOptions()</b>.</p>
+
+<p>Подготовим разметку в файле <b>editlayout.xml</b></p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;EditText xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textfield"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:inputType="textFilter" &gt;
+
+&lt;/EditText&gt; 
+</code></pre>
+
+<p>И напишем код:</p>
+
+<pre><code class="java">
+actionBar = getActionBar();
+
+actionBar.setCustomView(R.layout.editlayout);
+EditText edit = (EditText) actionBar.getCustomView().findViewById(R.id.textfield);
+
+edit.setOnEditorActionListener(new OnEditorActionListener() {
+
+    @Override
+    public boolean onEditorAction(TextView v, int actionId,
+        KeyEvent event) {
+      Toast.makeText(ActionBarActivity.this, "Вы напечатали: " + v.getText(),
+          Toast.LENGTH_LONG).show();
+      return false;
+    }
+  });
+
+actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM
+        | ActionBar.DISPLAY_SHOW_HOME);
+</code></pre>
+
+
+<h2 class="text-warning" id="shareactionprovider">ShareActionProvider</h2>
+
+<p>В Android 4.0 (API 14) появился новый класс <b>android.widget.ShareActionProvider</b>,
+ позволяющий реализовать интерфейс передачи данных другим приложениям. 
+Выглядит это как элементы меню с подходящими приложениями для обработки 
+данных. Если пользователь выберет какое-либо подходящее приложение, то 
+его значок можно сохранить для истории, чтобы в следующий раз можно было
+ обойтись без вызова подменю.</p>
+
+<p>Реализуется данная функциональность очень просто. Создадим новый проект с минимальной версией API 14. Модифицируем файл <b>activity_main.xml</b> в папке <b>res/menu</b> (не путайте с res/layout):</p>
+
+<pre><code class="xml">
+&lt;menu xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+
+    &lt;item
+        android:id="@+id/menu_settings"
+        android:actionProviderClass="android.widget.ShareActionProvider"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="@string/menu_settings"/&gt;
+
+&lt;/menu&gt;
+</code></pre>
+
+<p>Достаточно добавить атрибут <b>android:actionProviderClass</b> для соответствующего элемента <b><item></item></b>
+ в файле ресурса меню, чтобы стандартный значок передачи данных появился
+ на экране. Далее осталось сообщить провайдеру, какой тип данных вы 
+хотете передать.</p>
+
+<p>В классе активности нужно немного изменить код для метода <b>onCreateOptionsMenu()</b> и написать новый метод <b>createShareIntent()</b>, который будет отвечать за тип намерения:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.shareactionprovider;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ShareActionProvider;
+
+public class MainActivity extends Activity {
+
+    private ShareActionProvider myShareActionProvider;
+    
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+    	super.onCreate(savedInstanceState);
+    	setContentView(R.layout.activity_main);
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	// Inflate the menu; this adds items to the action bar if it is present.
+    	getMenuInflater().inflate(R.menu.activity_main, menu);
+    	//
+    	MenuItem item = menu.findItem(R.id.menu_settings);
+    	myShareActionProvider = (ShareActionProvider) item.getActionProvider();
+    	myShareActionProvider
+    			.setShareHistoryFileName(ShareActionProvider.DEFAULT_SHARE_HISTORY_FILE_NAME);
+    	myShareActionProvider.setShareIntent(createShareIntent());
+    	//
+    	return true;
+    }
+    
+    private Intent createShareIntent() {
+    	Intent shareIntent = new Intent(Intent.ACTION_SEND);
+    	shareIntent.setType("text/plain");
+    	shareIntent.putExtra(Intent.EXTRA_TEXT,
+    			"http://developer.alexanderklimov.ru/android");
+    	return shareIntent;
+    }
+}
+</code></pre>
+
+<p>Так как мы установили обычный текст, то в списке меню появятся три 
+приложения, способных обрабатывать данные подобного типа (у вас может 
+быть другой набор приложений):</p>
+
+<p><img src="Android%20%20ActionBar_files/shareactionprovider1.png" alt="ShareActionProvider" height="300" width="180"> <img src="Android%20%20ActionBar_files/shareactionprovider2.png" alt="ShareActionProvider History" height="300" width="180"></p>
+
+<p>Для работы с изображениями можно применить следующий метод:</p>
+
+<pre><code class="java">
+private Intent createShareIntent() {
+    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+    shareIntent.setType("image/*");
+    
+    File catfile = new File(
+            Environment
+                    .getExternalStorageDirectory(),
+            "cutecat.png");
+    
+    shareIntent.putExtra(Intent.EXTRA_STREAM,
+    		Uri.fromFile(catfile));
+
+    return shareIntent;
+}
+</code></pre>
+
+<p>Для работы с классом <b>ShareActionProvider</b> необходимо предоставить ему намерение передачи контента. Этот Intent должен быть с действием <b>ACTION_SEND</b> и дополнительным набором данных типа <b>EXTRA_TEXT</b> и <b>EXTRA_STREAM</b>. Сначала нужно выбрать соответствующий MenuItem, затем вызвать <b>MenuItem.getActionProvider()</b>, чтобы получить экземпляр <b>ShareActionProvider</b>. Используйте метод <b>setShareIntent()</b> для обновления Intent, связанного с действием этого пункта меню.</p>
+
+<p>Вы можете установить Intent передачи контента один раз во время 
+создания вашего меню, или вы можете установить его, а затем обновить во 
+время изменения пользовательского интерфейса динамически.</p>
+
+<h2 class="text-warning">Дополнительное чтение</h2>
+
+<p>Цикл статей <a href="http://blog.stylingandroid.com/archives/1184">Styling Android » Blog Archive » Basic ActionBar – Part 4</a> и <a href="https://github.com/StylingAndroid/StylingActionBar">исходники</a></p>
+<p><a href="http://developer.alexanderklimov.ru/android/design/actionbar_custom.php">Кастомизация ActionBar</a></p>
+
+
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20ActionBar_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20ActionBar_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20ActionBar_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20ActionBar_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20ActionBar_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20ActionBar_files/fastbutton.htm" name="I0_1378295419801" id="I0_1378295419801" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20ActionBar_files/jquery.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20ActionBar_files/postmessageRelay.htm" id="oauth2relay771178510" name="oauth2relay771178510"></iframe>
+    <script src="Android%20%20ActionBar_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20ActionBar_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20ActionBar_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20ActionBar_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20ActionBar_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20ActionBar_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20ActionBar_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20ActionBar_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20ActionBar_files/bootstrap-button.js"></script>
+    <script src="Android%20%20ActionBar_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20ActionBar_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20ActionBar_files/bootstrap-typeahead.js"></script>
+
+</body></html>

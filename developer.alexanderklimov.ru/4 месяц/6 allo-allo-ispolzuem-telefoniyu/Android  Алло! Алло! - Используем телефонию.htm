@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Алло! Алло! - Используем телефонию</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory/">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Алло! Алло! - Используем телефонию</h1>
+<p>Четвёртый месяц обучения (закрытая зона)</p>
+
+
+<p>
+<a href="#action_dial">Телефонные звонки</a><br>
+<a href="#telephonymanager">TelephonyManager - доступ к свойствам телефона и сети</a><br>
+</p>
+
+<p>Многие программисты даже стали забывать, что сотовый телефон 
+изначально предназначен для телефонных звонков. Android имеет API для 
+поддержки телефонии, что позволяет получить доступ к низкоуровневому 
+аппаратному стеку телефона. Вы можете в своей программе инициировать 
+набор номера или интегрировать обработку звонков и отслеживание 
+состояния телефона в свои проекты.</p>
+
+<div class="alert">
+Из соображений безопасности Android не позволяет создавать собственные 
+активности, которые отображаются при входящих или исходящих звонках.
+</div>
+
+<p>Требование к устройству</p>
+
+<pre><code class="java">
+&lt;!--  общая телефония --&gt;
+&lt;uses-feature android:name="android.hardware.telephony"/&gt;
+
+&lt;!--  CDMA-телефония --&gt;
+&lt;uses-feature android:name="android.hardware.telephony.cdma"/&gt;
+
+&lt;!--  GSM-телефония --&gt;
+&lt;uses-feature android:name="android.hardware.telephony.gsm"/&gt;
+</code></pre>
+
+<h2 class="text-warning" id="action_dial">Телефонные звонки</h2>
+
+<p>Чтобы просто вызвать стандартную звонилку, нужно вызвать намерение с параметром <b>ACTION_DIAL</b></p>
+
+<pre><code class="java">
+Intent intent = new Intent(Intent.ACTION_DIAL);
+activity.startActivity(intent);
+</code></pre>
+
+<p>Также можно отобразить экран для набора номера и сразу передать ему 
+конкретный номер, позволяя стандартному приложению самому управлять 
+инициализацией вызова (системное телефонное приложение предлагает решать
+ пользователю, делать вызов или нет). Этот подход не требует никаких 
+полномочий и считается стандартным путем осуществления звонков из 
+сторонних приложений:</p>
+
+<pre><code class="java">
+Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:1234567"));
+startActivity(intent);
+</code></pre>
+
+<p>Используя намерение для того, чтобы объявить необходимость набрать 
+номер, ваше приложение может оставаться независимым от реализации 
+программы, которая занимается непосредственно дозвоном. Например, если 
+вы на своем устройстве заменили стандартное приложение на гибридное, 
+совместимое с IP-телефонией, вышеописанный подход позволит другим 
+приложениям получить доступ к новым возможностям.</p>
+
+
+<h2 class="text-warning" id="telephonymanager">TelephonyManager - доступ к свойствам телефона и сети</h2>
+
+<p>Для получения разнообразной информации об устройстве необходимо использовать класс <a href="http://developer.android.com/reference/android/telephony/TelephonyManager.html">android.telephony.TelephonyManager</a>. С помощью данного класса можно определить имя оператора, тип устройства, номер сим-карты и многое другое.</p>
+
+<p>Так как класс очень обширный, мы рассмотрим только часть различных 
+методов и констант. Сразу нужно отметить, что для большинства методов 
+требуются разрешение <b>READ_PHONE_STATE</b>, которое нужно прописать в манифесте.</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.READ_PHONE_STATE"/&gt;
+</code></pre>
+
+<p>При изменении настроек используется разрешение:</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/&gt;
+</code></pre>
+
+<p>Получить экземпляр класса <b>TelephonyManager</b> можно при помощи метода <b>getSystemService()</b> объекта Context.</p>
+
+<pre><code class="java">
+String srvcName = Context.TELEPHONY_SERVICE;
+TelephonyManager telephonyManager = (TelephonyManager)
+getSystemService(srvcName);
+</code></pre>
+
+<h3 class="text-warning" id="callstate">Получение информации о состоянии звонка</h3>
+
+<p>Для определения состояния звонка сотового телефона используется метод <b>getCallState()</b>.
+ Метод сообщает, находится ли телефон в состоянии готовности, ожидает ли
+ ответа абонента на вызов или принимает входящий звонок.</p>
+
+<h3 class="text-warning" id="networktype">Получение информации о протоколе сети</h3>
+
+<p>При установленном соединении с мобильной связью можно узнать код страны и сети (MCC+MNC), национальный код в формате ISO (метод <b>getNetworkCountryIso()</b>),
+ а также тип данной сети. Информация может оказаться недостоверной, если
+ подключение осуществляется по CDMA. Используйте метод getPhoneType(), 
+чтобы узнать, к сети какого типа 
+вы подключены.</p>
+
+<p>Для запроса информации об используемом протоколе сотовой сети используется метод <b>getNetworkType()</b>, позволяющий определить типы GPRS, EDGE, EDVO.</p>
+
+<p>Вы можете зарегистрировать слушателя для получения событий об изменении используемого протокола при помощи метода <b>listen()</b>.
+ С его помощью можно определить момент переключения на высокоскоростное 
+соединение, чтобы загрузить в фоновом режиме больше информации за один 
+раз.</p>
+
+
+<h3 class="text-warning" id="phonetype">Определение поддерживаемого стандарта: CDMA, GSM</h3>
+
+<p>Метод <b>getPhoneType()</b> позволяет определить поддерживаемый стандарт - CDMA, GSM и др.</p>
+
+<h3 class="text-warning" id="deviceid">Получение уникального идентификатора</h3>
+
+<p>С помощью метода <b>getDeviceId()</b> можно получить уникальный 
+идентификатор телефона. Этот методо возвращает IMEI-идентификатор для 
+GSM-телефонов и MEID-идентификатор для CDMA-телефонов. Вы также можете 
+получить уникальный идентификатор абонента (например, IMSI-идентификатор
+ для абонентов CSM-сетей), используя метод <b>getSubscriberId()</b>.</p>
+
+<h3 class="text-warning" id="sample">Получение информации о SIM-карте</h3>
+
+<p>Если устройство обладает поддержкой GSM, оно должно иметь SIM-карту. 
+Данные, которые вы можете извлечь из нее — код страны в формате ISO, 
+название оператора, коды MCC (мобильный код страны) и MNC (код мобильной
+ сети).</p>
+
+<p>Для получения информации о SIM-карте можно воспользоваться следующими методами:</p>
+
+<ul>
+<li><b>getSimState()</b> - возвращает состояние карты (вставлена, заблокирована, готова к использованию)</li>
+<li><b>getSimSerialNumber()</b> - возвращает уникальный серийный номер SIM-карты</li>
+<li><b>getSimOperatorName()</b> - возвращает имя оператора для данной карты</li>
+<li><b>getSimOperator()</b> - возвращает имя мобильный код страны и код сети для оператора, выпустившего данную SIM-карту</li>
+</ul>
+
+<p>Прежде чем начать работать с данными методами, необходимо убедиться, 
+что SIM-карта в состоянии готовности с помощью метода getSimState():</p>
+
+<pre><code class="java">
+int simState = telephonyManager.getSimState();
+switch (simState) {
+    case (TelephonyManager.SIM_STATE_ABSENT): break;
+    case (TelephonyManager.SIM_STATE_NETWORK_LOCKED): break;
+    case (TelephonyManager.SIM_STATE_PIN_REQUIRED): break;
+    case (TelephonyManager.SIM_STATE_PUK_REQUIRED): break;
+    case (TelephonyManager.SIM_STATE_UNKNOWN): break;
+    case (TelephonyManager.SIM_STATE_READY): {
+        // Извлеките из SIM-карты код страны в формате ISO
+        String simCountry = telephonyManager.getSimCountryIso();
+        // Получите код оператора активной SIM-карты (MCC + MNC)
+        String simOperatorCode = telephonyManager.getSimOperator();
+        // Извлеките из SIM-карты название оператора
+        String simOperatorName = telephonyManager.getSimOperatorName();
+        // -- Требуется наличие полномочия READ_PHONE_STATE --
+        // Получите серийный номер SIM-карты
+        String simSerial = telephonyManager.getSimSerialNumber();
+        break;
+    }
+    default: break;
+}
+</code></pre>
+
+<h3 class="text-warning" id="voicemail">Получение информации о голосовой почте</h3>
+
+<p>Телефонный номер для доступа к голосовой почте используется метод <b>getVoiceMailNumber()</b>.</p> 
+
+<h2 class="text-warning" id="sample">Пример</h2>
+
+<p>Рассмотрим часть описанных методов на примере. Разместим на форме 
+несколько текстовых полей и кнопку. И напишем код для получения нужной 
+информации:</p>
+
+<pre><code class="java">
+public class ViewsDemoActivity extends Activity {
+	
+	TelephonyManager mTelephonyMgr; 
+	
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		Button mButton = (Button) findViewById(R.id.butGetInfo);
+		final EditText txtOperatorName = (EditText) findViewById(R.id.editTextOperatorName);
+		final EditText txtDeviceID = (EditText) findViewById(R.id.editTextDeviceID);
+		final EditText txtPhoneNumber = (EditText) findViewById(R.id.editTextPhoneNumber);
+		final EditText txtSimNumber = (EditText)findViewById(R.id.editTextSimNumber);
+		final EditText txtUserID = (EditText)findViewById(R.id.editTextUserID);
+		final EditText txtPhoneType = (EditText)findViewById(R.id.editTextPhoneType);
+		
+		// Получим экземпляр класса TelephonyManager
+		mTelephonyMgr = 
+			(TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);	
+
+		mButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				txtOperatorName.setText("Оператор: " + getOperatorName());
+				txtDeviceID.setText("Идентификатор: " + getDeviceID());
+				txtDeviceID.setText("Идентификатор: 358130040179420");
+				txtPhoneNumber.setText("Номер телефона: " + getMyPhoneNumber());
+				txtSimNumber.setText("Номер cим-карты: " + getSIMNumber());
+				txtUserID.setText("Код абонента: " + getUserID());
+				txtPhoneType.setText("Тип телефона: " + getPhoneType());
+			}
+		});
+	}
+
+	// Получаем имя оператора
+	private String getOperatorName() {
+		return mTelephonyMgr.getNetworkOperatorName();
+	}
+	
+	// Получаем идентификатор
+	private String getDeviceID() {
+		return mTelephonyMgr.getDeviceId();
+	}
+	
+    // Получаем телефонный номер
+	private String getMyPhoneNumber() {
+		return mTelephonyMgr.getLine1Number();
+	}
+
+	private String getMy10DigitPhoneNumber() {
+		String s = getMyPhoneNumber();
+		return s.substring(2);
+	}
+	
+	// Получаем серийный номер SIM-карты
+	private String getSIMNumber(){
+		return mTelephonyMgr.getSimSerialNumber();
+	}
+	
+	// Получаем код абонента
+	private String getUserID(){
+		return mTelephonyMgr.getSubscriberId();
+	}
+	
+	// Получаем тип телефона
+	private String getPhoneType(){
+		
+		int phoneType = mTelephonyMgr.getPhoneType(); // тип устройства
+		String strPhoneType = "NA";
+
+		switch (phoneType) {
+
+		case TelephonyManager.PHONE_TYPE_GSM: 
+			strPhoneType = "GSM"; 
+			break;
+		case TelephonyManager.PHONE_TYPE_NONE: 
+			strPhoneType = "NONE"; 
+			break;
+		}
+		
+		return strPhoneType;
+	}
+	
+	// Проверяем наличие сим-карты
+	private boolean isExistSIM() {
+		if (mTelephonyMgr.getSimState() != TelephonyManager.SIM_STATE_ABSENT) {
+			return true;
+		} else {
+			// No SIM card on the phone
+			return false;
+		}
+	}
+}
+</code></pre>
+
+<p>Запустим приложение, нажимаем на кнопку и получаем результат:</p>
+
+<p><img src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/deviceinfo-phone.png" alt="Информация об телефоне"></p>
+
+<p>Особо стоит сказать о методе <b>getLine1Number</b>, который должен 
+получать номер телефона. На эмуляторе он возвращает какой-то номер, на 
+моем телефоне он не работает. На форумах большинство пользователей тоже 
+говорят, что у них не работает. Поэтому в реальных проектах на него 
+расчитывать не стоит.</p>
+
+<p>Впрочем, необходимо проверять и другие методы на достоверность. Будьте бдительны.</p>
+
+<h3 class="text-warning">Состояние соединения и статус процесса передачи данных</h3>
+
+<p>С помощью методов <b>getDataState()</b> и <b>getDataActivity()</b> 
+можно узнать текущее состояние соединения с сетью и информацию о 
+передаче данных. Также можно отслеживать изменения этих параметров.</p>
+
+<pre><code class="java">
+int dataActivity = telephonyManager.getDataActivity();
+int dataState = telephonyManager.getDataState();
+switch (dataActivity) {
+  case TelephonyManager.DATA_ACTIVITY_IN : break;
+  case TelephonyManager.DATA_ACTIVITY_OUT : break;
+  case TelephonyManager.DATA_ACTIVITY_INOUT : break;
+  case TelephonyManager.DATA_ACTIVITY_NONE : break;
+}
+switch (dataState) {
+  case TelephonyManager.DATA_CONNECTED : break;
+  case TelephonyManager.DATA_CONNECTING : break;
+  case TelephonyManager.DATA_DISCONNECTED : break;
+  case TelephonyManager.DATA_SUSPENDED : break;
+}
+</code></pre>
+
+<h3 class="text-warning">Отслеживание изменений в состоянии подключения к сети, статусе телефона и телефонной активности</h3>
+
+<p>Android позволяет отслеживать состояние телефона, получать телефонные
+ номера, из которых идут входящие звонки, наблюдать за изменениями 
+уровня сигнала, статуса сетевого соединения и передачей данных.</p>
+
+<p>Путем наследования класса <b>PhoneStateListener</b> вы можете 
+отслеживать изменения состояния телефона (и реагировать на них), включая
+ такие показатели, как статус вызова («звонок», «трубка снята» и т. д.),
+ местоположение относительно базовых станций, статус голосовой почты и 
+переадресации вызовов, телефонные услуги и уровень сотового сигнала. Вам
+ нужно переопределить обработчики тех событий, которые вас интересуют. 
+Каждый обработчик принимает параметры, описывающие новое состояние 
+телефона (например, местоположение относительно базовых станций, 
+состояние со-
+тового соединения или уровень сигнала).</p>
+
+<p>В следующем листинге показан каркас реализации класса 
+PhoneStateListener, в котором перечислены доступные обработчики для 
+отслеживания изменений состояния телефона.</p>
+
+<pre><code class="java">
+PhoneStateListener phoneStateListener = new PhoneStateListener() {
+    public void onCallForwardingIndicatorChanged(boolean cfi) {}
+    public void onCallStateChanged(int state, String incomingNumber) {}
+    public void onCellLocationChanged(CellLocation location) {}
+    public void onDataActivity(int direction) {}
+    public void onDataConnectionStateChanged(int state) {}
+    public void onMessageWaitingIndicatorChanged(boolean mwi) {}
+    public void onServiceStateChanged(ServiceState serviceState) {}
+    public void onSignalStrengthChanged(int asu) {}
+};
+</code></pre>
+
+<p>Создав собственный объект класса PhoneStateListener, зарегистрируйте 
+его с помощью TelephonyManager, используя битовую маску для определения 
+событий, которые вы хотите отслеживать, как показано в листинге:</p>
+
+<pre><code class="java">
+telephonyManager.listen(phoneStateListener,
+        PhoneStateListener.LISTEN_CALL_FORWARDING_INDICATOR |
+        PhoneStateListener.LISTEN_CALL_STATE |
+        PhoneStateListener.LISTEN_CELL_LOCATION |
+        PhoneStateListener.LISTEN_DATA_ACTIVITY |
+        PhoneStateListener.LISTEN_DATA_CONNECTION_STATE |
+        PhoneStateListener.LISTEN_MESSAGE_WAITING_INDICATOR |
+        PhoneStateListener.LISTEN_SERVICE_STATE |
+        PhoneStateListener.LISTEN_SIGNAL_STRENGTH);
+</code></pre>
+
+<p>Чтобы отменить регистрацию, вызовите метод <b>listen()</b>, передав ему битовое поле <b>PhoneStateListener.LISTEN_NONE</b> в качестве параметра:</p>
+
+<pre><code class="java">
+telephonyManager.listen(phoneStateListener,
+        PhoneStateListener.LISTEN_NONE);
+</code></pre>
+
+<h3 class="text-warning">Отслеживание входящих телефонных звонков</h3>
+
+<p>Одна из частых причин отслеживания состояния телефона — необходимость
+ обнаружения входящих телефонных звонков и реакции на них. Для этого 
+следует переопределить метод <b>onCallStateChanged()</b> из реализации 
+класса PhoneStateListener и зарегистрировать соответствующее событие. 
+После этого вы будете получать уведомления, если состояние вызова 
+изменится.</p>
+
+<pre><code class="java">
+PhoneStateListener callStateListener = new PhoneStateListener() {
+    public void onCallStateChanged(int state, String incomingNumber) {
+        // TODO реакция на входящий звонок.
+    }
+};
+
+telephonyManager.listen(callStateListener,
+        PhoneStateListener.LISTEN_CALL_STATE);
+</code></pre>
+
+<p>Обработчик onCallStateChanged() принимает телефонный номер входящего 
+звонка, а также параметр, описывающий текущее состояние звонка. Он может
+ иметь одно из трёх значений:</p>
+
+<ul>
+<li><b>TelephonyManager.CALL_STATE_IDLE</b> — когда телефон не находится в состояниях дозвона или разговора;</li>
+<li><b>TelephonyManager.CALL_STATE_RINGING</b> — когда телефон дозванивается;</li>
+<li><b>TelephonyManager.CALL_STATE_OFFHOOK</b> — когда телефон находится в состоянии разговора.</li>
+</ul>
+
+<h3 class="text-warning">Отслеживание изменений местоположения устройства относительно базовых станций</h3>
+
+<p>Вы можете получать уведомления каждый раз, когда изменяется текущее 
+местоположение устройства относительно базовых станций. Для этого 
+необходимо переопределить метод <b>onCellLocationChanged()</b> из 
+реализации класса PhoneStateListener. Прежде чем зарегистрировать данную
+ функцию, добавьте в манифест своего приложения полномочие <b>ACCESS_COARSE_LOCATION</b>.</p>
+
+<p>Обработчик onCellLocationChanged() принимает в качестве параметра 
+объект CellLocation, содержащий методы, с помощью которых можно извлечь 
+Cell ID (getCid) и код текущей локальной зоны LAC (getLac).</p>
+
+<p>В листинге показано, как с помощью объекта PhoneStateListener 
+отслеживать изменения местоположения устройства относительно базовых 
+станций, отображая уведомление типа Toast, содержащее новый 
+идентификатор Cell ID.</p>
+
+<pre><code class="java">
+PhoneStateListener cellLocationListener = new PhoneStateListener() {
+    public void onCellLocationChanged(CellLocation location) {
+        GsmCellLocation gsmLocation = (GsmCellLocation)location;
+        Toast.makeText(getApplicationContext(),
+                String.valueOf(gsmLocation.getCid()),
+                Toast.LENGTH_LONG).show();
+    }
+};
+
+telephonyManager.listen(cellLocationListener,
+        PhoneStateListener.LISTEN_CELL_LOCATION);
+</code></pre>
+
+<h3 class="text-warning">Отслеживание состояния услуг телефонии</h3>
+
+<p>Обработчик <b>onServiceStateChanged()</b> следит за информацией о телефонных услугах. Используйте параметр <b>ServiceState</b>, чтобы узнать текущее 
+состояние услуги.</p>
+
+<p>Метод <b>getState()</b> из объекта ServiceState возвращает текущее состояние услуги в виде одной из констант:</p>
+
+<ul>
+<li><b>STATE_IN_SERVICE</b> — телефонные услуги доступны в обычном режиме;</li>
+<li><b>STATE_EMERGENCY_ONLY</b> — телефонные услуги доступны, но только для вызова служб экстренной помощи;</li>
+<li><b>STATE_OUT_OF_SERVICE</b> — в настоящее время телефонная сеть недоступна;</li>
+<li><b>STATE_POWER_OFF</b> — телефонный модуль выключен (обычно, когда активизирован «режим полета»).</li>
+</ul>
+
+<p>С помощью методов вида getOperator* вы можете получать информацию об 
+операторе, предоставляющем услуги телефонии. Используя метод <b>getRoaming()</b>, можно узнать, находится ли устройство в режиме роуминга.</p>
+
+<p>В листинге показано, как зарегистрировать обработчик, чтобы 
+отслеживать изменения состояния телефонных услуг и отображать 
+уведомление типа Toast, содержащее название оператора, который их 
+предоставляет.</p>
+
+<pre><code class="java">
+PhoneStateListener serviceStateListener = new PhoneStateListener() {
+    public void onServiceStateChanged(ServiceState serviceState) {
+        if (serviceState.getState() == ServiceState.STATE_IN_SERVICE) {
+            String toastText = serviceState.getOperatorAlphaLong();
+            Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT);
+        }
+    }
+};
+
+telephonyManager.listen(serviceStateListener,
+        PhoneStateListener.LISTEN_SERVICE_STATE);
+</code></pre>
+
+<h3 class="text-warning">Отслеживание подключения к сети для передачи данных</h3>
+
+<p>Как и в случае с информацией о звонках и телефонных услугах, с 
+помощью объекта PhoneStateListener вы можете следить за изменениями в 
+состоянии 
+подключения к сети для передачи данных (и за самой передачей).</p>
+
+<p>Для этих целей PhoneStateListener содержит два обработчика событий. Переопределите метод <b>onDataActivity()</b>, чтобы следить за передачей данных, 
+и <b>onDataConnectionStateChanged()</b>, чтобы узнавать об изменениях в состоянии подключения к сети, по которой эти данные передаются.</p>
+
+<p>В листинге переопределяются оба эти обработчика. С помощью оператора 
+switch демонстрируются все возможные значения для параметров state и 
+direction, которые передаются при каждом из этих событий.</p>
+
+<pre><code class="java">
+PhoneStateListener dataStateListener = new PhoneStateListener() {
+    public void onDataActivity(int direction) {
+        switch (direction) {
+            case TelephonyManager.DATA_ACTIVITY_IN : break;
+            case TelephonyManager.DATA_ACTIVITY_OUT : break;
+            case TelephonyManager.DATA_ACTIVITY_INOUT : break;
+            case TelephonyManager.DATA_ACTIVITY_NONE : break;
+        }
+    }
+    
+	public void onDataConnectionStateChanged(int state) {
+        switch (state) {
+            case TelephonyManager.DATA_CONNECTED : break;
+            case TelephonyManager.DATA_CONNECTING : break;
+            case TelephonyManager.DATA_DISCONNECTED : break;
+            case TelephonyManager.DATA_SUSPENDED : break;
+        }
+    }
+};
+
+telephonyManager.listen(dataStateListener,
+        PhoneStateListener.LISTEN_DATA_ACTIVITY |
+        PhoneStateListener.LISTEN_DATA_CONNECTION_STATE);
+</code></pre>
+
+
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/fastbutton.htm" name="I0_1379249066729" id="I0_1379249066729" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/postmessageRelay.htm" id="oauth2relay1829364930" name="oauth2relay1829364930"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/jquery.js"></script>
+    <script src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%90%D0%BB%D0%BB%D0%BE%21%20%D0%90%D0%BB%D0%BB%D0%BE%21%20-%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%B8%D1%8E_files/bootstrap-typeahead.js"></script>
+
+</body></html>

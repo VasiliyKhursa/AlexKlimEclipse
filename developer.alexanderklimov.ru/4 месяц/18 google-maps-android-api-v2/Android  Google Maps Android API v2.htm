@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Google Maps Android API v2</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20Google%20Maps%20Android%20API%20v2_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20Google%20Maps%20Android%20API%20v2_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20Google%20Maps%20Android%20API%20v2_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory/">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20Google%20Maps%20Android%20API%20v2_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20Google%20Maps%20Android%20API%20v2_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Google Maps Android API v2</h1>
+<p>Четвёртый месяц обучения (закрытая зона)</p>
+
+
+
+<p>
+<a href="#getkey">Получить ключ Maps API v2</a><br>
+<a href="#libs">Подключаем библиотеку</a><br>
+<a href="#getmap">Подключаем карты</a><br>
+<a href="#mylocation">Выводим индикатор своего местоположения</a><br>
+<a href="#setmaptype">Устанавливаем тип карты</a><br>
+<a href="#mapclick">Определяем касание на карте</a><br>
+<a href="#maplongclick">Долгое касание экрана и установка метки</a><br>
+<a href="#colormarker">Меняем цвет маркеров</a><br>
+<a href="#mymarker">Собственные маркеры</a><br>
+<a href="#markerclick">Определяем касание на маркере и рисуем линии</a><br>
+<a href="#polygon">Рисуем фигуры</a><br>
+<a href="#licenseinfo">Выводим лицензионное соглашение</a><br>
+<a href="#isavalable">Проверка доступности сервисов Google на устройстве</a><br>
+<a href="#disablecontro">Отключаем ненужные элементы на карте</a><br>
+<a href="#gestures">Жесты</a><br>
+<a href="#traffic">Включаем траспортный слой</a><br>
+</p>
+
+<p>Google выпустил обновление к своим картам. Новое API содержит 
+векторные карты, которые быстрее загружаются, а также позволяют 
+пользователям легко переключаться между 2D и 3D режимами, в которых 
+карты можно вращать при помощи жестов.</p>
+
+<p>С новой версией Google Maps Android API v2, разработчики смогут использовать новые возможности:</p>
+
+<ul>
+<li>поддержка фрагметов</li>
+<li>больше слоёв Google Maps, включая спутниковый, гибридный, пробки, а 
+также новый слой — внутренние карты для основных аэропортов и торговых 
+центров</li>
+<li>уменьшение строк кода, чтобы создавать маркеры и информационные окна (infowindow)</li>
+</ul>
+
+<p>Минимальная требуемая версия — Android 2.2 с OpenGL ES версии 2.</p>
+
+<p>Стоит отметить, что первая версия карт теперь считается устаревшей, и
+ с декабря до марта 2013 у разработчиков есть время на переход на новую 
+версию. Потом вы не сможете получить ключ к карте (старые ключи будут 
+работать).</p>
+
+
+
+
+
+<p>Теперь можно фрагменты вместо MapView. Для этого достаточно вставить следующий код в разметку:</p>
+
+<pre><code class="java">
+&lt;fragment
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  class="com.google.android.gms.maps.SupportMapFragment"/&gt;
+</code></pre>
+
+<p>Во-вторых стало гораздо удобней работать с маркерами. Теперь не нужно
+ городить ItemizedOverlay и тому подобное. Теперь достаточно просто 
+выполнить метод addMarker(MarkerOptions options) с нужными параметрами, и
+ маркер будет красоваться на указанной позиции.</p>
+
+<p>Стало совсем удобно рисовать на карте объекты, которые без проблем 
+будут зумиться и скролиться вместе с картой, без единой заморочки! 
+Достаточно просто добавить фигуру(метод addPolygon(PolygonOptions 
+options)) или линию(метод addPolyline(PolylineOptions options)) на 
+карту, и всё. Это значит, что теперь без проблем можно закрасить страну,
+ город, район. Да всё, что угодно!</p>
+
+<p>У пользователя обязательно должно быть установлено приложение «Карты» от самого Google</p>
+
+<p>Также нужно приложения Сервисы Google Play. Если приложения нет, то пользователю будет сообщено через особое окно.</p>
+
+<p>Для начала нам необходимо установить <b>Google Play services SDK</b>. Запускаем Android SDK Manager и выбираем <b>Extras | Google Play services</b> для установки нужного модуля.</p>
+
+<p>После окончания установки у вас появятся папки <b>android-sdk/extras/google/google_play_services</b>  с подпапками <b>docs</b>, <b>libproject</b> и <b>samples</b>.
+ Из содержимого второй папки нужно сделать модуль, который затем нужно 
+подключать к проекту. В третьей папке находятся примеры приложения по 
+работе с картами. Сделайте бекап папок, чтобы всегда иметь чистую версию
+ библиотеки, если будете активно пользоваться примерами.</p>
+
+<h2 class="text-warning" id="getkey">Получить ключ Maps API v2</h2>
+
+<p>Google Maps Android API v2 использует новую систему управления 
+ключами. Старые ключи от Google Maps Android v1 (MapView) не подойдут.</p>
+
+<p>Ключ бесплатен и не имеет ограничений по количеству пользователей 
+вашего приложеиня. Вы можете получить ключ из Google APIs Console.</p>
+
+<p>Ключ Maps API создаётся на основе цифрового сертификата вашего 
+приложения при помощи отпечатка SHA-1, который представляет собой 
+уникальный текст на основе алгоритма SHA-1.</p>
+
+<p>У вас может быть два сертификата: отладочный и релизный.</p>
+
+<h3 class="text-warning">Отладочный сертификат</h3>
+
+<p>Рассмотрим получение отладочного сертификата.</p>
+
+<p>Найдите у себя файл <b>debug.keystore</b>. По умолчанию, он хранится в папке вашего виртуального устройства:</p>
+
+<p>OS X или Linux: ~/.android/</p>
+
+<p>Windows 7: C:\Users\your_user_name\.android\</p>
+
+<div class="alert alert-info">
+Вы можете посмотреть расположение вашего файла в Eclipse через меню Windows | Prefs | Android | Build
+</div>
+
+<p>В Windows 7 запустите команду в командной строке:</p>
+
+<pre>keytool -list -v -keystore "C:\Users\your_user_name\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
+</pre>
+
+<p>На экране увидите приблизительно такую запись:</p>
+
+<pre><code class="java">
+Alias name: androiddebugkey
+Creation date: Jan 01, 2013
+Entry type: PrivateKeyEntry
+Certificate chain length: 1
+Certificate[1]:
+Owner: CN=Android Debug, O=Android, C=US
+Issuer: CN=Android Debug, O=Android, C=US
+Serial number: 4aa9b300
+Valid from: Mon Jan 01 08:04:04 UTC 2013 until: Mon Jan 01 18:04:04 PST 2033
+Certificate fingerprints:
+     MD5:  AE:9F:95:D0:A6:86:89:BC:A8:70:BA:34:FF:6A:AC:F9
+     SHA1: BB:0D:AC:74:D3:21:E1:43:07:71:9B:62:90:AF:A1:66:6E:44:5D:75
+     Signature algorithm name: SHA1withRSA
+     Version: 3
+</code></pre>
+
+<p>Найдите строчку, начинающуюся со слов <b>SHA1</b>. Она содержит нужный нам отпечаток SHA-1: двадцать двузначных чисел в шестадцатиричной записи, разделённых двоеточиями.</p>
+
+<h3 class="text-warning">Релизный ключ</h3>
+
+<p>Для получения релизного ключа надо сначала создать подписанное приложение, как вы это делаете для размещеия в Google Play.</p>
+
+<p>Далее в командной строке вводите:</p>
+
+<pre><code class="java">
+keytool -list -v -keystore &lt;your_keystore_name&gt; -alias &lt;your_alias_name&gt;
+</code></pre>
+
+<p>&lt;your_keystore_name&gt; - путь к вашем хранилищу (keystore), включая расширение .keystore</p>
+<p>&lt;your_alias_name&gt; - псеводоним созданного сертификата.</p>
+
+
+<p>Идём на страницу <a href="https://code.google.com/apis/console/">Google APIs Console</a>.</p>
+
+<p>Если вы не пользовались консолью Google APIs раньше, то вам будет 
+предложено создать новый проект. Нажимаем на кнопку Create Project. 
+Консоль создаст новый проект <b>API Project</b>. На следующей странице 
+это имя появится в верхней левой части страницы. Нажав на имя проекта, 
+вы можете его переименоваь или сделать другие действия (например, 
+создать новый проект).</p>
+
+<p>Справа вы увидите список доступных сервисов Google. Давайте создадим 
+новый проект для Google Maps Android API, выбираем имя проекта в левой 
+части и щелкаем на кнопке <b>Create...</b>.</p>
+
+<p>Выберите новое имя, например, <b>Google Maps Android</b> и нажмите кнопку <b>Create Project</b>. Если список сервисов не отображается, то выберите пункт <b>Services</b> из левой навигационной панели.</p>
+
+<p>Найдите в списке сервисов <b>Google Maps Android API v2</b> и переключитесь в состояние On. Вам будет показано лицензионное соглашение. Если согласны с ним, то отметьте флажком <b>I agree to these terms</b> и нажимайте на кнопку <b>Accept</b>. Вы вернётесь на предыдущую страницу со списком сервисов. Теперь вы можете получить ключ Maps API.</p>
+
+<p>Если ваше приложение зарегистрировано для использования Google Maps 
+Android API v2 service, вы можете запросить ключ. Можно получать 
+отдельные ключи для каждого проекта.</p>
+
+<p>В левой навигационной панели выбираем <b>API Access</b>. Далее нажимаем <b>Create New Android Key...</b>. Появится диалоговое окно с текстовым полем, в которое нужно вставить отпечаток SHA-1, о котором говорилось выше, затем ввести <b>точку с запятой</b> и имя пакета вашего приложения:</p>
+
+<pre><code class="java">
+BB:0D:AC:74:D3:21:E1:43:67:71:9B:62:91:AF:A1:66:6E:44:5D:75;ru.alexanderklimov.mapexample
+</code></pre>
+
+<p>Нажимаем кнопку <b>Create</b>.</p>
+
+<p>В успешном случае вы увидите сам ключ, вставленную строку, дату активации, автора активации.</p>
+
+<p>Полученный ключ вставляем в AndroidManifest.xml внутри секции <b>&lt;application&gt;</b></p>
+
+<pre><code class="java">
+&lt;meta-data
+    android:name="com.google.android.maps.v2.API_KEY"
+    android:value="your_api_key"/&gt;
+</code></pre>
+
+<p>Далее добавьте необходимое разрешение (замените ru.alexanderklimov.mapexample на свой):</p>
+
+<pre><code class="java">
+&lt;permission
+        android:name="ru.alexanderklimov.mapexample.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature"/&gt;
+&lt;uses-permission android:name="ru.alexanderklimov.mapexample.permission.MAPS_RECEIVE"/&gt;
+</code></pre>
+
+<p>Также необходимо добавить следующие разрешения:</p>
+
+<ul>
+<li>android.permission.INTERNET</li>
+<li>com.google.android.providers.gsf.permission.READ_GSERVICES</li>
+<li>android.permission.WRITE_EXTERNAL_STORAGE</li>
+</ul>
+
+<p>Рекомендуется также добавить два дополнительных разрешения (не обязательно):</p>
+
+<ul>
+<li>android.permission.ACCESS_COARSE_LOCATION - позволяет использовать данные от WiFi и сотовых вышек для определения местоположения</li>
+<li>android.permission.ACCESS_FINE_LOCATION - позволяет использовать данные от GPS для более точного позиционирования</li>
+</ul>
+
+<p>Получаем следующий список:</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/&gt;
+&lt;uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/&gt;
+</code></pre>
+
+<p>Так как Google Maps Android API версии 2 требует OpenGL ES 2, нужно 
+добавить ещё один элемент в манифест, которые предотвратит появление 
+вашего приложения в магазине приложений для старых телефонов:</p>
+
+<pre><code class="xml">
+&lt;uses-feature
+  android:glEsVersion="0x00020000"
+  android:required="true"/&gt;
+</code></pre>
+
+<h2 class="text-warning" id="libs">Подключаем библиотеку</h2>
+
+<p>Щёлкните правой кнопкой мыши на имени проекта в Eclipse и выберите пункт <b>Properties</b>. В левой части окна выберите <b>Android</b>. В разделе <b>Library</b> выберите кнопку <b>Add..</b>:</p>
+
+<p><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/google-play-services_02.png"></p>
+
+<p>Выберите <b>google-play-services_lib</b> и щелкните кнопку <b>OK</b>.</p>
+
+<p>В успешном случае у вас будет стоять зелёный флажок напротив установленной библиотеки:</p>
+
+<p><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/google-play-services_04.png"></p>
+
+
+<p>Простейший пример добавления карты в приложение:</p>
+
+<h3 class="text-success">activity_main.xml</h3>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;fragment xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/map"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  class="com.google.android.gms.maps.MapFragment"/&gt;
+</code></pre>
+
+<h3 class="text-success">MainActivity.java</h3>
+
+<pre><code class="java">
+package ru.alexanderklimov.mapexample;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
+</code></pre>
+
+<p>Запускайте проект. Вы должны увидеть карту.</p>
+
+<p>Лично я увидел на эмуляторе следующую картину</p>
+
+<p><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/gmapsv2-1.png" alt="GMaps"></p>
+
+<p>При нажатии на кнопку приложение вываливалось с ошибкой. Полдня убил 
+на поиски решения и выяснил, что в эмуляторе новые карты не работают.</p>
+
+<h2 class="text-warning" id="getmap">Подключаем карты</h2>
+
+<p>Когда мы вставили фрагмент с классом <b>com.google.android.gms.maps.MapFragment</b>,
+ то карты уже выводятся на экран. Но если мы хотим управлять картой, 
+добавив некоторую функциональность, то необходимо написать 
+дополнительный код. На данный момент существует две ветки развития 
+фрагментов - встроенная поддержка в новых версиях и поддержка фрагментов
+ в старых версиях через дополнительную библиотеку. В дальнейшем все 
+примеры будут показаны для новых версий (рано или поздно старые версии 
+уйдут, зачем на сайте держать мусор). Но один раз покажу кусочек кода и 
+для старых систем.</p>
+
+<pre><code class="java">
+private GoogleMap myMap;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_main);
+
+	FragmentManager myFragmentManager = getFragmentManager();
+	MapFragment myMapFragment = (MapFragment) myFragmentManager
+			.findFragmentById(R.id.map);
+	myMap = myMapFragment.getMap();
+}
+</code></pre>
+
+<p>Для старых версий код будет отличаться незначительно:</p>
+
+<pre><code class="java">
+// Класс фрагмента в разметке будет com.google.android.gms.maps.SupportMapFragment
+FragmentManager myFragmentManager = getSupportFragmentManager();
+SupportMapFragment mySupportMapFragment 
+        = (SupportMapFragment)myFragmentManager.findFragmentById(R.id.map);
+myMap = mySupportMapFragment.getMap();
+</code></pre>
+
+<h2 class="text-warning" id="mylocation">Выводим индикатор своего местоположения</h2>
+
+<p>Чтобы поверх карты выводился индикатор своего местоположения, добавим строчку кода:</p>
+
+<pre><code class="java">
+myMap.setMyLocationEnabled(true);
+</code></pre>
+
+<h2 class="text-warning" id="setmaptype">Устанавливаем тип карты</h2>
+
+<p>Существует несколько вариантов отображения карты на экране:</p>
+
+<ul>
+<li>MAP_TYPE_NONE - No base map tiles</li>
+<li>MAP_TYPE_NORMAL - Basic maps</li>
+<li>MAP_TYPE_SATELLITE - Satellite maps with no labels</li>
+<li>MAP_TYPE_HYBRID - Satellite maps with a transparent layer of major streets</li>
+<li>MAP_TYPE_TERRAIN - Terrain maps</li>
+</ul>
+
+<pre><code class="java">
+// выбираем один вариант
+//myMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+myMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//myMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+//myMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+</code></pre>
+
+<table class="table">
+<thead>
+<tr class="info">
+<th>NORMAL</th><th>HYBRID</th><th>SATELLITE</th><th>TERRAIN</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/googlemapsv2_MAP_TYPE_NORMAL.png" alt=""></td>
+<td><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/googlemapsv2_MAP_TYPE_HYBRID.png" alt=""></td>
+<td><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/googlemapsv2_MAP_TYPE_SATELLITE.png" alt=""></td>
+<td><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/googlemapsv2_MAP_TYPE_TERRAIN.png" alt=""></td>
+</tr>
+</tbody></table>
+
+<h2 class="text-warning" id="mapclick">Определяем касание на карте</h2>
+
+<p>Чтобы определять касание пользователем карты на экране, нужно реализовать интерфейс <b>OnMapClickListener</b>, добавить метод <b>onMapClick()</b> и добавить слушатель <b>setOnMapClickListener()</b>.</p>
+
+<pre><code class="java">
+public class MainActivity extends Activity implements OnMapClickListener{
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		...
+		
+		myMap.setOnMapClickListener(this);
+	}
+
+	@Override
+	public void onMapClick(LatLng point) {
+		// TODO Auto-generated method stub
+		tvInfo.setText(point.toString());
+		myMap.animateCamera(CameraUpdateFactory.newLatLng(point));
+	}
+}
+</code></pre>
+
+<p>В методе <b>onMapClick()</b> определяются координаты карты в месте 
+касания карты, которые выводятся в текстовой метке. Одновременно точка 
+касания перемещается в центр карты с плавной анимацией при помощи метода
+ <b>animateCamera()</b>.</p>
+
+<p>В нашем примере в центре карты оказался финский город Котка - столица финских котов (а может и всей Скандинавии?).</p>
+
+<p><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/gmapsv2-2.png" alt="Котка" height="500" width="300"></p>
+
+<h2 class="text-warning" id="maplongclick">Долгое касание экрана и установка метки</h2>
+
+<p>Аналогично обычному касанию экрана, можно обрабатывать долгое касание. Добавляем реализацию интерфейса <b>OnMapLongClickListener</b>, слушатель долгого касания <b>setOnMapLongClickListener()</b> и метод <b>onMapLongClick()</b>:</p>
+
+<pre><code class="java">
+@Override
+public void onMapLongClick(LatLng point) {
+	// TODO Auto-generated method stub
+	tvInfo.setText("Новая метка с координатами " + point.toString());
+	myMap.addMarker(new MarkerOptions().position(point).title(
+			point.toString()));
+}
+</code></pre>
+
+<p>При долгом касании в указанном месте добавляем новую метку при помощи метода <b>addMarker()</b>. В моём примере добавлены две новые метки рядом с лучшим городом мира Коткой.</p>
+
+<p><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/gmapsv2-3.png" alt="Котка" height="400" width="240"></p>
+
+<h2 class="text-warning" id="colormarker">Меняем цвет маркеров</h2>
+
+<p>Вы можете изменить цвет маркера по умолчанию на другой, добавив <b>.icon(BitmapDescriptor)</b> при создании MarkerOptions.</p>
+
+<pre><code class="java">
+BitmapDescriptor bitmapDescriptor 
+        = BitmapDescriptorFactory.defaultMarker(
+            BitmapDescriptorFactory.HUE_AZURE);
+  
+myMap.addMarker(new MarkerOptions()
+        .position(point)
+        .icon(bitmapDescriptor)
+        .title(point.toString()));
+</code></pre>
+
+<p><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/AndroidMapV2_marker_color.png" alt="цвет маркера" height="400" width="240"></p>
+
+<h2 class="text-warning" id="mymarker">Собственные маркеры</h2>
+
+<p>Вы можете не только окрашивать маркер в другой цвет, но и назначить 
+собственный значок для маркера. Добавьте значок в папку drawable и код:</p>
+
+<pre><code class="java">
+BitmapDescriptor bitmapDescriptor 
+        = BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher);
+  
+myMap.addMarker(new MarkerOptions()
+        .position(point)
+        .icon(bitmapDescriptor)
+        .title(point.toString()));
+</code></pre>
+
+<h2 class="text-warning" id="markerclick">Определяем касание на маркере и рисуем линии</h2>
+
+<p>Раз уж речь идёт о касаниях, то рассмотрим ещё один пример, связанный
+ с определением касания маркера на карте. Для этого нам нужно 
+реализовать интферфейс <b>OnMarkerClickListener</b>, добавить слушатель <b>setOnMarkerClickListener()</b> и написать код для метода <b>onMarkerClick()</b>:</p>
+
+<pre><code class="java">
+boolean markerClicked;
+PolylineOptions rectOptions;
+Polyline polyline;
+
+@Override
+public boolean onMarkerClick(Marker marker) {
+	// TODO Auto-generated method stub
+	if (markerClicked) {
+
+		if (polyline != null) {
+			polyline.remove();
+			polyline = null;
+		}
+
+		rectOptions.add(marker.getPosition());
+		rectOptions.color(Color.RED);
+		polyline = myMap.addPolyline(rectOptions);
+	} else {
+		if (polyline != null) {
+			polyline.remove();
+			polyline = null;
+		}
+
+		rectOptions = new PolylineOptions().add(marker.getPosition());
+		markerClicked = true;
+	}
+	return false;
+}
+</code></pre>
+
+<p>Если приложение распознает касание на маркерах, то между ними будет 
+нарисована красная тонкая линия. На рисунке представлен мистический 
+Коткинский треугольник. Говорят, собаки, которые забредают в этот район,
+ бесследно пропадают. А нечего лезть на помеченную территорию.</p>
+
+<p><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/gmapsv2-4.png" alt="Котка" height="400" width="240"></p>
+
+<h2 class="text-warning" id="polygon">Рисуем фигуры</h2>
+
+<p>Если простые линии вам не интересны, то используйте Polygon вместо 
+Polyline. В этом случае вы можете получить не просто треугольник из трёх
+ линий, а закрашенный треугольник или другую фигуру. Можно задать 
+отдельно цвет обводки и цвет заливки самой фигуры. Изменения в коде 
+будут незначительными:</p>
+
+<pre><code class="java">
+PolygonOptions polygonOptions;
+Polygon polygon;
+
+@Override
+public boolean onMarkerClick(Marker marker) {
+	if (markerClicked) {
+
+		if (polygon != null) {
+			polygon.remove();
+			polygon = null;
+		}
+
+		polygonOptions.add(marker.getPosition());
+		polygonOptions.strokeColor(Color.RED);
+		polygonOptions.fillColor(Color.BLUE);
+		polygon = myMap.addPolygon(polygonOptions);
+	} else {
+		if (polygon != null) {
+			polygon.remove();
+			polygon = null;
+		}
+
+		polygonOptions = new PolygonOptions().add(marker.getPosition());
+		markerClicked = true;
+	}
+
+	return true;
+}
+</code></pre>
+
+<p><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/screen_MapsAPIv2_Polygon.png"></p>
+
+<h2 class="text-warning" id="licenseinfo">Выводим лицензионное соглашение</h2>
+
+<p>При использовании карт Google в своём приложении, вы обязаны включить
+ также показ лицензионного соглашения, например, через пункт меню.</p>
+
+<p>В новых проектах по умолчанию уже используется один пункт меню Settings. Добавим ещё один пункт:</p>
+
+<pre><code class="xml">
+&lt;item
+    android:id="@+id/menu_legalnotices"
+    android:orderInCategory="100"
+    android:showAsAction="never"
+    android:title="@string/menu_legalnotices"/&gt;
+</code></pre>
+
+<p>Добавим строковый ресурс для пункта меню:</p>
+
+<pre><code class="java">
+&lt;string name="menu_legalnotices"&gt;Legal Notices&lt;/string&gt;
+</code></pre>
+
+<p>Вывод соглашения делаем через диалоговое окно:</p>
+
+<pre><code class="java">
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+	switch (item.getItemId()) {
+	case R.id.menu_legalnotices:
+		String LicenseInfo = GooglePlayServicesUtil
+				.getOpenSourceSoftwareLicenseInfo(getApplicationContext());
+		AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(
+				MainActivity.this);
+		LicenseDialog.setTitle("Legal Notices");
+		LicenseDialog.setMessage(LicenseInfo);
+		LicenseDialog.show();
+		return true;
+	}
+	return super.onOptionsItemSelected(item);
+}
+</code></pre>
+
+<p><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/screen_MapsAPIv2_LegalNotices.png"></p>
+
+<h2 class="text-warning" id="isavalable">Проверка доступности сервисов Google на устройстве</h2>
+
+<p>Рекомендуется проверить, а доступны ли на устройстве сервисы Google, 
+необходимые для работы с картами. Для этого существует метод <b>isGooglePlayServicesAvailable()</b>. Вызовем его в методе активности <b>onResume()</b>:</p>
+
+<pre><code class="java">
+final int RQS_GooglePlayServices = 1;
+
+@Override
+protected void onResume() {
+	// TODO Auto-generated method stub
+	super.onResume();
+
+	int resultCode = GooglePlayServicesUtil
+			.isGooglePlayServicesAvailable(getApplicationContext());
+
+	if (resultCode == ConnectionResult.SUCCESS) {
+		Toast.makeText(getApplicationContext(),
+				"isGooglePlayServicesAvailable SUCCESS", Toast.LENGTH_LONG)
+				.show();
+	} else {
+		GooglePlayServicesUtil.getErrorDialog(resultCode, this,
+				RQS_GooglePlayServices);
+	}
+}
+</code></pre>
+
+<h2 class="text-warning" id="disablecontrol">Отключаем ненужные элементы на карте</h2>
+
+<p>По умолчанию на карте используются элементы собственного расположения
+ (в верхнем правом углу), компас (в верхнем левом углу при вращении 
+карты) и зум (в нижнем правом углу). Вы можете отключить по отдельности 
+каждый из этих элементов.</p>
+
+<pre><code class="java">
+myMap.getUiSettings().setZoomControlsEnabled(false);
+myMap.getUiSettings().setCompassEnabled(false);
+myMap.getUiSettings().setMyLocationButtonEnabled(false);
+</code></pre>
+
+<h2 class="text-warning" id="gestures">Жесты</h2>
+
+<p>Можно отключить/включить определённые жесты для карты:</p>
+
+<pre><code class="java">
+myMap.getUiSettings().setRotateGesturesEnabled(true);
+myMap.getUiSettings().setScrollGesturesEnabled(true);
+myMap.getUiSettings().setTiltGesturesEnabled(true);
+myMap.getUiSettings().setZoomGesturesEnabled(true);
+// или все сразу
+myMap.getUiSettings().setAllGesturesEnabled(true);
+</code></pre>
+
+<h2 class="text-warning" id="traffic">Включаем траспортный слой</h2>
+
+<p>Достаточно одной <del>таблэтки</del> строчки кода:</p>
+
+<pre><code class="java">
+myMap.setTrafficEnabled(true);
+</code></pre>
+
+<h2 class="text-warning" id="xmlmaps">Настройка карты через XML</h2>
+
+<p>Кроме программной настройки карты, можно воспользоваться XML-атрибутами.</p>
+
+<p>Изменим файл разметки, добавив в &lt;fragment&gt; класс "com.google.android.gms.maps.MapFragment" и включив <b>xmlns:map="http://schemas.android.com/apk/res-auto"</b>.</p>
+
+<pre><code class="xml">
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" &gt;
+
+    &lt;fragment
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="com.google.android.gms.maps.MapFragment"
+        map:cameraBearing="45"
+        map:cameraTargetLat="51.507222"
+        map:cameraTargetLng="-0.1275"
+        map:cameraTilt="30"
+        map:cameraZoom="12"
+        map:mapType="satellite"
+        map:uiCompass="true"
+        map:uiRotateGestures="true"
+        map:uiScrollGestures="true"
+        map:uiTiltGestures="true"
+        map:uiZoomControls="true"
+        map:uiZoomGestures="true"/&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Теперь, подключаем разметку привычным способом через <b>setContentView()</b> и видим карту с заданными настройками.</p>
+
+
+<h2 class="text-warning">Дополнительное чтение</h2>
+
+<p><a href="https://developers.google.com/maps/documentation/android/">Документация</a></p>
+
+<p><a href="https://github.com/googlemaps/hellomap-android">Пример на GitHub от разработчиков для быстрого старта</a></p>
+
+<p><a href="http://android-er.blogspot.ru/2012/12/a-simple-example-using-google-maps.html">Серия статей, которые легли в основу материала</a></p>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20Google%20Maps%20Android%20API%20v2_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20Google%20Maps%20Android%20API%20v2_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20Google%20Maps%20Android%20API%20v2_files/fastbutton.htm" name="I0_1379249090530" id="I0_1379249090530" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Android%20%20Google%20Maps%20Android%20API%20v2_files/postmessageRelay.htm" id="oauth2relay684019247" name="oauth2relay684019247"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20Google%20Maps%20Android%20API%20v2_files/jquery.js"></script>
+    <script src="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap-button.js"></script>
+    <script src="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20Google%20Maps%20Android%20API%20v2_files/bootstrap-typeahead.js"></script>
+
+</body></html>

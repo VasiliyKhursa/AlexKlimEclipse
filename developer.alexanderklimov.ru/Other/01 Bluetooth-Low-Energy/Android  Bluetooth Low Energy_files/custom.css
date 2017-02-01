@@ -1,0 +1,73 @@
+.hoverbutton {
+	padding: 6px 35px;
+	position: relative;
+	transition: all 500ms ease; 
+    overflow:hidden;
+}
+
+.hoverbutton:before {
+	font-family: FontAwesome;
+    content: attr(data-icon);
+	position: absolute;
+	top: 7px;
+	left: -30px;
+	transition: all 200ms ease;
+} 
+	  
+.hoverbutton:hover:before {
+	left: 7px;
+}
+
+.leftmenu {
+	position: relative;
+	transition: all 500ms ease; 
+}
+
+.leftmenu:before {
+	content:'';
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0px;
+	height: 42px;
+	background: rgba(255,255,255,0.3);
+	transition: all 2s ease;
+} 
+.leftmenu:hover:before {
+	width: 100%;
+}
+@-webkit-keyframes bounce {
+	0%, 20%, 60%, 100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	40% {
+		-webkit-transform: translateY(-20px);
+		transform: translateY(-20px);
+	}
+
+	80% {
+		-webkit-transform: translateY(-10px);
+		transform: translateY(-10px);
+	}
+}
+.img:hover {
+	-webkit-animation: bounce 1s;
+}
+
+a.back-to-top {
+	display: none;
+	width: 60px;
+	height: 60px;
+	text-indent: -9999px;
+	position: fixed;
+	z-index: 999;
+	right: 15px;
+	bottom: 130px;
+	background: #27AE61 url("http://developer.alexanderklimov.ru/android/images/upcat.png") no-repeat 10% -30%;
+	border-radius: 30px;
+}
+a:hover.back-to-top {
+	background-color: #ff8000;
+}

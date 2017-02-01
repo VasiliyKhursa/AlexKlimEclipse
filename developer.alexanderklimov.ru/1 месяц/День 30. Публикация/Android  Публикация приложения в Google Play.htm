@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Публикация приложения в Google Play</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">   
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+          <ul class="nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->	
+<div class="clearfix"></div>
+	
+<noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Читайте на здоровье!</h3>
+            </div>
+            <div class="modal-body">
+            
+              <p>Статья проплачена кошками - всемирно известными производителями котят.</p>
+
+            <p>Если статья вам понравилась, то можете <a href="http://developer.alexanderklimov.ru/donate.php">поддержать проект</a>.</p>
+			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>            
+<h1 class="text-warning">Публикуем приложения в Google Play и зарабатываем миллионы</h1>
+
+<p>
+<a href="#googleplay">Открыть страницу приложения в Google Play</a><br>
+</p>
+
+<p>Итак, за 29 дней вы научились создавать собственные приложения. Пора 
+поделиться ими со всем миром и получить заветный миллион на блюдечке с 
+голубой каёмочкой.</p>
+
+<p>Так как мы волнуемся, то потренируемся на кошках. Возьмем, например, пример из статьи <a href="http://developer.alexanderklimov.ru/android/crib.php">Пишем справочник</a> и попытаемся выложить его в Google Play. Если все получится, то дальше будет проще.</p>
+
+<p>Прежде чем приступать к дальнейшим операциям, убедитесь, что у вас 
+готовы собственные значки для приложений и название программы. Будет 
+очень странно увидеть в магазине приложений программу со стандартным 
+значком и названием HelloWorld. А также проверьте все записи в файле 
+манифеста.</p>
+
+<h2 class="text-warning">Шаг первый. Он трудный самый</h2>
+
+<p>Сперва необходимо создать APK-файл, который является что-то типа 
+исполняемым файлом как notepad.exe в Windows. Если у вас открыт Eclipse,
+ то щелкните правой кнопкой мыши на имени проекта в левой части и 
+выберите из контекстного меню <b>Android Tools | Export Signed Application Package...</b>.
+ У вас откроется диалоговое окно, в котором разберется даже котёнок. 
+Нужно просто заполнить необходимые поля. Ниже приведены скриншоты 
+некоторых окон.</p>
+
+<p>
+<img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/publish1.jpg" alt="Создание APK">
+<br>
+<img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/publish2.jpg" alt="Создание APK">
+<br>
+<img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/publish3.jpg" alt="Создание APK">
+</p>
+
+<p>В этих окнах вам нужно создать хранилище ключей (Keystore) и сам ключ (Key).</p>
+
+<p>В результате сложных манипуляций с диалоговыми окнами у вас появится 
+долгожданный APK - ваша прелесть, которая откроет дверь в мир богатства и
+ счастья.</p>
+
+<p>Будьте аккуратны с созданным ключом. Именно он является гарантией, 
+что новая версия программы написана вами. Поэтому, если вы потеряете 
+созданный ключ, вам придется выкладывать программу под другим именем с 
+новым ключом.</p>
+
+<p>Строго говоря, вы можете этот apk-файл выложить у себя на сайте, и 
+все ваши посетители могут его скачать и установить на телефон. Но это 
+как-то несолидно в наш век нанотехнологий. Поэтому переходим к 
+следующему шагу.</p>
+
+<h2 class="text-warning">Шаг второй. Надо, Федя, надо</h2>
+
+<p>Следующий шаг очень неприятный. Вам нужно подарить 25 вечнозеленых 
+чужому человеку. Чтобы вам было не так обидно, данную операцию назвали 
+регистрационным взносом. Вам понадобится кредитная карточка с указанной 
+суммой. Учтите, что Visa Electron, а уж тем более дисконтная карточка 
+сети магазинов "Перекресток" вам не подойдут. Если у вас уже есть нужная
+ карточка, то пропускаете этот абзац. Остальным могу посоветовать 
+завести QIWI-кошелёк и там завести виртуальную карточку. Именно так я и 
+поступил, так как идти в банк и писать всякие заявления было неохота.</p>
+
+<p>Идем на <a href="https://play.google.com/apps/publish/">страницу разработчиков</a>,
+ заполняем необходимые поля и расстаёмся с нужной суммой. Если операция 
+пройдёт успешно, то вы сможете продвинуться дальше. В моем случае мне 
+дважды отказывали, так как я пожадничал и положил на карточку меньшую 
+сумму, чем требовалось. Если вы позже доложили необходимую сумму, то не 
+ждите, что её автоматически у вас спишут. Снова зайдите на страницу 
+разработчика и отредактируйте данные о карточке (нужно еще раз написать 
+код безопасности).</p>
+
+<p><img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/publish4.jpg" alt="Регистрация">
+<br>
+<img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/publish5.jpg" alt="Регистрация">
+<br>
+<img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/publish6.jpg" alt="Регистрация">
+</p>
+
+<h3 class="text-warning">Шаг третий. Со счастливым концом</h3>
+
+<p>Если платёж прошел успешно, то ссылка на следующий шаг будет доступна
+ и вы попадаете в специальный личный кабинет, где можете добавлять свои 
+приложения.</p>
+
+<p>Весь интерфейс на русском. Поэтому трудностей у вас не возникнет. 
+Заливаем подготовленный APK-файл, а также необходимые картинки-скриншоты
+ и значок.</p>
+
+<p>Для своего первого приложения я не стал заморачиваться, а сделал все на скорую руку.</p>
+
+<p><img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/publish7.jpg" alt="Регистрация">
+<br>
+<img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/publish8.jpg" alt="Регистрация">
+<br>
+<img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/publish9.jpg" alt="Регистрация">
+</p>
+
+<p>В процессе добавления программы вы можете удалять картинки и файл 
+приложения, снова их заливать и снова удалять. Иногда можно нажимать на 
+кнопку <b>Сохранить</b>. Если вы сделаете что-то не так, то на странице 
+появятся предупреждающие надписи. Если таких надписей нет, то можете 
+смело нажимать на кнопку <b>Публиковать</b>. Всё! Ваше приложение доступно всему миру. За вами уже выехали.</p>
+
+<p><img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/publish10.jpg" alt="Регистрация"></p>
+
+<p>Недавно в Google Play Developer Console добавили возможность 
+тестирования приложений среди определённых пользователей. Если раньше вы
+ загружали своё приложение и оно сразу становилось доступным всем, то 
+теперь добавлены два промежуточных шага.</p>
+
+<p>При загрузке новой версии приложения вам нужно выбрать раздел:</p>
+<ul>
+<li>АЛЬФА-ТЕСТИРОВАНИЕ</li>
+<li>БЕТА-ТЕСТИРОВАНИЕ</li>
+<li>РАБОЧАЯ ВЕРСИЯ</li>
+</ul>
+
+<p>Если вы загрузите приложение в раздел Альфа-тестирования, то потом 
+можете перевести его в бета-тестирование или сразу в Рабочую версию. 
+Соответственно, из бета-тестирования можно перевести сразу в Рабочую 
+версию. Обратно нельзя.</p>
+
+<p>Если программа находится в стадии тестирования, то оно доступно 
+только тестерам, другие пользователь не смогут найти вашу программу ни 
+через поиск, ни по прямой ссылке.</p>
+
+<p>Вам следует создать специальное сообщество в Google+ (указывается в 
+настройках приложения) и пригласить туда нужных людей. Доверенные лица 
+смогут затем перейти по ссылке 
+play.google.com/apps/testing/com.yourdomain.package.</p>
+
+
+<h2 class="text-warning">Ищет милиция, ищут пожарные</h2>
+
+<p>Когда вы публикуете свою программу, то она сразу попадает в магазин 
+приложений без всякой модерации. Но найти её будет там не просто. Даже 
+поиск по магазину вам не поможет. Нужно какое-то время, чтобы данные в 
+магазине обновились и поисковый робот заметил вашу программу. Но я 
+помогу вам бесплатным советом, как быстро найти свою программу в Google 
+Play. А всё очень просто. Вспомните имя вашего пакета, который 
+использовался при создании приложения - он и является ключом к разгадке.
+ Заходим на сайт и вбиваем нужный адрес с указанием пакета в качестве 
+ID:</p>
+
+<pre><a href="https://play.google.com/store/apps/details?id=ru.alexanderklimov.crib">https://play.google.com/store/apps/details?id=ru.alexanderklimov.crib</a>
+</pre>
+
+<p>И вы сразу окажетесь в нужном месте и можете раздать ссылку своим друзьям.</p>
+
+<h2 class="text-warning">Где деньги, Зин</h2>
+
+<p>Какой вы быстрый, однако. Есть два способа зарабатывания денег на 
+своем приложении. Либо надо зарегистрироваться как продавец, либо как 
+участник рекламной сети AdMob.</p>
+
+<h2 class="text-warning" id="googleplay">Открыть страницу приложения в Google Play</h2>
+
+<p>Пользователи скачивают приложение и забывают отблагодарить 
+разработчика. Надо аккуратно ему напомнить о гражданском долге - 
+поставить высшую оценку вашей программе. Добавляете кнопку с текстом <b>Оцените наше приложение</b> и пишете небольшой код:</p>
+
+<pre><code class="java">
+Intent intent = new Intent(Intent.ACTION_VIEW);
+intent.setData(Uri.parse("market://details?id=ru.alexanderklimov.crib"));
+startActivity(intent);
+</code></pre>
+
+<p>Учтите, что на эмуляторе код не сработает, так как в нём нет 
+приложения Google Play. А пока можете зайти через телефон по указанному 
+адресу и поблагодарить меня. Коты вам скажут <b>Спасибо!</b>.</p>
+
+<h2 class="text-warning">Продвижение</h2>
+
+<p>На странице <a href="http://developer.android.com/distribute/googleplay/promote/badges.html">http://developer.android.com/distribute/googleplay/promote/badges.html</a>
+ вы можете указать необходимые параметры, формирующие код для 
+кнопки-баннера, который затем можете использовать в своём блоге или 
+других местах. Например, так:</p>
+
+<a href="https://play.google.com/store/apps/details?id=ru.alexanderklimov.crib">
+  <img alt="Get it on Google Play" src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/ru_generic_rgb_wo_45.png">
+</a>
+
+<h5 class="text-error">Реклама</h5>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4224968932772057";
+/* Полноразмерный баннер 728х90 */
+google_ad_slot = "4077523505";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/show_ads.js">
+</script>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/fastbutton.htm" name="I0_1378011287565" id="I0_1378011287565" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/jquery.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/postmessageRelay.htm" id="oauth2relay534992005" name="oauth2relay534992005"></iframe>
+    <script src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20Google%20Play_files/bootstrap-typeahead.js"></script>
+
+</body></html>

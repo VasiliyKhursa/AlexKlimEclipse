@@ -1,0 +1,430 @@
+package com.example;
+
+import java.util.ArrayList;
+import java.util.Set;
+
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class BluetoothDemoActivity extends Activity implements View.OnClickListener, OnItemClickListener {
+
+	final String TAG = "myLog";
+
+	TextView labelStateBluetooth;
+	BluetoothAdapter bluetoothAdapter;
+
+	private static final int REQUEST_DISABLE_BT = 0;
+	private static final int REQUEST_ENABLE_BT = 1;
+	ListView listDevicesFound;
+	Button btnScanDevice;
+
+	ArrayAdapter<String> btArrayAdapter;
+	private ArrayList<BluetoothDevice> btDevicesList;
+	
+	
+	
+	
+
+	Button btn_checkBTname;
+	Button btn_setBtname;
+	EditText et_newBTname;
+	TextView tv_btName;
+
+	Button buttonBluetoothState;
+	Button buttonTurnOn;
+	Button buttonTurnOff;
+	Button btn_enableBT;
+	Button btn_disableBT;
+	Button getBoundedDevice;
+	
+	
+	
+/*	
+	public final static String ACTION_GATT_CONNECTED = "com.example.bluetooth.le.ACTION_GATT_CONNECTED";
+	public final static String ACTION_GATT_DISCONNECTED = "com.example.bluetooth.le.ACTION_GATT_DISCONNECTED";
+	public final static String ACTION_GATT_SERVICES_DISCOVERED = "com.example.bluetooth.le.ACTION_GATT_SERVICES_DISCOVERED";
+	public final static String ACTION_DATA_AVAILABLE = "com.example.bluetooth.le.ACTION_DATA_AVAILABLE";
+	public final static String EXTRA_DATA = "com.example.bluetooth.le.EXTRA_DATA";
+	public final static byte[] BYTE_DATA = {};
+	
+	private BluetoothGatt mBluetoothGatt;
+*/	
+
+	/** Called when the activity is first created. */
+	// @Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		labelStateBluetooth = (TextView) findViewById(R.id.bluetoothstate);
+		buttonBluetoothState = (Button) findViewById(R.id.buttonBlueState);
+		buttonTurnOn = (Button) findViewById(R.id.buttonTurnOn);
+		btnScanDevice = (Button) findViewById(R.id.scandevice);
+		listDevicesFound = (ListView) findViewById(R.id.devicesfound);
+
+		btn_checkBTname = (Button) findViewById(R.id.checkBTname);
+		btn_setBtname = (Button) findViewById(R.id.setBtname);
+		et_newBTname = (EditText) findViewById(R.id.newBTname);
+		tv_btName = (TextView) findViewById(R.id.btName);
+		buttonTurnOff = (Button) findViewById(R.id.buttonTurnOff);
+		btn_enableBT = (Button) findViewById(R.id.btn_enableBT);
+		btn_disableBT = (Button) findViewById(R.id.btn_disableBT);
+		getBoundedDevice = (Button) findViewById(R.id.getBoundedDevice);
+
+		buttonBluetoothState.setOnClickListener(this);
+		buttonTurnOn.setOnClickListener(this);
+		btnScanDevice.setOnClickListener(this);
+		btn_checkBTname.setOnClickListener(this);
+		btn_setBtname.setOnClickListener(this);
+		buttonTurnOff.setOnClickListener(this);
+		btn_enableBT.setOnClickListener(this);
+		btn_disableBT.setOnClickListener(this);
+		getBoundedDevice.setOnClickListener(this);
+		listDevicesFound.setOnItemClickListener(this);
+
+		// создаем адаптер дл€ списка доступных BT устройств
+		btArrayAdapter = new ArrayAdapter<String>(BluetoothDemoActivity.this, android.R.layout.simple_list_item_1);
+
+		// подключаем адаптер к списку
+		listDevicesFound.setAdapter(btArrayAdapter);
+
+		// получаем адаптер по умолчанию к BT
+		bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+		String toastText;
+		if (bluetoothAdapter.isEnabled()) {
+			String address = bluetoothAdapter.getAddress();
+			String name = bluetoothAdapter.getName();
+			toastText = name + " : " + address;
+		} else
+			toastText = "Bluetooth is not enabled";
+		Toast.makeText(this, toastText, Toast.LENGTH_LONG).show();
+
+		// регистрируем широковещательный приемник дл€ изменени€ состо€ний BT
+		registerReceiver(bluetoothState, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
+		// широковещательный приемник изменени€ состо€ни€ поиска устройств
+		registerReceiver(discoveryMonitor, new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_STARTED));
+		registerReceiver(discoveryMonitor, new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED));
+		// регистрируем приемник широковещательных сообщений дл€ найденных
+		// устройств
+		registerReceiver(ActionFoundReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
+
+		if (!bluetoothAdapter.isEnabled()) {
+			startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE), REQUEST_ENABLE_BT);
+
+		}
+
+	}
+
+	private void CheckBlueToothState() {
+		if (bluetoothAdapter == null) {
+			labelStateBluetooth.setText("Bluetooth на вашем устройстве не поддерживаетс€");
+		} else {
+			if (bluetoothAdapter.isEnabled()) {
+				if (bluetoothAdapter.isDiscovering()) {
+					labelStateBluetooth.setText("Bluetooth в процессе включени€.");
+				} else {
+					labelStateBluetooth.setText("Bluetooth доступен..");
+					btnScanDevice.setEnabled(true);
+				}
+			} else {
+				labelStateBluetooth.setText("Bluetooth не доступен!");
+				// делаем намеренье дл€ включени€ BT и отправл€ем
+				// Intent enableBtIntent = new
+				// Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+				// startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+			}
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		switch (requestCode) {
+		case REQUEST_ENABLE_BT:
+			CheckBlueToothState();
+			Log.d(TAG, "requestCode - REQUEST_ENABLE_BT" + "resultCode = " + resultCode);
+			break;
+
+		case REQUEST_DISABLE_BT:
+
+			break;
+
+		default:
+			break;
+		}
+
+	}
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		unregisterReceiver(ActionFoundReceiver);
+		unregisterReceiver(bluetoothState);
+		unregisterReceiver(discoveryMonitor);
+	}
+
+	// приемник широковещательных сообщений дл€ найденных устройств
+	private final BroadcastReceiver ActionFoundReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// TODO Auto-generated method stub
+			String action = intent.getAction();
+			if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+				BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+				btArrayAdapter.add(device.getName() + " " + device.getAddress());
+				btArrayAdapter.notifyDataSetChanged();
+				
+
+				
+				
+				Log.d(TAG, "type = " + device.getType() );
+				Log.d(TAG, "name = " + device.getName() + " addr = " + device.getAddress());
+				
+				if (device != null) {
+					btDevicesList.add(device);
+					btDevicesList.add(device);
+				}
+			}
+
+		}
+	};
+
+	private final BroadcastReceiver bluetoothState = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String prevStateExtra = BluetoothAdapter.EXTRA_PREVIOUS_STATE;
+			String stateExtra = BluetoothAdapter.EXTRA_STATE;
+			int state = intent.getIntExtra(stateExtra, -1);
+			int previousState = intent.getIntExtra(prevStateExtra, -1);
+			String tt = "";
+
+			switch (state) {
+			case (BluetoothAdapter.STATE_TURNING_ON): {
+				tt = "Bluetooth turning on";
+				break;
+			}
+			case (BluetoothAdapter.STATE_ON): {
+				tt = "Bluetooth on";
+				unregisterReceiver(this);
+				break;
+			}
+			case (BluetoothAdapter.STATE_TURNING_OFF): {
+				tt = "Bluetooth turning off";
+				break;
+			}
+			case (BluetoothAdapter.STATE_OFF): {
+				tt = "Bluetooth off";
+				break;
+			}
+			default:
+				break;
+			}
+			Toast.makeText(BluetoothDemoActivity.this, tt, Toast.LENGTH_LONG).show();
+		}
+	};
+
+	private final BroadcastReceiver discoveryMonitor = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(intent.getAction())) {
+				// ѕроцесс обнаружени€ началс€.
+				Toast.makeText(getApplicationContext(), "Discovery Started...", Toast.LENGTH_SHORT).show();
+			} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(intent.getAction())) {
+				// ѕроцесс обнаружени€ завершилс€.
+				Toast.makeText(getApplicationContext(), "Discovery Completed...", Toast.LENGTH_SHORT).show();
+			}
+		}
+	};
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		switch (v.getId()) {
+		case R.id.buttonTurnOn:
+			Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			startActivity(enableBtIntent);
+			break;
+
+		case R.id.buttonTurnOff:
+			// Intent disableBtIntent = new
+			// Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			// startActivity(disableBtIntent);
+			break;
+
+		case R.id.buttonBlueState:
+			CheckBlueToothState();
+			break;
+
+		case R.id.scandevice:
+			btArrayAdapter.clear();
+			bluetoothAdapter.startDiscovery();
+			break;
+
+		case R.id.checkBTname:
+			tv_btName.setText(bluetoothAdapter.getName());
+			break;
+
+		case R.id.setBtname:
+			String txt = et_newBTname.getText().toString();
+			bluetoothAdapter.setName(txt);
+			break;
+
+		case R.id.btn_enableBT:
+			bluetoothAdapter.enable();
+			break;
+
+		case R.id.btn_disableBT:
+			bluetoothAdapter.disable();
+			break;
+
+		case R.id.getBoundedDevice:
+			Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+			btArrayAdapter.clear();
+			// ≈сли список спаренных устройств не пуст
+			if (pairedDevices.size() > 0) {
+				// проходимс€ в цикле по этому списку
+				for (BluetoothDevice device : pairedDevices) {
+					// ƒобавл€ем имена и адреса в mArrayAdapter, чтобы показать
+					// через ListView
+					btArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+				}
+			}
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		// TODO Auto-generated method stub
+		Log.d("myLog", "position = " + arg2 + " count = " + btArrayAdapter.getCount());
+		BluetoothDevice btd = btDevicesList.get(arg2);
+		
+		//mBluetoothGatt = btd.connectGatt(this, false, mGattCallback);
+		
+		/*
+		BluetoothDevice.createRfcommSocketToServiceRecord(UUID).
+
+		BluetoothClass btc = btd.getBluetoothClass();
+		*/
+		/*
+		 * btd.get
+		 * 
+		 * 
+		 * btc.
+		 */
+		/*
+		 * try{ BluetoothSocket clientSocket =
+		 * bt.createRfcommSocketToServiceRecord(uuid); clientSocket.connect();
+		 * // TODO ѕередача данных с помощью BluetoothSocket } catch
+		 * (IOException e) { Log.d("BLUETOOTH", e.getMessage()); }
+		 */
+	}
+	
+	
+	
+	
+	
+/*	
+	// Implements callback methods for GATT events that the app cares about. For
+	// example,
+	// connection change and services discovered.
+	private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
+		@Override
+		public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
+			String intentAction;
+			Log.i(TAG, "oldStatus=" + status + " NewStates=" + newState);
+			if (status == BluetoothGatt.GATT_SUCCESS) {
+
+				if (newState == BluetoothProfile.STATE_CONNECTED) {
+					intentAction = ACTION_GATT_CONNECTED;
+
+					//broadcastUpdate(intentAction);
+					Log.i(TAG, "Connected to GATT server.");
+					// Attempts to discover services after successful
+					// connection.
+					Log.i(TAG, "Attempting to start service discovery:" + mBluetoothGatt.discoverServices());
+				} else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+					intentAction = ACTION_GATT_DISCONNECTED;
+					mBluetoothGatt.close();
+					mBluetoothGatt = null;
+					Log.i(TAG, "Disconnected from GATT server.");
+					//broadcastUpdate(intentAction);
+				}
+			}
+		}
+
+		@Override
+		public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+			if (status == BluetoothGatt.GATT_SUCCESS) {
+				Log.w(TAG, "onServicesDiscovered received: " + status);
+				//findService(gatt.getServices());
+			} else {
+				if (mBluetoothGatt.getDevice().getUuids() == null)
+					Log.w(TAG, "onServicesDiscovered received: " + status);
+			}
+		}
+
+		@Override
+		public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+			if (status == BluetoothGatt.GATT_SUCCESS) {
+				//broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic);
+			}
+		}
+
+		@Override
+		public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
+			//broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic);
+			Log.e(TAG, "OnCharacteristicWrite");
+		}
+
+		@Override
+		public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+			Log.e(TAG, "OnCharacteristicWrite");
+		}
+
+		@Override
+		public void onDescriptorRead(BluetoothGatt gatt, BluetoothGattDescriptor bd, int status) {
+			Log.e(TAG, "onDescriptorRead");
+		}
+
+		@Override
+		public void onDescriptorWrite(BluetoothGatt gatt, BluetoothGattDescriptor bd, int status) {
+			Log.e(TAG, "onDescriptorWrite");
+		}
+
+		@Override
+		public void onReadRemoteRssi(BluetoothGatt gatt, int a, int b) {
+			Log.e(TAG, "onReadRemoteRssi");
+		}
+
+		@Override
+		public void onReliableWriteCompleted(BluetoothGatt gatt, int a) {
+			Log.e(TAG, "onReliableWriteCompleted");
+		}
+
+	};
+	*/
+}

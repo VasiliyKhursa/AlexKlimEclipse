@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Продвинутое приложение с использованием ListView</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Продвинутое приложение с использованием ListView</h1>
+<p>Третий месяц обучения (закрытая зона)</p>
+
+<p>
+<a href="#base">Базовый пример</a><br>
+<a href="#usingfragment">Используем фрагменты</a><br>
+<a href="#supportlibrary">Поддержка фрагментов в старых версиях Android</a><br>
+<a href="#database">Подключаем базу данных</a><br>
+</p>
+
+<p>Мы уже не раз использовали в своих проектах ListView, тем не менее 
+для практики необходимо писать различные приложение с использованием 
+продвинутых техник. Вот и на этот раз мы опять повторим изученные ранее 
+приёмы, а далее будем усложнять проект.</p>
+
+<h2 class="text-warning" id="base">Базовый пример</h2>
+
+<p>Для начала давайте повторим, что знаем и создадим новый проект. 
+Составим список статей из моего сайта - первые тридцать уроков, которые 
+вы уже изучили.</p>
+
+<p>Мы уже знаем, что существует отдельный класс <b>ListActivity</b>, 
+который упрощает работу со списками. Разработаем шаблон для элемента 
+списка, который будет состоять из TextView - в нём будет находиться 
+название статьи-урока с сайта. Создаём файл <b>list_item.xml</b> в папке <b>res/layout</b>:</p>
+
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dp"
+    android:textSize="24dp" /&gt;
+</code></pre>
+
+<p>В разметке установлен достаточно крупный шрифт для текста и отступы от краёв экрана, чтобы список выглядел аккуратным.</p>
+
+<h3 class="text-warning">Заполняем список данными</h3>
+
+<p>Поступим следующим образом - создадим два строковых массива. В первом
+ будут содержаться названия уроков, а во втором - ссылки на эти уроки.</p>
+
+<pre><code class="xml">
+&lt;string-array name="lessons_titles"&gt;
+    &lt;item&gt;Вступление&lt;/item&gt;
+    &lt;item&gt;Подготовка к разработке&lt;/item&gt;
+    &lt;item&gt;Создаем первое приложение для Android&lt;/item&gt;
+    &lt;item&gt;Щелчок кнопки/Счетчик ворон&lt;/item&gt;
+    &lt;item&gt;Светофор&lt;/item&gt;
+    &lt;item&gt;Варим яйца&lt;/item&gt;
+    &lt;item&gt;Ориентация - Север!&lt;/item&gt;
+    &lt;item&gt;Вызов Activity&lt;/item&gt;
+    &lt;item&gt;Темы и стили&lt;/item&gt;
+    &lt;item&gt;Меню&lt;/item&gt;
+    ...
+&lt;/string-array&gt;
+&lt;string-array name="lessons_links"&gt;
+    &lt;item&gt;http://developer.alexanderklimov.ru/android/android0.php&lt;/item&gt;
+    &lt;item&gt;http://developer.alexanderklimov.ru/android/android1.php&lt;/item&gt;
+    &lt;item&gt;http://developer.alexanderklimov.ru/android/android2.php&lt;/item&gt;
+    &lt;item&gt;http://developer.alexanderklimov.ru/android/android3.php&lt;/item&gt;
+    &lt;item&gt;http://developer.alexanderklimov.ru/android/trafficlights.php&lt;/item&gt;
+    &lt;item&gt;http://developer.alexanderklimov.ru/android/eggtimer.php&lt;/item&gt;
+    &lt;item&gt;http://developer.alexanderklimov.ru/android/orientation.php&lt;/item&gt;
+    &lt;item&gt;http://developer.alexanderklimov.ru/android/activity.php&lt;/item&gt;
+    &lt;item&gt;http://developer.alexanderklimov.ru/android/theme.php&lt;/item&gt;
+    &lt;item&gt;http://developer.alexanderklimov.ru/android/menu.php&lt;/item&gt;
+    ...
+&lt;/string-array&gt;
+</code></pre>
+
+<p>Подключаем данные к списку через адаптер, используя метод <b>setListAdapter()</b>:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.advancedlistview;
+
+import android.app.ListActivity;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+
+public class AdvancedListViewActivity extends ListActivity {
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        setListAdapter(ArrayAdapter.createFromResource(getApplicationContext(),
+                R.array.lessons_titles, R.layout.list_item));
+    }
+}
+</code></pre>
+
+<p>Запустим проект и проверим работу приложения. Список с названиями уроков выводится. Но больше ничего не происходит.</p>
+
+<p><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/listviewadvanced1.png" alt=""></p>
+
+<p>Добавим обработку нажатий на элементах списка:</p>
+
+<pre><code class="java">
+getListView().setOnItemClickListener(new OnItemClickListener() {
+
+	@Override
+	public void onItemClick(AdapterView&lt;?&gt; parent, View v, int position,
+			long id) {
+		// TODO Auto-generated method stub
+		// Здесь будет наш код
+	}
+});
+</code></pre>
+
+<p>Заготовка разработана. Теперь нужно написать код, который будет 
+запускать нужную страницу урока (не зря же мы готовили второй массив 
+строк с адресами уроков).</p>
+
+<p>Но сначала создадим новый шаблон с WebView, в которую будем 
+подгружать интернет-страницы. Впрочем у нас уже есть файл main.xml, 
+который остался не у дел, когда мы решили воспользоваться ListActivity. 
+Давайте модифицируем его:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;WebView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tutView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" &gt;
+
+&lt;/WebView&gt;
+</code></pre>
+
+<p>Создадим новый класс, наследующий от Activity и назовём его <b>ViewerActivity.java</b>. Пропишем в нём метод <b>onCreate()</b> и укажем нужный шаблон в <b>setContentView()</b>:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.advancedlistview;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class ViewerActivity extends Activity {
+	
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+	}
+}
+</code></pre>
+
+<p>Не забываем прописать созданный класс в манифесте приложения.</p>
+
+<pre><code class="xml">
+&lt;activity
+    android:name=".ViewerActivity"
+    android:label="@string/app_name" &gt;
+&lt;/activity&gt;
+</code></pre>
+
+<p>Возвращаемся к основной активности. Внутри метода <b>onItemClick()</b> позиция нажатого элемента списка определяется через параметр <b>position</b>, имеющий тип <b>int</b>. С его помощью мы можем обратиться к нужной строке из массива ссылок.</p>
+
+<p>Простой способ передать ссылку другой активности - добавить <b>Uri</b> намерению через метод <b>setData()</b>. Напишем необходимый код для <b>onItemClick()</b>:</p>
+
+<pre><code class="java">
+final String[] links = getResources().getStringArray(R.array.lessons_links);
+
+@Override
+public void onItemClick(AdapterView&lt;?&gt; parent, View v, int position,
+		long id) {
+	// TODO Auto-generated method stub
+    String content = links[position];
+    Intent showContent = new Intent(getApplicationContext(),
+            ViewerActivity.class);
+    showContent.setData(Uri.parse(content));
+    startActivity(showContent);
+}
+</code></pre>
+
+<p>Запустите проект, чтобы убедиться, что мы не совершили ошибок и 
+приложение работает. Пощёлкайте по элементам списка - пока у нас будет 
+загружаться белый экран второй активности. Ничего страшного, просто мы 
+не написали в нём код для отображения страниц:</p>
+
+<pre><code class="java">
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
+    
+    Intent launchingIntent = getIntent();
+    String content = launchingIntent.getData().toString();
+
+    WebView viewer = (WebView) findViewById(R.id.tutView);
+    viewer.loadUrl(content);
+}
+</code></pre>
+
+<p>Итак, в главной активности мы посылали данные (setData()), а вторая 
+активность принимает данные (getData()). Запустим проект еще раз и 
+проверим. Теперь вместо белого экрана мы видим страницу с ошибкой 
+доступа к интернет-странице. Да что же это такое! Успокойтесь, мы забыли
+ прописать в манифесте разрешение на доступ к интернет:</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+</code></pre>
+
+<p>Запускаем ещё раз. Теперь всё работает! Мы освежили в памяти работу со списками. Что ещё можно улучшить?</p>
+
+<ul>
+<li>Установить начальный зум в WebView для удобного просмотра страниц</li>
+<li>Добавить в WebView дополнительные элементы управления для более комфортного просмотра страниц</li>
+<li>Загружать список статей динамически вместо статичного массива строк</li>
+<li>Добавить различные визуальные атрибуты для списка</li>
+<li>Использовать fragments для работы с большими экранами</li>
+<li>Добавить дополнительную информацию для элементов списка: подсказки, значки, индикаторы прочтения, избранное и т.д.</li>
+</ul>
+
+<h2 class="text-warning" id="usingfragment">Используем фрагменты</h2>
+
+<p>Теперь переделаем программу с использованием фрагментов, чтобы на 
+большом экране сразу умещались и прокручиваемый список и сама статья, 
+которая загружается по нажатию выбранной ссылки. Как вы уже догадались, 
+данный способ предназначен для планшетов.</p>
+
+<p><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/MT-Fragments-Fig2.png"></p>
+
+<p>Создадим два новых класса для фрагментов: <b>MyListFragment</b> и <b>MyViewerFragment</b>. MyListFragment будет наследоваться от класса <b>ListFragment</b>, а MyViewerFragment от класса <b>Fragment</b>.</p>
+
+<p>В классе MyListFragment мы переопределим два метода: <b>onListItemClick()</b> и <b>onCreate()</b>:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.advancedlistview;
+
+import android.app.ListFragment;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+public class MyListFragment extends ListFragment {
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		String[] links = getResources().getStringArray(R.array.lessons_links);
+
+		String content = links[position];
+		Intent showContent = new Intent(getActivity().getApplicationContext(),
+				ViewerActivity.class);
+		showContent.setData(Uri.parse(content));
+		startActivity(showContent);
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setListAdapter(ArrayAdapter.createFromResource(getActivity()
+				.getApplicationContext(), R.array.lessons_titles,
+				R.layout.list_item));
+	}
+}
+</code></pre>
+
+<p>Фактически, код совпадает с кодом главной активности.</p>
+
+<p>Класс MyViewerFragment попроще. В методе <b>onCreateView()</b> мы 
+получаем данные из намерения от фрагмента через активность-посредник, 
+который находится на том экране. В остальном код идентичен:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.advancedlistview;
+
+import android.app.Fragment;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+
+public class MyViewerFragment extends Fragment {
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	        Bundle savedInstanceState) {
+	    Intent launchingIntent = getActivity().getIntent();
+	    String content = launchingIntent.getData().toString();
+	 
+	    WebView viewer = (WebView) inflater.inflate(R.layout.main, container, false);
+	    viewer.loadUrl(content);
+	     
+	    return viewer;
+	}
+}
+</code></pre>
+
+<p>Теперь создадим новую разметку с использованием фрагментов под именем list_fragment.xml.</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;fragment
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:name="ru.alexanderklimov.advancedlistview.MyListFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/list_fragment"&gt;
+&lt;/fragment&gt;
+</code></pre>
+
+<p>Теперь создадим ещё одну разметку - view_fragment.xml:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;fragment
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:name="ru.alexanderklimov.advancedlistview.MyViewerFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/view_fragment"&gt;
+&lt;/fragment&gt;
+</code></pre>
+
+<p>Теперь необходимо внести изменения в наши старые файлы AdvancedListViewActivity.java и ViewerActivity.java.</p>
+
+<p>В первом классе мы возвращаем в методе onCreate() метод 
+setContentView(), который загрузает ресурс фрагмента. И теперь мы 
+наследуемся от Activity вместо ListActivity:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.advancedlistview;
+
+import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+
+public class AdvancedListViewActivity extends Activity {
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.list_fragment);
+    }
+}
+</code></pre>
+
+<p>Во втором классе делаем аналогичные изменения и загружаем разметку view_fragment:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.advancedlistview;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.webkit.WebView;
+
+public class ViewerActivity extends Activity {
+	
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.view_fragment);
+    }
+}
+</code></pre>
+
+<p>Если запустить проект на данном этапе, то ничего интересного не 
+увидим. Поведение программы не будет отличаться от версии без 
+фрагментов. А нам надо, чтобы на планшете в альбомной ориентации два 
+фрагмента отобразились одновременно. Для этого нужно добавить в классы 
+различные интерфейсы, добавить новую разметку для альбомной ориентации и
+ снова менять код.</p>
+
+<p>Запускать вторую активность с WebView из TutListFragment нет смысла, 
+так как WebView теперь может быть частью первой активности на большом 
+экране. В этом случае мы просто хотим обновить URL для WebView во втором
+ фрагменте. Для этого нужно сделать несколько вещей. Во-первых, 
+фрагменты должны быть независимы от своих активностей. Для этого добавим
+ интерфейс в класс TutListFragment:</p>
+
+<pre><code class="java">
+public interface OnTutSelectedListener {
+    public void onTutSelected(Uri tutUri);
+}
+</code></pre>
+
+<p>Затем обновим метод onListItemClickListener():</p>
+
+<pre><code class="java">
+@Override
+public void onListItemClick(ListView l, View v, int position, long id) {
+    String[] links = getResources().getStringArray(R.array.tut_links);
+    String content = links[position];
+    tutSelectedListener.onTutSelected(Uri.parse(content));
+}
+</code></pre>
+
+<p>Далее в класс TutListActivity добавим интерфес OnTutSelectedListener:</p>
+
+<pre><code class="java">
+public class TutListActivity extends Activity implements
+        TutListFragment.OnTutSelectedListener {
+...
+@Override
+public void onTutSelected(Uri tutUri) {
+    Intent showContent = new Intent(getApplicationContext(),
+            TutViewerActivity.class);
+    showContent.setData(tutUri);
+    startActivity(showContent);
+}
+</code></pre>
+
+<p>У нас появилась функциональность, позволяющая работать между 
+фрагментом и активностью, которая может передать данные другой 
+активности. Потом мы изменим метод onTutSelected(), чтобы иметь выбор: 
+запускать новую активность или обновлять существующий фрагмент.</p>
+
+<p>Теперь обратимся к классу TutViewerFragment. Вместо запроса намерения
+ для нахождения нужной ссылки, фрагмент ожидает саму ссылку для 
+загрузки. Мы можем обновить сразу WebView, не создавая заново фрагмент 
+для каждой загрузки. Изменим класс TutViewerFragment, добавив новый 
+метод updateUrl():</p>
+
+<pre><code class="java">
+public void updateUrl(String newUrl) {
+    if (viewer != null) {
+        viewer.loadUrl(newUrl);
+    }
+}
+</code></pre>
+
+<p>Далее, удалим код из метода onCreateView(), кроме вызова inflate(). Добавим следующий код:</p>
+
+<pre><code class="java">
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.tutview_fragment);
+    Intent launchingIntent = getIntent();
+    String content = launchingIntent.getData().toString();
+    TutViewerFragment viewer = (TutViewerFragment) getFragmentManager()
+            .findFragmentById(R.id.tutview_fragment);
+    viewer.updateUrl(content);
+}
+</code></pre>
+
+<p>Теперь создадим разметку с двумя фрагментами. В папке layout-land 
+добавим копию файла tutlist_fragment.xml, чтобы использовать данную 
+разметку для альбомной ориентации. Портретная ориентация останется без 
+изменений. Отредактируем файл:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"&gt;
+    &lt;fragment
+        android:name="ru.alexanderklimov.advancedlistview.MyListFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/list_fragment"
+        android:layout_weight="45"&gt;
+    &lt;/fragment&gt;
+    &lt;fragment
+        android:name="ru.alexanderklimov.advancedlistview.MyViewerFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/view_fragment"
+        android:layout_weight="55"&gt;
+    &lt;/fragment&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Разметка делит экран на две части.</p>
+
+<p>Добавим код, чтобы можно было выбирать между запуском новой 
+активности (модель Два экрана) и обновлением существующего фрагмента 
+(модель Всё на одном экране).</p>
+
+<p>Для этого обновим метод onTutSelected() в классе TutListActivity:</p>
+
+<pre><code class="java">
+@Override
+public void onTutSelected(String tutUrl) {
+    TutViewerFragment viewer = (TutViewerFragment) getFragmentManager()
+            .findFragmentById(R.id.tutview_fragment);
+    if (viewer == null || !viewer.isInLayout()) {
+        Intent showContent = new Intent(getApplicationContext(),
+                TutViewerActivity.class);
+        showContent.setData(Uri.parse(tutUrl));
+        startActivity(showContent);
+    } else {
+        viewer.updateUrl(tutUrl);
+    }
+}
+</code></pre>
+
+<p>Мы проверяем, является ли фрагмент частью разметки для активности. 
+Если нет, то запускается вторая активность, иначе просто обновляется сам
+ фрагмент.</p>
+
+<p>Запустите проект в обычном портретном режиме. Далее переключитесь в 
+альбомный режим, чтобы увидеть, как экран поделится на две части.</p>
+
+<p>Далее полный код приложения.</p>
+
+<h3 class="text-warning">MyListFragment.java</h3>
+
+<pre><code class="java">
+package ru.alexanderklimov.advancedlistview;
+
+import android.app.Activity;
+import android.app.ListFragment;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+public class MyListFragment extends ListFragment {
+	private OnSelectedListener SelectedListener;
+
+	@Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        String[] links = getResources().getStringArray(R.array.lessons_links);
+
+        String content = links[position];
+        SelectedListener.onSelected(content);
+    }
+
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setListAdapter(ArrayAdapter.createFromResource(getActivity()
+				.getApplicationContext(), R.array.lessons_titles,
+				R.layout.list_item));
+	}
+	
+	public interface OnSelectedListener {
+	    public void onSelected(String tutUri);
+	}
+	
+	@Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            SelectedListener = (OnSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnSelectedListener");
+        }
+    }
+}
+</code></pre>
+
+<h3 class="text-warning">AdvancedListViewActivity.java</h3>
+
+<pre><code class="java">
+package ru.alexanderklimov.advancedlistview;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+
+public class AdvancedListViewActivity extends Activity implements
+		MyListFragment.OnSelectedListener {
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.list_fragment);
+	}
+
+	@Override
+	public void onSelected(String Url) {
+		// TODO Auto-generated method stub
+		MyViewerFragment viewer = (MyViewerFragment) getFragmentManager()
+				.findFragmentById(R.id.view_fragment);
+
+		if (viewer == null || !viewer.isInLayout()) {
+			Intent showContent = new Intent(getApplicationContext(),
+					ViewerActivity.class);
+			showContent.setData(Uri.parse(Url));
+			startActivity(showContent);
+		} else {
+			viewer.updateUrl(Url);
+		}
+	}
+}
+</code></pre>
+
+<h3 class="text-warning">MyViewerFragment.java</h3>
+
+<pre><code class="java">
+package ru.alexanderklimov.advancedlistview;
+
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+
+public class MyViewerFragment extends Fragment {
+	private WebView viewer = null;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		viewer = (WebView) inflater
+				.inflate(R.layout.main, container, false);
+		return viewer;
+	}
+
+	public void updateUrl(String newUrl) {
+		if (viewer != null) {
+			viewer.loadUrl(newUrl);
+		}
+	}
+}
+</code></pre>
+
+<h3 class="text-warning">ViewerActivity.java</h3>
+
+<pre><code class="java">
+package ru.alexanderklimov.advancedlistview;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+
+public class ViewerActivity extends Activity {
+	
+	@Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.view_fragment);
+        
+        Intent launchingIntent = getIntent();
+        String content = launchingIntent.getData().toString();
+
+        MyViewerFragment viewer = (MyViewerFragment) getFragmentManager()
+                .findFragmentById(R.id.view_fragment);
+
+        viewer.updateUrl(content);
+	}
+}
+</code></pre>
+
+<p>После изменений в коде создается новая папка <i>res/layout-land</i>, в него копируется файл <b>list_fragment.xml</b> и подвергается небольшой обработке:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"&gt;
+    &lt;fragment
+        android:name="ru.alexanderklimov.advancedlistview.MyListFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/list_fragment"
+        android:layout_weight="45"&gt;
+    &lt;/fragment&gt;
+    &lt;fragment
+        android:name="ru.alexanderklimov.advancedlistview.MyViewerFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/view_fragment"
+        android:layout_weight="55"&gt;
+    &lt;/fragment&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Теперь, если запустить пример в альбомной ориентации, то отобразится и список и выбранная статья.</p>
+
+<h2 class="text-warning" id="supportlibrary">Поддержка фрагментов в старых версиях Android</h2>
+
+<p>Наше приложение использует фрагменты, но они не будут работать на 
+устройствах ниже, чем Android 3.0. Воспользуемся специальной библиотекой
+ <b>Android Support package</b>.</p>
+
+<p>Чтобы добавить поддержку фрагментов в старых версиях ваших проектов, нужно сделать следующее:</p>
+
+<p>Скачать Android Support package через SDK Manager.</p>
+
+<p><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/sdk-manager.png" alt="Android Support"></p>
+
+<p>Создать папку <b>libs</b> в корне вашего проекта и скопировать jar-файл в эту папку. Сам файл можно найти по адресу <b>&lt;sdk&gt;/extras/android/support/v4/android-support-v4.jar</b>.</p><p>
+
+</p><p>Обновить манифест, установив минимальный уровень до 4:</p>
+
+<pre>&lt;uses-sdk android:minSdkVersion="4" android:targetSdkVersion="16" /&gt;
+</pre>
+
+<p>Импортировать Support Library API в проект. Будьте внимательны, импортировать нужно именно от этой библиотеки</p>
+
+<pre><code class="java">
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+</code></pre>
+
+<p>Сама активность, которая использует фрагменты, должна наследоваться от <b>FragmentActivity</b> вместо стандартного класса <b>Activity</b>. В нашем примере это классы AdvancedListViewActivity и ViewerActivity. Далее в коде замените вызовы методов <b>getFragmentManager()</b> на <b>getSupportFragmentManager()</b>.</p>
+
+<p>В классе MyViewerFragment замените строчку импорта:</p>
+
+<pre><code class="java">
+import android.support.v4.app.Fragment;
+</code></pre>
+
+<p>В классе MyListFragment также меняем строчку импорта:</p>
+
+<pre><code class="java">
+import android.support.v4.app.ListFragment;
+</code></pre>
+
+<p>Этих шагов достаточно, чтобы использовать приложение с фрагментами на старых устройствах.</p>
+
+<h2 class="text-warning" id="database">Подключаем базу данных</h2>
+
+<p>На данный момент приложение слишком статично, так как берёт данные из
+ готовых ресурсов в виде строковых массивов. Попробуем вместо ресурсов 
+использовать базу данных. Подобное решение является более гибким и 
+удобным для расширения возможностей. Например, мы можем получать данные 
+из интернета и использовать их в приложении.</p>
+
+<p>Для начала нам нужно создать новый класс <b>MyListDatabase</b>, наследующий от <b>SQLiteOpenHelper</b>. Для удобства создадим новый пакет <b>ru.alexanderklimov.advancedlistview.data</b>, чтобы логику работы с базой данных не смешивать с работой самого приложения.</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.advancedlistview.data;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class MyListDatabase extends SQLiteOpenHelper {
+
+	private static final String DEBUG_TAG = "MyListDatabase";
+	private static final int DB_VERSION = 1;
+	private static final String DB_NAME = "tutorial_data";
+
+	public MyListDatabase(Context context) {
+		super(context, DB_NAME, null, DB_VERSION);
+	}
+
+	@Override
+	public void onCreate(SQLiteDatabase db) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		// TODO Auto-generated method stub
+	}
+}
+</code></pre>
+
+<p>Определим структуру базы данных. По предыдущим материалам видно, что 
+нам нужны два поля: заголовок и ссылка на статью. Нет причин 
+отказываться от этих полей для базы данных. Ещё нам понадобится 
+уникальный идентификатор <b>_id</b>, который практически всегда используется в базах данных под Android. Саму таблицу назовём <b>tutorials</b>.</p>
+
+<pre><code class="java">
+public static final String TABLE_TUTORIALS = "tutorials";
+public static final String ID = "_id";
+public static final String COL_TITLE = "title";
+public static final String COL_URL = "url";
+private static final String CREATE_TABLE_TUTORIALS = "create table "
+        + TABLE_TUTORIALS + " (" + ID
+        + " integer primary key autoincrement, " + COL_TITLE
+        + " text not null, " + COL_URL + " text not null);";
+private static final String DB_SCHEMA = CREATE_TABLE_TUTORIALS;
+</code></pre>
+
+<p>База данных создаётся через метод <b>execSQL()</b>.</p>
+
+<pre><code class="java">
+@Override
+public void onCreate(SQLiteDatabase db) {
+	// TODO Auto-generated method stub
+	db.execSQL(DB_SCHEMA);
+}
+</code></pre>
+
+<p>В методе <b>onUpgrade()</b> мы удаляем таблицу при её изменении.</p>
+
+<pre><code class="java">
+@Override
+public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    // TODO Auto-generated method stub
+    Log.w(DEBUG_TAG,
+            "Upgrading database. Existing contents will be lost. ["
+                    + oldVersion + "]-&gt;[" + newVersion + "]");
+    db.execSQL("DROP TABLE IF EXISTS " + TABLE_TUTORIALS);
+    onCreate(db);
+}
+</code></pre>
+
+<p>Теперь создадим класс контент-провайдера. С его помощью будем управлять данными в базе. Назовём класс <b>MyListProvider</b>, который будет наследоваться от класса <b>ContentProvider</b>. Создадим в нём закрытую переменную экземпляра класса MyListDatabase, которую инициализируем в методе <b>onCreate()</b>. Остальные методы, добавленные редактором кода, оставим без изменений.</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.advancedlistview.data;
+
+import android.content.ContentProvider;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.net.Uri;
+
+public class MyListProvider extends ContentProvider {
+	
+	private MyListDatabase mDB;
+
+	@Override
+	public int delete(Uri arg0, String arg1, String[] arg2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public String getType(Uri arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Uri insert(Uri arg0, ContentValues arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean onCreate() {
+		// TODO Auto-generated method stub
+		mDB = new MyListDatabase(getContext());
+		return true;
+	}
+
+	@Override
+	public Cursor query(Uri arg0, String[] arg1, String arg2, String[] arg3,
+			String arg4) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int update(Uri arg0, ContentValues arg1, String arg2, String[] arg3) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+}
+</code></pre>
+
+<p>Провайдеры данных работают с данными через URL-схему, как браузеры:</p>
+
+<pre>content:// ru.alexanderklimov.advancedlistview.data.MyListProvider/tutorials
+</pre>
+
+<p>Создадим несколько констант в классе MyListProvider, которые нам понадобятся для работы:</p>
+
+<pre><code class="java">
+private static final String AUTHORITY = "ru.alexanderklimov.advancedlistview.data.MyListProvider";
+public static final int TUTORIALS = 100;
+public static final int TUTORIAL_ID = 110;
+private static final String TUTORIALS_BASE_PATH = "tutorials";
+public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
+		+ "/" + TUTORIALS_BASE_PATH);
+public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
+		+ "/mt-tutorial";
+public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
+		+ "/mt-tutorial";
+</code></pre>
+
+<p>Обратите внимание, что часть переменных закрыта (private), а часть 
+открыта (public). К открытым переменным можно обращаться из других 
+классов и приложений через контент-провайдер. К закрытым имеют доступ 
+только внутри класса.</p>
+
+<p>Чтобы определить адрес URI, переданный контент-провайдеру, воспользуемся классом <b>UriMatcher</b>, который задаёт шаблоны.<code class="java">
+private static final UriMatcher sURIMatcher = new UriMatcher(
+        UriMatcher.NO_MATCH);
+static {
+    sURIMatcher.addURI(AUTHORITY, TUTORIALS_BASE_PATH, TUTORIALS);
+    sURIMatcher.addURI(AUTHORITY, TUTORIALS_BASE_PATH + "/#", TUTORIAL_ID);
+}
+</code>
+
+</p><p>UriMatcher задаёт два типа URI. Один из них выглядит как строка, о
+ которой говорилось выше. У второго типа добавляется слэш и число, 
+определяющее идентификатор.</p>
+
+<p>У нашего класса имеются различные методы, созданные по умолчанию. Нам
+ предстоит их переопределить. В первую очередь нас интересует метод <b>query()</b>. О других поговорим позже.</p>
+
+<p>Метод <b>query()</b> имеет пять параметров, включая два массива.</p>
+
+<pre><code class="java">
+@Override
+public Cursor query(Uri uri, String[] projection, String selection,
+        String[] selectionArgs, String sortOrder) {
+    SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
+    queryBuilder.setTables(MyListDatabase.TABLE_TUTORIALS);
+    int uriType = sURIMatcher.match(uri);
+    switch (uriType) {
+    case TUTORIAL_ID:
+        queryBuilder.appendWhere(MyListDatabase.ID + "="
+                + uri.getLastPathSegment());
+        break;
+    case TUTORIALS:
+        // no filter
+        break;
+    default:
+        throw new IllegalArgumentException("Unknown URI");
+    }
+    Cursor cursor = queryBuilder.query(mDB.getReadableDatabase(),
+            projection, selection, selectionArgs, null, null, sortOrder);
+    cursor.setNotificationUri(getContext().getContentResolver(), uri);
+    return cursor;
+}
+</code></pre>
+
+<p>Для запросов испольуется экземпляр класса SQLiteQueryBuilder. С помощью метода <b>setTables()</b> мы задаём нужную таблицу. Далее с помощью класса UriMatcher определяем тип URI и составляем запрос. Далее вызывается метод <b>query()</b> класса SQLiteQueryBuilder, у которого имеются те же параметры, что и в нашем методе <b>query()</b>. В результате возвращается объект Cursor.</p>
+
+<p>Следующий шаг - зарегистрировать провайдер в манифесте.</p>
+
+<pre><code class="xml">
+&lt;provider
+    android:name="ru.alexanderklimov.advancedlistview.data.MyListProvider"
+    android:authorities="ru.alexanderklimov.advancedlistview.data.MyListProvider"
+    android:multiprocess="true" &gt;
+&lt;/provider&gt;
+</code></pre>
+
+<p>Атрибут <b>authorities</b> должен совпадать с константой AUTHORITY в классе MyListProvider. Атрибут <b>name</b> должен содержать полное имя класса контент-провайдера.</p>
+
+<p>Перейдём к классу MyListFragment и обновим код в методе <b>onCreate()</b> для использования контент-провайдера.</p>
+
+<pre><code class="java">
+@Override
+public void onCreate(Bundle savedInstanceState) {
+	super.onCreate(savedInstanceState);
+	
+	String[] projection = { MyListDatabase.ID, MyListDatabase.COL_TITLE };
+    String[] uiBindFrom = { MyListDatabase.COL_TITLE };
+    int[] uiBindTo = { R.id.title };
+    Cursor tutorials = getActivity().managedQuery(
+            MyListProvider.CONTENT_URI, projection, null, null, null);
+    CursorAdapter adapter = new SimpleCursorAdapter(getActivity()
+            .getApplicationContext(), R.layout.list_item, tutorials,
+            uiBindFrom, uiBindTo);
+    setListAdapter(adapter);
+}
+</code></pre>
+
+<p>В примере используется устаревший метод <b>managedQuery()</b>, который позже исправим.</p>
+
+<p>Переменная projection - это простой список колонок, которые нужно 
+передать адаптеру. В нашем случае это колонка с идентификатором и 
+заголовками статей.</p>
+
+<p>Теперь обновим метод <b>onListItemClick()</b>. До этого момента мы 
+использовали позицию элемента для поиска ссылки в массиве. Теперь мы 
+можем использовать уникальный идентификатор, который совпадает с 
+идентификатором в базе и через него находим ссылку в базе.</p>
+
+<pre><code class="java">
+@Override
+public void onListItemClick(ListView l, View v, int position, long id) {
+	String projection[] = { MyListDatabase.COL_URL };
+	Cursor tutorialCursor = getActivity().getContentResolver().query(
+			Uri.withAppendedPath(MyListProvider.CONTENT_URI,
+					String.valueOf(id)), projection, null, null, null);
+	if (tutorialCursor.moveToFirst()) {
+		String tutorialUrl = tutorialCursor.getString(0);
+		SelectedListener.onSelected(tutorialUrl);
+	}
+	tutorialCursor.close();
+}
+</code></pre>
+
+<p>Возвращаемся к классу контент-провайдера и закончим с методами.</p>
+
+<pre><code class="java">
+@Override
+public int delete(Uri uri, String selection, String[] selectionArgs) {
+	int uriType = sURIMatcher.match(uri);
+	SQLiteDatabase sqlDB = mDB.getWritableDatabase();
+	int rowsAffected = 0;
+	switch (uriType) {
+	case TUTORIALS:
+		rowsAffected = sqlDB.delete(MyListDatabase.TABLE_TUTORIALS,
+				selection, selectionArgs);
+		break;
+	case TUTORIAL_ID:
+		String id = uri.getLastPathSegment();
+		if (TextUtils.isEmpty(selection)) {
+			rowsAffected = sqlDB.delete(MyListDatabase.TABLE_TUTORIALS,
+					MyListDatabase.ID + "=" + id, null);
+		} else {
+			rowsAffected = sqlDB.delete(MyListDatabase.TABLE_TUTORIALS,
+					selection + " and " + MyListDatabase.ID + "=" + id,
+					selectionArgs);
+		}
+		break;
+	default:
+		throw new IllegalArgumentException("Unknown or Invalid URI " + uri);
+	}
+	getContext().getContentResolver().notifyChange(uri, null);
+	return rowsAffected;
+}
+</code></pre>
+
+<p>В методе <b>delete()</b> мы определяем тип URI и открываем базу данных для записи. Затем, при определённых условиях удаляем данные.</p>
+
+<p>Другие методы изучите самостоятельно.</p>
+
+<h2 class="text-warning">Загружаем данные правильно</h2>
+
+<p>Мы использовали устаревший метод managedQuery(). Начиная с Android 
+3.0 следует использовать CursorLoader. Также есть версия совместимости 
+со старыми версиями Android (android.support.v4.xxx).</p>
+
+<p>Изменим класс MyListFragment, чтобы реализовать LoaderManager.LoaderCallbacks. Также переопределим три новых метода:</p>
+
+<pre><code class="java">
+public class MyListFragment extends ListFragment implements
+        LoaderManager.LoaderCallbacks&lt;Cursor&gt; {
+// ... existing code
+// LoaderManager.LoaderCallbacks&lt;Cursor&gt; methods:
+    @Override
+    public Loader&lt;Cursor&gt; onCreateLoader(int id, Bundle args) {
+        // TBD
+    }
+    @Override
+    public void onLoadFinished(Loader&lt;Cursor&gt; loader, Cursor cursor) {
+        // TBD
+    }
+    @Override
+    public void onLoaderReset(Loader&lt;Cursor&gt; loader) {
+        // TBD
+    }
+}
+</code></pre>
+
+<p>Инициализируем Loader. Внесем изменения в методе onCreate(). Учтите, что курсор теперь создается в другом потоке</p>
+
+<pre><code class="java">
+private static final int TUTORIAL_LIST_LOADER = 0x01;
+private SimpleCursorAdapter adapter;
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    String[] uiBindFrom = { TutListDatabase.COL_TITLE };
+    int[] uiBindTo = { R.id.title };
+    getLoaderManager().initLoader(TUTORIAL_LIST_LOADER, null, this);
+    adapter = new SimpleCursorAdapter(
+            getActivity().getApplicationContext(), R.layout.list_item,
+            null, uiBindFrom, uiBindTo,
+            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+    setListAdapter(adapter);
+}
+</code></pre>
+
+<p>Загрузчик не создается автоматически. Это работа для класса 
+LoaderManager.LoaderCallbacks. CursorLoader создается и возвращается 
+через метод  onCreateLoader():</p>
+
+<pre><code class="java">
+@Override
+public Loader&lt;Cursor&gt; onCreateLoader(int id, Bundle args) {
+    String[] projection = { TutListDatabase.ID, TutListDatabase.COL_TITLE };
+    CursorLoader cursorLoader = new CursorLoader(getActivity(),
+            MyListProvider.CONTENT_URI, projection, null, null, null);
+    return cursorLoader;
+}
+</code></pre>
+
+<p>Новый метод swapCursor() (API Level 11) переключается на новый 
+Cursor, но не закрывает предыдущий. Это позволяет сохранять состояние 
+курсора и управлять ими.</p>
+
+<pre><code class="java">
+@Override
+public void onLoadFinished(Loader&lt;Cursor&gt; loader, Cursor cursor) {
+    adapter.swapCursor(cursor);
+}
+</code></pre>
+
+
+<p>Использованные материалы:<br>
+<a href="http://code.google.com/p/android-mtlist-tutorial/">Исходники</a><br>
+<a href="http://mobile.tutsplus.com/tutorials/android/android-listview/">Android User Interface Design: Building a ListView Application</a><br>
+<a href="http://mobile.tutsplus.com/tutorials/android/android-sdk_fragments/">Android User Interface Design: Working With Fragments</a><br>
+<a href="http://mobile.tutsplus.com/tutorials/android/android-compatibility-working-with-fragments/">Android Compatibility: Working with Fragments</a><br>
+<a href="http://mobile.tutsplus.com/tutorials/android/android-sdk_content-providers/">Android Fundamentals: Working With Content Providers</a><br>
+<a href="http://mobile.tutsplus.com/tutorials/android/android-sdk_loading-data_cursorloader/">Android Fundamentals: Properly Loading Data</a>
+<a href="http://mobile.tutsplus.com/tutorials/android/android-fundamentals-downloading-data-with-services/">Android Fundamentals: Downloading Data With Services</a><br>
+
+</p>
+
+
+
+<p>Сейчас наше приложение хранит заголовки статей и  ссылки к ним в базе
+ данных. Неплохо бы добавить компонент, который позволит нам получать 
+новый контент с сайта и сохранять его в базу данных. Компонет должен 
+скачать фиды RSS с сайта, распарсить на заголовок и ссылку  и затем 
+положить в базу. База должна отслеживать дублирование ссылок. Также 
+нужно предусмотреть опцию обновления, чтобы пользователь мог 
+самостоятельно обновлять контент в нужное время.</p>
+
+<h2 class="text-warning">Создаем Service</h2>
+
+<p>Для фоновой загрузки и обработки данных подойдет Сервис. Создадим 
+новый пакет, как мы поступали при создании провайдера контента. Назовём 
+пакет ru.alexanderklimov.service. В новом пакете создадим новый класс <b>DownloaderService</b>, наследующий от класса Service (android.app.Service).</p>
+
+<p>Для работы с сервисом воспользуемся классом AsyncTask:</p>
+
+<pre><code class="java">
+import java.net.URL;
+
+import android.app.Service;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.IBinder;
+
+public class DownloaderService extends Service {
+
+	private static final String DEBUG_TAG = "DownloaderService";
+	private DownloaderTask tutorialDownloader;
+
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		// TBD
+		return Service.START_FLAG_REDELIVERY;
+	}
+
+	@Override
+	public IBinder onBind(Intent intent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private class DownloaderTask extends AsyncTask&lt;URL, Void, Boolean&gt; {
+		private static final String DEBUG_TAG = "DownloaderService$DownloaderTask";
+
+		@Override
+		protected Boolean doInBackground(URL... params) {
+			// TBD
+		}
+
+		private boolean xmlParse(URL downloadPath) {
+			// TBD
+		}
+	}
+}
+</code></pre>
+
+<p>Добавим в манифест (секция &lt;application&gt;) новую запись, регистрирующую сервисy. Нам нужно указаать имя сервиса:</p>
+
+<pre><code class="xml">
+&lt;service android:name=".service.DownloaderService"&gt;&lt;/service&gt;
+</code></pre>
+
+<p>Чтобы избежать дублирования ссылок, нужно поменять код в классе MyListDatabase, изменив строку <b>CREATE_TABLE_TUTORIALS</b>:</p>
+
+<pre><code class="java">
+private static final String CREATE_TABLE_TUTORIALS = "CREATE TABLE "
+        + TABLE_TUTORIALS + " (" + ID
+        + " integer PRIMARY KEY AUTOINCREMENT, " + COL_TITLE
+        + " text NOT NULL, " + COL_URL + " text UNIQUE NOT NULL, "
+        + COL_DATE + " INTEGER NOT NULL DEFAULT (strftime('%s','now')), "
+        + COL_READ + " INTEGER NOT NULL default 0" + ");";
+</code></pre>
+
+<p>Теперь нужно изменить код для провайдера в классе. Отредактируем метод <b>insert()</b> в MyListProvider</p>
+
+<pre><code class="java">
+@Override
+public Uri insert(Uri uri, ContentValues values) {
+    int uriType = sURIMatcher.match(uri);
+    if (uriType != TUTORIALS) {
+        throw new IllegalArgumentException("Invalid URI for insert");
+    }
+    SQLiteDatabase sqlDB = mDB.getWritableDatabase();
+    try {
+        long newID = sqlDB.insertOrThrow(MyListDatabase.TABLE_TUTORIALS,
+                null, values);
+        if (newID &gt; 0) {
+            Uri newUri = ContentUris.withAppendedId(uri, newID);
+            getContext().getContentResolver().notifyChange(uri, null);
+            return newUri;
+        } else {
+            throw new SQLException("Failed to insert row into " + uri);
+        }
+    } catch (SQLiteConstraintException e) {
+        Log.i(DEBUG_TAG, "Ignoring constraint failure.");
+    }
+    return null;
+}
+</code></pre>
+
+<p>Возвращаемся к нашему AsyncTask и добавим метод <b>doInBackground()</b>:</p>
+
+<pre><code class="java">
+@Override
+protected Boolean doInBackground(URL... params) {
+	boolean succeeded = false;
+	URL downloadPath = params[0];
+
+	if (downloadPath != null) {
+		succeeded = xmlParse(downloadPath);
+	}
+	return succeeded;
+}
+</code></pre>
+
+<p>Мы работаем с одним параметром. Проходим в цикле через все URL, 
+загружаем и парсим XML-файлы. Работа по обработке строк идет в методе <b>xmlParse()</b>.</p>
+
+<pre><code class="java">
+private boolean xmlParse(URL downloadPath) {
+	boolean succeeded = false;
+
+	XmlPullParser tutorials;
+
+	try {
+		tutorials = XmlPullParserFactory.newInstance().newPullParser();
+		tutorials.setInput(downloadPath.openStream(), null);
+		int eventType = -1;
+		// psuedo code--
+		// for each found "item" tag, find "link" and "title" tags
+		// before end tag "item"
+
+		while (eventType != XmlPullParser.END_DOCUMENT) {
+			if (eventType == XmlPullParser.START_TAG) {
+				String tagName = tutorials.getName();
+				if (tagName.equals("item")) {
+
+					ContentValues tutorialData = new ContentValues();
+					// inner loop looking for link and title
+					while (eventType != XmlPullParser.END_DOCUMENT) {
+						if (eventType == XmlPullParser.START_TAG) {
+							if (tutorials.getName().equals("link")) {
+								tutorials.next();
+								Log.d(DEBUG_TAG,
+										"Link: " + tutorials.getText());
+								tutorialData.put(
+										MyListDatabase.COL_URL,
+										tutorials.getText());
+							} else if (tutorials.getName().equals(
+									"title")) {
+								tutorials.next();
+								tutorialData.put(
+										MyListDatabase.COL_TITLE,
+										tutorials.getText());
+							} else if (tutorials.getName().equals(
+									"pubDate")) {
+								tutorials.next();
+								DateFormat parser = new SimpleDateFormat(
+										"E, dd MMM yyyy");
+								try {
+									Date date = parser.parse(tutorials
+											.getText());
+									tutorialData.put(
+											MyListDatabase.COL_DATE,
+											date.getTime() / 1000);
+								} catch (ParseException e) {
+									Log.e(DEBUG_TAG,
+											"Error parsing date: "
+													+ tutorials
+															.getText());
+								}
+							}
+						} else if (eventType == XmlPullParser.END_TAG) {
+							if (tutorials.getName().equals("item")) {
+								// save the data, and then continue with
+								// the outer loop
+								getContentResolver().insert(
+										MyListProvider.CONTENT_URI,
+										tutorialData);
+								break;
+							}
+						}
+						eventType = tutorials.next();
+					}
+				}
+			}
+			eventType = tutorials.next();
+		}
+		// no exceptions during parsing
+		succeeded = true;
+	} catch (XmlPullParserException e) {
+		Log.e(DEBUG_TAG, "Error during parsing", e);
+	} catch (IOException e) {
+		Log.e(DEBUG_TAG, "IO Error during parsing", e);
+	}
+
+	return succeeded;
+}
+</code></pre>
+
+<p>Добавим меню Refresh</p>
+
+<p>Here are the new methods to add to the TutListFragment class to managing an options menu with a refresh option:</p>
+
+<pre><code class="java">
+private int refreshMenuId;
+@Override
+public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    Intent intent = new Intent(getActivity().getApplicationContext(),
+            TutListDownloaderService.class);
+    intent.setData(Uri
+            .parse("http://feeds.feedburner.com/MobileTuts?format=xml"));
+    inflater.inflate(R.menu.options_menu, menu);
+    MenuItem refresh = menu.findItem(R.id.refresh_option_item);
+    refresh.setIntent(intent);
+    refreshMenuId = refresh.getItemId();
+}
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    if (item.getItemId() == refreshMenuId) {
+        getActivity().startService(item.getIntent());
+    }
+    return true;
+}
+</code></pre>
+
+<p>Меню</p>
+
+<pre><code class="java">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;menu
+    xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;item
+        android:id="@+id/refresh_option_item"
+        android:icon="@drawable/ic_menu_refresh"
+        android:title="Refresh"&gt;&lt;/item&gt;
+&lt;/menu&gt;
+</code></pre>
+
+
+Now, when you run the application, you’ll see that it has a menu:
+
+
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/fastbutton.htm" name="I0_1378295614291" id="I0_1378295614291" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/jquery.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/postmessageRelay.htm" id="oauth2relay2049938415" name="oauth2relay2049938415"></iframe>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%9F%D1%80%D0%BE%D0%B4%D0%B2%D0%B8%D0%BD%D1%83%D1%82%D0%BE%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20ListView_files/bootstrap-typeahead.js"></script>
+
+</body></html>

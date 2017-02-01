@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Геолокация</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="http://developer.alexanderklimov.ru/android/secret/enter.php" id="drop3" role="button">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>			
+<p><a href="http://developer.alexanderklimov.ru/android/secret/secret.php?do=logout">Выйти из закрытой зоны</a></p>
+<h1 class="text-warning">Геолокация</h1>
+
+<p>
+<a href="#common">Вступление</a><br>
+<a href="#first">Первичная настройка для работы с геолокационными сервисами</a><br>
+<a href="http://developer.alexanderklimov.ru/android/provider">Выбор Источника данных для получения местоположения</a><br>
+<a href="#where">Где я? Определение местонахождения</a><br>
+</p>
+
+<p>В настоящее время работа с геолокационными сервисами наиболее 
+популярна в среде программистов. Android имеет широкую поддержку всех 
+видов разработки, связанных с геолокацией.</p>
+
+<p>Основые примеры использования геолокации - определить собственное 
+местонахождение, определить координаты какого-нибудь объекта, а также 
+связать эти координаты с другими задачами - показать соседние кафе и 
+рестораны, город, страну и т.д.</p>
+
+<p>Прежде чем приступить к разработке приложений, связанных с 
+геолокационными сервисами, разработчик должен запомнить несколько важных
+ правил. Самая главное правило - местонахождение пользователя является 
+конфиденциальной информацией. Вы всегда должны явно указать 
+пользователю, что собираетесь использовать эти данные и запросить 
+согласие на подобное использование. Очень многие известные компании 
+пренебрегли этим правилом и были оштрафованы на крупные суммы, а также 
+подмочили свою репутацию.</p><p>
+
+</p><p>Сами геолокационные сервисы очень ресурсоемки как по части 
+потребления энергии, так и по части передачи объемов информации. Поэтому
+ нужно осторожно подходить к использованию этих функций и всегда 
+предусматривать возможность отключения ненужных сервисов.</p>
+
+<p>Отслеживайте заряд батареи и режим роуминга, чтобы у пользователя не 
+возникло негативных ощущений от использования ваших программ.</p>
+
+
+<h2 class="text-warning" id="first">Первичная настройка для работы с геолокационными сервисами</h2>
+
+<p>При использовании обычного эмулятора вы не найдете в ней программу 
+Google Maps и другие программы, связанные с определением 
+местонахождения. Вам необходимо создать новое AVD-устройство, которое 
+будет поддерживать Google API и его приложения. Для этого в среде 
+разработки Eclipse выберите меню <b>Window</b> | <b>Android SDK Manager</b> и выберите пункт <b>Google APIs by Google Inc.</b> для нужной версии платформы. Например, в приведенном ниже рисунке выбран нужный пункт для Android 2.3.3</p>
+
+<p><img src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/googleapi.png" alt="Google API"></p>
+
+<p>Далее в ваших приложениях нужно выбирать созданное вами устройство. Оно обычно в колонке Target Name имеет текст <b>Google APIs</b>.</p>
+
+<p><img src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/avd-google.png" alt="AVD с Google API"></p>
+
+<p>Запустив эмулятор с выбранным виртуальным устройством, вы найдете 
+среди приложений программу Maps. Запустите ее. Нажмите в ней кнопку <b>My location</b>
+ (Мое местоположение). Так как эмулятор имитирует реальное устройство, 
+то он не сможет определить свое текущее местоположение. Надо ему помочь.
+ Для настройки эмулятора нужно воспользоваться перспективой <b>DDMS</b>. Введите нужные значения координат широты и долготы в соответствующие поля (процесс настройки описан в статье <a href="http://developer.alexanderklimov.ru/android/emulator-callnow.php#geo">Голосовые вызовы, отправка и прием SMS, геолокационные данные на эмуляторе</a>) и нажмите кнопку <b>Send</b>.
+ Переключившись обратно в окно эмулятора вы должны увидеть на карте свое
+ местонахождение в соответствии с указанными координатами.</p>
+
+<h2 class="text-warning" id="provider">Выбор Источника данных для получения местоположения</h2>
+
+<p>В зависимости от устройства Android может применять несколько разных 
+технологий для определения текущего местоположения. LocationProvider 
+предоставляет разные возможности (уровtym энергопотребления, стоимостm 
+услуг и возможности определять высоту над уровнем моря, скорость или 
+информацию о курсе). Чтобы получить экземпляр конкретного провайдера, 
+вызовите метод <b>getProvider()</b>, передав ему нужное название:</p>
+
+<pre><code class="java">
+String providerName = LocationManager.GPS_PROVIDER;
+LocationProvider gpsProvider;
+gpsProvider = locationManager.getProvider(providerName);
+</code></pre>
+
+<p>Как правило, это нужно исключительно для определения возможностей 
+конкретного источника. Большинство методов, принадлежащих классу 
+LocationManager, требуют только имя источника, чтобы иметь возможность 
+обращаться к геолокационным сервисам.</p>
+
+<p>Класс LocationManager содержит статические строковые константы, которые возвращают имя одного из двух базовых источников:</p>
+<ul>
+<li>LocationManager.GPS_PROVIDER</li>
+<li>LocationManager.NETWORK_PROVIDER</li>
+</ul>
+
+<p>Чтобы получить список имен всех доступных источников на устройстве, 
+вызовите метод getProviders(), используя параметр типа Boolean (в 
+зависимости от его значения вы получите или все источники сразу, или 
+только те, которые сейчас активны):</p>
+
+<pre><code class="java">
+boolean enabledOnly = true;
+List&lt;String&gt; providers = locationManager.getProviders(enabledOnly);
+</code></pre>
+
+<p>В большинстве случаев вы, вероятно, предпочтете не указывать явно тип
+ LocationProvider. Чаще всего будете обозначать требования, которым 
+должен отвечать источник, а Android сам определит наиболее подходящую 
+технологию.</p>
+
+<p>Используйте класс Criteria, чтобы перечислить требования к источнику 
+данных, касающиеся точности (высокая или низкая), уровня 
+энергопотребления (низкий, средний или высокий), стоимости и возможности
+ возвращать параметры высоты над уровнем моря, скорости и маршрута. В 
+примере с помощью Criteria указываются низкая точность, низкий уровень 
+энергопотребления и отсутствие надобности в информации о высоте над 
+уровнем моря, направлении или скорости. При этом могут тратиться 
+соответствующие денежные средства.</p>
+
+<pre><code class="java">
+Criteria criteria = new Criteria();
+criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+criteria.setPowerRequirement(Criteria.POWER_LOW);
+criteria.setAltitudeRequired(false);
+criteria.setBearingRequired(false);
+criteria.setSpeedRequired(false);
+criteria.setCostAllowed(true);
+</code></pre>
+
+<p>Определив нужные параметры для Criteria, можете использовать метод 
+getBestProvider, который возвращает наиболее подходящий тип 
+LocationProvider, или метод getProviders, чтобы получить список 
+источников, соответствующих требованиям. Следующий фрагмент показывает, 
+как использовать getBestProvider() для определения лучшего источника 
+согласно описанным критериям, где параметр типа Boolean позволяет 
+ограничиться только активизированными источниками:</p>
+
+<pre><code class="java">
+String bestProvider = locationManager.getBestProvider(criteria, true);
+</code></pre>
+
+<p>Если указанным критериям соответствуют сразу несколько источников, 
+возвратится тот, у которого больше всего совпадений. Если ни один из 
+источников не подходит, объект Criteria начинает по очереди игнорировать
+ следующие параметры (в представленном порядке), пока источник не будет 
+найден:</p>
+
+<ul>
+<li>энергопотребление;</li>
+<li>точность;</li>
+<li>возможность возвращать маршрут, скорость и высоту над уровнем моря</li>
+</ul>
+
+<p>Критерий, касающийся денежных затрат, никогда не игнорируется по 
+умолчанию. Если не найдено ни одного источника, возвращается null. Чтобы
+ получить список имен всех источников, подпадающих под ваши требования, 
+можете использовать метод getProviders(). Он принимает объект Criteria и
+ возвращает отфильтрованный список строк, который содержит все доступные
+ типы LocationProvider, удовлетворяющие заданным критериям. Как и в 
+случае с getBestProvider, если ни один из источников не будет найден, 
+возвращается null.</p>
+
+<pre><code class="java">
+List&lt;String&gt; matchingProviders = locationManager.getProviders(criteria, false);
+</code></pre>
+
+<h2 class="text-warning" id="where">Где я? Определение местонахождения</h2>
+
+<p>Теперь, когда мы научились указывать эмулятору, где мы сейчас 
+находимся, неплохо бы научиться в своей программе определять свое 
+местонахождение. Поместим на экран четыре текстовых поля:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Широта (Latitude): " /&gt;
+
+    &lt;TextView
+        android:id="@+id/Latitude"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" /&gt;
+
+    &lt;TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Долгота (Longitude): " /&gt;
+
+    &lt;TextView
+        android:id="@+id/Longitude"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Теперь переходим к программной части:</p>
+
+<pre><code class="java">
+public class LocationDemoActivity extends Activity {
+	
+	private LocationManager myLocationManager;
+	private LocationListener myLocationListener;
+	private TextView myLatitude, myLongitude;
+		
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.main);
+		
+		myLatitude = (TextView)findViewById(R.id.Latitude);
+		myLongitude = (TextView)findViewById(R.id.Longitude);
+
+		myLocationManager = (LocationManager)getSystemService(
+		  Context.LOCATION_SERVICE);
+
+		myLocationListener = new MyLocationListener();
+		
+		myLocationManager.requestLocationUpdates(
+		        LocationManager.GPS_PROVIDER,
+		        0,
+		        0,
+		        myLocationListener);
+
+		//Get the current location in start-up
+		myLatitude.setText(String.valueOf(
+		    myLocationManager.getLastKnownLocation(
+		        LocationManager.GPS_PROVIDER).getLatitude()));
+
+		myLongitude.setText(String.valueOf(
+		    myLocationManager.getLastKnownLocation(
+		       LocationManager.GPS_PROVIDER).getLongitude()));
+	}
+	
+	private class MyLocationListener implements LocationListener{
+
+		public void onLocationChanged(Location argLocation) {
+		// TODO Auto-generated method stub
+		myLatitude.setText(String.valueOf(
+		  argLocation.getLatitude()));
+		myLongitude.setText(String.valueOf(
+		  argLocation.getLongitude()));
+		}
+
+		public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		}
+
+		public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+		}
+
+		public void onStatusChanged(String provider,
+		 int status, Bundle extras) {
+		// TODO Auto-generated method stub
+		}
+		};
+}
+</code></pre>
+
+<p>Также в манифесте нужно установить необходимое разрешение, имеющее полномочия для высокой точности:</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /&gt;
+</code></pre>
+
+<p>Также существует разрещение для низкой точности:</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/&gt;
+</code></pre>
+
+<p>Приложение, имеющее полномочия для высокой точности, автоматически получает доступ и к информации низкой точности.</p>
+
+<div class="alert alert-info">
+Источник GPS требует полномочий для использования данных высокой 
+точности, тогда как сетевые источники (телефонные сети, Wi-Fi) могут 
+обходиться и низкой точностью.
+</div>
+
+<p>Особенность примера состоит в том, что показания автоматически 
+меняются в зависимости от изменения местонахождения. Откройте 
+перспективу DDMS и отстегните окно Emulator Control от среды Eclipse, 
+чтобы можно было разместить его рядом с запущенным эмулятором с нашим 
+примером. Теперь вводите любые значения широты и долготы в эмуляторе и 
+нажимайте на кнопку Send. Вы увидите, что программа автоматически 
+выведет в TextView новые значения координат.</p>
+
+<img src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/geolocation.png" alt="Где я?">
+
+<p>Для выполнения задачи мы получаем экземпляр класса <b>LocationManager</b> через метод <b>getSystemService</b>. Класс LocationManager позволяет обращаться к функциям гео-сервисов, доступных на устройстве.</p>
+
+<p>Для получения обновлений информации о местоположении используется метод <b>requestLocationUpdates()</b>
+ класса LocationManager. Метод позволяет прослушивать события, 
+генерируемые провайдером данных. Изменять частоту получения уведомления 
+можно путем настройки минимального времени (в миллисекундах) и 
+минимальной дистанции (в метрах) между обновлениями.</p>
+
+<p>Для получения уведомления об изменениях местоположения нужно 
+реализовать интерфейс LocationListener, который имеет ряд полезных 
+методов обработки событий. Нужно отметить, что получение информации о 
+текущем местоположении требуется время. Поэтому рекомендуется выносить 
+вызовы гео-функций в отдельный поток (или написать отдельную службу, 
+работающую в фоновом режиме).</p>
+
+
+
+
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/fastbutton.htm" name="I0_1378022376097" id="I0_1378022376097" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/postmessageRelay.htm" id="oauth2relay459525077" name="oauth2relay459525077"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/jquery.js"></script>
+    <script src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%93%D0%B5%D0%BE%D0%BB%D0%BE%D0%BA%D0%B0%D1%86%D0%B8%D1%8F_files/bootstrap-typeahead.js"></script>
+
+</body></html>

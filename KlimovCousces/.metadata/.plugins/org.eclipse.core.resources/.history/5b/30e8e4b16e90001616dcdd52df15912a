@@ -1,0 +1,117 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="292dp"
+        android:columnCount="2"
+        tools:context="${relativePackage}.${activityClass}" >
+
+        <Button
+            android:id="@+id/buttonTurnOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="buttonTurnOn" />
+
+        <TextView
+            android:id="@+id/btName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_row="3"
+            android:text="btName"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/checkBTname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="left|top"
+            android:layout_row="4"
+            android:text="checkBTname" />
+
+        <Button
+            android:id="@+id/setBtname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_row="4"
+            android:text="setBtname" />
+
+        <Button
+            android:id="@+id/btn_enableBT"
+            android:layout_column="0"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_row="6"
+            android:text="btn_enableBT" />
+
+        <EditText
+            android:id="@+id/newBTname"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="left|top"
+            android:layout_row="3"
+            android:ems="10" />
+
+        <TextView
+            android:id="@+id/bluetoothstate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="16dp"
+            android:layout_row="1"
+            android:text="TextView"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_column="1"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_row="6"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/buttonTurnOff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_gravity="left|top"
+            android:layout_row="0"
+            android:text="buttonTurnOff" />
+
+        <Button
+            android:id="@+id/scandevice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="center"
+            android:layout_row="7"
+            android:text="scandevice" />
+
+        <Button
+            android:id="@+id/buttonBlueState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_gravity="left|top"
+            android:layout_row="1"
+            android:text="buttonBlueState" />
+
+    </GridLayout>
+    
+    <ListView
+        android:id="@+id/devicesfound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true" >
+    </ListView>
+</LinearLayout>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Работаем с графикой. Основы</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">   
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+          <ul class="nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->	
+<div class="clearfix"></div>
+	
+<noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Читайте на здоровье!</h3>
+            </div>
+            <div class="modal-body">
+            
+              <p>Статья проплачена кошками - всемирно известными производителями котят.</p>
+
+            <p>Если статья вам понравилась, то можете <a href="http://developer.alexanderklimov.ru/donate.php">поддержать проект</a>.</p>
+			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>            
+<h1 class="text-warning">Работаем с графикой. Основы</h1>
+
+<p>Цель нашего урока - понять основы графики. Мы напишем простую 
+рисовалку - хотя это слишком громко сказано. Пока мы сами рисовать 
+ничего не будем - за нас это будет делать глупая машина, т.е. Android. 
+Но тем не менее некоторые полезные вещи мы узнаем, а значит повысим свой
+ профессиональный уровень. Продолжить своё обучение можно в разделе <a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a>.</p>
+
+<p>Создадим новый проект SimplePaint. Далее в нём создадим новый класс 
+Draw2D, который будет наследоваться от View. Именно в этом классе мы и 
+будем проводить графические опыты. Щёлкаем правой кнопкой мыши на имени 
+проекта и выбираем в меню New→Class. В открывшемся диалоговом окне 
+устанавливаем имя для класса <b>Draw2D</b> и указываем свой пакет в поле <b>Package</b>. Остальные настройки можно не трогать. Щёлкаем кнопку <b>Finish</b> - появится заготовка для класса.</p>
+
+<p>Удаляем содержимое заготовки и вставляем следующие строки:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.simplepaint; // у вас будет свой пакет
+
+public class Draw2D extends View{
+    public Draw2D(Context context) {
+	        super(context);
+	}  
+	@Override
+	protected void onDraw(Canvas canvas){
+	    super.onDraw(canvas);
+    }
+}
+</code></pre>
+
+<p>В данном коде мы наследуемся от класса <b>android.view.View</b> и создаем свой метод <b>onDraw(Canvac canvas)</b>. Все строчки, которые будет подчеркивать Eclipse, нужно проверить и импортировать необходимые пакеты самостоятельно.</p>
+
+<p>Далее необходимо загрузить наш созданный класс при старте программы. 
+Открываем основной java-файл и заменяем строчку после 
+super.onCreate(savedInstanceState):</p>
+
+<pre><code class="java">
+// эта строчка нам не нужна: setContentView(R.layout.main);
+Draw2D d = new Draw2D(this);
+setContentView(d);
+</code></pre>
+
+<p>Подготовительные работы закончены. Перейдем к графике. Весь 
+дальнейший код мы будем писать в классе Draw2D. Совсем коротко о теории 
+рисования. Для графики используется холст Canvas - некая графическая 
+поверхность для рисования. Прежде чем что-то рисовать, нужно определить 
+некоторые параметры - цвет, толщина, фигура. Представьте себе, что вы 
+рисуете на бумаге и в вашем распоряжении есть цветные карандаши, 
+фломастеры, циркуль и т.п. Например, вы берете толстый красный фломастер
+ и рисуете жирную линию, затем берете циркуль с желтым карандашом и 
+рисуете окружность. Улавливаете аналогию? Теория закончена.</p>
+
+<p>Вся работа с графикой происходит в методе <b>onDraw()</b> класса Draw2D. Для начала сделаем холст белым, для этого сразу после строчки <i>super.onDraw(c)</i> пишем:</p>
+
+<pre><code class="java">
+Paint paint = new Paint();
+paint.setStyle(Paint.Style.FILL);
+
+// закрашиваем холст белым цветом
+paint.setColor(Color.WHITE);
+canvas.drawPaint(paint);
+</code></pre>
+
+<p>Итак, холст готов. Далее начинается собственно рисование. Следуя 
+описанному выше принципу мы задаем перед каждым рисованием свои 
+настройки и вызываем нужный метод. Например, для того, чтобы нарисовать 
+желтый круг мы включаем режим сглаживания, устанавливаем желтый цвет и 
+вызываем метод <b>drawCircle()</b> с нужными координатами и заливаем окружность выбранным цветом. У нас получилось симпатичное солнышко.</p>
+
+<pre><code class="java">
+// Рисуем желтый круг
+paint.setAntiAlias(true);
+paint.setColor(Color.YELLOW);
+canvas.drawCircle(450, 30, 25, paint);
+</code></pre>
+
+<p>Для рисования зеленого прямоугольника мы также задаем координаты и цвет. У нас получится красивая лужайка.</p>
+
+<pre><code class="java">
+// Рисуем зеленый прямоугольник
+paint.setColor(Color.GREEN);
+canvas.drawRect(20, 200, 460, 230, paint);
+</code></pre>
+
+<p>Далее выведем текст поверх лужайки, чтобы все видели, что она 
+предназначена только для котов. Устанавливаем синий цвет, стиль заливки,
+ режим сглаживания и размер прямоугольника, в который будет вписан наш 
+текст.</p>
+
+<pre><code class="java">
+// Рисуем текст
+paint.setColor(Color.BLUE);
+paint.setStyle(Paint.Style.FILL);
+paint.setAntiAlias(true);
+paint.setTextSize(30);
+canvas.drawText("Лужайка для котов", 30, 200, paint);
+</code></pre>
+
+<p>При желании можно вывести текст под углом. Пусть это будет лучик солнца.</p>
+
+<pre><code class="java">
+// Текст под углом
+int x = 310;
+int y = 190;
+ 
+paint.setColor(Color.GRAY);
+paint.setTextSize(25);
+String str2rotate = "Лучик солнца!";
+
+// Создаем ограничивающий прямоугольник для наклонного текста
+Rect rect = new Rect();
+
+// поворачиваем холст по центру текста
+canvas.rotate(-45, x + rect.exactCenterX(), y + rect.exactCenterY());
+
+// Рисуем текст
+paint.setStyle(Paint.Style.FILL);
+canvas.drawText(str2rotate, x, y, paint);
+
+// восстанавливаем холст
+canvas.restore();
+</code></pre>
+
+<p>И завершим нашу композицию выводом стандартного значка приложения в нижнем углу экрана.</p>
+
+<pre><code class="java">
+// Выводим значок из ресурсов
+Resources res = this.getResources();
+Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.icon);
+canvas.drawBitmap(bitmap, 415, 655, paint);
+</code></pre>
+
+<p>В данном примере я вручную подбирал размеры и координаты фигур для 
+своего экрана. В реальных приложениях необходимо сначала вычислить 
+размеры экрана у пользователя, а потом уже выводить фигуры в 
+соответствии с полученными результатами.</p>
+
+<p>Финальный рисунок выглядит следующим образом.</p>
+
+<p><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/simplepaint.png" alt="Основы графики"></p>
+
+<p><a name="source" href="http://rusproject.narod.ru/android/simplepaint.htm">Исходный код к статье</a></p>
+
+<h5 class="text-error">Реклама</h5>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4224968932772057";
+/* Полноразмерный баннер 728х90 */
+google_ad_slot = "4077523505";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/show_ads.js">
+</script>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/fastbutton.htm" name="I0_1378010796643" id="I0_1378010796643" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/jquery.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/postmessageRelay.htm" id="oauth2relay1653035999" name="oauth2relay1653035999"></iframe>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D0%BC%20%D1%81%20%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%BE%D0%B9.%20%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D1%8B_files/bootstrap-typeahead.js"></script>
+
+</body></html>

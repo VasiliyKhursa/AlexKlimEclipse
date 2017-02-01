@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: ASCII Art Editor</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20ASCII%20Art%20Editor_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20ASCII%20Art%20Editor_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20ASCII%20Art%20Editor_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20ASCII%20Art%20Editor_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20ASCII%20Art%20Editor_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20ASCII%20Art%20Editor_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20ASCII%20Art%20Editor_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20ASCII%20Art%20Editor_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory/">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20ASCII%20Art%20Editor_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20ASCII%20Art%20Editor_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">ASCII Art Editor</h1>
+<p>Четвёртый месяц обучения (закрытая зона)</p>
+
+<p><img src="Android%20%20ASCII%20Art%20Editor_files/asciiarteditor1.png" alt="ASCII Art" class="img-polaroid" height="276" width="300"></p>
+
+
+
+<p>
+<a href="#layouts">Разметка</a><br>
+<a href="#settings">Кнопка Settings</a><br>
+<a href="#sharedprefs">Запоминаем настройки</a><br>
+<a href="#export">Кнопка Export</a><br>
+<a href="#database">Добавляем базу данных</a><br>
+<a href="#loadbutton">Обработчик кнопки Load</a><br>
+<a href="#newbutton">Кнопка New</a><br>
+<a href="#savebutton">Кнопка Save</a><br>
+<a href="#deletebutton">Кнопка Delete</a><br>
+</p>
+
+<p>Существует целое направление любителей рисовать с помощью символов. В
+ этом примере мы попытаемся создать подобный редактор для Android.</p>
+
+
+
+
+<p>При разработке приложения ещё раз вспомним использование настроек, 
+базы данных, сохранение рисунков на карточку и многие другие техники 
+программирования, изученные на прошлых уроках.</p>
+
+<h2 class="text-warning" id="layouts">Разметка</h2>
+
+<p>Создадим новый проект. Для работы нам понадобится текстовое поле для 
+ввода символов. Также будут нужны кнопки для редактирования различных 
+настроек. Подготовим разметку:</p>
+
+<pre><code class="xml">
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="5dp" &gt;
+
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/intro"
+        android:textStyle="bold"
+        tools:context=".MainActivity" /&gt;
+
+    &lt;EditText
+        android:id="@+id/ascii_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:gravity="top|left"
+        android:hint=""
+        android:inputType="textMultiLine"
+        android:lines="10"
+        android:maxLines="10"
+        android:minLines="10"
+        android:scrollbars="vertical"
+        android:singleLine="false"
+        android:textColor="#ffffff"
+        android:typeface="monospace" /&gt;
+
+    &lt;LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" &gt;
+
+        &lt;Button
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save" /&gt;
+
+        &lt;Button
+            android:id="@+id/export_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/export" /&gt;
+
+        &lt;Button
+            android:id="@+id/load_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/load" /&gt;
+    &lt;/LinearLayout&gt;
+
+    &lt;LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" &gt;
+
+        &lt;Button
+            android:id="@+id/new_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_pic" /&gt;
+
+        &lt;Button
+            android:id="@+id/delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete" /&gt;
+
+        &lt;Button
+            android:id="@+id/set_colors_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#333333"
+            android:padding="5dp"
+            android:text="@string/set_colors"
+            android:textColor="#ffffff"
+            android:textStyle="italic" /&gt;
+    &lt;/LinearLayout&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Добавим строковые ресурсы:</p>
+
+<pre><code class="xml">
+&lt;string name="intro"&gt;Enter your ASCII art below!&lt;/string&gt;
+&lt;string name="save"&gt;Save&lt;/string&gt;
+&lt;string name="export"&gt;Export&lt;/string&gt;
+&lt;string name="load"&gt;Load&lt;/string&gt;
+&lt;string name="new_pic"&gt;New&lt;/string&gt;
+&lt;string name="delete"&gt;Delete&lt;/string&gt;
+&lt;string name="set_colors"&gt;Settings&lt;/string&gt;
+</code></pre>
+
+<p>Графический интерфейс основной активности готов. Теперь перейдём к разметке второй активности.</p>
+
+<p>При нажатии на кнопку <b>Settings</b> должен появиться экран, в 
+котором пользователь может выбрать цвет для текста и фона в текстовом 
+поле. Создадим новую активность <b>ColorChooser</b>.</p>
+
+<p>Подготовим для новой активности разметку:</p>
+
+<h3 class="text-success">res/layout/activity_color_chooser.xml</h3>
+
+<pre><code class="xml">
+&lt;ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" &gt;
+
+    &lt;LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="10dp" &gt;
+
+        &lt;TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/color"
+            android:textStyle="italic" /&gt;
+
+        &lt;ImageButton
+            android:id="@+id/colors_0"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="#00000000"
+            android:contentDescription="@string/colors0"
+            android:onClick="setColors"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/colors0"
+            android:tag="#000000 #ffffff" /&gt;
+
+        &lt;ImageButton
+            android:id="@+id/colors_1"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="#00000000"
+            android:contentDescription="@string/colors1"
+            android:onClick="setColors"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/colors1"
+            android:tag="#ffffff #000000" /&gt;
+
+        &lt;ImageButton
+            android:id="@+id/colors_2"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="#00000000"
+            android:contentDescription="@string/colors2"
+            android:onClick="setColors"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/colors2"
+            android:tag="#ffcc00 #000099" /&gt;
+    &lt;/LinearLayout&gt;
+
+&lt;/ScrollView&gt;
+</code></pre>
+
+<p>Для ImageButton понадобятся три картинки:</p>
+
+<p><img src="Android%20%20ASCII%20Art%20Editor_files/colors0.png" alt=""> <img src="Android%20%20ASCII%20Art%20Editor_files/colors1.png" alt=""> <img src="Android%20%20ASCII%20Art%20Editor_files/colors2.png" alt=""></p>
+
+<p>Добавим в строковые ресурсы дополнительные строки:</p>
+
+<pre><code class="xml">
+&lt;string name="color"&gt;Choose a color scheme:&lt;/string&gt;
+&lt;string name="colors0"&gt;Black on White&lt;/string&gt;
+&lt;string name="colors1"&gt;White on Black&lt;/string&gt;
+&lt;string name="colors2"&gt;Yellow on Blue&lt;/string&gt;
+</code></pre>
+
+<p>Внесём изменения в манифест - добавим стиль диалогового окна для второй активности:</p>
+
+<pre><code class="java">
+&lt;activity
+    android:name="ru.alexanderklimov.asciiarteditor.ColorChooser"
+    android:label="@string/title_activity_color_chooser"
+    android:theme="@android:style/Theme.Dialog" &gt;
+&lt;/activity&gt;
+</code></pre>
+
+<h2 class="text-warning" id="settings">Кнопка Settings</h2>
+
+<p>Напишем код для запуска второй активности выбора цвета. Добавим в класс переменную на текстовое поле:</p>
+
+<pre><code class="java">
+private EditText textArea;
+</code></pre>
+
+<p>В методе onCreate() дадим ссылку на добавленную переменную:</p>
+
+<pre><code class="java">
+textArea = (EditText)findViewById(R.id.ascii_text);
+</code></pre>
+
+<p>За запуск отвечает кнопка <b>Settings</b>. Создадим для кнопки атрибут <b>onSettingClick</b> и напишем метод для этой кнопки:</p>
+
+<pre><code class="java">
+private final int COLOR_REQUEST = 1;
+
+public void onSettingClick(View v) {
+	Intent colorIntent = new Intent(this, ColorChooser.class);
+	this.startActivityForResult(colorIntent, COLOR_REQUEST);
+}
+</code></pre>
+
+<p>Добавим метод, получающий результат от второй активности:</p>
+
+<pre><code class="java">
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	// TODO Auto-generated method stub
+	super.onActivityResult(requestCode, resultCode, data);
+	if (requestCode == COLOR_REQUEST) {
+	    if(resultCode == RESULT_OK){
+	    	
+	    }
+	}
+}
+</code></pre>
+
+<p>Переключимся на код для второй активности. Создадим новый метод для выбора цвета <b>setColors()</b>, который будет вызываться при нажатии на любой из трёх кнопок ImageButton:</p>
+
+<pre><code class="java">
+public void setColors(View view){
+	String tagInfo = (String)view.getTag();
+	String[] tagColors = tagInfo.split(" ");
+	Intent backIntent = new Intent();
+	backIntent.putExtra("textColor", tagColors[0]);
+	backIntent.putExtra("backColor", tagColors[1]);
+	setResult(RESULT_OK, backIntent);
+	finish();
+}
+</code></pre>
+
+<p>Переменная <b>tagInfo</b> считывает теги, которые мы поместили в ImageView. Тег содержит значения двух цветов, разделённых пробелом, в формате: <i>#000000 #ffffff</i>. Затем <b>tagColors</b>
+ разбивает строку на массив строк, где разделителем является символ 
+пробела. Таким образом мы получаем массив из двух элементов для цвета 
+текста и фона, которые передаём через намерение в методе <b>putExtra()</b> в первую активность. Так как вторая активность нам больше не нужна, то закроем её с помощью метода <b>finish()</b>.</p>
+
+<p>Возвращаемся в первую активность к методу onActivityResult(). У нас 
+уже есть заготовка с двумя условиями - если оба условия будут выполнены,
+ то забираем данные через метод <b>getStringExtra()</b> и вызываем метод <b>updateColors()</b>, который сейчас напишем.</p>
+
+<pre><code class="java">
+if (requestCode == COLOR_REQUEST) {
+    if(resultCode == RESULT_OK){
+    	String chosenTextColor = data.getStringExtra("textColor");
+    	String chosenBackColor = data.getStringExtra("backColor");
+    	updateColors(chosenTextColor, chosenBackColor);
+    }
+}
+</code></pre> 
+
+<p>Метод <b>updateColors()</b> принимает два параметра для цвета текста и
+ фона. Конвертируем полученные строковые значения цветов в подходящий 
+формат для класса <b>Color</b> через метод <b>parseColor()</b> и присваиваем полученные цвета тексту и фону компонента Edtitext (переменная textArea).</p>
+
+<pre><code class="java">
+private void updateColors(String tColor, String bColor){
+	textArea.setTextColor(Color.parseColor(tColor));
+	textArea.setBackgroundColor(Color.parseColor(bColor));
+}
+</code></pre>
+
+<p>На этом этапе можно запустить проект и проверить на работоспособность.</p>
+
+<h2 class="text-warning" id="sharedprefs">Запоминаем настройки</h2>
+
+<p>Неплохо бы запомнить выбор пользователя, чтобы при следующем запуске на экран выводились любимые цвета.</p>
+
+<p>Добавим новую переменную в класс:</p>
+
+<pre><code class="java">
+private SharedPreferences asciiPrefs;
+</code></pre>
+
+<p>В методе onCreate добавим ещё одну строчку кода, которая будет получать доступ к настройкам:</p>
+
+<pre><code class="java">
+asciiPrefs = getSharedPreferences("AsciiPicPreferences", 0);
+</code></pre>
+
+<p>В методе onActivityResult() после вызова метода updateColors() добавим код, который запишет выбор пользователя в настройки:</p>
+
+<pre><code class="java">
+SharedPreferences.Editor prefsEd = asciiPrefs.edit();
+prefsEd.putString("colors", "" + chosenTextColor + " "
+		+ chosenBackColor);
+prefsEd.commit();
+</code></pre>
+
+<p>Обратите внимание, что в ключ <b>colors</b> мы снова записываем значения цветов в одну строчку через пробел.</p>
+
+<p>Теперь, когда мы записали предпочтения пользователя в настройки, у 
+нас появилась возможность извлекать эти данные во время старта 
+программы. Добавим в метод onCreate() новые строки кода:</p>
+
+<pre><code class="java">
+// считываем данные из настроек
+String chosenColors = asciiPrefs.getString("colors", "");
+if (chosenColors.length() &gt; 0) {
+	String[] prefColors = chosenColors.split(" ");
+	updateColors(prefColors[0], prefColors[1]);
+}
+</code></pre>
+
+<p>Так как пользователь может ещё ни разу не выбирал любимые цвета, 
+поэтому делаем небольшую проверку. Если данные в настройках обнаружатся,
+ то применим знакомый приём с разбивкой на массив строк и передадим 
+цвета в метод updateColors().</p>
+
+<h2 class="text-warning" id="export">Кнопка Export</h2>
+
+<p>Займёмся кнопкой Export. Добавим для неё атрибут <b>android:onClick="onExportClick"</b> и напишем соответствующий метод:</p>
+
+<pre><code class="java">
+public void onExportClick(View v) {
+	String state = Environment.getExternalStorageState();
+	if (Environment.MEDIA_MOUNTED.equals(state)) {
+		File picDir = Environment
+				.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+		textArea.setDrawingCacheEnabled(true);
+		textArea.buildDrawingCache(true);
+		Bitmap bitmap = textArea.getDrawingCache();
+		Date theDate = new Date();
+		String fileName = "asciipic" + theDate.getTime() + ".png";
+		File picFile = new File(picDir + "/" + fileName);
+
+		try {
+			picFile.createNewFile();
+			FileOutputStream picOut = new FileOutputStream(picFile);
+			boolean worked = bitmap.compress(CompressFormat.PNG, 100,
+					picOut);
+			if (worked) {
+				Toast.makeText(
+						getApplicationContext(),
+						"Image saved to your device Pictures "
+								+ "directory!", Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(getApplicationContext(),
+						"Whoops! File not saved.", Toast.LENGTH_SHORT)
+						.show();
+			}
+			picOut.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		textArea.destroyDrawingCache();
+
+	} else {
+		Toast.makeText(
+				this.getApplicationContext(),
+				"Sorry - you don't have an external"
+						+ " storage directory available!",
+				Toast.LENGTH_SHORT).show();
+	}
+}
+</code></pre>
+
+<p>Задача кнопки - сохранять результат творчества на SD-карту. Сначала 
+проверяем текущее состояние карты (доступна ли она), если карта не 
+доступна, то выводим соответствующее сообщение.</p>
+
+<p>Если карта памяти имеется, то узнаём путь к стандартной папке для 
+хранения картинок. Далее с помощью специальных методов мы получаем 
+изображение текстового поля, которое можно сохранить как картинку. Затем
+ вычисляем текущую дату и формируем на её основе уникальное имя файла.</p>
+
+<p>При работе с записью или чтением файла необходимо использовать блок 
+try/catch. А после сохранения файла освобождаем ресурсы через метод <b>destroyDrawingCache()</b>.</p>
+
+<p>Для работы с карточкой памяти необходимо в манифесте прописать нужное разрешение:</p>
+
+<pre><code class="java">
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt;
+</code></pre>
+
+<h2 class="text-warning" id="database">Добавляем базу данных</h2>
+
+<p>Создадим новый класс <b>ImageDataHelper</b>, который будет наследоваться от класса <b>SQLiteOpenHelper</b>.</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.asciiarteditor;
+
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.content.Context;
+import android.provider.BaseColumns;
+
+public class ImageDataHelper extends SQLiteOpenHelper {
+	
+	private static final int DATABASE_VERSION = 1;
+	private static final String DATABASE_NAME = "asciipics.db";
+	public static final String ID_COL = BaseColumns._ID;
+	public static final String TABLE_NAME = "pics";
+	public static final String ASCII_COL = "ascii_text";
+	public static final String CREATED_COL = "pic_creation";
+	
+	private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_NAME + " (" + ID_COL + " INTEGER " +
+    "PRIMARY KEY AUTOINCREMENT, " + ASCII_COL + " TEXT, " + CREATED_COL + " TEXT);";
+
+	private static ImageDataHelper dbInstance;
+	private Context dbContext;
+	
+	private ImageDataHelper(Context context){
+	    super(context, DATABASE_NAME, null, DATABASE_VERSION);
+	}
+	
+	public static ImageDataHelper getInstance(Context context) {
+	    if (dbInstance == null)
+	        dbInstance = new ImageDataHelper(context.getApplicationContext());
+	        return dbInstance;
+	}
+
+	@Override
+	public void onCreate(SQLiteDatabase db) {
+		// TODO Auto-generated method stub
+		db.execSQL(DATABASE_CREATE);
+	}
+
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+	    db.execSQL("DROP TABLE IF EXISTS pics");
+	    db.execSQL("VACUUM");
+	    onCreate(db);
+	}
+}
+</code></pre>
+
+<p>В классе мы определили несколько переменных для создания базы, таблицы, колонок. Также создали специальный статичный метод <b>getInstance()</b>, чтобы избежать запуска нескольких экземпляров класса.</p>
+
+<p>Переходим в основную активность и добавим переменную:</p>
+
+<pre><code class="java">
+private ImageDataHelper imgData;
+</code></pre>
+
+<p>Внутри метода <b>onCreate()</b> создаём экземпляр класса.</p>
+
+<pre><code class="java">
+imgData = ImageDataHelper.getInstance(this);
+</code></pre>
+
+<h2 class="text-warning" id="loadbutton">Обработчик кнопки Load</h2>
+
+<p>При нажатии кнопки <b>Load</b> будем запускать новую активность в 
+виде диалогового окна. Данное окно будет содержать список сохранённых 
+работ в базе. Пользователь может выбрать любую работу для загрузки. 
+Создадим новую активность <b>PicChooser</b>, который будет наследоваться от ListActivity. В класс добавим несколько переменных для работы с базой данных.</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.asciiarteditor;
+
+import android.app.ListActivity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+
+public class PicChooser extends ListActivity {
+	
+	private ImageDataHelper picDataHelp;
+	private SQLiteDatabase savedPictures;
+	private Cursor picCursor;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_pic_chooser);
+	}
+}
+</code></pre>
+
+<p>Подготовим разметку для активности:</p>
+
+<pre><code class="xml">
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp" &gt;
+
+    &lt;TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/load_pics"
+        android:textStyle="italic" /&gt;
+
+    &lt;ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Добавим строковый ресурс:</p>
+
+<pre><code class="xml">
+&lt;string name="load_pics"&gt;Choose from these saved pictures:&lt;/string&gt;
+</code></pre>
+
+<p>В манифесте также пропишем значения для активности, чтобы она выглядела в стиле диалога:</p>
+
+<pre><code class="java">
+&lt;activity android:name=".PicChooser" android:theme="@android:style/Theme.Dialog"&gt;&lt;/activity&gt;
+</code></pre>
+
+<p>Для элементов списка создадим свою разметку.</p>
+
+<h3 class="text-success">res/layout/pic_item.xml</h3>
+
+<pre><code class="xml">
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#333333"
+    android:clickable="true"
+    android:onClick="picChosen"
+    android:orientation="horizontal"
+    android:padding="5dp" &gt;
+
+    &lt;TextView
+        android:id="@+id/picID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp"
+        android:textStyle="italic" /&gt;
+
+    &lt;TextView
+        android:id="@+id/picName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Обратите внимание, что у LinearLayout мы установили атрибут <b>android:onClick</b>, чтобы реагировать на касания элементов списка.</p>
+
+<p>Возвращаемся в активность PicChooser. Добавим в метод onCreate() методы для работы с базой данных.</p>
+
+<pre><code class="java">
+picDataHelp = ImageDataHelper.getInstance(this);
+savedPictures = picDataHelp.getReadableDatabase();
+picCursor = savedPictures.query("pics", null, null, null, null, null, null);
+</code></pre>
+
+<p>В последней строчке мы запрашиваем все записи из таблицы <b>pics</b>.</p>
+
+<p>От каждой картинки в базе данных нам нужен её идентификатор и строка 
+создания. Через Simple Cursor Adapter мы сможем связать полученные 
+данные с элементами списка:</p>
+
+<pre><code class="java">
+String[] columns = {ImageDataHelper.ID_COL, ImageDataHelper.CREATED_COL};
+int[] views = {R.id.picID, R.id.picName};
+SimpleCursorAdapter picAdapter = new SimpleCursorAdapter(this,
+		R.layout.pic_item, picCursor, columns, views,
+		SimpleCursorAdapter.FLAG_AUTO_REQUERY);
+setListAdapter(picAdapter);
+</code></pre>
+
+<p>Помните, мы создали обработчик нажатия для списка? Добавим в код метод <b>picChosen()</b>:</p>
+
+<pre><code class="java">
+public void picChosen(View view){
+	TextView pickedView = (TextView)view.findViewById(R.id.picID);
+	String chosenID = (String)pickedView.getText();
+	picDataHelp.close();
+	savedPictures.close();
+	picCursor.close();
+	
+	Intent backIntent = new Intent();
+	backIntent.putExtra("pickedImg", chosenID);
+	setResult(RESULT_OK, backIntent);
+	finish();
+}
+</code></pre>
+
+<p>Параметр View относится к разметке для списка, который содержит две 
+текстовые метки. Одна из них отвечает за идентификатор картинки, вторая -
+ за её имя. При выборе элемента списка мы получаем текст выбранного 
+элемента (идентификатор). Идентификатор позволяет получить контент 
+картинки из базы. Не забываем закрыть соединение с базой и курсор. 
+Теперь можно создать намерение, которое пошлёт данные в главную 
+активность.</p>
+
+<p>Если пользователь выбирает картинку из списка, то мы уверены в 
+закрытии соединений с базой, но если пользователь нажмёт на кнопку Back 
+для возврата на главную активность, то соединения останутся висеть в 
+памяти. Поэтому добавим страховочных код в метод onDestroy():</p>
+
+<pre><code class="java">
+@Override
+public void onDestroy() {
+	picCursor.close();
+	picDataHelp.close();
+	savedPictures.close();
+	super.onDestroy();
+}
+</code></pre>
+
+<p>Осталось реализовать выбор картинки из базы в текстовое поле. 
+Возвращаемся в главную активность и пишем код для метода onLoadClick().</p>
+
+<pre><code class="java">
+private final int LOAD_REQUEST = 2;
+
+public void onLoadClick(View v) {
+	Intent loadIntent = new Intent(this, PicChooser.class);
+	this.startActivityForResult(loadIntent, LOAD_REQUEST);
+}
+</code></pre>
+
+<p>Мы уже встречались с похожим кодом для кнопки Settings - создание намерения и запуск активности с результатом.</p>
+
+<p>Теперь, когда пользователь выберет картинку из списка, идентификатор 
+будет возвращён в метод onActivityResult(). Добавим в этот метод код 
+приёма данных:</p>
+
+<pre><code class="java">
+else if(requestCode == LOAD_REQUEST) {
+    if(resultCode == RESULT_OK){
+    	String pickedID = data.getStringExtra("pickedImg");
+    }
+}
+</code></pre>
+
+<p>Добавим в класс переменную для вывода идентификатора картинки. 
+Отрицательное значение позволит проверить, загружена ли картинка из 
+базы:</p>
+
+<pre><code class="java">
+private int currentPic = -1;
+</code></pre>
+
+<p>Вернёмся в метод onActivityResult() и добавим строчку после получения данных из активности PicChooser.</p>
+
+<pre><code class="java">
+currentPic = Integer.parseInt(pickedID);
+</code></pre>
+
+<p>Получим экземпляр класса базы данных и делаем запрос по идентификатору.</p>
+
+<pre><code class="java">
+SQLiteDatabase savedPicsDB = imgData.getWritableDatabase();
+Cursor chosenCursor = savedPicsDB.query("pics",
+		new String[] { ImageDataHelper.ASCII_COL },
+		ImageDataHelper.ID_COL + "=?", new String[] { ""
+				+ currentPic }, null, null, null);
+</code></pre>
+
+<p>Первый параметр отвечает за имя таблицы, второй - массив строк для 
+колонок таблицы. Третий и четвёртый параметры - опции выбора, в SQL 
+обычно используется оператор where, где выбранный идентификатор 
+сравнивается с идентификатором колонки, в результате мы получаем нужную 
+картинку.</p>
+
+<p>Должна быть только единственная запись с заданным идентификатором, 
+поэтому перемещаем курсов на первую запись. Получаем текст картинки и 
+выводим в текстовое поле. После чего закрываем все ресурсы.</p>
+
+<pre><code class="java">
+chosenCursor.moveToFirst();
+String savedChars = chosenCursor.getString(0);
+textArea.setText(savedChars);
+chosenCursor.close();
+savedPicsDB.close();
+imgData.close();
+</code></pre>
+
+<p>На данном этапе мы ещё не реализовали сохранение картинок из 
+текстового поля, поэтому проверить проделанную работу не получится. 
+Наберитесь терпения.</p>
+
+<h2 class="text-warning" id="newbutton">Кнопка New</h2>
+
+<p>Напишем код для кнопки <b>New</b>. Сначала очистим текст в текстовом 
+поле. Далее сбросим переменную-идентификатор для текущей картинки, 
+загруженной из базы данных.</p>
+
+<pre><code class="java">
+public void onNewClick(View v) {
+	textArea.setText("");
+	currentPic = -1;
+}
+</code></pre> 
+
+<h2 class="text-warning" id="savebutton">Кнопка Save</h2>
+
+<p>Когда пользователь нажимает на кнопку <b>Save</b>, у нас есть два 
+варианта. Первый - сохраняем новую картинку в базу или сохраняем 
+отредактированную картинку, которая уже была в базе. Во втором случае 
+нам не нужно создавать новую запись, а обновить старую.</p>
+
+<p>Сначала получим текстовое содержимое из текстового поля. Далее 
+подготовим объект ContentValues для сохранения в базу данных и помещаем 
+запись в колонку <b>ASCII_COL</b>.</p>
+
+<p>Также нам нужно узнать текущие дату и время для формирования имени файла, которое тоже заносится в базу данных.</p>
+
+<p>Теперь, когда данные подготовлены, получаем ссылку на класс, 
+работающий с базой данных. После чего идёт проверка - какой вариант 
+сохранения нужно применить. Если значение меньше нуля, то сохраняем в 
+базе новую запись через метод <b>insert()</b>. После чего переменной currentPic присваиваем номер добвленной записи. Напоследок выводим подтверждающее сообщение.</p>
+
+<p>Если используется второй вариант, когда сохраняется отредактированная картинка из базы, то используем метод <b>update()</b>, передавая имя таблицы, Content Values и условие <i>where</i>. Для <i>where</i> используется массив строк. Сохранение отредактированной картинки также сопровождаем сообщением.</p>
+
+<p>В конце операции не забываем закрывать соединения с базой.</p>
+
+<pre><code class="java">
+public void onSaveClick(View v) {
+	String enteredTxt = textArea.getText().toString();
+	ContentValues picValues = new ContentValues();
+	picValues.put(ImageDataHelper.ASCII_COL, enteredTxt);
+
+	Date theDate = Calendar.getInstance().getTime();
+	SimpleDateFormat dateFormat = new SimpleDateFormat(
+			"yyyy-MM-dd_hh.mm.ss");
+	String fileName = dateFormat.format(theDate);
+	picValues.put(ImageDataHelper.CREATED_COL, fileName);
+
+	SQLiteDatabase savedPicsDB = imgData.getWritableDatabase();
+	if (currentPic &lt; 0) {
+		long insertNum = savedPicsDB.insert("pics", null, picValues);
+		currentPic = (int) insertNum;
+		if (insertNum &gt;= 0)
+			Toast.makeText(getApplicationContext(),
+					"Image saved to database!", Toast.LENGTH_SHORT).show();
+	} else {
+		int savedNum = savedPicsDB.update("pics", picValues,
+				ImageDataHelper.ID_COL + "=?", new String[] { ""
+						+ currentPic });
+		if(savedNum&gt;0)
+		    Toast.makeText(getApplicationContext(), "Image saved to database!",
+		        Toast.LENGTH_SHORT).show();
+	}
+	savedPicsDB.close();
+	imgData.close();
+}
+</code></pre>
+
+<h2 class="text-warning" id="deletebutton">Кнопка Delete</h2>
+
+<p>Осталась последняя кнопка для удаления картинки. Если текущая 
+картинка была загружена из базы данных, то мы должны удалить запись. В 
+ином случае мы просто очистим текстовое поле.</p>
+
+<p>Перед удалением из базы данных выведем диалоговое окно, чтобы ещё раз
+ убедиться, что пользователь удаляет картинку не по ошибке. Если получим
+ утвердительный ответ, то удаляем запись из базы. При успешном удалении 
+также выводим всплывающее сообщение. После чего сбрасываем значение у 
+переменной, очищаем текстовое поле и закрываем соединение.</p>
+
+<p>Если пользователь выберет отрицательный ответ, то просто закрываем диалоговое окно.</p>
+
+<p>В варианте, когда картинка не была загружена из базы данных, достаточно просто очисить текстовое поле.</p>
+
+<pre><code class="java">
+public void onDeleteClick(View v) {
+	if (currentPic &gt;= 0) {
+		// picture has been loaded from the database - get user to confirm
+		AlertDialog.Builder confirmBuilder = new AlertDialog.Builder(this);
+		confirmBuilder.setMessage("Delete the saved picture?");
+		confirmBuilder.setCancelable(false);
+		confirmBuilder.setPositiveButton("Yes",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						SQLiteDatabase savedPicsDB = imgData
+								.getWritableDatabase();
+						int deleteResult = savedPicsDB.delete("pics",
+								ImageDataHelper.ID_COL + "=?",
+								new String[] { "" + currentPic });
+						if (deleteResult &gt; 0)
+							Toast.makeText(getApplicationContext(),
+									"Picture deleted", Toast.LENGTH_SHORT)
+									.show();
+						currentPic = -1;
+						textArea.setText("");
+						savedPicsDB.close();
+						imgData.close();
+					}
+				});
+		confirmBuilder.setNegativeButton("No",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				});
+		AlertDialog alert = confirmBuilder.create();
+		alert.show();
+	} else {
+		// picture has not been loaded from database
+		textArea.setText("");
+	}
+}
+</code></pre>
+
+<h2 class="text-warning">Подчищаем ресурсы</h2>
+
+<p>Во всех методах для кнопок мы закрывали соединение с базой, но 
+пользователь может закрыть приложение во время работы. Поэтому в методе 
+активности закроем соединение, а потом вызовем метод суперкласса.</p>
+
+<pre><code class="java">
+@Override
+protected void onDestroy() {
+	// TODO Auto-generated method stub
+	imgData.close();
+	super.onDestroy();
+}
+</code></pre>
+
+<h2 class="text-warning">Заключение</h2>
+
+<p>На этом разработка приложения закончена. Тестируйте. Далее можете 
+улучшать программу, чтобы она стала ещё более удобной для пользователя.</p>
+
+<h2 class="text-warning">Использованные материалы</h2>
+
+<p><a href="http://mobile.tutsplus.com/tutorials/android/build-an-ascii-art-editor-save-and-delete-ascii-pictures/">Build an ASCII Art Editor (с исходниками)</a></p>
+
+
+
+<p><img src="Android%20%20ASCII%20Art%20Editor_files/asciiarteditor2.png" alt="ASCII Art Editor" height="500" width="300"></p>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20ASCII%20Art%20Editor_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20ASCII%20Art%20Editor_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20ASCII%20Art%20Editor_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20ASCII%20Art%20Editor_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20ASCII%20Art%20Editor_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20ASCII%20Art%20Editor_files/fastbutton.htm" name="I0_1379249081730" id="I0_1379249081730" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Android%20%20ASCII%20Art%20Editor_files/postmessageRelay.htm" id="oauth2relay734805052" name="oauth2relay734805052"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20ASCII%20Art%20Editor_files/jquery.js"></script>
+    <script src="Android%20%20ASCII%20Art%20Editor_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20ASCII%20Art%20Editor_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20ASCII%20Art%20Editor_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20ASCII%20Art%20Editor_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20ASCII%20Art%20Editor_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20ASCII%20Art%20Editor_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20ASCII%20Art%20Editor_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20ASCII%20Art%20Editor_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20ASCII%20Art%20Editor_files/bootstrap-button.js"></script>
+    <script src="Android%20%20ASCII%20Art%20Editor_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20ASCII%20Art%20Editor_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20ASCII%20Art%20Editor_files/bootstrap-typeahead.js"></script>
+
+</body></html>

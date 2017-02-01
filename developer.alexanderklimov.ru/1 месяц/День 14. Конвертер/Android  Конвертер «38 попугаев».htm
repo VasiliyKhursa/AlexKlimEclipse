@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Конвертер «38 попугаев»</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">   
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+          <ul class="nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->	
+<div class="clearfix"></div>
+	
+<noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Читайте на здоровье!</h3>
+            </div>
+            <div class="modal-body">
+            
+              <p>Статья проплачена кошками - всемирно известными производителями котят.</p>
+
+            <p>Если статья вам понравилась, то можете <a href="http://developer.alexanderklimov.ru/donate.php">поддержать проект</a>.</p>
+			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>            
+<h1 class="text-warning">Конвертер «38 попугаев»</h1>
+
+<p><img src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/longcat.jpg" align="right">Пора опять написать какое-нибудь новое полезное приложение (напоминаю, что до этого мы написали хорошую программу <a href="http://developer.alexanderklimov.ru/android/android3.php">Счётчик ворон</a>).
+ На этот раз напишем конвертер, который позволит нам узнать длину 
+длиннокота не только в метрах, но и в попугаях. Если вы не знаете, кто 
+такой длиннокот, то вам прямая дорога на мой блог <a href="http://alexanderklimov.ru/2010/07/25/caturday-5/">Субкота-5</a>. Надеюсь, что такое субкота, вы знаете?</p>
+
+<p>Изучив данную технику, вы сможете написать собственные конвертеры. 
+Например, вы сможете конвертировать доллары в тугрики, футы в метры, 
+градусы Цельсия в градусы по Фаренгейту, свинец в золото, ну и так 
+далее...</p>
+
+<h2 class="text-warning">Подготовка</h2>
+
+<p>Создаём новый проект <b>Converter38Parrots</b> и добавляем необходимые ресурсы.</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="app_name"&gt;38 попугаев&lt;/string&gt;
+    &lt;string name="radiobutton_meters"&gt;В метрах&lt;/string&gt;
+    &lt;string name="radiobutton_parrots"&gt;В попугаях&lt;/string&gt;
+    &lt;string name="buttonConvert_text"&gt;Конвертировать&lt;/string&gt;
+    &lt;string name="buttonConvertHandler"&gt;buttonConvert_Click&lt;/string&gt;
+    &lt;color name="activity_color"&gt;#3399cc&lt;/color&gt;
+&lt;/resources&gt;
+</code></pre>
+
+<p>Далее открываем файл <b>activity_main.xml</b> в папке <b>res/layout/</b> и настраиваем внешний вид экрана приложения. Удаляем глупую надпись <b>Hello World!</b> (щелкаем правой кнопкой и выбираем <b>Delete</b>). Далее с панели инструментов из раздела <b>Text Fields</b> перетаскиваем элемент <b>Plain Text</b>. Затем в разделе <b>Form Widgets</b> находим элемент <b>RadioGroup</b> и также перетаскиваем на форму. По умолчанию, <b>RadioGroup</b>
+ содержит три переключателя. Как гласит народная мудрость: Третий - 
+лишний. Удаляем третий переключатель другим способом - на панели <b>Outline</b>
+ выделяем нужный элемент и удаляем через контекстное меню. Обратили 
+внимание, как повышается ваш уровень? Вы всё лучше и лучше 
+ориентируетесь в среде разработки. Завершающий штрих - добавляем кнопку.</p>
+
+<h2 class="text-warning">Настройка</h2>
+
+<p>Мы подготовили каркас приложения. Теперь сделаем небольшой тюнинг. 
+Назначим необходимые свойства добавленным элементам. Свойства можно 
+менять через отдельную панель <b>Properties</b>, а также часть свойств можно изменить через контекстное меню элемента.</p>
+
+<p><img src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/0_5183b_76d9ade2_XL.png" title="" alt="" border="0" height="507" width="644"></p>
+
+<p>Первым делом удалим текст у <b>EditText</b> (свойство <b>Text</b>). 
+Кроме того, давайте сделаем так, чтобы при вводе текста в текстовом поле
+ по умолчанию появлялась цифровая клавиатура. Так удобнее будет 
+пользователю вводить длину кота.</p>
+
+<p><img src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/0_5183d_25937b2d_XL.jpg" title="" alt="" border="0" height="531" width="533"></p>
+
+<p>Далее присвоим текст переключателям <b>RadioButton</b>. Мы заранее уже заготовили строковые ресурсы для переключателей. Поэтому нам нужно просто назначить нужные ресурсы в свойствах <b>Text</b>: <b>radiobutton_meters</b> и <b>radiobutton_parrots</b>. Убедитесь, что у первого переключателя у свойства <b>Checked</b> установлено значение <b>true</b>.</p>
+
+<p>У кнопки для свойства <b>Text</b> мы используем строковый ресурс <b>buttonConvert_text</b>, а для свойства <b>On click</b> - <b>buttonConvert_Click</b>. Также можно растянуть кноппку по ширине экрана (Layout width = fill_parent).</p>
+
+<p>Чтобы приложение не выглядело мрачным, присвоим свойству <b>Background</b> у <b>LinearLayout</b> значение <b>activity_color</b> (цвет морской волны).</p>
+
+<p>Чтобы приложение выглядело профессиональнее, изменим также 
+идентификаторы по умолчанию на более понятные: editText, radioMeter, 
+radioParrot, buttonConvert.</p>
+
+<p>Пожалуй, получилось красиво.</p>
+
+<p><img src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/convert3.png"></p>
+
+<p>Код разметки выглядит следующим образом:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/activity_color"
+    android:orientation="vertical" &gt;
+
+    &lt;EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:inputType="numberSigned|numberDecimal" &gt;
+    &lt;/EditText&gt;
+
+    &lt;RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" &gt;
+
+        &lt;RadioButton
+            android:id="@+id/radioMeter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/radiobutton_meters" &gt;
+        &lt;/RadioButton&gt;
+
+        &lt;RadioButton
+            android:id="@+id/radioParrot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radiobutton_parrots" &gt;
+        &lt;/RadioButton&gt;
+    &lt;/RadioGroup&gt;
+
+    &lt;Button
+        android:id="@+id/buttonConvert"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@string/buttonConvertHandler"
+        android:text="@string/buttonConvert_text" &gt;
+    &lt;/Button&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<h2 class="text-warning"><s>Ш</s>кодим</h2>
+
+<p>Ну, давайте писать код, что-ли. Открываем файл <b>Converter.java</b>.
+ Нам понадобятся два метода для конвертации величин и обработчик щелчка 
+кнопки. При пустом значении текстового поля будем выводить 
+Toast-сообщение:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.converter;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Toast;
+
+public class Converter extends Activity {
+	
+	private EditText textInfo;
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        
+        textInfo = (EditText) findViewById(R.id.editText);
+    }
+    
+    public void buttonConvert_Click(View view){
+    	switch (view.getId()) {
+		case R.id.buttonConvert:
+			RadioButton MeterButton = (RadioButton) findViewById(R.id.radioMeter);
+			RadioButton ParrotButton = (RadioButton) findViewById(R.id.radioParrot);
+			if (textInfo.getText().length() == 0) {
+				Toast.makeText(this, "Введите длину",
+						Toast.LENGTH_LONG).show();
+				return;
+			}
+
+			float inputValue = Float.parseFloat(textInfo.getText().toString());
+			if (MeterButton.isChecked()) {
+				textInfo.setText(String
+						.valueOf(convertMeterToParrot(inputValue)));
+			} else {
+				textInfo.setText(String
+						.valueOf(convertParrotToMeter(inputValue)));
+			}
+			// Щелкаем переключателями
+			if (ParrotButton.isChecked()) {
+				ParrotButton.setChecked(false);
+				MeterButton.setChecked(true);
+			} else {
+				ParrotButton.setChecked(true);
+				MeterButton.setChecked(false);
+			}
+			break;
+		}
+    }
+    
+    // Конвертируем в метры
+    private float convertParrotToMeter(float parrot) {
+        return (float) (parrot / 7.6);
+    }
+
+    // Конвертируем в попугаи
+    private float convertMeterToParrot(float meter) {
+        return (float) (meter * 7.6);
+    }
+}
+</code></pre>
+
+<p>Запускаем проект и любуемся новым приложением.</p>
+
+<p><img src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/convert2.png" title="" alt="Готовое приложение" border="0" height="557" width="600"></p>
+
+<h2 class="text-warning">Заключение</h2>
+
+<p>Чтобы быть уверенным, что мы применяли научные методы при написании программы, обратимся к Google с поисковым запросом <a href="http://www.google.ru/search?hl=ru&amp;newwindow=1&amp;q=%D1%83%D0%B4%D0%B0%D0%B2%D1%8B+%D0%B2+%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D1%8F%D1%85&amp;btnG=%D0%9F%D0%BE%D0%B8%D1%81%D0%BA&amp;lr=#hl=ru&amp;pq=%D1%83%D0%B4%D0%B0%D0%B2%D1%8B%20%D0%B2%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D1%8F%D1%85&amp;xhr=t&amp;q=%D0%BC%D0%B5%D1%82%D1%80%D1%8B+%D0%B2+%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D1%8F%D1%85&amp;cp=4&amp;pf=p&amp;sclient=psy&amp;lr=&amp;newwindow=1&amp;source=hp&amp;aq=f&amp;aqi=&amp;aql=&amp;oq=%D0%BC%D0%B5%D1%82%D1%80%D1%8B+%D0%B2+%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D1%8F%D1%85&amp;pbx=1&amp;fp=f5abab7a0ca64023">метры в попугаях</a></p>
+
+<p><img src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/googleCalc.png" alt="Метры в попугаях"></p>
+
+<p>Таким образом, вам осталось поймать длиннокота и измерить его. 
+Результаты необходимо показать коту и, тогда вас ждет сюрприз! Кот от 
+удивления произнесет знаменитую фразу: А в попугаях я гораздо длиннее!</p>
+
+<h5 class="text-error">Реклама</h5>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4224968932772057";
+/* Полноразмерный баннер 728х90 */
+google_ad_slot = "4077523505";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/show_ads.js">
+</script>
+
+				
+				
+		    </div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/fastbutton.htm" name="I0_1378010793833" id="I0_1378010793833" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/postmessageRelay.htm" id="oauth2relay316804168" name="oauth2relay316804168"></iframe><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/jquery.js"></script>
+    <script src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%C2%AB38%20%D0%BF%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%C2%BB_files/bootstrap-typeahead.js"></script>
+
+</body></html>

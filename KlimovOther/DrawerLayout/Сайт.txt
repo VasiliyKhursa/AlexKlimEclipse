@@ -1,0 +1,5 @@
+http://developer.alexanderklimov.ru/android/layout/drawerlayout.php
+https://habrahabr.ru/post/236567/
+https://material.google.com/patterns/navigation-drawer.html?hl=ru#navigation-drawer-behavior
+https://developer.android.com/training/implementing-navigation/nav-drawer.html?hl=ru
+http://dolbodub.blogspot.com/2014_11_01_archive.html

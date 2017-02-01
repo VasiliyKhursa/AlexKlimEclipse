@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Используем Dropbox Sync API</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory/">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Используем Dropbox Sync API</h1>
+
+<p>Закрытая зона/5-й месяц</p>
+
+<p><img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/dropboxcat.jpg" alt="Dropbox"></p>
+
+
+
+<p>Dropbox является одним из самых популярных облачных файловых 
+хранилищ. Создатели сервиса разработали специальное API для 
+разработчиков, чтобы мы могли встраивать возможности Dropbox в свои 
+приложения.</p>
+
+<p>На сайте облачноего сервиса есть специальная страница, посвященная 
+созданию приложения с использованием Dropbox, а также готовые примеры. 
+Но у меня почему-то примеры не заработали. Поэтому я создал свой проект с
+ нуля и расскажу пошагово, как же внедрять Dropbox в своё приложение.</p>
+
+<p>Работа с Dropbox происходит через <b>Sync API</b>, который реализован в виде библиотеки для Android.</p>
+
+<p>Основные понятия, используемые в Sync API (все классы начинаются с префикса Dbx):</p>
+
+<dl>
+<dt><b>DbxAccountManager</b></dt><dd>Менеджер аккаунтов  является 
+стартовой точкой для начала работы. Позволяет начать процес 
+идентификации пользователя через учётную запись пользователя. Если связь
+ с учёткой установилась, то можно работать с файловыми объектами.</dd>
+<dt><b>DbxFileSystem</b></dt><dd>Файловая система Dropbox, которая 
+автоматически синхронизируется с папкой вашего приложения. Вы можете 
+проводить стандартные файловые операции: получать список папок и файлов,
+ редактировать, перемещать и удалять их.</dd>
+<dt><b>DbxFile</b></dt><dd>Непосредственная работа с файлом - создание, 
+открытие, изменение содержания. При изменении файл автоматически 
+синхронизируется с сервером.</dd>
+<dt><b>Слушатели</b></dt><dd>Вы можете также прослушивать изменения, которые происходят в файлах, чтобы узнать, что же там изменилось.</dd>
+</dl>
+
+<h2 class="text-warning">Регистрация на сайте</h2>
+
+<p>Для работы у вас должна быть учётная запись Dropbox. Если у вы раньше
+ не пользовались этим сервисом, то у меня для вас небольшой подарок. 
+Зарегистрируйтесь по <a href="http://db.tt/xQP2ZAj">этой ссылке</a>, и вам (и мне) дадут дополнительные 500Мб свободного места к стандартным 2Гб.</p>
+
+
+<p>Далее идём на страницу <a href="https://www.dropbox.com/developers/apps">App Console</a>
+ и регистрируем программу. Под регистрацией имеется в виду оповещение 
+владельцев сервиса, что вы собираетесь использовать возможности 
+облачного хранилища в своём приложении под Android или iOS.</p>
+
+<p>Выбираем переключатель <b>Sync API</b> и придумываем имя для 
+приложения. Имя вашего приложения не должно начинаться со слов Drop, 
+поэтому моя первая попытка не увенчалась успехом. Пришлось читать 
+правила и выяснять, почему мне не дают выбрать нормальное с моей точки 
+зрения имя.</p>
+
+<p><a href="http://fotki.yandex.ru/users/netsources/view/544393/"><img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/0_84e89_ef67f82e_L.jpg" title="" alt="" border="0" height="323" width="500"></a></p>
+
+<p>Если регистрация прошла успешно, то вам выдадут ключ и секрет - эти 
+строки позже вы вставите в своё Android-приложение. Показывать их никому
+ не надо. Они служат для идентификации вас как автора приложения. Также 
+вы можете заполнить другие дополнительные поля.</p>
+
+<p><a href="http://fotki.yandex.ru/users/netsources/view/544394/"><img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/0_84e8a_43bb4434_L.jpg" title="" alt="" border="0" height="392" width="500"></a></p>
+
+<h2 class="text-warning">Установка библиотеки</h2>
+
+<p>Скачиваем <a href="https://www.dropbox.com/sh/j6rb54nt2erea90/o1TQ0QjPG2">Sync API Android SDK</a>,
+ который состоит из библиотеки, примеров и других файлов. На момент 
+написания статьи версия SDK была 1.0.8. Распакуйте архив. В папке <b>libs</b> находится jar-файл библиотеки, а также несколько папок.</p>
+
+<p>Создадим новый проект. Скопируйте jar-файл и папку <b>armeabi</b> в папку <b>libs</b>
+ вашего проекта в Eclipse. Две остальные папки копировать не 
+обязательно, они предназначены для других платформ. Если вы понимаете, о
+ чём идёт речь, то скопируйте и их.</p>
+
+<p>При желании можете подключить документацию библиотеки к своему проекту. Создайте в Eclipse в папке <b>libs</b> новый  файл <b>dropbox-sync-sdk-android.jar.properties</b> и вставьте в него строку, которая указывает на папку <b>javadoc</b> скачанного SDK. На моей машине Windows 8 строка выглядит так:</p>
+
+<pre>doc=D:\\Soft\android\\dropbox-android-sync-sdk-1.0.8\\javadoc
+</pre>
+
+<p>Замените обратные слеши на двойные, закройте проект и откройте его 
+снова. У меня не сразу получилось подключить документацию, я пробовал 
+разные варианты. Надеюсь, описанный способ является оптимальным, 
+сэкономит вам время и у вас получится уже с первого раза.</p>
+
+<h2 class="text-warning">Создание приложения</h2>
+
+<p>Добавим кнопку и текстовую метку для вывода информации.</p>
+
+<pre><code class="xml">
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" &gt;
+
+    &lt;Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="Соединиться с Dropbox" /&gt;
+
+    &lt;TextView
+        android:id="@+id/tv_output"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Output" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Внесём изменения в манифест. Необходимо прописать разрешения и добавить парочку активностей и сервис в блок <b>application</b>. В атрибуте <b>android:scheme</b> нужно прописать свой API Key с преффиксом <b>dp-</b>:</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
+
+&lt;activity android:name="com.dropbox.sync.android.DbxAuthActivity" /&gt;
+&lt;activity
+    android:name="com.dropbox.client2.android.AuthActivity"
+    android:launchMode="singleTask" &gt;
+    &lt;intent-filter&gt;
+        &lt;data android:scheme="db-вашКлюч" /&gt;
+
+        &lt;action android:name="android.intent.action.VIEW" /&gt;
+
+        &lt;category android:name="android.intent.category.BROWSABLE" /&gt;
+        &lt;category android:name="android.intent.category.DEFAULT" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+
+&lt;service
+    android:name="com.dropbox.sync.android.DbxSyncService"
+    android:enabled="true"
+    android:exported="false"
+    android:label="Dropbox Sync" /&gt;
+</code></pre>
+
+<p>Можно переходить к написанию кода. В папке SDK есть несколько 
+примеров. Но у меня они не заработали. Поэтому я просто копировал код из
+ примеров в свой проект и тестировал у себя.</p>
+
+<p>Для начала работы с <b>Sync API</b> необходимо создать объект <b>DbxAccountManager</b>,
+ который позволит связаться с учётной записью пользователя. Данный 
+объект необходимо использовать в любой активности или фрагменте, которые
+ будут взаимодействовать с Dropbox. Обычно используется метод <b>onCreate()</b> для данной задачи.</p>
+
+<pre><code class="java">
+private DbxAccountManager mDbxAcctMgr;
+private static final String APP_KEY = "catCatcat";
+private static final String APP_SECRET = "meowMEOWmeow";
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    mDbxAcctMgr = DbxAccountManager.getInstance(getApplicationContext(), APP_KEY, APP_SECRET);
+}
+</code></pre>
+
+<p>В переменных <b>APP_KEY</b> и <b>APP_SECRET</b> необходимо вписать ваши секретные данные, полученные в консоли Dropbox.</p>
+
+<p>Следующий шаг - соединение с учётной записью пользователя. При нажатии на кнопку мы запускаем внешнюю активность, а в методе <b>onActivityResult()</b> мы должны обработать полученный результат.</p>
+
+<pre><code class="java">
+static final int REQUEST_LINK_TO_DBX = 0;  // This value is up to you
+
+// Нажатие на кнопку
+public void onClick(View v){
+	mDbxAcctMgr.startLink((Activity)this, REQUEST_LINK_TO_DBX);
+}
+
+// Обрабатываем полученный результат
+@Override
+public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if (requestCode == REQUEST_LINK_TO_DBX) {
+        if (resultCode == Activity.RESULT_OK) {
+            // Можно работать с файлами Dropbox
+        	doDropboxTest();
+        } else {
+         	tvOutput.setText("Соединиться не получилось или пользователь отменил операцию");
+        }            
+    } else {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+}
+</code></pre>
+
+<p>В успешном случае вы можете увидеть сообщение в LogCat: <i>Dropbox user &lt;userid&gt; linked.</i>. С этого момента можете считать, что приложение успешно связало учётную запись пользователя с сервером Dropbox.</p>
+
+<p>Подобную связь следует устанавливать один раз, так как Sync API 
+автоматически сохранит данные пользователя на устройстве. При повторном 
+запуске приложения вам следует проверить наличие связи с учётной записью
+ через метод <b>hasLinkedAccount()</b>, например, в методе <b>onResume()</b>.</p>
+
+<h2 class="text-warning">Работаем с файлами</h2>
+
+<p>Получив связь с учётной записью, вы можете получить доступ к файловой системе <b>DbxFileSystem</b>, которая доступна для вашего приложения.</p>
+
+<pre><code class="java">
+DbxFileSystem dbxFs = DbxFileSystem.forAccount(mDbxAcctMgr.getLinkedAccount());
+</code></pre>
+
+<p>Далее вы можете читать и писать в файл через объект <b>DbxFile</b>. 
+При первом соединении с Dropbox через ваше приложение, папка приложения 
+пуста. Но вы можете сразу создать какой-нибудь тестовый файл.</p>
+
+<pre><code class="java">
+DbxFile testFile = dbxFs.create(new DbxPath("hello_kitty.txt"));
+try {
+    testFile.writeString("Hello Kitty!");
+} finally {
+    testFile.close();
+}
+</code></pre>
+
+<p>Запись в файл можно производить, даже не имея доступа к интернету. 
+Когда приложение получит доступ к сети, то файлы автоматически будут 
+синхронизированы с сервером. Также можно пользоваться стандартными 
+методами ввода/вывода FileOutputStream и т.д.</p>
+
+<p>Чтение файла также очень простое.</p>
+
+<pre><code class="java">
+DbxFile testFile = dbxFs.open(testPath);
+try {
+    String contents = testFile.readString();
+    Log.d("Dropbox Test", "File contents: " + contents);
+} finally {
+    testFile.close();
+}
+</code></pre>
+
+<p>Если файл ещё не закэширован, то метод <b>readString()</b> будет 
+ждать, пока файл не загрузится на устройство. Вы можете перенести это 
+ожидание из основного потока UI, используя Loader, или используя 
+слушатель <b>DbxFile.Listener</b> для отслеживания процесса загрузки файла.</p>
+
+<h2 class="text-warning">Слушаем изменения</h2>
+
+<p><b>DbxFile</b> связан с определённой версией конкретного файла. Вы можете проверить, закэширован ли файл через метод <b>isCached()</b> и начать немедленно читать файл через метод <b>DbxFile.getSyncStatus()</b>. Если файл ещё не готов, то <b>readString()</b> будет ждать окончания загрузки. Если вы не хотите ждать, то зарегистрируйте слушатель загрузки файла.</p>
+
+<pre><code class="java">
+DbxFileStatus status = testFile.getSyncStatus(); 
+if (!status.isCached) {
+    testFile.addListener(new DbxFile.Listener() {
+        @Override
+        public void onFileChange(DbxFile file) {
+            // Check testFile.getSyncStatus() and read if it{"'"}s ready
+        }
+    });
+    // Check if testFile.getSyncStatus() is ready already to ensure nothing
+    // was missed while adding the listener
+}
+</code></pre>
+
+<p>Вы также можете проверить последнюю версию файла через переменную <b>isLatest</b>. Если файл на устройстве имеет не самую последнюю версию, то используйте метод <b>DbxFile.getNewerStatus()</b>,
+ чтобы получить статус синхронизации для новой версии файла. Когда файл 
+открыт, Sync API автоматически загрузит новую версию файла и метод <b>getNewerStatus()</b> будет включён в процесс загрузки. После загрузки файла будет установлен статус <b>getNewerStatus().isCached</b>. Тогда вы можете вызвать метод <b>update()</b>, чтобы обновить открытый файл до новой версии.</p>
+
+<p>Также можно прослушивать изменения не одного файла, а сразу всех файлов в папке вашего приложения через <b>DbxFileSystem.PathListener</b>. Также вы можете мониторить статусы фоновой синхронизации и выводить значки статусов при загрузке или выгрузке.</p>
+
+<pre><code class="java">
+dbxFs.addSyncStatusListener(new DbxFileSystem.SyncStatusListener() {
+    @Override
+    public void onSyncStatusChange(DbxFileSystem fs) {
+        DbxSyncStatus fsStatus = fs.getSyncStatus();
+        if (fsStatus.anyInProgress()) {
+            // Показать индикатор синхронизации
+        }
+    }
+    // Set syncing indicator based on current sync status
+});
+</code></pre>
+
+<p>Вы должны избегать ситуаций с открытыми файлами или прослушками, когда ваше приложение неактивно. Используйте метод <b>onPause()</b>, чтобы удалить слушатели и закрыть файлы, а затем в методе <b>onResume()</b> восстановите их в случае необходимости.</p>
+
+<p>Посмотрим, как это выглядело на эмуляторе. Запускаем программу:</p>
+
+<p><img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/dropbox1.png" alt="Запуск"></p>
+
+<p>Нажимаем на кнопку. Запускается браузер и идёт соединение с сервером 
+Dropbox. Появляется экран для ввода данных учётной записи. Если у 
+пользователя уже есть такие данные, то он вводит свой электронный адрес и
+ пароль.</p>
+
+<p><img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/dropbox2.png" alt="Вход в Dropbox"></p>
+
+<p>Далее появляется новый экран, где у пользователя спрашивают согласие на использование программой отдельной папки в Dropbox.</p>
+
+<p><img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/dropbox3.png"></p>
+
+<p>Как только пользователь согласился и нажал кнопку <b>Можно</b>, происходит связывание программы с учётной записью. На настольном компьютере у меня появилась папка <b>Приложения</b>, а в ней ещё одна папка <b>TestDropAlexKlimoff</b> по имени, которое мы задавали в <b>App Console</b> в начале статьи.</p>
+
+<p>Также программа сразу создала текстовый файл <b>hello_kitty.txt</b> и содержанием <b>Hello Kitty</b>. Какая замечательная программа у нас получилась - здоровается с котятами.</p>
+
+<p><img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/dropbox4.png"></p>
+
+<p>А приложение тем временем просмотрело список файлов в отведённой ему папке и вывела результат на экран:</p>
+
+<p><img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/dropbox5.png"></p>
+
+<p>На скриншоте вы видите более ранний вариант моих опытов с Sync API, 
+когда я сначала создал файл hello_dropbox.txt, а затем hello_kitty.txt. 
+Поэтому на экране вывелось два файла. Позже один файл я удалил и в папке
+ остался один файл, который виден на предыдущем скриншоте Проводника 
+Windows 8.</p>
+
+<p>Если закрыть и запустить приложение снова, то программа не будет 
+предлагать вводить учётные данные, а сразу покажет список файлов в 
+папке. Чтобы вернуться к первоначальному варианту со входом, вам нужно 
+разорвать связь приложения с аккаунтом пользователя. Сделать это можно с
+ помощью метода <b>unlink()</b>. Я поместил вызов данного метода в меню.</p>
+
+<p>Таким образом, мы с вами получили базовые знания, как интегрировать 
+приложение в Dropbox. Если эта тема вам интересна, то изучите второй 
+пример из документации <b>notes</b> и поделитесь впечатлениями.</p>
+
+<h2 class="text-warning">Дополнительное чтение</h2>
+
+<p><a href="https://www.dropbox.com/developers/sync/start/android">Getting started with the Sync API - Dropbox</a> - стартовая страница по разработке приложений от Dropbox (en).</p>
+
+<h2 class="text-warning">Исходный код главной активности</h2>
+
+<pre><code class="java">
+package ru.alexanderklimov.dropboxsample;
+
+import java.io.IOException;
+import java.util.List;
+
+import com.dropbox.sync.android.DbxAccountManager;
+import com.dropbox.sync.android.DbxFile;
+import com.dropbox.sync.android.DbxFileInfo;
+import com.dropbox.sync.android.DbxFileSystem;
+import com.dropbox.sync.android.DbxPath;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+
+	private TextView tvOutput;
+	private Button buttonLink;
+
+	private DbxAccountManager mDbxAcctMgr;
+	private static final String APP_KEY = "ВашКлюч";
+	private static final String APP_SECRET = "ВашСекрет";
+
+	static final int REQUEST_LINK_TO_DBX = 0; // This value is up to you
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		tvOutput = (TextView) findViewById(R.id.tv_output);
+		buttonLink = (Button) findViewById(R.id.button);
+
+		mDbxAcctMgr = DbxAccountManager.getInstance(getApplicationContext(),
+				APP_KEY, APP_SECRET);
+	}
+
+	// Обрабатываем полученный результат
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == REQUEST_LINK_TO_DBX) {
+			if (resultCode == Activity.RESULT_OK) {
+				// Можно работать с файлами Dropbox
+				doDropboxTest();
+			} else {
+				tvOutput.setText("Соединиться не получилось или пользователь отменил операцию");
+			}
+		} else {
+			super.onActivityResult(requestCode, resultCode, data);
+		}
+	}
+
+	public void onClick(View v) {
+		mDbxAcctMgr.startLink((Activity) this, REQUEST_LINK_TO_DBX);
+	}
+
+	private void doDropboxTest() {
+		try {
+			final String TEST_DATA = "Hello Kitty";
+			final String TEST_FILE_NAME = "hello_kitty.txt";
+			DbxPath testPath = new DbxPath(DbxPath.ROOT, TEST_FILE_NAME);
+
+			// Create DbxFileSystem for synchronized file access.
+			DbxFileSystem dbxFs = DbxFileSystem.forAccount(mDbxAcctMgr
+					.getLinkedAccount());
+
+			// Print the contents of the root folder. This will block until we
+			// can
+			// sync metadata the first time.
+			List<dbxfileinfo> infos = dbxFs.listFolder(DbxPath.ROOT);
+			tvOutput.setText("\nContents of app folder:\n");
+			for (DbxFileInfo info : infos) {
+				tvOutput.append("    " + info.path + ", " + info.modifiedTime
+						+ '\n');
+			}
+
+			// Create a test file only if it doesn't already exist.
+			if (!dbxFs.exists(testPath)) {
+				DbxFile testFile = dbxFs.create(testPath);
+				try {
+					testFile.writeString(TEST_DATA);
+				} finally {
+					testFile.close();
+				}
+				tvOutput.append("\nCreated new file '" + testPath + "'.\n");
+			}
+
+			// Read and print the contents of test file. Since we're not making
+			// any attempt to wait for the latest version, this may print an
+			// older cached version. Use getSyncStatus() and/or a listener to
+			// check for a new version.
+			if (dbxFs.isFile(testPath)) {
+				String resultData;
+				DbxFile testFile = dbxFs.open(testPath);
+				try {
+					resultData = testFile.readString();
+				} finally {
+					testFile.close();
+				}
+				tvOutput.append("\nRead file '" + testPath
+						+ "' and got data:\n    " + resultData);
+			} else if (dbxFs.isFolder(testPath)) {
+				tvOutput.append("'" + testPath.toString() + "' is a folder.\n");
+			}
+		} catch (IOException e) {
+			tvOutput.setText("Dropbox test failed: " + e);
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (mDbxAcctMgr.hasLinkedAccount()) {
+			showLinkedView();
+			doDropboxTest();
+		} else {
+			showUnlinkedView();
+		}
+	}
+
+	private void showLinkedView() {
+		buttonLink.setVisibility(View.GONE);
+		tvOutput.setVisibility(View.VISIBLE);
+	}
+
+	private void showUnlinkedView() {
+		buttonLink.setVisibility(View.VISIBLE);
+		tvOutput.setVisibility(View.GONE);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		mDbxAcctMgr.unlink();
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		// Операции для выбранного пункта меню
+		switch (item.getItemId()) {
+		case R.id.action_settings:
+			mDbxAcctMgr.unlink();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+}
+</dbxfileinfo></code></pre>
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/fastbutton.htm" name="I0_1379797883339" id="I0_1379797883339" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/postmessageRelay.htm" id="oauth2relay255025680" name="oauth2relay255025680"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/jquery.js"></script>
+    <script src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%98%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B5%D0%BC%20Dropbox%20Sync%20API_files/bootstrap-typeahead.js"></script>
+
+</body></html>

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Сетевая поддержка</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="http://developer.alexanderklimov.ru/android/secret/enter.php" id="drop3" role="button">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>			
+			<p><a href="http://developer.alexanderklimov.ru/android/secret/secret.php?do=logout">Выйти из закрытой зоны</a></p>
+<h1 class="text-warning">Сетевая поддержка</h1>
+
+<p>
+<a href="#start">Быстрый старт</a><br>
+<a href="#permission">Настройка разрешений для работы с сетью</a><br>
+<a href="#checkinternet">Как проверить подключение к Интернету</a><br>
+<a href="#checkhost">Проверка доступности сервера</a><br>
+<a href="#datesetting">Чтение пользовательских настроек, отвечающих за передачу данных в фоновом режиме</a><br>
+<a href="#networkprefs">Поиск и изменение сетевых настроек, управление аппаратными адаптерами</a><br>
+<a href="#getip">Получить IP-адрес хоста</a><br>
+<a href="#getallnetworkinfo">Метод getAllNetworkInfo()</a><br>
+<a href="#wimax">Поддержка LTE</a><br>
+</p>
+
+<h2 class="text-warning" id="start">Быстрый старт</h2>
+
+<p>Как ни странно, но телефоны все дальше и дальше отдаляются от своей 
+основной задачи - просто позвонить. Теперь устройство используется как 
+платформа для сетевых игр, посещения сайтов, общения по Skype, ICQ и 
+т.д. И поэтому телефону требуется обеспечить сетевую поддержку.</p>
+
+<p>Мобильные устройства подключаются к Интернету при помощи 3G, Wi-Fi (в
+ редких случаях и по кабелю), используя стандартные протоколы HTTP, 
+HTTPS, TCP/IP, сокеты.</p>
+
+<p>Основные моменты, на которые должен обратить внимание разработчик при
+ реализации сетевой поддержки - обеспечение конфиденциальности, учет 
+потребления заряда батареи, проверка доступности сети.</p>
+
+<p>Android предоставляет разработчику все необходимые библиотеки для 
+работы с сетью. Android использует для работы с сетью стандартные 
+библиотеки Java , а также ряд своих библиотек.</p>
+
+<p>В таблице приведены некоторые пакеты, относящиеся к сетевым возможностям, которые присутствуют в SDK Android:</p>
+
+<table class="table table-striped">
+<tbody><tr>
+<td>java.net</td><td>Содержит классы, связанные с сетевыми функциями, в 
+том числе сокеты потоков и датаграмм, протокол IP, а также общие 
+средства для работы с HTTP. Это многоцелевой ресурс для работы с сетями.</td></tr>
+<tr>
+<td>java.io</td><td>Пакет не относится непосредственно к сетям. Его 
+классы используются сокетами и соединениями, содержащимися в других 
+пакетах Java. Они используются также для обмена с локальными файлами 
+(что часто происходит при взаимодействии с сетью).</td></tr>
+<tr>
+<td>java.nio</td><td>Содержит классы, которые служат буфером для 
+определенных типов данных. Удобен для организации сетевой связи между 
+двумя конечными точками средствами Java.</td></tr>
+<tr>
+<td>org.apache.*</td><td>Набор пакетов, которые обеспечивают точный 
+контроль и функции для HTTP-коммуникаций на основе Apache - популярного 
+веб-сервера с открытым исходным кодом.</td></tr>
+<tr>
+<td>android.net</td><td>Содержит дополнительные сокеты доступа к сети в 
+дополнение к основным классам java.net.*. Этот пакет включает в себя 
+класс URI, который часто используется в разработке приложений Android, 
+не связанных с сетью.</td></tr>
+<tr>
+<td>android.net.http</td><td>Содержит классы для работы с сертификатами SSL.</td></tr>
+<tr>
+<td>android.net.wifi</td><td>Содержит классы для реализации всех аспектов WiFi (802.11 Wireless Ethernet) на платформе Android.</td></tr>
+</tbody></table>
+
+<p>Важно, чтобы ваше приложение:</p>
+
+<ul>
+<li>использовало сетевые сервисы только при необходимости (используйте локальное кэширование данных при первой возможности)</li>
+<li>предупреждало пользователя при использовании личной информации</li>
+<li>имело гибкие настройки включения и отключения различных 
+функциональных возможностей без ущерба использования программы. 
+Например, если уровни подгружаются из интернета, то первые несколько 
+уровней должные быть зашиты в память программы</li>
+<li>проверяло наличие сети и обрабатывало эту ситуацию</li>
+</ul>
+
+<p>Для настройки сетевой поддержки устройств используется приложение 
+Настройки (Settings), в котором можно настроить различные режимы (Режим 
+полета, Wi-Fi, Мобильная сеть). Также там можно посмотреть сведения о 
+беспроводной сети, ее типе (CDMA, EDGE, GSM), уровень сигнала, состояние
+ подключения к сотовой сети, состояние роуминга и др.</p>
+
+
+<h2 class="text-warning" id="permission">Настройка разрешений для работы с сетью</h2>
+
+<p> Для работы с сетью приложение должно иметь соответствующие разрещения, устанавливаемые в файле манифеста:</p>
+
+<pre><code class="xml">
+&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/&gt;
+&lt;uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/&gt;
+</code></pre>
+
+<p>Для проверки состояния сетевого соединения используется разрешение <b>ACCESS_NETWORK_STATE</b>, для изменения состояния сети нужно установить разрешение <b>CHANGE_NETWORK_STATE</b>.</p>
+
+<p>Существуют и другие разрешения, например, разрешение на изменение состояния Wi-Fi и т.д.</p>
+
+<h2 class="text-warning" id="checkinternet">Как проверить подключение к Интернету</h2>
+
+<p>Для получения информации о состоянии сети используется класс <b>ConnectivityManager</b>.
+ Он позволяет отслеживать состояние подключения к Сети, устанавливать 
+предпочтительное сетевое подключение и контролировать отказоустойчивость
+ соединения. Получить экземпляр класса можно при помощи метода <b>getSystemService()</b> объекта типа <b>Context</b>. Получив необходимый экземпляр, можно запросить информацию о мобильной связи при помощи метода <b>getActiveNetworkInfo()</b>, а также <b>getNetworkInfo()</b> и еще несколько похожих методов. Класс <b>NetworkInfo</b>,
+ который возвращается этими методами, предоставляет ряд методов для 
+получения различной информации о состоянии сети: доступность, 
+подключение и состояние роуминга и т.д.</p>
+
+<p>Функция для проверки связи с Интернетом.</p>
+
+<pre><code class="java">
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.content.Context;
+
+public boolean isOnline() {
+    ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo nInfo = cm.getActiveNetworkInfo();
+    if (nInfo != null &amp;&amp; nInfo.isConnected()) {
+        edtext.setText("ONLINE"); // выводим в текстовом поле
+        return true;
+    }
+    else {
+        edtext.setText("OFFLINE");
+        return false;
+    }
+}
+</code></pre>
+
+<p>При проверке отключенного состояния подключения к Интернету в эмуляторе необходимо включать режим <b>Airplane mode</b> (в самолете) или нажать клавишу F8, иначе код всегда будет возвращать true (есть подключение).</p>
+
+<div class="alert alert-info">
+Если вы будете вызывать метод <b>getSystemService()</b> не в активности, а в фрагменте, то код нужно немного поправить:
+<pre><code class="java">
+ConnectivityManager cm = (ConnectivityManager) getActivity()
+        .getSystemService(Context.CONNECTIVITY_SERVICE);
+</code></pre>
+</div>
+
+<p>Используйте NetworkInfo для получения сведений о состоянии 
+подключения, о типе сети, а также подробного описания состояния сетевого
+ соединения.</p>
+
+<pre><code class="java">
+// Получите информацию об активном сетевом подключении.
+NetworkInfo activeNetwork = connectivity.getActiveNetworkInfo();
+int networkType = networkInfo.getType();
+
+switch (networkType) {
+    case (ConnectivityManager.TYPE_MOBILE) : break;
+    case (ConnectivityManager.TYPE_WIFI) : break;
+    default: break;
+}
+// Получите информацию о мобильной сети.
+int network = ConnectivityManager.TYPE_MOBILE;
+NetworkInfo mobileNetwork = connectivity.getNetworkInfo(network);
+NetworkInfo.State state = mobileNetwork.getState();
+NetworkInfo.DetailedState detailedState = mobileNetwork.getDetailedState();
+</code></pre>
+
+<h2 class="text-warning" id="checkhost">Проверка доступности сервера</h2>
+
+<p>Одной проверки доступности сети недостаточно. Необходимо также 
+проверять доступность удаленного сервера, с которым будет работать 
+приложение. У класса <b>ConnectivityManager</b> есть метод <b>requestRouteHost()</b>,
+ позволяющий проверить возможность передачи трафика на определенный 
+IP-адрес с использованием указанного типа сети (3G, Wi-Fi и т.д.).</p>
+
+<h2 class="text-warning" id="datesetting">Чтение пользовательских настроек, отвечающих за передачу данных в фоновом режиме</h2>
+
+<p>ConnectivityManager позволяет считывать пользовательские настройки 
+для передачи данных в фоновом режиме. Чтобы получить эти настройки, 
+вызовите метод <b>getBackgroundDataSetting()</b> из объекта ConnectivityManager:</p>
+
+<pre><code class="java">
+boolean backgroundEnabled = connectivity.getBackgroundDataSetting();
+</code></pre>
+
+<p>Если эта возможность выключена, ваше приложение должно передавать 
+данные только в том случае, когда оно в активном состоянии и на переднем
+ плане. Выключая эту функцию, пользователь явно просит, чтобы ваше 
+приложение, находясь в фоновом режиме, не передавало информацию по Сети.</p>
+
+<p>Если для функционирования вашего приложения необходима возможность 
+передачи данных в фоновом режиме, лучше уведомить пользователя о таком 
+требовании и предложить ему поменять свои настройки.</p>
+
+<p>Когда пользователь изменит настройки, отвечающие за передачу данных в
+ фоновом режиме, система пошлет Широковещательное намерение с действием <b>ConnectivityManager.ACTION_BACKGROUND_DATA_SETTING_CHANGED</b>.</p>
+
+<p>Чтобы следить за изменениями состояния этой настройки, создайте и 
+зарегистрируйте объект BroadcastReceiver, который будет реагировать на 
+соответствующее намерение:</p>
+
+<pre><code class="java">
+registerReceiver( new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        // Действия при изменении настроек, отвечающих за
+        // передачу данных в фоновом режиме.
+    },
+        new IntentFilter(ConnectivityManager.ACTION_BACKGROUND_DATA_SETTING_CHANGED));
+</code></pre>
+
+<p>Ваши приложения не обязаны учитывать пользовательские настройки для 
+передачи данных в фоновом режиме. Однако тогда вы рискуете услышать 
+проклятия в свой адрес, а пользователь может получить огромный счет за 
+сетевой трафик. Оно вам надо?</p>
+
+<h2 class="text-warning" id="networkprefs">Поиск и изменение сетевых настроек, управление аппаратными адаптерами</h2>
+
+<p>ConnectivityManager может использоваться для управления сетевым аппаратным обеспечением и настройками отказоустойчивости.</p>
+
+<p>Android будет пытаться подключиться к предпочтительной сети каждый 
+раз, когда авторизованное приложение запросит доступ к 
+интернет-соединению. Вы можете получить текущее соединение (или 
+установить предпочтительное) с помощью методов <b>getNetworkPreference()</b> и <b>setNetworkPreference()</b>:</p>
+
+<pre><code class="java">
+int networkPreference = connectivity.getNetworkPreference();
+connectivity.setNetworkPreference(NetworkPreference.PREFER_WIFI);
+</code></pre>
+
+<p>Если предпочтительное подключение недоступно или соединение с этой 
+сетью было утрачено, Android автоматически попытается подключиться ко 
+второстепенной сети.</p>
+
+<p>Вы можете контролировать доступность сети определенного типа, используя метод <b>setRadio()</b>.
+ С помощью него есть возможность изменять состояние адаптера, 
+привязанного к конкретной сети (Wi-Fi, мобильной сети и т. д.). 
+Например, в следующем фрагменте кода адаптер для Wi-Fi выключен и вместо
+ него включится адаптер для мобильной сети:</p>
+
+<pre><code class="java">
+connectivity.setRadio(NetworkType.WIFI, false);
+connectivity.setRadio(NetworkType.MOBILE, true);
+</code></pre>
+
+<h2 class="text-warning" id="networkstate">Отслеживание состояния сетевого соединения</h2>
+
+<p>Одной из наиболее полезных функций сервиса ConnectivityManager — уведомление приложений об изменениях в сетевых подключениях.</p>
+
+<p>Чтобы отслеживать состояние подключения к сети, создайте собственную 
+реализацию класса BroadcastReceiver, которая должна принимать Намерения с
+ действием ConnectivityManager.CONNECTIVITY_ACTION. Эти Намерения 
+содержат несколько дополнительных параметров, предоставляющих 
+расширенную информацию об изменениях соединения. Вы можете получить 
+доступ к каждому из них, используя статические константы из класса 
+ConnectivityManager.</p>
+
+<ul>
+<li><b>EXTRA_IS_FAILOVER</b>. Возвращает true, если текущее соединение выбрано в результате возникновения проблем с предпочтительной сетью.</li>
+<li><b>EXTRA_NO_CONNECTIVITY</b>. Возвращает true, если устройство не подключено ни к какой сети.</li>
+<li><b>EXTRA_REASON</b>. Если соответствующее Намерение свидетельствует о
+ разрыве связи, в этом строковом значении будет содержаться описание 
+того, почему попытка подключения не удалась.</li>
+<li><b>EXTRA_NETWORK_INFO</b>. Возвращает объект NetworkInfo, содержащий более подробные данные о сети, связанной с текущим событием.</li>
+<li><b>EXTRA_OTHER_NETWORK_INFO</b>. После отключения от сети это значение вернет объект NetworkInfo, содержащий информацию для возможного резервного соединения.</li>
+<li><b>EXTRA_EXTRA_INFO</b>. Несёт дополнительные, специфичные для конкретного типа сети данные о соединении.</li>
+</ul>
+
+<h2 class="text-warning" id="getip">Получить IP-адрес хоста</h2>
+
+<p><img src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/getipcat.jpg" alt="Вычислить IP" height="370" width="400"></p>
+
+<p>Класс <b>java.net.InetAddress</b> позволяет узнать IP-адрес (IPv4 или
+ IPv6) по имени хоста. У одного хоста может быть несколько адресов, 
+поэтому можно получить массив строк через метод <b>getAllByName()</b>. Для примера нужно разрешение на интернет, а также использовать другой поток (в нашем случае AsyncTask).</p>
+
+<p>Разметка активности:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="" /&gt;
+
+    &lt;EditText
+        android:id="@+id/testhost"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="developer.alexanderklimov.ru" /&gt;
+
+    &lt;Button
+        android:id="@+id/test"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Получить IP" /&gt;
+
+    &lt;TextView
+        android:id="@+id/info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" /&gt;
+
+    &lt;ListView
+        android:id="@+id/result"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Код:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.fortest;
+
+import ...
+
+public class TestActivity extends Activity {
+
+	EditText hostinput;
+	TextView tvInfo;
+	Button btnGetIP;
+	ListView resultList;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_test);
+
+		setTitle("Вычислить IP");
+
+		hostinput = (EditText) findViewById(R.id.testhost);
+		tvInfo = (TextView) findViewById(R.id.info);
+		resultList = (ListView) findViewById(R.id.result);
+		btnGetIP = (Button) findViewById(R.id.test);
+		btnGetIP.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				tvInfo.setText("Подождите...");
+				new GetIPTask().execute();
+			}
+		});
+	}
+
+	private class GetIPTask extends AsyncTask<void, void,="" void=""> {
+		boolean error = false;
+		String error_info = "";
+		InetAddress[] inetAddress = null;
+
+		List<string> hostList = new ArrayList<string>();
+
+		@Override
+		protected Void doInBackground(Void... arg0) {
+			getIP();
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			if (error) {
+				tvInfo.setText("Ошибка: \n" + error_info);
+			} else {
+				tvInfo.setText("Финиш, приехали");
+
+				ArrayAdapter<string> adapter = new ArrayAdapter<string>(
+						TestActivity.this, android.R.layout.simple_list_item_1,
+						hostList);
+
+				resultList.setAdapter(adapter);
+			}
+			super.onPostExecute(result);
+		}
+		
+		private void getIP() {
+			String host = hostinput.getText().toString();
+
+			try {
+				inetAddress = InetAddress.getAllByName(host);
+
+				for (int i = 0; i &lt; inetAddress.length; i++) {
+					hostList.add(inetAddress[i].getHostName() + "\n"
+							+ inetAddress[i].getHostAddress());
+				}
+
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+				error = true;
+				error_info = e.toString();
+			}
+		}
+	}
+}
+</string></string></string></string></void,></code></pre>
+
+<p><img src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/network1.png" alt="getAllByName()" height="400" width="240"></p>
+
+<h2 class="text-warning" id="getallnetworkinfo">Метод getAllNetworkInfo()</h2>
+
+<p>У класса <b>ConnectivityManager</b> есть метод <b>getAllNetworkInfo()</b>, позволяющий узнать всю информацию о сетевой поддержке. Так как метод возвращает массив <b>NetworkInfo[]</b>, то удобнее извлечь информацию и поместить её в список ListActivity:</p>
+
+<pre><code class="java">
+public class NetworkInfoActivity extends ListActivity {
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		// setContentView(R.layout.activity_test);
+
+		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo[] networkInfo = connectivityManager.getAllNetworkInfo();
+
+		List&lt;String&gt; listNetworkInfo = new ArrayList&lt;String&gt;();
+		for (int i = 0; i &lt; networkInfo.length; i++) {
+			listNetworkInfo.add(networkInfo[i].toString());
+		}
+
+		setListAdapter(new ArrayAdapter&lt;String&gt;(this,
+				android.R.layout.simple_list_item_1, listNetworkInfo));
+		getListView().setTextFilterEnabled(true);
+	}
+}
+</code></pre>
+
+<p>Также нужно добавить разрешение <b>&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;</b>.</p>
+
+<p><img src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/network2.png" alt="" height="400" width="240"></p>
+
+<p>Если столь подробная информация не нужна, то можно переделать цикл <i>for</i> следующим образом:</p>
+
+<pre><code class="java">
+for (int i = 0; i &lt; networkInfo.length; i++) {
+	String strNetworkState = networkInfo[i].getTypeName() + " : "
+			+ networkInfo[i].getDetailedState();
+	// listNetworkInfo.add(networkInfo[i].toString());
+	listNetworkInfo.add(strNetworkState);
+}
+</code></pre>
+
+<p>Остальной код останется без изменений.</p>
+
+<p><img src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/network3.png" alt="" height="400" width="240"></p>
+
+<h2 class="text-warning" id="wimax">Поддержка LTE</h2>
+
+<p>В Android 4.0 появилась возможность проверки поддержки LTE:</p>
+
+<pre><code class="java">
+NetworkInfo lte_4g = manager.getNetworkInfo(ConnectivityManager.TYPE_WIMAX);
+</code></pre>
+
+
+
+
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/fastbutton.htm" name="I0_1378022379720" id="I0_1378022379720" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/postmessageRelay.htm" id="oauth2relay276074115" name="oauth2relay276074115"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/jquery.js"></script>
+    <script src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0_files/bootstrap-typeahead.js"></script>
+
+</body></html>

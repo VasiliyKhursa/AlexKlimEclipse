@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: DownloadManager</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20DownloadManager_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20DownloadManager_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20DownloadManager_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20DownloadManager_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20DownloadManager_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20DownloadManager_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20DownloadManager_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20DownloadManager_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+    <div class="row-fluid">
+        <!--левое меню -->
+        <div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+        <div class="row-fluid">
+            <div class="span12">
+            
+                        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20DownloadManager_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20DownloadManager_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">DownloadManager - менеджер загрузок</h1>
+<p>Третий месяц обучения (закрытая зона)</p>
+
+<p>
+<a href="#basic">Базовый пример</a><br>
+<a href="#checkstatus">Проверям состояние загрузки</a><br>
+<a href="#remove">Удаляем файл из списка загрузок</a><br>
+<a href="#settitle">Устанавливаем свой текст у загрузки</a><br>
+<a href="#setvisible">Выводим значок окончания загрузки в области уведомлений</a><br>
+<a href="#destination">Загружаем на SD-карту</a><br>
+<a href="#alldownloads">Запускаем приложение Загрузки</a><br>
+</p>
+
+<p>В Android есть класс <b>android.app.DownloadManager</b>, который 
+является системным сервисом и позволяет загружать файлы в фоновом режиме
+ (начиная с API 9). Доступ к данному менеджеру осуществляется через 
+вызов метода <b>getSystemService(String)</b> с параметром <b>DOWNLOAD_SERVICE</b>.
+ Приложение, которое хочет использовать менеджер загрузок, должно 
+зарегистрировать широковещательный приёмник. Так как мы загружаем файлы 
+из интернета, то необходимо установить соответствующее разрещение.</p>
+
+
+
+<h2 class="text-warning" id="basic">Базовый пример</h2>
+
+<p>Напишем простой пример загрузки картинки с сайта с помощью менеджера загрузок и затем выведем загруженную картинку в ImageView.</p>
+
+<p>Создадим разметку:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" &gt;
+
+    &lt;Button
+        android:id="@+id/startdownload"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="Загрузить файл" /&gt;
+
+    &lt;ImageView
+        android:id="@+id/image"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Далее код:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.downloadmanager;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import android.app.Activity;
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
+import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.ImageView;
+
+public class MainActivity extends Activity {
+
+    final String DOWNLOAD_FILE = "http://developer.alexanderklimov.ru/android/images/android_cat.jpg";
+
+    final String strPref_Download_ID = "PREF_DOWNLOAD_ID";
+
+    SharedPreferences preferenceManager;
+    DownloadManager downloadManager;
+
+    ImageView image;
+
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        preferenceManager = PreferenceManager.getDefaultSharedPreferences(this);
+        downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+        image = (ImageView) findViewById(R.id.image);
+    }
+
+    public void onClick(View v) {
+        Uri downloadUri = Uri.parse(DOWNLOAD_FILE);
+        DownloadManager.Request request = new DownloadManager.Request(
+                downloadUri);
+                
+        request.setAllowedNetworkTypes(Request.NETWORK_WIFI); // только WiFi
+        request.setAllowedOverRoaming(false); // отключаем роуминг
+        
+        long id = downloadManager.enqueue(request);
+
+        // Save the request id
+        Editor PrefEdit = preferenceManager.edit();
+        PrefEdit.putLong(strPref_Download_ID, id);
+        PrefEdit.commit();
+    }
+
+    @Override
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+
+        IntentFilter intentFilter = new IntentFilter(
+                DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+        registerReceiver(downloadReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        // TODO Auto-generated method stub
+        super.onPause();
+        unregisterReceiver(downloadReceiver);
+    }
+
+    private BroadcastReceiver downloadReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context arg0, Intent arg1) {
+            // TODO Auto-generated method stub
+            DownloadManager.Query query = new DownloadManager.Query();
+            query.setFilterById(preferenceManager.getLong(strPref_Download_ID,
+                    0));
+            Cursor cursor = downloadManager.query(query);
+            if (cursor.moveToFirst()) {
+                int columnIndex = cursor
+                        .getColumnIndex(DownloadManager.COLUMN_STATUS);
+                int status = cursor.getInt(columnIndex);
+                if (status == DownloadManager.STATUS_SUCCESSFUL) {
+
+                    // Retrieve the saved request id
+                    long downloadID = preferenceManager.getLong(
+                            strPref_Download_ID, 0);
+
+                    ParcelFileDescriptor file;
+                    try {
+                        file = downloadManager.openDownloadedFile(downloadID);
+                        FileInputStream fileInputStream = new ParcelFileDescriptor.AutoCloseInputStream(
+                                file);
+                        Bitmap bm = BitmapFactory.decodeStream(fileInputStream);
+                        image.setImageBitmap(bm);
+                    } catch (FileNotFoundException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    };
+}
+</code></pre>
+
+<p>Запускаем проект и нажимаем на кнопку. При этом запускается менеджер 
+загрузок, который начинает скачивать указанный файл. Когда загрузка 
+завершится, то приёмник улавливает этот момент и извлекает скачанный 
+файл с последующим выводом на экран.</p>
+
+<p>Обратите внимание, что при загрузке файла в строке состояния 
+появляется значок менеджера загрузок, который затем исчезает. 
+Использование менеджера загрузок может стать предпочтительным вариантом,
+ когда не хочется самостоятельно заморачиваться с асинхронной загрузкой 
+файла и писать собственный код, отдав его на откуп системе.</p>
+
+<p>Загруженные файлы можно посмотреть, если запустить системное приложение <i>Загрузки</i>.</p>
+
+<p><img src="Android%20%20DownloadManager_files/downloadmanager1.png" alt="DownloadManager"></p>
+
+<p>По умолчанию, пользователь может скачивать файлы при любом 
+соединении. Но этот способ может привести к непредвиденным финансовым 
+затратам. Можно проверить тип соединения и его тип (местое или роуминг):</p>
+
+<pre><code class="java">
+/*
+ *  request.setAllowedNetworkTypes()-
+ *  Разрешены все типы соединений по умолчанию
+ *  - Request.NETWORK_WIFI
+ *  - Request.NETWORK_MOBILE
+ *  - Request.NETWORK_WIFI | Request.NETWORK_MOBILE
+ *
+ *  request.setAllowedOverRoaming(false) -
+ *  По умолчанию роуминг разрешен. Будьте осторожны
+ */
+</code></pre>
+
+<h2 class="text-warning" id="checkstatus">Проверям состояние загрузки</h2>
+
+<p>Когда мы загружали картинку, то проверяли только состояние <b>DownloadManager.STATUS_SUCCESSFUL</b>. Но в реальности следует проверять все состояния. Поэтому перепишем код с проверкой всех состояний:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.downloadmanager;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import android.app.Activity;
+import android.app.DownloadManager;
+import android.app.DownloadManager.Request;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
+import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+
+    final String DOWNLOAD_FILE = "http://developer.alexanderklimov.ru/android/images/android_cat.jpg";
+
+    final String strPref_Download_ID = "PREF_DOWNLOAD_ID";
+
+    SharedPreferences preferenceManager;
+    DownloadManager downloadManager;
+
+    ImageView image;
+
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        preferenceManager = PreferenceManager.getDefaultSharedPreferences(this);
+        downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+        image = (ImageView) findViewById(R.id.image);
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+        case R.id.startdownload:
+            Uri downloadUri = Uri.parse(DOWNLOAD_FILE);
+            DownloadManager.Request request = new DownloadManager.Request(
+                    downloadUri);
+
+            // Устанавливаем текст для скачиваемого файла
+            request.setTitle("Картинка с котиком-андроидом");
+
+            // request.setAllowedNetworkTypes(Request.NETWORK_WIFI); // только
+            // WiFi
+            request.setAllowedOverRoaming(false); // отключаем роуминг
+
+            long id = downloadManager.enqueue(request);
+
+            // Save the request id
+            Editor PrefEdit = preferenceManager.edit();
+            PrefEdit.putLong(strPref_Download_ID, id);
+            PrefEdit.commit();
+            break;
+        case R.id.buttonAllDownloads:
+            Intent intent = new Intent();
+            intent.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
+            startActivity(intent);
+            break;
+
+        default:
+            break;
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        
+        checkDownloadStatus();
+
+        IntentFilter intentFilter = new IntentFilter(
+                DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+        registerReceiver(downloadReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        // TODO Auto-generated method stub
+        super.onPause();
+        unregisterReceiver(downloadReceiver);
+    }
+
+    private BroadcastReceiver downloadReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context arg0, Intent arg1) {
+            // TODO Auto-generated method stub
+            checkDownloadStatus();
+        }
+    };
+    
+    private void checkDownloadStatus() {
+
+        // TODO Auto-generated method stub
+        DownloadManager.Query query = new DownloadManager.Query();
+        long id = preferenceManager.getLong(strPref_Download_ID, 0);
+        query.setFilterById(id);
+        Cursor cursor = downloadManager.query(query);
+        if (cursor.moveToFirst()) {
+            int columnIndex = cursor
+                    .getColumnIndex(DownloadManager.COLUMN_STATUS);
+            int status = cursor.getInt(columnIndex);
+            int columnReason = cursor
+                    .getColumnIndex(DownloadManager.COLUMN_REASON);
+            int reason = cursor.getInt(columnReason);
+
+            switch (status) {
+            case DownloadManager.STATUS_FAILED:
+                String failedReason = "";
+                switch (reason) {
+                case DownloadManager.ERROR_CANNOT_RESUME:
+                    failedReason = "ERROR_CANNOT_RESUME";
+                    break;
+                case DownloadManager.ERROR_DEVICE_NOT_FOUND:
+                    failedReason = "ERROR_DEVICE_NOT_FOUND";
+                    break;
+                case DownloadManager.ERROR_FILE_ALREADY_EXISTS:
+                    failedReason = "ERROR_FILE_ALREADY_EXISTS";
+                    break;
+                case DownloadManager.ERROR_FILE_ERROR:
+                    failedReason = "ERROR_FILE_ERROR";
+                    break;
+                case DownloadManager.ERROR_HTTP_DATA_ERROR:
+                    failedReason = "ERROR_HTTP_DATA_ERROR";
+                    break;
+                case DownloadManager.ERROR_INSUFFICIENT_SPACE:
+                    failedReason = "ERROR_INSUFFICIENT_SPACE";
+                    break;
+                case DownloadManager.ERROR_TOO_MANY_REDIRECTS:
+                    failedReason = "ERROR_TOO_MANY_REDIRECTS";
+                    break;
+                case DownloadManager.ERROR_UNHANDLED_HTTP_CODE:
+                    failedReason = "ERROR_UNHANDLED_HTTP_CODE";
+                    break;
+                case DownloadManager.ERROR_UNKNOWN:
+                    failedReason = "ERROR_UNKNOWN";
+                    break;
+                }
+
+                Toast.makeText(MainActivity.this,
+                        "FAILED: " + failedReason, Toast.LENGTH_LONG)
+                        .show();
+                break;
+            case DownloadManager.STATUS_PAUSED:
+                String pausedReason = "";
+
+                switch (reason) {
+                case DownloadManager.PAUSED_QUEUED_FOR_WIFI:
+                    pausedReason = "PAUSED_QUEUED_FOR_WIFI";
+                    break;
+                case DownloadManager.PAUSED_UNKNOWN:
+                    pausedReason = "PAUSED_UNKNOWN";
+                    break;
+                case DownloadManager.PAUSED_WAITING_FOR_NETWORK:
+                    pausedReason = "PAUSED_WAITING_FOR_NETWORK";
+                    break;
+                case DownloadManager.PAUSED_WAITING_TO_RETRY:
+                    pausedReason = "PAUSED_WAITING_TO_RETRY";
+                    break;
+                }
+
+                Toast.makeText(MainActivity.this,
+                        "PAUSED: " + pausedReason, Toast.LENGTH_LONG)
+                        .show();
+                break;
+            case DownloadManager.STATUS_PENDING:
+                Toast.makeText(MainActivity.this, "PENDING",
+                        Toast.LENGTH_LONG).show();
+                break;
+            case DownloadManager.STATUS_RUNNING:
+                Toast.makeText(MainActivity.this, "RUNNING",
+                        Toast.LENGTH_LONG).show();
+                break;
+            case DownloadManager.STATUS_SUCCESSFUL:
+
+                Toast.makeText(MainActivity.this, "SUCCESSFUL",
+                        Toast.LENGTH_LONG).show();
+                getFile();
+                break;
+            }
+        }
+    }
+
+    private void getFile() {
+        // Retrieve the saved request id
+        long downloadID = preferenceManager.getLong(strPref_Download_ID, 0);
+
+        ParcelFileDescriptor file;
+        try {
+            file = downloadManager.openDownloadedFile(downloadID);
+            FileInputStream fileInputStream = new ParcelFileDescriptor.AutoCloseInputStream(
+                    file);
+            Bitmap bm = BitmapFactory.decodeStream(fileInputStream);
+            image.setImageBitmap(bm);
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+
+<h2 class="text-warning" id="remove">Удаляем файл из списка загрузок</h2>
+
+<p>Если вы не хотите, чтобы имя скачанного файла светилось в списке загрузок, то можете вызвать метод <b>remove()</b>:</p>
+
+<pre class="code java">case DownloadManager.STATUS_SUCCESSFUL:
+
+    Toast.makeText(MainActivity.this, "SUCCESSFUL",
+            Toast.LENGTH_LONG).show();
+    getFile();
+    
+    // Удаляем из списка загрузок
+    downloadManager.remove(id);
+    break;
+}
+</pre>
+
+<p>Этот метод также позволяет отменить текущую загрузку большого файла, если вы передумали его скачивать.</p>
+
+<h2 class="text-warning" id="settitle">Устанавливаем свой текст у загрузки</h2>
+
+<p>Когда менеджер загрузок скачивает файл, то в программе Загрузки можно
+ видеть его имя. Если файл скачивается повторно, то предыдущий файл не 
+затирается, вместо этого к имени нового файла добавляется порядковое 
+число. Если вы хотите изменить это действие по умолчанию, то можете при 
+помощи метода <b>setTitle()</b> присвоить свой текст. Модифицируем код для нажатия кнопки, добавив новую строчку:</p>
+
+<pre><code class="java">
+DownloadManager.Request request = new DownloadManager.Request(
+        downloadUri);
+// Устанавливаем текст для скачиваемого файла
+<b>request.setTitle("Картинка с котиком-андроидом");</b>
+
+long id = downloadManager.enqueue(request);
+</code></pre>
+
+<p><img src="Android%20%20DownloadManager_files/downloadmanager2.png" alt="Свой текст в менеджере загрузок"></p>
+
+<h2 class="text-warning" id="setvisible">Выводим значок окончания загрузки в области уведомлений</h2>
+
+<p>Как уже ранее упоминалось, значок загрузки виден во время самой 
+загрузки файла, а когда загрузка завершена, то значок исчезает. Можно 
+использовать метод <b>setNotificationVisibility()</b>, чтобы значок остававлся видимым после успешной загрузки. Добавим строчку кода после метода <b>setTitle()</b> из предыдущего параграфа.</p>
+
+<pre><code class="java">
+// для API 11 и выше
+request.setNotificationVisibility(Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+</code></pre>
+
+<h2 class="text-warning" id="destination">Загружаем на SD-карту</h2>
+
+<p>Когда мы запускаем <b>DownloadManager</b>, то полностью полагаемся на него и не говорим, где нужно сохранять файл. Достаточно вызвать метод <b>DownloadManager.openDownloadedFile()</b>,
+ чтобы получить доступ к загруженному файлу. Но необходимо помнить, что 
+система сохраняет файл в своём кэше, и нельзя исключать такой вариант, 
+что система может очистить свой кэш для очистки места.</p>
+
+<p>Вам следует выбрать стратегию для дальнейшего поведения, например, 
+сразу скопировать загруженный файл в безопасное место. А можно сразу 
+указать, что файл нужно скачивать на SD-карту при помощи методов <b>DownloadManager.Request</b>.</p>
+
+<ul>
+<li>Request.setDestinationInExternalFilesDir(): копирует в скрытую папку на внешнем хранилище</li>
+<li>Request.setDestinationInExternalPublicDir(): копирует в открытую папку на внешнем хранилише</li>
+<li>Request.setDestinationUri(): устанавливает конкретный Uri на внешнем хранилише</li>
+</ul>
+
+<p>В этом случае необходимо указать разрешение <b>android.permission.WRITE_EXTERNAL_STORAGE</b>.</p>
+
+<p>При этом, вызов метода <b>remove</b> не удалит файл, который был загружен на внешнее хранилише.</p>
+
+
+<h2 class="text-warning" id="alldownloads">Запускаем приложение Загрузки</h2>
+
+<p>Можно программно запустить приложение <b>Загрузки</b> при помощи намерения, чтобы увидеть список загруженных файлов.</p>
+
+<pre><code class="java">
+Intent intent = new Intent();
+intent.setAction(DownloadManager.ACTION_VIEW_DOWNLOADS);
+startActivity(intent);
+</code></pre>
+
+
+
+</div><!--/span-->
+        </div><!--/row-->    
+          
+        </div><!--/span-->
+        
+        <div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20DownloadManager_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+        
+      </div><!--/row-->
+      
+    
+      <hr>
+      
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20DownloadManager_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20DownloadManager_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20DownloadManager_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20DownloadManager_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20DownloadManager_files/fastbutton.htm" name="I0_1378295610639" id="I0_1378295610639" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20DownloadManager_files/postmessageRelay.htm" id="oauth2relay817529633" name="oauth2relay817529633"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20DownloadManager_files/jquery.js"></script>
+    <script src="Android%20%20DownloadManager_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20DownloadManager_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20DownloadManager_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20DownloadManager_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20DownloadManager_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20DownloadManager_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20DownloadManager_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20DownloadManager_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20DownloadManager_files/bootstrap-button.js"></script>
+    <script src="Android%20%20DownloadManager_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20DownloadManager_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20DownloadManager_files/bootstrap-typeahead.js"></script>
+
+</body></html>

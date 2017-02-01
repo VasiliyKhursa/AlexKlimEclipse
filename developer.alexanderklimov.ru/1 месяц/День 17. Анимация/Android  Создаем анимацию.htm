@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Создаем анимацию</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">   
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+          <ul class="nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->	
+<div class="clearfix"></div>
+	
+<noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class=""><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Читайте на здоровье!</h3>
+            </div>
+            <div class="modal-body">
+            
+              <p>Статья проплачена кошками - всемирно известными производителями котят.</p>
+
+            <p>Если статья вам понравилась, то можете <a href="http://developer.alexanderklimov.ru/donate.php">поддержать проект</a>.</p>
+			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>            
+<h1 class="text-warning">Создаем анимацию "Восход солнца"</h1>
+
+<p>Статичный контент не очень интересен. Гораздо интереснее создавать 
+различные анимационные эффекты, которые привлекут внимание пользователя.</p>
+
+<p>В Android доступны несколько видов анимации, которым отведён отдельный раздел <a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a>. Мы рассмотрим один из видов для ознакомления.</p>
+
+<p>В этом уроке мы будем использовать анимацию из фигур, создав иллюзию 
+восхода солнца. Также добавим анимацию аналоговых часов. Будет 
+интересно!</p>
+
+<p>Создадим новый проект под названием Sunrise (Восход солнца).</p>
+
+<h2 class="text-warning">Пусть всегда будет солнце</h2>
+
+<p>Сначала нарисуем солнце. Создадим новую папку <b>drawable</b> в папке <b>res</b>. Далее в созданной папке создадим новый файл <b>sun.xml</b> следующего содержания:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:dither="true"
+    android:shape="oval" &gt;
+
+    &lt;gradient
+        android:endColor="#ffff6600"
+        android:gradientRadius="150"
+        android:startColor="#ffffcc00"
+        android:type="radial"
+        android:useLevel="false" /&gt;
+
+    &lt;size
+        android:height="150dp"
+        android:width="150dp" /&gt;
+
+&lt;/shape&gt;
+</code></pre>
+
+<p>Для изображения солнца мы использовали фигуру Овал с одинаковыми 
+размерами, чтобы получить "солнечный круг". Чтобы рисунок солнца 
+получился красивым, применим к нему градиент (плавное изменение цвета) 
+от тёмно-жёлтого к светло-жёлтому.</p>
+
+<h2 class="text-warning" id="sky">Пусть всегда будет небо</h2>
+
+<p>Далее нарисуем "небо вокруг". В той же папке <b>drawable</b> создадим новый файл <b>sky.xml</b> следующего содержания:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:dither="true"
+    android:shape="rectangle" &gt;
+
+    &lt;gradient
+        android:angle="90"
+        android:endColor="#ff000033"
+        android:startColor="#ff0000ff" /&gt;
+
+&lt;/shape&gt;
+</code></pre>
+
+<p>Мы задали фигуру в виде прямоугольника с голубым градиентом от нижнего края к верхнему.</p>
+
+<h2 class="text-warning">Трын-трава</h2>
+
+<p>Мальчишка нарисовал солнце, небо и подписал в уголке четыре строчки 
+опять про солнце, небо, а также про маму и про себя. А про кота он 
+совсем забыл. Ладно, не будем обращать внимания на глупого мальчика, а 
+обратимся к другой песне, где зайцы косили (!!!) трын-траву. Видимо у 
+автора неплохая травка была. Но слов из песни не выкинешь - нарисуем 
+траву. Создаём файл <b>grass.xml</b> в уже знакомой папке:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:dither="true"
+    android:shape="rectangle" &gt;
+
+    &lt;gradient
+        android:angle="90"
+        android:endColor="#ff003300"
+        android:startColor="#ff009900" /&gt;
+
+&lt;/shape&gt;
+</code></pre>
+
+<p>Особо изощряться не будем, а нарисуем зелёный прямоугольник с 
+градиентом, тем более я не знаю, как выглядит трава, скошенная зайцами.</p>
+
+<h2 class="text-warning">Собираем фигуры вместе</h2>
+
+<p>Настало время собирать камни, простите, фигуры. Для начала откроем файл <b>strings.xml</b> в папке <b>res/values</b> и добавим несколько строковых ресурсов:</p>
+
+<pre><code class="xml">
+&lt;string name="sun"&gt;Солнце&lt;/string&gt;
+&lt;string name="grass"&gt;Трава&lt;/string&gt;
+&lt;string name="sky"&gt;Небо&lt;/string&gt;
+&lt;string name="clock"&gt;Часы&lt;/string&gt;
+&lt;string name="hour"&gt;Стрелка&lt;/string&gt;
+</code></pre>
+
+<p>Откроем разметку главной активности <b>activity_main.xml</b> и добавим в неё несколько элементов ImageView:</p>
+
+<pre><code class="xml">
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" &gt;
+
+    &lt;ImageView
+        android:id="@+id/sky"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:contentDescription="@string/sky"
+        android:src="@drawable/sky" /&gt;
+
+    &lt;ImageView
+        android:id="@+id/sun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/sun"
+        android:scaleType="fitCenter"
+        android:src="@drawable/sun" /&gt;
+
+    &lt;ImageView
+        android:id="@+id/grass"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/grass"
+        android:src="@drawable/grass" /&gt;
+
+&lt;/RelativeLayout&gt;
+</code></pre>
+
+<p>У всех элементов ImageView в атрибуте <b>android:src</b> мы прописали созданные фигуры, которые теперь можно видеть на экране.</p>
+
+<p><img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/sunrise1.png" alt="Восход солнца"></p>
+
+<h2 class="text-warning">Анимация восхода</h2>
+
+<p>Напомню, что мы собирались делать анимацию, а не рисунок. Поэтому 
+продолжим урок. Нужно, чтобы солнце поднималось в верхнюю часть экрана. 
+Создадим новую папку <b>res/anim</b>, в которой будут находиться файлы анимации.</p>
+
+<p>Создадим в созданной папке новый файл <b>sun_rise.xml</b>:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="5000"
+    android:fillAfter="true"
+    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+    android:shareInterpolator="false" &gt;
+
+    &lt;scale
+        android:fromXScale="1.0"
+        android:fromYScale="1.0"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toXScale="1.5"
+        android:toYScale="1.5" /&gt;
+
+    &lt;translate
+        android:fromYDelta="80%p"
+        android:toYDelta="10%p" /&gt;
+
+    &lt;alpha
+        android:fromAlpha="0.3"
+        android:toAlpha="1.0" /&gt;
+
+&lt;/set&gt;
+</code></pre>
+
+<p>В блоке <b>set</b> мы установили детали анимации. Например, параметр <b>android:duration</b> показывает, что анимация должна совершиться в течение 5 секунд. Параметр <b>fillAfter</b> управляет состоянием анимации - она не должна прыгать в начало.  Параметр <b>android:interpolator</b> использует системную константу для небольшого ускорения от начала к середие анимации и торможения от середины к концу анимации.</p>
+
+<p>Внутри блока <b>set</b> устанавливаются специальные блоки, отвечающие за характер анимании: изменение размеров, позиции и прозрачности.</p>
+
+<p>Например, фигура солнца по нашей задумке будет увеличиваться от 
+своего изначального размера вполтора раза, раздуваясь равномерно от 
+своей середины (scale).</p>
+
+<p>Элемент <b>translate</b> двигает солнце по экрану вертикально вверх. 
+Мы отталкиваемся относительно родительского элемента, используя суффикс 
+"p". Солнце начинает движение в позиции 80% от родительского элемента по
+ оси Y и заканчивает движение в позиции 10%.</p>
+
+<p>При движении также меняется прозрачность солнца от полной прозрачности до полной непрозрачности (alpha).</p>
+
+<h2 class="text-warning">Пишем код</h2>
+
+<p>Переходим непосредственно к программированию.</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.sunrise;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+
+public class MainActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		
+		// Получим ссылку на солнце
+		ImageView sun = (ImageView) findViewById(R.id.sun);
+		// Анимация для восхода солнца
+		Animation sunRise = AnimationUtils.loadAnimation(this, R.anim.sun_rise);
+		// Подключаем анимацию к нужному View
+		sun.startAnimation(sunRise);
+	}
+}
+</code></pre>
+
+<p>Запускаем проект и любуемся восходом солнца.</p>
+
+<h2 class="text-warning">Анимация часов</h2>
+
+<p>Добавим к проекту часы с анимацией. Создадим в папке <b>res/drawable</b> файл <b>clock.xml</b>:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;layer-list xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+
+    &lt;item&gt;
+        &lt;shape
+            android:dither="true"
+            android:shape="oval" &gt;
+            &lt;gradient
+                android:endColor="#ffffffff"
+                android:gradientRadius="100"
+                android:startColor="#66ffffff"
+                android:type="radial"
+                android:useLevel="false" /&gt;
+
+            &lt;size
+                android:height="100dp"
+                android:width="100dp" /&gt;
+
+            &lt;stroke
+                android:width="2dp"
+                android:color="#99000000" /&gt;
+        &lt;/shape&gt;
+    &lt;/item&gt;
+    &lt;item
+        android:bottom="44dp"
+        android:left="48dp"
+        android:right="48dp"
+        android:top="5dp"&gt;
+        &lt;shape android:shape="rectangle" &gt;
+            &lt;solid android:color="#99000000" /&gt;
+        &lt;/shape&gt;
+    &lt;/item&gt;
+
+&lt;/layer-list&gt;
+</code></pre>
+
+<p>Создадим в папке <b>res/anim</b> файл <b>clock_turn.xml</b> для анимации часов:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="5000"
+    android:fillAfter="true"
+    android:interpolator="@android:anim/linear_interpolator"
+    android:shareInterpolator="false" &gt;
+
+    &lt;rotate
+        android:fromDegrees="0"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toDegrees="720" /&gt;
+
+&lt;/set&gt;
+</code></pre>
+
+<p>В анимации мы указали значение 720 градусов, чтобы часы сделали 
+полный оборот два раза. Хотя вращается вся фигура, для пользователя 
+будет казаться, что вращается только стрелка.</p>
+
+<p>Добавим в разметку новый ImageView для часов:</p>
+
+<pre><code class="xml">
+&lt;ImageView
+    android:id="@+id/clock"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:contentDescription="@string/clock"
+    android:padding="10dp"
+    android:src="@drawable/clock" /&gt;
+</code></pre>
+
+<p>Теперь необходимо добавить код для анимации часов:</p>
+
+<pre><code class="java">
+// Получим ссылку на часы
+ImageView clock = (ImageView) findViewById(R.id.clock);
+// анимация для вращения часов
+Animation clockTurn = AnimationUtils.loadAnimation(this, R.anim.clock_turn);
+clock.startAnimation(clockTurn);
+</code></pre>
+
+<p>Запустите проект, чтобы проверить, что всё работает.</p>
+
+<p>Сейчас у часов одна минутная стрелка. Давайте добавим ещё часовую стрелку. Создаём файл <b>hour_hand.xml</b> в папке <b>res/drawable</b>:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;layer-list xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+
+    &lt;item&gt;
+        &lt;shape
+            android:dither="true"
+            android:shape="oval" &gt;
+            &lt;solid android:color="#00000000" /&gt;
+
+            &lt;size
+                android:height="100dp"
+                android:width="100dp" /&gt;
+        &lt;/shape&gt;
+    &lt;/item&gt;
+    &lt;item
+        android:bottom="44dp"
+        android:left="48dp"
+        android:right="48dp"
+        android:top="15dp"&gt;
+        &lt;shape android:shape="rectangle" &gt;
+            &lt;solid android:color="#99000000" /&gt;
+        &lt;/shape&gt;
+    &lt;/item&gt;
+
+&lt;/layer-list&gt;
+</code></pre>
+
+<p>Основные отличия от предыдущего файла - прозрачный круг и более 
+короткая стрелка. При наложении на часы с минутной стрелкой, мы увидим 
+часовую стрелку, а прозрачный круг мешать не будет.</p>
+
+<p>Снова добавляем ImageView в разметку для часовой стрелки:</p>
+
+<pre><code class="xml">
+&lt;ImageView
+    android:id="@+id/clock"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:contentDescription="@string/clock"
+    android:padding="10dp"
+    android:src="@drawable/clock" /&gt;
+</code></pre>
+
+<p>Компонент должен находиться в той же позиции, что и часы.</p>
+
+<p>Создаём анимационный файл <b>hour_turn.xml</b> в папке <b>res/anim</b>:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="5000"
+    android:fillAfter="true"
+    android:interpolator="@android:anim/linear_interpolator"
+    android:shareInterpolator="false" &gt;
+
+    &lt;rotate
+        android:fromDegrees="180"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toDegrees="240" /&gt;
+
+&lt;/set&gt;
+</code></pre>
+
+<p>Начальная позиция установлена в значении 180 градусов, что 
+соответствует 6 часам. При анимации стрелка повернётся на 60 градусов и 
+будет соответстовать 8 часам. За это время минутная стрелка сделает два 
+полных оборота, что соответствует двум часам (8-6).</p>
+
+<p>Добавим анимацию в код:</p>
+
+<pre><code class="java">
+// получим ссылку на часовую стрелку
+ImageView hour = (ImageView) findViewById(R.id.hour);
+// анимация для стрелки
+Animation hourTurn = AnimationUtils.loadAnimation(this, R.anim.hour_turn);
+// присоединяем анимацию
+hour.startAnimation(hourTurn);
+</code></pre>
+
+<p>— А где коты? - завопил мой кот Рыжик, внимательно следивший за созданием проекта. Ладно, добавим кота.</p>
+
+<p>Как добавлять котов, объяснять не буду. Сами сообразите.</p>
+
+<p><img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/sunrise2.png" alt="Кот под солнцем" height="400" width="240"></p>
+
+<p>Запускаем проект и наблюдаем за анимацией. Получилось красиво, мне нравится.</p>
+
+<p>Простите за качество видео. Снимал с рук с телефона на мониторе. И кот дергал за руку, грозно спрашивая, где коты?</p>
+
+<iframe src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/8iTMRbM5byk.htm" allowfullscreen="" frameborder="0" height="315" width="420"></iframe>
+
+
+<p>Урок создан по мотивам статьи <a href="http://mobile.tutsplus.com/tutorials/android/android-sdk-creating-a-simple-tween-animation/">Creating a Simple Tween Animation</a></p>
+
+
+
+<h5 class="text-error">Реклама</h5>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4224968932772057";
+/* Полноразмерный баннер 728х90 */
+google_ad_slot = "4077523505";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/show_ads.js">
+</script>
+				
+				
+		    </div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/fastbutton.htm" name="I0_1378010797935" id="I0_1378010797935" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/jquery.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/postmessageRelay.htm" id="oauth2relay786443660" name="oauth2relay786443660"></iframe>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%B5%D0%BC%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8E_files/bootstrap-typeahead.js"></script>
+
+</body></html>

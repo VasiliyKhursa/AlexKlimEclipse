@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: Темы и стили</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon"></head>
+   
+
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="modal" href="#myModal" class="navbar-link">Гость</a>
+          </p>
+          <ul class="nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->	
+<div class="clearfix"></div>
+	
+<noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/counter_002.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory.php">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+            
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Читайте на здоровье!</h3>
+            </div>
+            <div class="modal-body">
+            
+              <p>Статья проплачена кошками - всемирно известными производителями котят.</p>
+
+            <p>Если статья вам понравилась, то можете <a href="http://developer.alexanderklimov.ru/donate.php">поддержать проект</a>.</p>
+			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">Темы и стили</h1>
+
+<p>
+<a href="#styles">Стили</a><br>
+<a href="#parent">Наследование стилей</a><br>
+<a href="#themes">Тема</a><br>
+<a href="#systemthemes">Примеры системных тем</a>
+</p>
+
+<h2 class="text-warning" id="styles">Стили</h2>
+
+<p>Чтобы наше приложение было стильным, можно воспользоваться 
+специальной темой. Тема - это коллеция стилей, которые обеспечивают 
+профессиональный вид приложению, чтобы оно было похоже на родные 
+приложения Android. Сама система Android уже имеет несколько 
+предустановленных тем, которыми можно воспользоваться в своих целях. Вам
+ достаточно только указать имя темы в манифесте.</p>
+
+<p>В <a href="http://developer.alexanderklimov.ru/android/activity.php#switch">предыдушем примере</a> мы учились переключаться на другой экран, чтобы увидеть новое окно <b>О программе</b>. Сделаем это окно диалоговым, чтобы оно не занимало весь экран.</p>
+
+<p>Откройте снова файл манифеста <b>AndroidManifest.xml</b> из прошлого урока и измените строчку для активности <b>About</b>, указав тему.</p>
+
+<pre><code class="xml">
+&lt;activity android:name=".About"
+    android:label="@string/about_title"
+    android:theme="@android:style/Theme.Dialog"&gt;
+&lt;/activity&gt;
+</code></pre>
+
+<p>Префикс <b>@android:</b> перед именем стиля означает, что мы 
+используем встроенные стили системы. Запустив программу, вы увидите, что
+ внешний вид окна «О программе» стал уже другим. Сравните.</p>
+
+<p><img src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/activity1.png" alt="" height="400" width="240"> <img src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/theme1.png" alt="Dialog theme" height="400" width="240"></p>
+
+<p>Обратите внимание, что теперь появляется не окно во весь экран, а 
+диалоговое окно в центре экрана. При этом остальная часть экрана 
+затемняется.</p>
+
+<p>Ради интереса, попробуйте другие стили:</p>
+
+<p><b>android:theme="@android:style/Theme.Translucent"</b> - диалоговое окно будет прозрачным, видны будут только буквы. Для нашего случая не очень подходит, так как плохо виден текст.</p>
+
+<p><b>android:theme="@android:style/Theme.Wallpaper"</b> - в этом случае в качестве фона для окна «О программе» используются обои главной страницы устройства. Смотрится красиво.</p>
+
+<p><img src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/0_80110_77ee1729_L.png" title="" alt="" border="0" height="400" width="240"></p>
+
+<div class="alert alert-info">
+Этот стиль можно применить не только к отдельной активности, но и ко всей программе, если прописать в теге &lt;application&gt;
+</div>
+
+<p>Кстати, вы можете разработать свою тему на основе существующих и сохранить ее в файле <b>res/values/styles.xml</b>.</p>
+
+<p>Немного попрактиковашись, перейдем к теории.</p>
+
+<p>Стили и темы — это такие же ресурсы, как и строки, изображения и т. 
+д. Android обеспечивает некоторые заданные по умолчанию стили и темы,  
+которые вы можете использовать в приложениях. При необходимости вы  
+можете определить свой собственный стиль и тему для создаваемого 
+приложения.</p>
+
+<p>Стиль — это один или несколько сгруппированных атрибутов 
+форматирования, которые отвечают за внешний вид и поведение элементов 
+или окна. Стиль может задавать такие свойства, как ширину, отступы, цвет
+ текста, размер шрифта, цвет фона и так далее. Сами стили хранятся в 
+XML-файлах, отдельно от файлов разметки.</p>
+
+<p>Подобное разделение напоминает использование каскадных стилей CSS для
+ веб-документов, которые также отвечают за стили HTML-элементов и 
+хранятся в отдельных файлах.</p>
+
+<p>Предположим, у нас есть следующий код разметки для TextView:</p>
+
+<pre><code class="xml">
+&lt;TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:textColor="#00FF00"
+    android:typeface="monospace"
+    android:textSize="18sp"
+    android:text="@string/hello" /&gt;
+</code></pre>
+
+<p>Мы можем вынести все свойства в файл стилей следующим образом:</p>
+
+<h3 class="text-success">res/values/styles.xml</h3>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt; 
+    &lt;style name="CodeFont" parent="@style/Text"&gt; 
+        &lt;item name="android:textSize"&gt;18sp&lt;/item&gt; 
+        &lt;item name="android:textColor"&gt;#00FF00&lt;/item&gt; 
+        &lt;item name="android:typeface"&gt;monospace&lt;/item&gt;
+    &lt;/style&gt; 
+&lt;/resources&gt; 
+</code></pre>
+
+<p>Тогда в файле разметки теперь будет так:</p>
+<pre><code class="xml">
+&lt;TextView
+    style="@style/CodeFont"
+	...
+    android:text="@string/hello" /&gt;
+</code></pre>
+
+<p>Как видите, мы удалили все свойства для текста из файла разметки и разместили их в файле стилей в ресурсе под именем <b>CodeFont</b>, который содержит теперь все необходимые свойства.</p>
+
+<p>Создать файл со стилями несложно. Создаем новый XML-файл в папке <b>res/values/</b> вашего проекта. Имя файла не имеет значения, главное, чтобы расширение было XML, а сам файл находился в указанной папке.</p>
+
+<p>Корневым узлом файла должен быть элемент &lt;resources&gt;. Для 
+каждого элемента, которому требуется стиль, нужно добавить элемент 
+&lt;style&gt; с уникальным именем. Далее создаются элементы &lt;item&gt;
+ для каждого свойства и присваиваются им имена, которые отвечают за 
+выбранное свойство. Значением элемента &lt;item&gt; должно выступать 
+ключевое слово, цвет в шестнадцатиричном значении, ссылка на другой тип 
+ресурсов или другое значение в зависимости от свойства стиля. Ниже 
+представлен образец такого стиля:</p>
+
+<pre><code class="xml">
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;style name="CodeFont" parent="@android:style/TextAppearance.Medium"&gt;
+        &lt;item name="android:layout_width"&gt;fill_parent&lt;/item&gt;
+        &lt;item name="android:layout_height"&gt;wrap_content&lt;/item&gt;
+        &lt;item name="android:textColor"&gt;#00FF00&lt;/item&gt;
+        &lt;item name="android:typeface"&gt;monospace&lt;/item&gt;
+    &lt;/style&gt;
+&lt;/resources&gt;
+</code></pre>
+
+<p>Во время компиляции все свойства из файла стилей будут извлечены и применены к элементам.</p>
+
+<p>Атрибут <b>parent</b> для элемента <b>style</b> является 
+необязательным и позволяет задавать идентификатор ресурса другого стиля,
+ из которого нужно наследовать свойства. При этом вы можете 
+переопределить свойства в случае необходимости.</p>
+
+<h2 class="text-warning" id="parent">Наследование стилей</h2>
+
+<p>Наследование - мощный и полезный механизм, позволяющий не изобретать 
+велосипед, а использовать готовые проверенные наработки. С помощью 
+атрибута <b>parent</b> в элементе <b>style</b> вы можете наследовать 
+нужные свойства из существующих стилей, а также переопределить некоторые
+ свойства или добавить свои дополнительные свойства. Предположим, мы 
+решили наследоваться от существующего системного стиля Android для 
+текстовых сообщений и слегка модифицировать его.</p>
+
+<pre><code class="xml">
+&lt;style name="GreenText" parent="@android:style/TextAppearance"&gt;
+    &lt;item name="android:textColor"&gt;#00FF00&lt;/item&gt;
+&lt;/style&gt;
+</code></pre>
+
+<p>Если вы собираетесь наследоваться от собственных стилей, то использовать атрибут <b>parent</b>
+ не нужно. Просто используйте префикс имени наследуемого стиля перед 
+создаваемым новым стилем, разделяя имена стилей точкой. Например, для 
+создания нового стиля, которые наследуется от стиля <b>CodeFont</b>, созданного нами ранее, где мы хотим получить красный текст, используйте следующий способ:</p>
+
+<pre><code class="xml">
+&lt;style name="CodeFont.Red"&gt;
+    &lt;item name="android:textColor"&gt;#FF0000&lt;/item&gt;
+&lt;/style&gt;
+</code></pre>
+
+<p>Как видите, нам не пришлось использовать атрибут <b>parent</b> в теге <b>style</b>, потому что имя стиля начинается с имени <b>CodeFont</b> (созданный нами стиль). Теперь наш стиль наследует все свойства от стиля родителя, при этом мы изменили одно свойство <b>android:textColor</b>, чтобы текст выводился красным цветом. Вы можете ссылаться на новый стиль через конструкцию <b>@style/CodeFont.Red</b>.</p>
+
+<p>Вы можете продолжать наследоваться дальше много раз, добавляя новые имена через точку. Допустим, мы хотим расширить свойство <b>CodeFont.Red</b>, чтобы текст выводился более крупным шрифтом:</p>
+
+<pre><code class="xml">
+&lt;style name="CodeFont.Red.Big"&gt;
+    &lt;item name="android:textSize"&gt;30sp&lt;/item&gt;
+&lt;/style&gt;
+</code></pre>
+
+<p>Итак, мы наследовались от стилей <b>CodeFont</b> и <b>CodeFont.Red</b>, а затем добавили новое свойство <b>android:textSize</b>.</p>
+
+<p>Не забывайте, что данная техника наследования применима только к собственным стилям. Для наследования системных стилей типа <b>TextAppearance</b> необходимо использовать атрибут <b>parent</b>.</p>
+
+<h2 class="text-warning">Свойства стиля</h2>
+
+<p>Разобравшись с созданием стилей, рассмотрим различные свойства, определяемые в элементе <b>item</b>. Мы уже встречались с такими свойствами, как <b>layout_width</b> и <b>textColor</b>. На самом деле свойств гораздо больше.</p>
+
+<p>Для поиска свойств, которые применимы к заданному <b>View</b>, можно 
+обратиться к документации и просмотреть все поддерживаемые свойства.  
+Так все атрибуты, перечисленные в таблице атрибутов класса TextView 
+могут быть использованы для элементов <b>TextView</b> или <b>EditText</b>. Например, у данных элементов есть свойство <b>android:inputType</b>:</p>
+
+<pre><code class="xml">
+&lt;EditText
+    android:inputType="number"
+    ... /&gt;
+</code></pre>
+
+<p>Но вместо этого мы можем также создать стиль для элемента <b>EditText</b>, который будет включать в себя данное свойство:</p>
+
+<pre><code class="xml">
+&lt;style name="Numbers"&gt;
+  &lt;item name="android:inputType"&gt;number&lt;/item&gt;
+  ...
+&lt;/style&gt;
+</code></pre>
+
+<p>В файле разметки теперь можно написать так:</p>
+
+<pre><code class="xml">
+&lt;EditText
+    style="@style/Numbers"
+    ... /&gt;
+</code></pre>
+
+<p>На первый взгляд вам возможно покажется, что подобный подход отнимает
+ слишком много времени. Но в больших проектах повторное использование 
+стиля поможет вам сэкономить и время и силы.</p>
+
+<p>Для просмотра всех существующих стилей вы можете посмотреть исходники
+ Android. Найдите папку, в которую вы устанавливали Android SDK, там 
+можно найти нужные исходники. Например, у меня путь к исходникам стилей 
+Android API 17 выглядит следующим образом: <i>D:\Android\android-sdk-windows\platforms\android-17\data\res\values\styles.xml</i>. Помните, что все объекты <b>View</b>
+ не поддерживает сразу все существующие атрибуты, поэтому используйте 
+только специфичные стили для выбранного элемента. Но если вы по ошибке 
+зададите ошибочный стиль для View, то это не вызовет краха приложения. 
+Элемент View будет использовать только подходящие свойства и 
+игнорировать чужие для него свойства.</p>
+
+<p>Существует также часть свойств, которые не поддерживается ни одним 
+элементом View  и применима только как тема. Подобные стили действуют 
+сразу на все окно, а не на отдельный элемент. Например, есть тема, 
+скрывающая заголовок приложения, строку состояния или изменяющая фон 
+окна. Подобные стили легко определить по слову <b>window</b>, с которого начинается название стиля: windowNoTitle, windowBackground.</p>
+
+<p>Не забывайте использовать префикс <b>android</b> перед именем в каждом элементе <b>item</b>: &lt;item name="android:inputType"&gt;.</p>
+
+<p>Отдельно стоит отметить создание стиля для кнопки. У кнопки есть 
+несколько состояний - обычное, в фокусе, нажатое, нажатое с фокусом. 
+Поэтому для кнопки нужно создать четыре отдельных стиля, чтобы кнопка 
+выглядело профессионально.</p>
+
+<h2 class="text-warning">Использование стилей и тем для изменения интерфейса</h2>
+
+<p>Есть два способа установки стиля.</p>
+
+<ul>
+<li>Индивидуально для отдельного элемента, добавляя атрибут <b>style</b> в файле разметки</li>
+<li>Для всех элементов сразу, добавляя атрибут <b>android:theme</b> в элементы <b>activity</b> или <b>application</b> в файле-манифесте.</li>
+</ul>
+
+<p>Чтобы стиль работал в качестве темы, необходимо сделать запись в манифесте. Если вы добавите раннее созданный нами стиль <b>CodeFont</b>
+ в манифесте для Activity, то все элементы View будут использовать 
+свойства текста, которые мы разработали. Если в приложении будет элемент
+ View, не поддерживающий свойства для текста, то свойство будет 
+проигнорировано.</p>
+
+<p>Чтобы прикрепить стиль к элементу View, достаточно установить стиль в файле разметки (что мы уже неоднократно делали):</p>
+
+<pre><code class="xml">
+&lt;TextView
+    style="@style/CodeFont"
+    android:text="@string/hello" /&gt;
+</code></pre>
+
+<p>Теперь TextView будет стилизован в соответствии с нашими настройками в
+ стиле под именем CodeFont. (мы не используем в данном случае префикс 
+android: namespace).</p>
+
+<h2 class="text-warning" id="themes">Тема</h2>
+
+<p>Тема - это более ёмкое понятие. По существу, тема - стиль, который 
+относится ко всему окну или приложению, а не к отдельному элементу 
+приложения. Если стиль задан как тема, то все свойства начинают 
+действовать сразу на всю коллекцию элементов. Например, если стиль <b>CodeFont</b> задать как тему, то тогда все элементы приложения TextView будут использовать моноширный шрифт зелёного цвета.</p>
+
+<p>Темы похожи на определения стилей. Точно так же, как стили, темы 
+объявляются в XML-файле элементами &lt;style&gt;, и ссылаются на них тем
+ же самым 
+способом. Различие состоит в том, что тема добавляется ко всему 
+приложению или к отдельной активности через элементы &lt;application&gt;
+ и 
+&lt;activity&gt; в файле манифеста приложения, т. к. темы не могут быть 
+применены к отдельным представлениям.</p>
+
+<p>Чтобы стиль распознавался как тема, откройте файл <b>AndroidManifest.xml</b> и отредактируйте тег <b>&lt;application&gt;</b>, чтобы он включал в себя атрибут <b>android:theme</b> с указанием имени стиля:</p>
+
+<pre><code class="xml">
+&lt;application android:theme="@style/CustomTheme"&gt;
+</code></pre>
+
+<p>Если вы хотите, чтобы тема относилась не ко всему приложению, а к отдельному Activity, то атрибут <b>android:theme</b> нужно добавить в тег <b>&lt;activity&gt;</b>.</p>
+
+<p>Во многих случаях нет необходимости придумывать свои стили и темы, 
+так как Android содержит множество собственных встроенных тем. Например,
+ вы можете использовать тему <b>Dialog</b>, чтобы окно приложения выглядело как диалоговое окно (Смотри первый рисунок).</p>
+
+<pre><code class="xml">
+&lt;activity android:theme="@android:style/Theme.Dialog"&gt;
+</code></pre>
+
+<p>Для прозрачного окна можно использовать тему Translucent:</p>
+
+<pre><code class="xml">
+&lt;activity android:theme="@android:style/Theme.Translucent"&gt;
+</code></pre>
+
+<p>Если вам нравится тема, но несколько свойств всё-таки хотите 
+подправить под себя, то просто добавьте тему как родительскую тему к 
+своей теме. Например, мы хотим модифицировать стандартную тему <b>Theme_Light</b>, чтобы использовать свои цвета.</p>
+
+<pre><code class="xml">
+&lt;color name="custom_theme_color"&gt;#b0b0ff&lt;/color&gt;
+&lt;style name="CustomTheme" parent="android:Theme.Light"&gt;
+    &lt;item name="android:windowBackground"&gt;@color/custom_theme_color&lt;/item&gt;
+    &lt;item name="android:colorBackground"&gt;@color/custom_theme_color&lt;/item&gt;
+&lt;/style&gt;
+</code></pre>
+
+<p>Теперь мы можем использовать свой стиль вместо Theme.Light в манифесте:</p>
+
+<pre><code class="xml">
+&lt;activity android:theme="@style/CustomTheme"&gt;
+</code></pre>
+
+<h3 class="text-warning">Выбор темы в зависимости от версии платформы</h3>
+
+<p>Каждая новая версия Android обзаводится несколькими новыми темами. И,
+ возможно, вам захочется использовать новые темы в своих приложениях, 
+чтобы пользователи новых аппаратов увидили современный интерфейс, при 
+этом владельцы старых аппаратов будут видеть приложение в другом виде.</p>
+
+<p>Предположим у вас есть собственная тема, использующая стандартную светлую тему, в файле <b>res/values/styles.xml</b>:</p>
+
+<pre><code class="xml">
+&lt;style name="LightThemeSelector" parent="android:Theme.Light"&gt;
+    ...
+&lt;/style&gt;
+</code></pre>
+
+<p>Чтобы задействовать также новую голографическую тему, доступную в 
+Android 3.0 (API Level 11) и выше, создайте альтернативный файл стилей в
+ папке <b>res/values-v11</b>, где будет указана новая тема:</p>
+
+<pre><code class="xml">
+&lt;style name="LightThemeSelector" parent="android:Theme.Holo.Light"&gt;
+    ...
+&lt;/style&gt;
+</code></pre>
+
+<p>Теперь программа автоматически будет переключаться между стилями, самостоятельно определяя версию Android.</p>
+
+<p>Список стандартных атрибутов, используемых в темах, можно найти на странице <noindex><a href="http://developer.android.com/reference/android/R.styleable.html#Theme">R.styleable.Theme</a></noindex>.</p>
+
+<h2 class="text-warning">Использание стилей и тем платформы</h2>
+
+<p>Вы можете создавать собственные стили, а можете подключать готовые 
+системные стили или отдельные атрибуты стилей, используемых в Android. 
+Для указания стиля, предопределённого в Android, используется следующий 
+синтаксис:</p>
+
+<pre><code class="java">
+style="@android:style/TextAppearance
+</code></pre>
+
+<p>Если вам нужно выбрать только отдельную часть стиля, то используйте знак вопроса:</p>
+
+<pre><code class="java">
+&lt;EditText
+    id="@+id/edit"
+	android:textColor:="?android:textColorSecondary" /&gt;
+</code></pre>
+
+<p>Знак <b>?</b> применяется для поиска значения стиля в текущей теме, а
+ подстрока ?android означает поиск значения стиля в системной теме 
+Android.</p>
+
+<h2 class="text-warning" id="systemthemes">Примеры системных тем (Android 2.3)</h2>
+
+<table border="1">
+<tbody><tr>
+<td width="33%">Theme<br>Theme.Black<br>Theme.Light<br>Theme.Translucent</td>
+<td width="33%">Theme.NoTitleBar<br>Theme.Black.NoTitleBar<br>Theme.Light.NoTitleBar<br>Theme.Translucent.NoTitleBar</td>
+<td width="33%">Theme.NoTitleBar.FullScreen<br>Theme.Black.NoTitleBar.FullScreen<br>Theme.Light.NoTitleBar.FullScreen<br>Theme.Translucent.NoTitleBar.FullScreen</td></tr>
+<tr align="center">
+<td><img src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/themeblack.png" alt="Theme.Black"></td>
+<td><img src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/themeblacknotitlebar.png" alt="Theme.Black.NoTitleBar"></td>
+<td><img src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/themeblacknotitlebarfullscreen.png" alt="Theme.Black.FullScreen"></td></tr>
+<tr>
+<td>Status bar: Выводится<br>Title bar: Выводится</td>
+<td>Status bar: Выводится<br>Title bar: Не выводится</td>
+<td>Status bar: Не выводится<br>Title bar: Не выводится</td></tr>
+</tbody></table>
+
+<p>В последней версии плагина для Eclipse можно выбрать системную тему 
+сразу из среды разработки. Откройте файл разметки в графическом режиме. 
+Чуть выше формы имеется выпадающий список тем. По умолчанию там 
+установлена тема <b>Holo</b>. Поиграйтесь со списком, чтобы просмотреть другие варианты.</p>
+
+<h2 class="text-warning">Дополнительное чтение</h2>
+
+<p><a href="http://developer.alexanderklimov.ru/android/animation/animdialog.php#customanim">Собственная анимация для диалоговых окон</a></p>
+<p><a href="http://developer.alexanderklimov.ru/android/animation/activityoptions.php#xmlanimation">Анимация активностей при помощи тем и стилей</a></p>
+<p><a href="http://android-developers.blogspot.ru/2012/01/holo-everywhere.html">Holo Everywhere | Android Developers Blog</a></p>
+
+
+<h5 class="text-error">Реклама</h5>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4224968932772057";
+/* Полноразмерный баннер 728х90 */
+google_ad_slot = "4077523505";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/show_ads.js">
+</script>
+
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/counter.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/fastbutton.htm" name="I0_1378011242391" id="I0_1378011242391" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/jquery.js"></script><iframe style="width: 1px; height: 1px; position: absolute; left: -100px;" src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/postmessageRelay.htm" id="oauth2relay837554680" name="oauth2relay837554680"></iframe>
+    <script src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap-button.js"></script>
+    <script src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20%D0%A2%D0%B5%D0%BC%D1%8B%20%D0%B8%20%D1%81%D1%82%D0%B8%D0%BB%D0%B8_files/bootstrap-typeahead.js"></script>
+
+</body></html>

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Android: YouTube Android Player API</title>
+   
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Le styles -->
+<link href="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap.css" rel="stylesheet">
+<style type="text/css">
+  body {
+    padding-top: 60px;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav {
+    padding: 9px 0;
+  }
+</style>
+	
+<link href="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap-responsive.css" rel="stylesheet">
+	
+   <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    
+<link rel="icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://developer.alexanderklimov.ru/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        
+        <div class="nav-collapse collapse">
+          <p class="navbar-text pull-right">
+			<a data-toggle="" href="http://developer.alexanderklimov.ru/blocks/exit.php" class="navbar-link">tizerlab@yandex.ru (выход)</a>
+          </p>
+		  
+		  
+          
+		  <ul class="nav pull-right">
+                    <li id="fat-menu" class="dropdown">
+                      <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        
+                        <li><form action="http://developer.alexanderklimov.ru/blocks/testreg.php" method="post">
+						    	<fieldset id="inputs">
+		                        <input class="span2" id="username" name="login" placeholder="Ваш email адрес" required="" type="email">   
+		                        <input class="span1" id="password" name="password" placeholder="Пароль" required="" type="password">
+	                            </fieldset>
+	                            <fieldset id="actions">
+		                        <input class="btn" id="submit" name="submit" value="Войти" type="submit">
+		                        
+	                            </fieldset>
+                            </form></li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+        </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <p>
+		<a href="http://developer.alexanderklimov.ru/"><img src="Android%20%20YouTube%20Android%20Player%20API_files/header.png" alt="Сайт разработчика Александр Климова" border="0"></a>
+		</p>
+    
+    </div><!--/span-->
+    
+	<div class="span5">
+        <p style="color:green; font-style: italic; font-size: small;">
+		/* Моя кошка замечательно разбирается в программировании. Стоит мне объяснить проблему ей - и все становится ясно. */<br>John Robbins, Debugging Applications, Microsoft Press, 2000
+		</p>
+    </div><!--/span-->
+    
+	<div class="span2">
+        <p>
+		<a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20YouTube%20Android%20Player%20API_files/kot-2-rss-100.png" border="0"></a>
+		</p>
+    </div><!--/span-->
+</div><!--/row-->
+	
+<div class="clearfix"></div><noindex><!--Rating@Mail.ru COUNTER--><script async="" src="Android%20%20YouTube%20Android%20Player%20API_files/cbgapi.loaded_1"></script><script async="" src="Android%20%20YouTube%20Android%20Player%20API_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="Android%20%20YouTube%20Android%20Player%20API_files/plusone.js" async="" type="text/javascript"></script><script language="JavaScript" type="text/javascript"><!--
+d=document;var a='';a+=';r='+escape(d.referrer)
+js=10//--></script><script language="JavaScript1.1" type="text/javascript"><!--
+a+=';j='+navigator.javaEnabled()
+js=11//--></script><script language="JavaScript1.2" type="text/javascript"><!--
+s=screen;a+=';s='+s.width+'*'+s.height
+a+=';d='+(s.colorDepth?s.colorDepth:s.pixelDepth)
+js=12//--></script><script language="JavaScript1.3" type="text/javascript"><!--
+js=13//--></script><script language="JavaScript" type="text/javascript"><!--
+d.write('<IMG src="http://db.c7.b3.a0.top.mail.ru/counter'+
+'?id=228158;js='+js+a+';rand='+Math.random()+
+'" height="1" width="1" alt="top.mail.ru" border="0" />')
+if(11<js)d.write('<'+'!-- ')//--></script><img src="Android%20%20YouTube%20Android%20Player%20API_files/counter.gif" alt="top.mail.ru" border="0" height="1" width="1"><!-- <noscript><img
+src="http://db.c7.b3.a0.top.mail.ru/counter?js=na;id=228158"
+height="1" width="1" alt="top.mail.ru" border="0" /></noscript><script language="JavaScript" type="text/javascript"><!--
+if(11<js)d.write('--'+'>')//--><!--/COUNTER--></noindex><ul class="nav nav-pills">
+<li class=""><a href="http://rusnetframework.blogspot.com/">Блог</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/index.php">C#/Visual Basic</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/windowsphone/wp.php">Windows Phone</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/wpf/wpf.php">WPF</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/php">PHP</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/silverlight/silverlight.php">Silverlight</a></li>
+<li class="active"><a href="http://developer.alexanderklimov.ru/android">Android</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/arduino">Arduino</a></li>
+</ul>
+<div class="container-fluid">
+    
+	<div class="row-fluid">
+        <!--левое меню -->
+		<div class="span2">
+            <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+<li class="active"><a href="http://developer.alexanderklimov.ru/android/index.php">Главная</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/theory/">Теория</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/views.php">Palette</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/catshop/catshop.php">Котошоп</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/animation.php">Анимация</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/sqlite/">SQLite</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opengles/">OpenGL ES</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/library.php">Библиотеки</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/games.php">Игры</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/emulator.php">Эмулятор</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/tips-android.php">Советы</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/articles-android.php">Статьи</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/books.php">Книги</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/java/java.php">Java. Экспресс-курс</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/design/">Дизайн</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/opensource.php">Open Source</a></li>
+<li class=""><a href="http://developer.alexanderklimov.ru/android/links.php">Полезные ресурсы</a></li>
+</ul>            </div><!--/.well -->
+        </div><!--/span-->
+
+
+        <div class="span8">
+
+		<div class="row-fluid">
+            <div class="span12">
+			
+			            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel">Регистрация</h3>
+            </div>
+            <div class="modal-body">
+            
+<p>Полный текст статьи и исходники программы доступны только зарегистрированным участникам сайта.</p>
+
+<p>Стоимость регистрации - символические 155 рублей.</p>
+
+<p>Для регистрации сначала необходимо пополнить Яндекс.Кошелек - 
+410011383280263 на указанную сумму (или Webmoney-кошелек R390884954122 
+или QIWI - 9055113963 (кошелек, не на счёт телефона!)), а затем прислать
+ письмо на адрес rusproject@mail.ru или alexander.klimoff@gmail.com с 
+указанием, на какой кошелек вы делали оплату и реквизиты, по которым 
+можно вас определить.</p>
+
+<p>Не присылайте в письме мои номера кошельков - поверьте, я их знаю и без вас.</p>
+
+<p>В ответном письме вы получите учётные данные для чтения статей из закрытой зоны за второй месяц.</p>
+
+<p>Доступ к третьему месяцу обучения доступен только после оплаты второго месяца и составляет 155 руб.</p>
+
+<p>Доступ к чётвертому месяцу обучения доступен после оплаты третьего месяца и составляет 155 руб. и т.д.</p>
+
+<p>Также возможен приём на PayPal. Обратите внимание, что в этом случае стоимость одного месяца составляет 6$.</p>
+
+<p>При оплате сразу четырех месяцев (2-5) - стоимость 600 руб.</p>
+
+<p>Доступ даётся как минимум на один год. Для тех, кто оплатил третий и другие месяцы, сроки доступа увеличиваются.</p>
+
+<p>
+</p><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" value="_s-xclick" type="hidden">
+<input name="hosted_button_id" value="VRED2NRVE927N" type="hidden">
+<input src="Android%20%20YouTube%20Android%20Player%20API_files/btn_paynow_LG.gif" name="submit" alt="PayPal — более безопасный и легкий способ оплаты через Интернет!" border="0" type="image">
+<img alt="" src="Android%20%20YouTube%20Android%20Player%20API_files/pixel.htm" border="0" height="1" width="1">
+</form>
+<p></p>			
+			            
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal">Закрыть</button>
+              
+            </div>
+          </div>
+<h1 class="text-warning">YouTube Android Player API</h1>
+<p>Четвёртый месяц обучения (закрытая зона)</p>
+
+<p>
+<a href="#youtubeintent">Запускаем приложение YouTube через намерение</a><br>
+
+</p>
+
+<p><img src="Android%20%20YouTube%20Android%20Player%20API_files/catvideos.png" alt="YouTube"></p>
+
+<p>Метки: <span class="label">YouTube</span>, <span class="label label-success">YouTubeBaseActivity</span>, <span class="label label-warning">YouTubePlayerView</span></p>
+
+
+
+<p>
+
+</p>
+
+<p>На данный момент API для воспроизведения видео с YouTube является 
+экспериментальным, хотя разработчики уверяют, что кардинальных изменений
+ не намечается. Поэтому уже сейчас можно пробовать внедрять возможность 
+проигрывания видеороликов с YouTube в своих приложениях.</p>
+
+<p>Как известно, самые распространённые ролики - это видео с котиками. Поэтому, вам определённо нужно изучить эту тему.</p>
+
+<p>Использование YouTube Android Player API позволяет вам использовать 
+методы для загрузки и проигрывания видеороликов и плейлистов, а также 
+управлять видео в нужном режиме.</p>
+
+<p>Просмотр видео осуществляется в отдельном компоненте (View), который 
+вы можете вставить в свою разметку. Вы можете программно управлять 
+состоянием плеера: воспроизведение, пауза, поиск нужного места и т.п. 
+Также можно использовать фрагменты.</p>
+
+<p>Вдобавок возможен просмотр в полноэкранном режиме, поддерживается смена ориентации и другие возможности.</p>
+
+<div class="alert">
+У пользователя должна стоять версия 4.2.16 приложения YouTube, чтобы можно было воспользоваться данным API.
+</div>
+
+
+<h2 class="text-warning" id="youtubeintent">Запускаем приложение YouTube через намерение</h2>
+
+<p>Прежде чем мы начнём использовать YouTube API, рассмотрим сначала пример запуска приложения <b>YouTube</b> на устройстве через намерение. Так как на эмуляторе этого приложения нет, то проверять на реальном устройстве.</p>
+
+<p>Существуют для намерения для запуска конкретного видеоролика или плейлиста, которые можно создать при помощи методов класса <b>
+com.google.android.youtube.player.YouTubeIntents</b>:</p>
+
+<ul>
+<li><b>createPlayVideoIntent (Context context, String videoId)</b> - создаёт намерение для запуска видео по заданному идентификатору</li>
+<li><b>createOpenPlaylistIntent (Context context, String playlistId)</b> - создаёт намерение, открывающее плейлист в приложении YouTube</li>
+</ul>
+
+<p>Добавим на экран кнопку для запуска намерения:</p>
+
+<pre><code class="java">
+import com.google.android.youtube.player.YouTubeIntents;
+
+// переменная на уровне класса
+private static final String VIDEO_ID = "LDLCJeYeiPw";
+
+// Нажатие на кнопку
+public void onClick(View view) {
+	Intent intentStartYoutube = YouTubeIntents.createPlayVideoIntent(
+			getApplicationContext(), VIDEO_ID);
+	// Запускаем приложение YouTube с указанным видеороликом		
+	startActivity(intentStartYoutube);
+}
+</code></pre>
+
+<h3 class="text-warning">Скачать</h3>
+
+<p>Теперь перейдём к примерам с использованием YouTube API. Для начала нужно <a href="https://developers.google.com/youtube/android/player/downloads/">скачать библиотеку YouTubeAndroidPlayerApi-1.0.0.zip</a>.
+ Архив с библиотекой содержит также готовый пример для демонстрации 
+возможностей YouTube Android Player API. На данный момент у библиотеки 
+версия 1.0.0.</p>
+
+<h3 class="text-warning">Регистрация</h3>
+
+<p>Далее необходимо зарегистрироваться в <a href="https://code.google.com/apis/console">Google APIs console</a>,
+ чтобы получить специальный ключ, который будет использоваться в вашем 
+приложении. Если вы использовали в проектах новую версию Карт Google, то
+ данная операция будет вам знакома.</p>
+
+
+<p>Сначала создаётся новый проект через кнопку <b>Create project</b>:</p>
+
+<p><img src="Android%20%20YouTube%20Android%20Player%20API_files/api_console_create_project.png" alt="Create project"></p>
+
+<p>Если вы уже создавали ранее проект, то выбираете ссылку <b>Create...</b>:</p>
+
+<p><img src="Android%20%20YouTube%20Android%20Player%20API_files/api_console_create_new_project.png" alt="Create"></p>
+
+<p>У вас откроется панель доступных сервисов. Найдите сервис YouTube 
+Data API v3 и переключите его в состояние ON. (Перед этим вам предложат 
+почитать лицензионное соглашение).</p>
+
+<p>Щёлкните ссылку API Access в навигационном меню:</p>
+
+<p><img src="Android%20%20YouTube%20Android%20Player%20API_files/api_console_api_access_tab.png" alt="API Access"></p>
+
+<p>В консоли будет отображён ваш ключ разработчика по умолчанию для использования в браузерах.</p>
+
+<p><img src="Android%20%20YouTube%20Android%20Player%20API_files/api_console_default_api_key.png" alt=""></p>
+
+<p>Щёлкните кнопку Create new Android key.</p>
+
+<p><img src="Android%20%20YouTube%20Android%20Player%20API_files/api_console_create_android_api_key.png" alt=""></p>
+
+<p>В текстовом поле нужно ввести отпечаток сертификата SHA-1, используемый вашим Android-приложением.</p>
+
+<p><img src="Android%20%20YouTube%20Android%20Player%20API_files/api_console_configure_android_key.png"></p>
+
+<p>Стоит отметить, что если вы не введёте никакой информации в это поле,
+ то созданный ключ подойдёт для приложения и вы вполне можете 
+использовать его в тестовых примерах. Позже вы всегда можете вернуться в
+ консоль и получить настоящий ключ для конкретного приложения, который 
+вы будете распространять в Google Play.</p>
+
+<p>Итак, консоль покажет вам ваш ключ Android API:</p>
+
+<p><img src="Android%20%20YouTube%20Android%20Player%20API_files/api_console_android_api_key_created.png" alt=""></p>
+
+<h3 class="text-warning">Установка учебного примера</h3>
+
+<p>Распакуйте архив <b>YouTubeAndroidPlayerApi-1.0.0.zip</b>, который вы скачали ранее.</p>
+
+<p>Создайте новый проект для примера, который входит в состав архива. Для этого выберите в меню File | New | Project.</p>
+
+<p>Выберите в <b>Select a wizard</b> Android | Android Project from Existing Code.</p>
+
+<p>Импортируйте проект, выбрав нужную папку, в которую вы распаковали пример.</p>
+
+<p>После успешного импорта в Eclipse у вас будет готовый пример для 
+изучения. Вам необходимо добавить в проект библиотеку 
+YouTubeAndroidPlayerApi.jar в вашу папку <b>&lt;project_root&gt;/libs</b>.</p>
+
+<p>Откройте файл <b>DeveloperKey.java</b> в пакете YouTubeAndroidAPIDemo (YouTubeAndroidAPIDemo/src/com/examples/youtubeapidemo/DeveloperKey.java) и замените <b>null</b> вашем ключом разработчика, который вы получили ранее в консоли:</p>
+
+<pre>public static final String DEVELOPER_KEY = null;
+</pre>
+
+<p>Если вы этого не сделаете, то программа завершится с ошибкой java.lang.NullPointerException.</p>
+
+<p>Запускайте приложение на устройстве (на эмуляторе работать не будет).</p>
+
+<h2 class="text-warning">Создание своего примера</h2>
+
+<p>Учебная программа - это, конечно, замечательно. Но хочется научиться 
+создавать свои приложения. Давайте попробуем с нуля. Запускаем Eclipse и
+ создаём новый проект YoutubeDemo.</p>
+
+<p>Скопируйте файл <b>YouTubeAndroidPlayerApi.jar</b> в папку <b>libs</b> вашего проекта.</p>
+
+<p>В Eclipse делаем правый щелчок на файле  YouTubeAndroidPlayerApi.jar и выбираем <b>Build Path | Add to build path</b>.</p>
+
+<p>Добавляем компонент <b>YouTube Video Player View</b> в разметку активности.</p>
+
+<pre><code class="xml">
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"&gt;
+
+    &lt;TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#C0C0C0"
+        android:text="Введите Video ID:"
+        android:textAppearance="?android:attr/textAppearanceLarge" /&gt;
+
+    &lt;EditText
+        android:id="@+id/editUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите Video ID"
+        android:singleLine="true"
+        android:text="vL8sp4VAOnU" &gt;
+    &lt;/EditText&gt;
+
+    &lt;Button
+        android:id="@+id/buttonLoad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="Загрузить" /&gt;
+
+    &lt;com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/youtubeplayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" &gt;
+    &lt;/com.google.android.youtube.player.YouTubePlayerView&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre>
+
+<p>Переходим к классу активности. Прежде всего нужно запомнить, что вместо стандартного <b>extends Activity</b> нужно наследоваться от <b>YouTubeBaseActivity</b>.</p>
+
+<p>Также нужно импортировать следующие классы:</p>
+
+<pre><code class="java">
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayer.Provider;
+import com.google.android.youtube.player.YouTubePlayerView;
+</code></pre>
+
+<p>Код полностью:</p>
+
+<pre><code class="java">
+package ru.alexanderklimov.youtubedemo;
+
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayer.Provider;
+import com.google.android.youtube.player.YouTubePlayerView;
+
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class YouTubeActivity extends YouTubeBaseActivity implements
+		YouTubePlayer.OnInitializedListener {
+
+	private YouTubePlayerView playerview;
+	private YouTubePlayer youtubeplayer;
+	private EditText editVideoID;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.activity_youtube);
+
+		playerview = (YouTubePlayerView) findViewById(R.id.youtubeplayer);
+		editVideoID = (EditText) findViewById(R.id.editUrl);
+		playerview.initialize("ваш_ключик", this);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.activity_youtube, menu);
+		return true;
+	}
+
+	@Override
+	public void onInitializationFailure(Provider arg0,
+			YouTubeInitializationResult arg1) {
+		// TODO Auto-generated method stub
+		Toast.makeText(this, "Ошибка при инициализации", Toast.LENGTH_LONG)
+				.show();
+	}
+
+	public void onInitializationSuccess(YouTubePlayer.Provider provider,
+			YouTubePlayer player, boolean wasRestored) {
+		youtubeplayer = player;
+		if (!wasRestored) {
+			Toast.makeText(this, "Инициализация прошла успешно",
+					Toast.LENGTH_LONG).show();
+			player.cueVideo("vL8sp4VAOnU");
+		}
+	}
+
+	protected YouTubePlayer.Provider getYouTubePlayerProvider() {
+		return (YouTubePlayerView) findViewById(R.id.youtubeplayer);
+	}
+
+	public void onClick(View v) {
+		// youtubeplayer.cueVideo(editVideoID.getText().toString());
+		youtubeplayer.cueVideo(editVideoID.getText().toString());
+	}
+}
+</code></pre>
+
+<p>Общие комментарии к коду:</p>
+<ul>
+<li>Реализуйте интерфейс <b>YouTubePlayer.OnInitializedListener</b>.</li>
+<li>Вызовите метод инициализации с использованием ключа API.</li>
+<li>Загрузите видео при помощи метода <b>YouTubePlayer.loadVideo(video id)</b>.</li>
+</ul>
+
+<p>Не забываем про разрешение на интернет в манифесте.</p>
+
+<p>Идентификатором видео на YouTube является набор символов после <b>v=</b>:</p>
+<pre>https://www.youtube.com/watch?v=<b>fhWaJi1Hsfo</b>
+</pre>
+
+<p>Встретилась проблема, которую я так и не смог решить. Первоначально у
+ меня использовался RelativeLayout, который стоит по умолчанию при 
+создании нового проекта. Почему-то при такой разметке видео отказывалось
+ проигрываться. Оно начинает загружаться, выводит превьюшку, проигрывает
+ одну-две секунды и останавливается. Если переключиться в полноэкранный 
+режим, то видео воспроизводится без проблем. Надо почитать документацию,
+ может там найдётся объяснение. Если вы разберётесь, то дайте знать, 
+пожалуйста.</p>
+
+<p>Удачного просмотра видео про котиков!</p>
+
+<p><a href="https://developers.google.com/youtube/android/player/">Общая страница для знакомства YouTube Android Player API</a></p>
+<p><a href="https://developers.google.com/youtube/android/player/reference/com/google/android/youtube/player/package-summary">Страница документации по YouTube Android Player API</a></p>
+
+<p><img src="Android%20%20YouTube%20Android%20Player%20API_files/youtubeandroidplayerapi1.png" alt="Готовое приложение" height="400" width="240"> <img src="Android%20%20YouTube%20Android%20Player%20API_files/youtubeandroidplayerapi2.png" alt="Готовое приложение" height="400" width="240"></p>
+
+</div><!--/span-->
+        </div><!--/row-->	
+		  
+        </div><!--/span-->
+		
+		<div class="span2">
+            <div class="well sidebar-nav">
+    <h4><span class="label label-info">Реклама</span></h4>
+    <script type="text/javascript"><!--
+    google_ad_client = "pub-4224968932772057";
+    /* 120x600AlexKlimov */
+    google_ad_slot = "0305552138";
+    google_ad_width = 120;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="Android%20%20YouTube%20Android%20Player%20API_files/show_ads.js">
+    </script>
+</div><!--/.well -->        </div><!--/span-->
+		
+      </div><!--/row-->
+	  
+	
+      <hr>
+	  
+	  	  <div class="row-fluid">
+	  <div class="span12">
+	  <img src="Android%20%20YouTube%20Android%20Player%20API_files/cat_bottom.png" align="right">
+</div><!--/span-->
+        </div><!--/row-->
+
+<footer>
+    <noindex>
+    <span style="float:left; margin:3px 1px 1px 2px;">
+	    © 2013 <a href="mailto:rusproject@mail.ru">А.Климов</a>
+		
+		<!-- Place this code where you want the badge to render. -->
+<a href="http://plus.google.com/109061106977829925124?prsrc=3" rel="publisher" style="text-decoration:none;">
+<img src="Android%20%20YouTube%20Android%20Player%20API_files/gplus-16.png" alt="Google+" style="border:0;width:16px;height:16px;"></a>
+
+    </span>
+	
+		<span style="float: right; margin:3px 5px 1px 1px; font-size:22px;">
+        <!--Rating@Mail.ru LOGO--><a target="_top" href="http://top.mail.ru/jump?from=228158"><img src="Android%20%20YouTube%20Android%20Player%20API_files/counter_002.gif" alt="Рейтинг@Mail.ru" border="0" height="31" width="88"></a><!--/LOGO-->
+	</span>
+    
+    <span style="float: right; margin:2px 70px 1px 1px; font-size:22px;">
+        <a href="http://feeds.feedburner.com/alexanderklimov/VJcl"><img src="Android%20%20YouTube%20Android%20Player%20API_files/VJcl.gif" style="border:0" alt="" height="26" width="88"></a>
+	</span>
+	
+<div style="float: right; margin:2px 70px 1px 1px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="Android%20%20YouTube%20Android%20Player%20API_files/fastbutton.htm" name="I0_1379249104245" id="I0_1379249104245" vspace="0" tabindex="0" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+
+</div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ru'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+	
+
+    </noindex>
+</footer>
+
+</div><iframe style="width: 1px; height: 1px; position: absolute; top: -100px;" src="Android%20%20YouTube%20Android%20Player%20API_files/postmessageRelay.htm" id="oauth2relay882594536" name="oauth2relay882594536"></iframe><!--/.fluid-container-->    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="Android%20%20YouTube%20Android%20Player%20API_files/jquery.js"></script>
+    <script src="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap-transition.js"></script>
+    <script src="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap-alert.js"></script>
+    <script src="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap-modal.js"></script>
+    <script src="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap-dropdown.js"></script>
+    <script src="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap-scrollspy.js"></script>
+    <script src="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap-tab.js"></script>
+    <script src="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap-tooltip.js"></script>
+    <script src="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap-popover.js"></script>
+    <script src="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap-button.js"></script>
+    <script src="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap-collapse.js"></script>
+    <script src="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap-carousel.js"></script>
+    <script src="Android%20%20YouTube%20Android%20Player%20API_files/bootstrap-typeahead.js"></script>
+
+</body></html>
